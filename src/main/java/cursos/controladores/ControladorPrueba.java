@@ -13,6 +13,13 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 public class ControladorPrueba {
 
+	@RequestMapping(path = "/saludar", method = RequestMethod.GET)
+	public ModelAndView saludar1() {
+		ModelMap modelo = new ModelMap();
+		modelo.put("mensaje1","Hola como estas?");
+		modelo.put("mensaje2"," bien,soy gabriel");
+		return new ModelAndView("saludo",modelo);
+	}
 	
 
 }
