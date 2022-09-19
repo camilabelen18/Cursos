@@ -23,4 +23,17 @@ public class ControladorPruebaGabriel {
 	}
 	
 
+	@RequestMapping(path = "/comprar", method = RequestMethod.GET) //Cambiarlo a metodo post 
+	public ModelAndView verificacionC() {
+		
+		ModelMap modelo = new ModelMap();
+		
+		return new ModelAndView("verificacionCompra",modelo);
+		
+		
+	}
+	
+	
+	
+	
 }
