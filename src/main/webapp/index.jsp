@@ -51,7 +51,7 @@
 		<nav>
 			<ul>
 				<li><a href="index.jsp">Inicio</a></li>
-				<li><a href="#">Cursos</a></li>
+				<li><a href="cursos.jsp">Cursos</a></li>
 				<li><a href="index.jsp">Contacto</a></li>
 			</ul>
 		</nav>
