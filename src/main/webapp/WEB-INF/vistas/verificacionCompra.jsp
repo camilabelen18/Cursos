@@ -68,7 +68,7 @@
 	
 	<%--Caja contenedora principal --%>
 	<div class="contenedor2" >
-	    <form action="comprar" method="post">
+	    <form action="verificarCompra" method="post">
 	     <h6> Pagar con tarjeta</h6>
 	     <label for="nroTarjeta">Numero de tarjeta</label>
 	     <input id="nroTarjeta" type="text" name="nroTarjeta" placeholder="numero-tarjeta">
@@ -96,9 +96,6 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" ></script>
 		<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
 		<script src="js/bootstrap.min.js" type="text/javascript"></script>
-	
-	
-	
 	
 	
 	

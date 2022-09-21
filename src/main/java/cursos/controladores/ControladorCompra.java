@@ -12,21 +12,31 @@ import javax.servlet.http.HttpServletRequest;
 
 @Controller
 
-public class ControladorPruebaGabriel {
+public class ControladorCompra {
 	
-	@RequestMapping(path = "/hola", method = RequestMethod.GET)
-	public ModelAndView saludar1() {
+
+	@RequestMapping(path = "/comprar", method = RequestMethod.GET) //Cambiarlo a metodo post 
+	public ModelAndView verificacionC() {
+		
 		ModelMap modelo = new ModelMap();
-		modelo.put("mensaje1","Hola como estas?");
-		modelo.put("mensaje2"," bien,soy gabriel");
-		return new ModelAndView("hola",modelo);
+		
+		return new ModelAndView("verificacionCompra",modelo);
+		
+		
 	}
 	
+	
+	@RequestMapping(path = "/verificarCompra", method = RequestMethod.POST) //Cambiarlo a metodo post 
+	public ModelAndView verificacionCompra() {
+		
+		ModelMap modelo = new ModelMap();
+		
+		return new ModelAndView("compraRealizada",modelo);
+		
+		
+	}
+	
+	
+	
 
-
-	
-	
-	
-	
-	
 }
