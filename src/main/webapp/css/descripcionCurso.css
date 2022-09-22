@@ -1,0 +1,68 @@
+#contenedor {
+	margin: 0 auto;
+	height: 246;
+	width: 662px;
+
+}
+
+#cont1 {
+	float: left;
+}
+
+#cont2 {
+	font-size: 20px;
+}
+
+#cont3 {
+	margin-top: 41px;
+	margin-bottom: 20px;
+}
+
+#nombreCurso {
+	margin-bottom: 0px;
+}
+
+#precioCurso {
+	font-weight: bold;
+}
+
+#tit {
+	text-align: center;
+	margin-bottom: 50px;
+}
+
+#cursophp {
+	width: 340px;
+}
+
+#comprarAhora {
+	background-color: #37B9CB;;
+	color: white;
+	border: 0;
+	width: 200px;
+	height: 35px;
+}
+
+#agregarCarrito {
+	background-color: #858f91;
+	color: white;
+	border: 0; width : 200px;
+	height: 35px;
+	width: 200px
+}
+
+#cont2, #cont3, #cont4 {
+	margin-left: 390px;
+}
+
+#descripcion{
+	height: 246;
+	width: 662px;
+	margin: 0 auto;
+	margin-top: 50px;
+}
+
+#descTit{
+	font-size: 22px;
+	font-weight: bold;
+}
