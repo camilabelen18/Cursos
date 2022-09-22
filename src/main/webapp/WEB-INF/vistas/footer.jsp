@@ -40,7 +40,7 @@
 			</div>
 		</div>
 		<div class="derechos">
-			<p>cursos© 2020</p>
+			<p>cursos© 2022</p>
 		</div>
 	</div>
 </footer>
