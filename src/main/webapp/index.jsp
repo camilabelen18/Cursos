@@ -21,6 +21,7 @@
 
 	<%@ include file="/WEB-INF/vistas/header.jsp" %>
 
+	<h1>Esta es la página principal</h1>
 
 </body>
 </html>

@@ -17,11 +17,11 @@
 </head>
 <body>
 
-<%@ include file="header.jsp" %>
-
-<h1>Estoy en curso</h1>
-
-Curso buscado: ${busqueda_curso}
+	<%@ include file="header.jsp" %>
+	
+	<h1>Estoy en curso</h1>
+	
+	Curso buscado: ${busqueda_curso}
 
 </body>
 </html>
