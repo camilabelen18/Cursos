@@ -19,9 +19,13 @@
 </head>
 <body>
 
+	<!-- Aca se incluye el "HEADER" -->
 	<%@ include file="/WEB-INF/vistas/header.jsp" %>
 
 	<h1>Esta es la página principal</h1>
+	
+	<!-- Aca se incluye el "FOOTER" -->
+	<%@ include file="/WEB-INF/vistas/footer.jsp" %>
 
 </body>
 </html>
