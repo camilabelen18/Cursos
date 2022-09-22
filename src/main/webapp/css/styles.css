@@ -24,6 +24,26 @@ a {
     text-decoration: none;
 }
 
+::placeholder {
+    color: #cecece;
+    font-size: 20px;
+    font-weight: normal;
+}
+
+input[type="submit"] {
+    padding: 5px 30px;
+    background: #429FF4;
+    color: white;
+    border: 0;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+input[type="submit"]:hover {
+    background: #61aff5;
+    cursor: pointer;
+}
+
 /* HEADER */
 .contenedor1 {
 	background: white;
@@ -94,3 +114,108 @@ nav a:hover {
     color: white;
 }
 
+/* FOOTER */
+.cont-foot-1 {
+    background-color: white;
+}
+
+.txt-contacto {
+    width: 50%;
+    margin: auto;
+    padding: 60px 0px 20px 0px;
+    font-size: 34px;
+    font-weight: 500;
+    text-align: center;
+}
+
+.formulario {
+    width: 35%;
+    margin: auto;
+    margin-bottom: 60px;
+}
+
+.nom-cor {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.nom-cor input {
+    width: 44.5%;
+    padding: 12px;
+    border: 2px solid #cecece;
+    border-radius: 5px;
+    color: #404040;
+    font-size: 18px;
+    font-weight: normal;
+}
+
+.mensaje {
+    display: flex;
+}
+
+.mensaje textarea {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #cecece;
+    border-radius: 5px;
+    min-height: 100px;
+    max-height: 120px;
+    color: #404040;
+    font-size: 18px;
+    font-weight: normal;
+}
+
+.txt-btn {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.txt-btn p {
+    color: #5e5e5e;
+    font-weight: 500;
+}
+
+.cont-foot-2 {
+    height: 230px;
+    background-color: #2C2E41;
+    color: white;
+}
+
+.barra-inferior {
+    width: 60%;
+    height: 70%;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.informacion {
+    padding-top: 1em;
+}
+
+.informacion a {
+    display: block;
+    color: white;
+    margin-top: 14px;
+}
+
+.integrantes {
+    font-size: 14px;
+    text-align: center;
+    padding-top: 3em;
+}
+
+.integrantes p {
+    margin-bottom: 5px;
+}
+
+.derechos {
+    height: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: lightgray;
+}

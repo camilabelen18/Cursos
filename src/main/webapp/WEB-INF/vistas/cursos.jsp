@@ -22,6 +22,8 @@
 	<h1>Estoy en curso</h1>
 	
 	Curso buscado: ${busqueda_curso}
+	
+	<%@ include file="footer.jsp" %>
 
 </body>
 </html>
