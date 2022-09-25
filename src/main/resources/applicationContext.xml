@@ -20,6 +20,9 @@
 	<tx:annotation-driven transaction-manager="transactionManager" />
 
 	<context:component-scan base-package="cursos.controladores" />
+	<context:component-scan base-package="servicios" />
+	<context:component-scan base-package="repositorios" />
 
+       <!--   -->
 </beans>
 
