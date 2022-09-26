@@ -8,4 +8,8 @@ public interface RepositorioCurso {
 
 	List<Curso> obtenerListaCursos();
 
+	Curso añadirCurso(Curso curso);
+
+
+	
 }
