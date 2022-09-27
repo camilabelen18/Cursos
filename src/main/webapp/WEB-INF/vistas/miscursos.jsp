@@ -2,8 +2,7 @@
     pageEncoding="UTF-8"%>
     
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-	
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -15,35 +14,27 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/be5ce1948e.js" crossorigin="anonymous"></script>
     
-	
-
-<title>Vista Buscar</title>
-<link rel="stylesheet" href="css/styles.css">
-<link rel="stylesheet" href="css/vistaBuscar.css">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-   
+    <title>Mis Cursos</title>
+    <link rel="stylesheet" href="css/styles.css">
+  	<link rel="stylesheet" href="css/misc.css">
+    
 </head>
 <body>
-
 	<%@ include file="header.jsp"%>
 
-<c:if test="${not empty busqueda_curso}">
-	<c:forEach items="${busqueda_curso}" var="buscarCurso">
+	<div class="titulo">
+	<h3>SECCION: MIS CURSOS</h3>
+	</div>
+	<div class="dropdown">
+		<h6>Filtrar por:</h6>
+		<button class="dropbtn">Todos mis cursos</button>
+		<div class="dropdown-content">
+			<a href="#">En Curso</a> 
+			<a href="#">Finalizado</a> 
+			<a href="#">Cancelado</a>
+		</div>
+	</div>
 
-			<tr>
-			<!-- Mostrar el curso con una imagen dependiendo que curso sea -->
-			<td>${buscarCurso.descripcion}</td>
-			<td>${buscarCurso.nombre}</td>
-			<td>${buscarCurso.precio}</td><br>
-			<!-- <input action="descripcionCurso" id="verdetalles"type="submit" value="Ver Detalles"><br> -->	
-			<!-- boton de ver de talles o ir a curso -->
-		</tr>
-	</c:forEach>
-</c:if>
-
-<p>${sincurso}</p>
-
-	<%@ include file="footer.jsp"%>
-
+	
 </body>
 </html>

@@ -21,15 +21,29 @@ public class ControladorCursos {
 	private ServicioCurso servicioCurso;
 	
 	@RequestMapping(path = "/buscar", method = RequestMethod.GET)
-	public ModelAndView buscar( Model modelo) {
+	public ModelAndView buscar(@RequestParam("descripcion")String descripcion) {//Model modelo
 		
 		//va a la BD y me trae el curso si existe y si no me muestra que no existe dentro de la misma vista
 		
-		List<Curso> listaCurso = servicioCurso.busqueda(); //devuelve la lista de cursos
+		ModelMap model = new ModelMap();
 		
-		modelo.addAttribute("busqueda_curso", listaCurso);
+		//buscar curso por descripcion
+		List<Curso> busqueda_curso = servicioCurso.busqueda(descripcion); //devuelve la lista de cursos
+		
+		if(busqueda_curso.isEmpty()){
+			model.put("sincurso","No existen cursos, vuelva a ingresar el nombre en la barra de busqueda");
+			
+		}
+		
+		model.put("busqueda_curso",busqueda_curso);
+		return new ModelAndView("vistaBuscar",model);
 	
-		return new ModelAndView("vistaBuscar");
+
+	}
+	
+	@RequestMapping(path="/miseccion")
+	public ModelAndView miseccion(){
+		return new ModelAndView("miscursos");
 	}
 	
 	@RequestMapping(path= "/cursos", method= RequestMethod.GET)
