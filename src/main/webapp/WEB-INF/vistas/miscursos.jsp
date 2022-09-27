@@ -14,22 +14,27 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/be5ce1948e.js" crossorigin="anonymous"></script>
     
-    <title>Filtro</title>
-    <link rel="stylesheet" href="css/styles.css"> 
+    <title>Mis Cursos</title>
+    <link rel="stylesheet" href="css/styles.css">
+  	<link rel="stylesheet" href="css/misc.css">
     
 </head>
 <body>
 	<%@ include file="header.jsp"%>
-	
-	<div id="menudesplegable">
-		<ul class="menu">
-			<li> <h4>Todos mis cursos</h4>
-				<ul><h4>En curso</h4></ul>
-				<ul><h4>Finalizado</h4></ul>
-				<ul><h4>Cancelado</h4></ul>
-			</li>
-		</ul>
+
+	<div class="titulo">
+	<h3>SECCION: MIS CURSOS</h3>
 	</div>
+	<div class="dropdown">
+		<h6>Filtrar por:</h6>
+		<button class="dropbtn">Todos mis cursos</button>
+		<div class="dropdown-content">
+			<a href="#">En Curso</a> 
+			<a href="#">Finalizado</a> 
+			<a href="#">Cancelado</a>
+		</div>
+	</div>
+
 	
 </body>
 </html>

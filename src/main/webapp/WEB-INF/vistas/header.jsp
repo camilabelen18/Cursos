@@ -11,7 +11,7 @@
 		<div id="barra_busqueda">
 			<form action="buscar">
 				<input type="search" placeholder="Buscar curso" aria-label="Search"
-					id="txtCurso" name="txtCurso">
+					id="txtCurso" name="descripcion">
 			</form>
 		</div>
 

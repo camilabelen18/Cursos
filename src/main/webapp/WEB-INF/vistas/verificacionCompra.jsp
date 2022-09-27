@@ -37,6 +37,8 @@
 				<h6>Pagar con tarjeta</h6>
 				<label for="nroTarjeta">Numero de tarjeta</label>
 				<input id="nroTarjeta" type="text" name="nroTarjeta" placeholder="numero-tarjeta">
+				<label for="nroTarjeta">Email</label>
+				<input id="email" type="text" name="email" placeholder="email">
 				<input id="comprar"type="submit" value="comprar">
 			</form>
 		</div>
