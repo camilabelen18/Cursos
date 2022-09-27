@@ -11,7 +11,7 @@
 		<property name="url"
 			value="jdbc:mysql://localhost:3306/proyecto?serverTimezone=UTC" />
 		<property name="username" value="root" />
-		<property name="password" value="ca2024mi" />
+		<property name="password" value="Mysqlunlm" />
 
 
 
@@ -34,6 +34,8 @@
 		<property name="packagesToScan">
 			<list>
 				<value>modelo</value>
+				
+				
 
 			</list>
 		</property>
