@@ -7,22 +7,70 @@
 <html lang="es">
 <head>
 	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-    <script src="https://kit.fontawesome.com/be5ce1948e.js" crossorigin="anonymous"></script>
-    
-    <title>Cursos</title>
+	<title>Cursos</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/index.css">
 </head>
 <body>
 
 	<!-- Aca se incluye el "HEADER" -->
 	<%@ include file="/WEB-INF/vistas/header.jsp" %>
 
-	<h1>Esta es la página principal</h1>
+	<!-- PRESENTACIÓN -->
+	<div class="cont-index-1" style="background-image: url('imagenes/slaider.jpg');">
+		<h1>CURSOS ONLINE</h1>
+    </div>
+
+	<!-- CATEGORÍAS -->
+	<div class="cont-index-2">
+
+		<h2>Categorías</h2>
+
+		<div class="categorias-index">
+			<div class="cat-index">
+				<a href="#">
+					<img src="imagenes/cat-diseño.jpg">
+					<p>Diseño</p>
+				</a>
+			</div>
+
+			<div class="cat-index">
+				<a href="#">
+					<img src="imagenes/cat-programacion.jpg">
+					<p>Programación</p>
+				</a>
+			</div>
+
+			<div class="cat-index">
+				<a href="#">
+					<img src="imagenes/cat-musica.jpg">
+					<p>Música</p>
+				</a>
+			</div>
+		</div>
+	</div>
+
+	<!-- CONTACTO -->
+	<div class="cont-contacto">
+		<div class="txt-contacto">
+			<p>Contacto</p>
+		</div>
+		<form action="#" class="formulario">
+			<div class="nom-cor">
+				<input type="text" name="nombre" id="nombre" placeholder="Nombre:">
+				<input type="text" name="correo" id="correo" placeholder="Correo:">
+			</div>
+			<div class="mensaje">
+				<textarea name="mensaje" id="mensaje" cols="20" rows="10"
+					placeholder="Mensaje:"></textarea>
+			</div>
+			<div class="txt-btn">
+				<p>*Te responderemos a la brevedad por correo electrónico</p>
+				<input type="submit" value="Enviar">
+			</div>
+		</form>
+	</div>
 	
 	<!-- Aca se incluye el "FOOTER" -->
 	<%@ include file="/WEB-INF/vistas/footer.jsp" %>

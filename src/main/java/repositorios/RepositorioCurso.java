@@ -6,7 +6,9 @@ import modelo.Curso;
 
 public interface RepositorioCurso {
 
-	List<Curso> obtenerListaCursos();
+	List<Curso> obtenerListaCursosPorDescripcion(String descripcion);
+
+	Curso obtenerListaCursosPorID(Long id);
 
 	Curso añadirCurso(Curso curso);
 
