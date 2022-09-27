@@ -35,6 +35,11 @@
 			<td>${buscarCurso.descripcion}</td>
 			<td>${buscarCurso.nombre}</td>
 			<td>${buscarCurso.precio}</td><br>
+			<div id="cont4">
+			<form action="descripcionCurso">
+				<input id="descripcionCurso" type="submit" value="Ver detalles">
+			</form>
+		</div>
 			<!-- <input action="descripcionCurso" id="verdetalles"type="submit" value="Ver Detalles"><br> -->	
 			<!-- boton de ver de talles o ir a curso -->
 		</tr>
