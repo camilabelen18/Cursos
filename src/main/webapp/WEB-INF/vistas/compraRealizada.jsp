@@ -47,5 +47,8 @@
 
 
 
+	<h1>Compra realizada </h1>
+
+
 </body>
 </html>

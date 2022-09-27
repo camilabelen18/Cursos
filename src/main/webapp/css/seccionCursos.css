@@ -1,0 +1,53 @@
+
+
+#contenedorFiltros {
+	display: flex;
+	flex-direction: row;
+	margin: 10px;
+	padding: 10px;
+	padding-top: 20px;
+}
+
+#contenedorFiltros h2 {
+	font-weight: bold;
+	margin-right: 30%;
+	font-size: xx-large;
+	margin-left: 10%;
+}
+
+.formulario{
+	padding-left: 15px;
+	text-align: left;
+}
+
+select{
+	border-radius: 5px;
+	padding: 2px;
+}
+
+.listaDeCursos{
+	display: flex;
+	flex-direction: column;
+	margin-left: 10%;
+	margin-right: 10%;
+}
+
+#contenedor {
+	background-color: rgba(169, 169, 169, 0.548);
+	margin: 20px;
+	padding: 20px;
+}
+
+#nombreCurso{
+	font-size: x-large;
+	
+}
+
+#precioCurso{
+	font-weight: 800;
+	text-align: right;
+}
+
+#comprarAhora{
+	float: right; 
+}

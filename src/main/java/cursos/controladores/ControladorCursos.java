@@ -15,7 +15,7 @@ import modelo.Curso;
 import servicios.ServicioCurso;
 
 @Controller
-public class ControladorCurso {
+public class ControladorCursos {
 	
 	@Autowired
 	private ServicioCurso servicioCurso;
@@ -44,6 +44,14 @@ public class ControladorCurso {
 	@RequestMapping(path="/miseccion")
 	public ModelAndView miseccion(){
 		return new ModelAndView("miscursos");
+	}
+	
+	@RequestMapping(path= "/cursos", method= RequestMethod.GET)
+	public ModelAndView listaDeCursos() {
+		
+		ModelMap modelo = new ModelMap();
+		
+		return new ModelAndView("seccionCursos",modelo);
 	}
 
 }
