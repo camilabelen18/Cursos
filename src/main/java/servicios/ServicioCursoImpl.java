@@ -19,12 +19,7 @@ public class ServicioCursoImpl implements ServicioCurso {
 	private RepositorioCurso repositorioCurso;
 
 	@Override
-
-	public List<Curso> busqueda() {
-
-		return repositorioCurso.obtenerListaCursos();
-
-	public List<Curso> busqueda(String descripcion) {
+public List<Curso> busqueda(String descripcion) {
 		
 		
 		return repositorioCurso.obtenerListaCursosPorDescripcion(descripcion);
