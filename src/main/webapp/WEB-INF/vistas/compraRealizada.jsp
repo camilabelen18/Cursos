@@ -21,6 +21,7 @@
 <body>
 	<%@ include file="header.jsp"%>
 
+
 	<%--Contenido de la pagina --%>
 
 	<main>
@@ -36,6 +37,9 @@
 	</main>
 	
 	<%@ include file="footer.jsp" %>
+
+	<h1>Compra realizada </h1>
+
 
 </body>
 </html>

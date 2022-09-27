@@ -1,10 +1,8 @@
-CREATE DATABASE proyecto;
+CREATE DATABASE proyecto_cursos;
 
-USE proyecto;
+USE proyecto_cursos;
 
 INSERT INTO curso(Descripcion,Estado,Nombre,Precio)
 VALUES
-('diseño',1,'php',100.5),
-('diseño',1,'java',100.5);
-
-SELECT Nombre FROM curso;
+('diseno',1,'php',100.5),
+('diseno',1,'java',100.5);
