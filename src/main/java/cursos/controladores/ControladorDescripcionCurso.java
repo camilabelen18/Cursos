@@ -10,6 +10,8 @@ public class ControladorDescripcionCurso {
 	
 	@RequestMapping ("/descripcionCurso")
 	public ModelAndView irADescCurso() {
+		
 		return new ModelAndView("descripcionCurso");
 	}
+	
 }

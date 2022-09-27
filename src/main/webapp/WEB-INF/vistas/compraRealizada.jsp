@@ -8,7 +8,7 @@
 </head>
 <body>
 
-  <h1>Compra realizada </h1>
+	<h1>Compra realizada </h1>
 
 </body>
 </html>

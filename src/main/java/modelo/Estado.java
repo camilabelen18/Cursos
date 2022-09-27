@@ -1,7 +1,7 @@
 package modelo;
 
 public enum Estado {
-EN_CURSO,
-FINALIZADO,
-CANCELADO;
+	
+	EN_CURSO, FINALIZADO, CANCELADO;
+	
 }
