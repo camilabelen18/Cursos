@@ -21,24 +21,22 @@ public class ControladorCursos {
 	private ServicioCurso servicioCurso;
 	
 	@RequestMapping(path = "/buscar", method = RequestMethod.GET)
-	public ModelAndView buscar(@RequestParam("descripcion")String descripcion) {//Model modelo
+	public ModelAndView buscar(@RequestParam("nombreCurso") String nombreCurso) {
 		
-		//va a la BD y me trae el curso si existe y si no me muestra que no existe dentro de la misma vista
-		
+		// Va a la BD y me trae el curso si existe y si no me muestra que no existe dentro de la misma vista
 		ModelMap model = new ModelMap();
 		
-		//buscar curso por descripcion
-		List<Curso> busqueda_curso = servicioCurso.busqueda(descripcion); //devuelve la lista de cursos
+		// Devuelve una lista de cursos por su nombre
+		List<Curso> busqueda_cursos = servicioCurso.getCursosPorNombre(nombreCurso);
 		
-		if(busqueda_curso.isEmpty()){
-			model.put("sincurso","No existen cursos, vuelva a ingresar el nombre en la barra de busqueda");
-			
+		// Si la lista se encuantra vacia entonces se guarda un mensaje iformativo
+		if(busqueda_cursos.isEmpty()) {
+			model.put("sincurso", "No existen cursos, vuelva a ingresar el nombre en la barra de busqueda");
 		}
 		
-		model.put("busqueda_curso",busqueda_curso);
-		return new ModelAndView("vistaBuscar",model);
-	
-
+		model.put("lista_cursos", busqueda_cursos);
+		
+		return new ModelAndView("seccionCursos", model);
 	}
 	
 	@RequestMapping(path="/miseccion")
@@ -46,12 +44,28 @@ public class ControladorCursos {
 		return new ModelAndView("miscursos");
 	}
 	
-	@RequestMapping(path= "/cursos", method= RequestMethod.GET)
-	public ModelAndView listaDeCursos() {
+	
+	// Se obtienen todos los registros de la tabla 'curso' de la bd
+	@RequestMapping(path= "/verListaCursos", method= RequestMethod.GET)
+	public ModelAndView verListaCursos(Model modelo) {
 		
-		ModelMap modelo = new ModelMap();
+		List<Curso> cursos = servicioCurso.getCursos();
 		
-		return new ModelAndView("seccionCursos",modelo);
+		modelo.addAttribute("lista_cursos", cursos);
+		
+		return new ModelAndView("seccionCursos");
+	}
+
+	
+	// Se obtiene una lista de cursos por categoria
+	@RequestMapping(path= "/verCursosPorCategoria", method= RequestMethod.GET)
+	public ModelAndView verCursosPorCategoria(@RequestParam("categoria") String categoria, Model modelo) {
+		
+		List<Curso> cursos = servicioCurso.getCursosPorCategoria(categoria);
+		
+		modelo.addAttribute("lista_cursos", cursos);
+		
+		return new ModelAndView("seccionCursos");
 	}
 
 }

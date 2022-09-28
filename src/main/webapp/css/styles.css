@@ -45,7 +45,7 @@ input[type="submit"]:hover {
 }
 
 /* HEADER */
-.contenedor1 {
+.cont-1-header {
 	background: white;
     width: 80%;
     margin: auto;
@@ -53,6 +53,11 @@ input[type="submit"]:hover {
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.cont-1-header h1 {
+	font-weight: lighter;
+	color: #5a5a5a;
 }
 
 #barra_busqueda {
@@ -115,7 +120,7 @@ nav a:hover {
 }
 
 /* FOOTER */
-.cont-foot-2 {
+.cont-foot {
     height: 230px;
     background-color: #2C2E41;
     color: white;

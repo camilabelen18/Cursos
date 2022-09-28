@@ -6,12 +6,14 @@ import modelo.Curso;
 
 public interface ServicioCurso {
 
-	void añadirCurso(Curso curso);
+	List<Curso> getCursos();
 
-	List<Curso> busqueda(String descripcion);
-	Curso busquedaPorID(Long id);
+	List<Curso> getCursosPorCategoria(String categoria);
 	
+	List<Curso> getCursosPorNombre(String nombreCurso);
 	
+	Curso busquedaPorID(int id);
 
+	void agregarCurso(Curso curso);
 
 }

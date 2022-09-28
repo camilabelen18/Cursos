@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 
 <header>
-	<div class="contenedor1">
+	<div class="cont-1-header">
 
 		<%--Logo cursos --%>
 		<h1>Cursos</h1>
@@ -10,8 +10,7 @@
 		<%--Buscador --%>
 		<div id="barra_busqueda">
 			<form action="buscar">
-				<input type="search" placeholder="Buscar curso" aria-label="Search"
-					id="txtCurso" name="descripcion">
+				<input type="search" placeholder="Buscar curso" aria-label="Search" id="nombreCurso" name="nombreCurso">
 			</form>
 		</div>
 
@@ -34,7 +33,7 @@
 	<nav>
 		<ul>
 			<li><a href="index.jsp">Inicio</a></li>
-			<li><a href="cursos">Cursos</a></li>
+			<li><a href="verListaCursos">Cursos</a></li>
 			<li><a href="index.jsp">Contacto</a></li>
 		</ul>
 	</nav>

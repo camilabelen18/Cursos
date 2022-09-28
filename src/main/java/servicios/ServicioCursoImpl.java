@@ -1,8 +1,6 @@
 package servicios;
 
 import java.util.List;
-
-import javax.inject.Inject;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,23 +17,37 @@ public class ServicioCursoImpl implements ServicioCurso {
 	private RepositorioCurso repositorioCurso;
 
 	@Override
-public List<Curso> busqueda(String descripcion) {
+	public List<Curso> getCursos() {
 		
+		List<Curso> lista_cursos = repositorioCurso.obtenerListaTotalCursos();
 		
-		return repositorioCurso.obtenerListaCursosPorDescripcion(descripcion);
+		return lista_cursos;
+	}
+
+	@Override
+	public List<Curso> getCursosPorCategoria(String categoria) {
+		
+		List<Curso> lista_cursos = repositorioCurso.obtenerListaCursosPorCategoria(categoria);
+		
+		return lista_cursos;
+	}
+	
+	@Override
+	public List<Curso> getCursosPorNombre(String nombreCurso) {
+		
+		return repositorioCurso.obtenerListaCursosPorNombre(nombreCurso);
+	}
+	
+	@Override
+	public Curso busquedaPorID(int id) {
+		
+		return repositorioCurso.obtenerCursoPorID(id);
 
 	}
 
 	@Override
-	public Curso busquedaPorID(Long id) {
-		
-		return repositorioCurso.obtenerListaCursosPorID(id);
-
-	}
-
-	@Override
-	public void añadirCurso(Curso curso) {
-		repositorioCurso.añadirCurso(curso);
+	public void agregarCurso(Curso curso) {
+		repositorioCurso.agregarCurso(curso);
 	}
 
 }
