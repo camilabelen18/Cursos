@@ -83,5 +83,22 @@ public class RepositorioCursoImpl implements RepositorioCurso{
 	public void agregarCurso(Curso curso) {
 		sessionFactory.getCurrentSession().save(curso);
 	}
+	
+ /* public List<Curso> obtenerListaCursosPorDescripcion(String descripcion) {
+		
+		return sessionFactory.getCurrentSession()
+                .createCriteria(Curso.class)
+                .add(Restrictions.eq("descripcion",descripcion))
+                .list();
+    }
+    
+    public Curso obtenerListaCursosPorID(Long id) {
+    
+		return (Curso) sessionFactory.getCurrentSession()
+                .createCriteria(Curso.class)
+                .add(Restrictions.eq("id",id))
+                .uniqueResult();
+    }
+ */
 
 }
