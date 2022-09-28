@@ -15,152 +15,59 @@
 <body>
 
 	<%@ include file="header.jsp"%>
+
+	<div class="cont-seccion-cursos">
 	
-	<section id="contenedorFiltros">
-
-		<h2>CURSOS</h2>
-
-		<form action="proyecto-limpio-spring/cursos" method="get"
-			class="formulario">
-			<label for="orden">Filtrar por categoria: </label> <select id="orden"
-				name="orden">
-				<option value=1>Programacion</option>
-				<option value=2>Arte</option>
-				<option value=3>Diseño</option>
-				<option value=4>Musica</option>
-			</select>
-		</form>
-
-
-
-
-		<form action="proyecto-limpio-spring/cursos" method="get"
-			class="formulario">
-
-			<label for="filtro">Ordenar por: </label> <select id="filtro"
-				name="filtro">
-				<option value=1>Mas Relevantes</option>
-				<option value=2>Nivel</option>
-				<option value=3>Duracion</option>
-			</select>
-		</form>
-	</section>
-
-	<section class="listaDeCursos">
-		<div id="contenedor">
-			<div id="cont1">
-				<!-- <img id= "cursophp" alt="" src="imagenes/cursophp.jpg"> -->
-			</div>
-
-			<div id="cont2">
-				<p id="nombreCurso">Curso PHP: Basico</p>
-				<p id="precioCurso">$10,00</p>
-		
-			<p id="descCuerpo">Lorem ipsum dolor sit amet, consectetuer
-				adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum
-				sociis natoque penatibus et magnis dis parturient montes, nascetur
-				ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu,
-				pretium quis, sem.</p>
-
-			
-				<form action="comprar">
-					<input id="comprarAhora" type="submit" value="Comprar Ahora">
-				</form>
-			</div>
-		</div>
-
-
-
-
-		<div id="contenedor">
-			<div id="cont1">
-				<!-- IMAGEN CURSO JAVA -->
-			</div>
-
-			<div id="cont2">
-				<p id="nombreCurso">Curso JAVA: Avanzado</p>
-				<p id="precioCurso">$15,00</p>
-			
-				<p id="descCuerpo">Lorem ipsum dolor sit amet, consectetuer
-					adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.
-					Cum sociis natoque penatibus et magnis dis parturient montes,
-					nascetur ridiculus mus. Donec quam felis, ultricies nec,
-					pellentesque eu, pretium quis, sem.</p>
-			
-				<form action="comprar">
-					<input id="comprarAhora" type="submit" value="Comprar Ahora">
-				</form>
-			</div>
-		</div>
-		
-		
-		<div id="contenedor">
-			<div id="cont1">
-				<!-- IMAGEN CURSO PHOTOSHOP -->
-			</div>
-
-			<div id="cont2">
-				<p id="nombreCurso">Curso de Photoshop: Basico</p>
-				<p id="precioCurso">$10,00</p>
-				
-			<p id="descCuerpo">Lorem ipsum dolor sit amet, consectetuer
-				adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum
-				sociis natoque penatibus et magnis dis parturient montes, nascetur
-				ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu,
-				pretium quis, sem.</p>
-			
-				<form action="comprar">
-					<input id="comprarAhora" type="submit" value="Comprar Ahora">
-				</form>
-			</div>
-		</div>
-		
-
-
-		<div id="contenedor">
-			<div id="cont1">
-				<!-- IMAGEN CURSO ILLUSTRATOR -->
-			</div>
-
-			<div id="cont2">
-				<p id="nombreCurso">Curso de Illustrator: Intermedio</p>
-				<p id="precioCurso">$12,00</p>
-			
-			<p id="descCuerpo">Lorem ipsum dolor sit amet, consectetuer
-				adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum
-				sociis natoque penatibus et magnis dis parturient montes, nascetur
-				ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu,
-				pretium quis, sem.</p>
-			
-				<form action="comprar">
-					<input id="comprarAhora" type="submit" value="Comprar Ahora">
-				</form>
-			</div>
-		</div>
-
-
-		<div id="contenedor">
-			<div id="cont1">
-				<!-- IMAGEN CURSO GUITARRA -->
-			</div>
-
-			<div id="cont2">
-				<p id="nombreCurso">Curso de Guitarra: Avanzado</p>
-				<p id="precioCurso">$20,00</p>
-			
-			<p id="descCuerpo">Lorem ipsum dolor sit amet, consectetuer
-				adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum
-				sociis natoque penatibus et magnis dis parturient montes, nascetur
-				ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu,
-				pretium quis, sem.</p>
-			
-				<form action="comprar">
-					<input id="comprarAhora" type="submit" value="Comprar Ahora">
-				</form>
-			</div>
-		</div>
-	</section>
+		<!-- Si al realizar la busqueda no se encontro ningun curso se muestra un mensaje de error -->
+		<c:if test="${not empty lista_cursos}">
 	
+			<div id="contenedorFiltros">
+				<label for="filtro">Filtrar por:</label>
+				<select id="filtro" name="filtro">
+					<option value=1>Más relevantes</option>
+					<option value=2>Programacion</option>
+					<option value=3>Diseño</option>
+					<option value=4>Musica</option>
+				</select>
+			</div>
+
+			<div class="listaSeccionCursos">
+		
+				<!-- SE INICIA UN BUCLE EN DONDE POR CADA CURSO SE VA MOSTRANDO SUS DATOS EN UN CUADRO -->
+				<c:forEach var="curso" items="${lista_cursos}">
+			
+					<div class="cuadro-seccion-cursos">
+						<div>
+							<a href="descripcionCurso?id_curso=${curso.id}">
+								<img src="imagenes/cursos/${curso.imagen}">
+							</a>
+						</div>
+		
+						<div class="cotenido-1-curso">
+							<a href="descripcionCurso?id_curso=${curso.id}">
+								<p class="nombreCurso">${curso.nombre}</p>
+								<p>${curso.descripcion}</p>
+							</a>
+						</div>
+						
+						<div class="cotenido-2-curso">
+							<p class="precioCurso">${curso.precio}$</p>	
+							<form action="comprar">
+								<input type="submit" name="comprarAhora"  value="Comprar">
+							</form>
+						</div>
+					</div>
+					
+				</c:forEach>
+			</div>
+		
+		</c:if>
+			
+		<p id="msj_error_curso">${sincurso}</p>
+		
+	</div>
+
 	<%@ include file="footer.jsp" %>
+	
 </body>
 </html>

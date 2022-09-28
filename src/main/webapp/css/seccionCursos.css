@@ -1,53 +1,84 @@
 
+/* SECCIÓN CURSOS */
+.cont-seccion-cursos {
+	width: 60%;
+	margin: auto;
+	margin-bottom: 100px;
+}
 
+#msj_error_curso {
+	text-align : center;
+	margin-top: 100px;
+	margin-bottom: 300px;
+	font-size: 20px;
+	font-weight:bold; 
+}
+
+/* FILTRO */
 #contenedorFiltros {
 	display: flex;
 	flex-direction: row;
-	margin: 10px;
+	justify-content: flex-end;
+	margin-top: 40px;
 	padding: 10px;
 	padding-top: 20px;
 }
 
-#contenedorFiltros h2 {
-	font-weight: bold;
-	margin-right: 30%;
-	font-size: xx-large;
-	margin-left: 10%;
+#contenedorFiltros label {
+	padding: 0px 20px;
 }
 
-.formulario{
-	padding-left: 15px;
-	text-align: left;
-}
-
-select{
+#contenedorFiltros select {
 	border-radius: 5px;
 	padding: 2px;
 }
 
-.listaDeCursos{
+/* LISTA DE CURSOS */
+.listaSeccionCursos{
 	display: flex;
 	flex-direction: column;
-	margin-left: 10%;
-	margin-right: 10%;
 }
 
-#contenedor {
-	background-color: rgba(169, 169, 169, 0.548);
+.cuadro-seccion-cursos {
+	display: flex;
+	border: 1px solid #c7c7c7;
 	margin: 20px;
 	padding: 20px;
 }
 
-#nombreCurso{
-	font-size: x-large;
-	
+.cotenido-1-curso {
+	padding: 0px 20px;
 }
 
-#precioCurso{
-	font-weight: 800;
+.cotenido-1-curso p {
+	color: #3c3b37;
+}
+
+.cotenido-2-curso {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.nombreCurso {
+	font-size: 20px;
+	font-weight: bold;
+	padding-bottom: 10px;
+}
+
+.precioCurso{
+	font-weight: bold;
 	text-align: right;
+	font-size: 20px;
+	color: #3c3b37;
 }
 
-#comprarAhora{
-	float: right; 
+/*------------------------------------------RESPONSIVE----------------------------------*/
+
+@media (max-width: 1250px) {
+	
+	.cont-seccion-cursos {
+		width: 80%;
+	}
+    
 }

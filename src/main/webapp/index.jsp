@@ -29,21 +29,21 @@
 
 		<div class="categorias-index">
 			<div class="cat-index">
-				<a href="#">
+				<a href="verCursosPorCategoria?categoria=diseno">
 					<img src="imagenes/cat-diseño.jpg">
 					<p>Diseño</p>
 				</a>
 			</div>
 
 			<div class="cat-index">
-				<a href="#">
+				<a href="verCursosPorCategoria?categoria=programacion">
 					<img src="imagenes/cat-programacion.jpg">
 					<p>Programación</p>
 				</a>
 			</div>
 
 			<div class="cat-index">
-				<a href="#">
+				<a href="verCursosPorCategoria?categoria=musica">
 					<img src="imagenes/cat-musica.jpg">
 					<p>Música</p>
 				</a>
