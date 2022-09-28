@@ -26,4 +26,10 @@ public class ServicioUsuarioImpl implements ServicioUsuario{
 		return repositorioUsuario.buscarUsuarioPorEmail(email);
 	}
 
+	@Override
+	public void agregarUsuario(Usuario usuario) {
+		repositorioUsuario.agregarUsuario(usuario);
+		
+	}
+
 }

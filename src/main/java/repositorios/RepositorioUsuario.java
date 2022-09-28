@@ -8,4 +8,6 @@ public interface RepositorioUsuario {
 
 	Usuario buscarUsuarioPorEmail(String email);
 
+	void agregarUsuario(Usuario usuario);
+
 }

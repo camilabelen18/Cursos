@@ -16,7 +16,7 @@
 
 		<%-- Login --%>
 		<div id="login">
-			<a href="#">Creá tu cuenta</a>
+			<a href="registroUsuario">Creá tu cuenta</a>
 			<a href="#">Ingresá</a>
 		</div>
 

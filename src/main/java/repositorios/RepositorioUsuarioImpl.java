@@ -38,4 +38,10 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario{
 				.add(Restrictions.eq("email",email)).uniqueResult();
 	}
 
+	@Override
+	public void agregarUsuario(Usuario usuario) {
+		sessionFactory.getCurrentSession().save(usuario);
+		
+	}
+
 }
