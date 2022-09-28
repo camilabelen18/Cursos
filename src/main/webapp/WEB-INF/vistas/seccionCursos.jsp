@@ -52,7 +52,8 @@
 						
 						<div class="cotenido-2-curso">
 							<p class="precioCurso">${curso.precio}$</p>	
-							<form action="comprar">
+							<form action="comprar" method="get">
+							    <input type="hidden" name="idcurso" value="${curso.id}">
 								<input type="submit" name="comprarAhora"  value="Comprar">
 							</form>
 						</div>

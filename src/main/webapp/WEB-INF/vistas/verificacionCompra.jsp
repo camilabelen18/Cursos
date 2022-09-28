@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+    
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
     
 <!DOCTYPE html>
@@ -27,14 +29,17 @@
 
 		<%--Caja contenedora principal --%>
 		<div class="contenedor2">
-			<form action="verificarCompra" method="post">
+			<form:form action="verificarCompra" modelAttribute="curso" method="post">
+			
+			    <form:hidden path="id"/>
+
 				<h6>Pagar con tarjeta</h6>
 				<label for="nroTarjeta">Numero de tarjeta</label>
 				<input id="nroTarjeta" type="text" name="nroTarjeta" placeholder="numero-tarjeta">
 				<label for="nroTarjeta">Email</label>
 				<input id="email" type="text" name="email" placeholder="email">
 				<input id="comprar"type="submit" value="comprar">
-			</form>
+			</form:form>
 		</div>
 	</main>
 	

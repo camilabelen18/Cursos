@@ -13,3 +13,6 @@ VALUES
 ('Curso de de guitarra práctico para principiantes', 'musica', 'Aprende paso a paso a tocar la guitarra con este curso práctico. Aprende tocando y olvídate de ejercicios aburridos.',1650.0 , 3, 'curso-guitarra.jpg'),
 ('Curso de piano completo', 'musica', 'Apréndelo Todo: Armonía , Composición, Improvisación , Acompañar con acordes, Lectura & Solfeo, Técnica y Relajación.', 2000.0, 3, 'curso-piano.jpg'),
 ('Curso de canto para principiantes', 'musica', '¡Encuentra tu voz de canto de forma natural y diviértete haciéndolo! Un enfoque moderno para las clases de canto.', 2000.0, 3, 'curso-canto.jpg');
+
+INSERT INTO usuario(Nombre, Email, Password, Nro)
+VALUES ('Juan','hola@hola.com','1234', 555);

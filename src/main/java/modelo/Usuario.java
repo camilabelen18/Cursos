@@ -26,7 +26,6 @@ public class Usuario {
 	private Integer nroTarjeta;
 	
 	@OneToMany
-	@Column(name="Cursos")
 	private List<Curso> listaCursos;//guarda lo que compro el usuario
 	
 	public Usuario() { }

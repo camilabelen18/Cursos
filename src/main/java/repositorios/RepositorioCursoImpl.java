@@ -37,15 +37,13 @@ public class RepositorioCursoImpl implements RepositorioCurso{
 	}
 
 	@Override
-	public Curso obtenerCursoPorID(int id) {
-
-		Session sesion = sessionFactory.getCurrentSession();
-
-		// Se obtiene un curso por id
-		Curso curso = sesion.get(Curso.class, id);
-		
-		return curso;
-	}
+    public Curso obtenerCursoPorID(int id) {
+        
+		return (Curso) sessionFactory.getCurrentSession()
+                .createCriteria(Curso.class)
+                .add(Restrictions.eq("id",id))
+                .uniqueResult();
+    }
 
 	@Override
 	public List<Curso> obtenerListaTotalCursos() {
