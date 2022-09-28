@@ -14,45 +14,24 @@
 </head>
 <body>
 
-	
-	<c:if test="${not empty busqueda_curso}">
-		<c:forEach items="${busqueda_curso}" var="buscarCurso">
-	
-				<tr>
-				<!-- Mostrar el curso con una imagen dependiendo que curso sea -->
-				<td>${buscarCurso.descripcion}</td>
-				<td>${buscarCurso.nombre}</td>
-				<td>${buscarCurso.precio}</td><br>
-				<div id="cont4">
-				<form action="descripcionCurso">
-					<input id="descripcionCurso" type="submit" value="Ver detalles">
-				</form>
-			</div>
-				<!-- <input action="descripcionCurso" id="verdetalles"type="submit" value="Ver Detalles"><br> -->	
-				<!-- boton de ver de talles o ir a curso -->
-			</tr>
-		</c:forEach>
-	</c:if>
-
-	<p>${sincurso}</p>
-
 	<%@ include file="header.jsp"%>
 
 	<div class="cont-seccion-cursos">
+	
+		<!-- Si al realizar la busqueda no se encontro ningun curso se muestra un mensaje de error -->
+		<c:if test="${not empty lista_cursos}">
+	
+			<div id="contenedorFiltros">
+				<label for="filtro">Filtrar por:</label>
+				<select id="filtro" name="filtro">
+					<option value=1>Más relevantes</option>
+					<option value=2>Programacion</option>
+					<option value=3>Diseño</option>
+					<option value=4>Musica</option>
+				</select>
+			</div>
 
-		<div id="contenedorFiltros">
-			<label for="filtro">Filtrar por:</label>
-			<select id="filtro" name="filtro">
-				<option value=1>Más relevantes</option>
-				<option value=2>Programacion</option>
-				<option value=3>Diseño</option>
-				<option value=4>Musica</option>
-			</select>
-		</div>
-
-		<div class="listaSeccionCursos">
-		
-			<c:if test="${not empty lista_cursos}">
+			<div class="listaSeccionCursos">
 		
 				<!-- SE INICIA UN BUCLE EN DONDE POR CADA CURSO SE VA MOSTRANDO SUS DATOS EN UN CUADRO -->
 				<c:forEach var="curso" items="${lista_cursos}">
@@ -80,12 +59,12 @@
 					</div>
 					
 				</c:forEach>
+			</div>
+		
+		</c:if>
 			
-			</c:if>
-			
-			
-			
-		</div>
+		<p id="msj_error_curso">${sincurso}</p>
+		
 	</div>
 
 	<%@ include file="footer.jsp" %>
