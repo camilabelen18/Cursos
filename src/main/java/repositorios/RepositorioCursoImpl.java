@@ -11,7 +11,6 @@ import org.hibernate.criterion.Restrictions;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.stereotype.Service;
 
 import modelo.Curso;
 
@@ -26,12 +25,12 @@ public class RepositorioCursoImpl implements RepositorioCurso{
 	public List<Curso> obtenerListaCursosPorNombre(String nombreCurso) {
 		
 		Session sesion = sessionFactory.getCurrentSession();
-
-		// Se obtienen los cursos por su nombre
 		
-		Query<Curso> consulta = sesion.createQuery("from Curso cursito where cursito.nombre LIKE '%" + nombreCurso + "%'", Curso.class);
-
-		List<Curso> lista_cursos = consulta.getResultList();
+		// Se obtiene una lista de cursos por su nombre haciendo uso del operador "LIKE"
+		
+		List<Curso> lista_cursos = sesion.createCriteria(Curso.class)
+				                   .add(Restrictions.like("nombre","%" + nombreCurso + "%"))
+				                   .list();
 
 		return lista_cursos;
 	}
@@ -39,26 +38,23 @@ public class RepositorioCursoImpl implements RepositorioCurso{
 	@Override
     public Curso obtenerCursoPorID(int id) {
         
-		return (Curso) sessionFactory.getCurrentSession()
-                .createCriteria(Curso.class)
-                .add(Restrictions.eq("id",id))
-                .uniqueResult();
+		Session sesion = sessionFactory.getCurrentSession();
+		
+		// Se obtiene un curso por su id
+		
+		Curso curso = sesion.get(Curso.class, id);
+		
+		return curso;
     }
 
 	@Override
 	public List<Curso> obtenerListaTotalCursos() {
 		
-		// Se obtiene la sesion con sessionFactory
-
 		Session sesion = sessionFactory.getCurrentSession();
 
-		// Se crea una consulta con HQL
+		// Se obtiene la lista de todos los cursos
 
-		Query<Curso> consulta = sesion.createQuery("from Curso", Curso.class);
-
-		// Se ejecuta la consulta y se obtienen los registros de la tabla "curso"
-
-		List<Curso> lista_cursos = consulta.getResultList();
+		List<Curso> lista_cursos = sesion.createCriteria(Curso.class).list();
 
 		return lista_cursos;
 	}
@@ -68,11 +64,11 @@ public class RepositorioCursoImpl implements RepositorioCurso{
 
 		Session sesion = sessionFactory.getCurrentSession();
 
-		// Se obtienen los cursos por categoria
+		// Se obtiene una lista de cursos por su categoria
 		
-		Query<Curso> consulta = sesion.createQuery("from Curso cursito where cursito.categoria = '" + categoria + "'", Curso.class);
-
-		List<Curso> lista_cursos = consulta.getResultList();
+		List<Curso> lista_cursos = sesion.createCriteria(Curso.class)
+				                   .add(Restrictions.eq("categoria", categoria))
+				                   .list();
 
 		return lista_cursos;
 	}
@@ -81,22 +77,5 @@ public class RepositorioCursoImpl implements RepositorioCurso{
 	public void agregarCurso(Curso curso) {
 		sessionFactory.getCurrentSession().save(curso);
 	}
-	
- /* public List<Curso> obtenerListaCursosPorDescripcion(String descripcion) {
-		
-		return sessionFactory.getCurrentSession()
-                .createCriteria(Curso.class)
-                .add(Restrictions.eq("descripcion",descripcion))
-                .list();
-    }
-    
-    public Curso obtenerListaCursosPorID(Long id) {
-    
-		return (Curso) sessionFactory.getCurrentSession()
-                .createCriteria(Curso.class)
-                .add(Restrictions.eq("id",id))
-                .uniqueResult();
-    }
- */
 
 }

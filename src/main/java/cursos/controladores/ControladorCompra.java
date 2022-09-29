@@ -22,48 +22,50 @@ public class ControladorCompra {
 	
 	@Autowired
 	private ServicioUsuario servicioUsuario;
+	
+	@Autowired
 	private ServicioCurso servicioCurso;
 
-	@RequestMapping(path = "/comprar")
-	public String verificacionCompra(HttpServletRequest request, Model modelo) {
-
-		int idCurso = Integer.parseInt(request.getParameter("idcurso"));
+	@RequestMapping(path = "/comprar", method = RequestMethod.GET)
+	public ModelAndView verificacionCompra(@RequestParam("id_curso") int id, Model modelo) {
 		
-		String compra = request.getParameter("comprarAhora");
-		
-		Curso curso = servicioCurso.busquedaPorID(idCurso);
-		
-		modelo.addAttribute("curso", curso);
+		modelo.addAttribute("idCurso", id);
 								
-		return "verificacionCompra";
+		return new ModelAndView("verificacionCompra");
 	}
 	
 		
 	@RequestMapping(path = "/verificarCompra", method = RequestMethod.POST)
 	public ModelAndView verificarCompra(@RequestParam("nroTarjeta") Integer nroTarjeta, 
-			@RequestParam("email") String email, @ModelAttribute("curso") Curso curso) {
-		
-		Curso curso_obtenido = servicioCurso.busquedaPorID(curso.getId());
-		
-		Usuario usuario = servicioUsuario.buscarUsuarioPorEmail(email);
+			@RequestParam("email") String email, @RequestParam("curso_id") int id) {
 		
 		try {
 			
-			if(usuario.getNroTarjeta().equals(nroTarjeta)) {
+			Curso curso_obtenido = servicioCurso.busquedaPorID(id);
+			
+			Usuario usuario = servicioUsuario.buscarUsuarioPorEmail(email);
+			
+			// Se verifica si el numero de tarjeta del usuario es igual al numero de tarjeta ingresado
+			
+			if (usuario.getNroTarjeta().equals(nroTarjeta)) {
 				
-				usuario.getListaCursos().add(curso_obtenido);
+				System.out.println("Se realiza la compra con exito! ");
 				
-				return new ModelAndView("index");
+				//usuario.añadirCursoALista(curso_obtenido);
+				
+				return new ModelAndView("compraRealizada");
+			}
+			else {
+				System.out.println("El numero de tarjeta ingresado es incorrecto!");
 			}
 			
-		} catch (Exception e) {
+		}
+		catch (Exception e) {
+			System.out.println("ERORRRRR!!!!");
 			e.getMessage();
 		}
-		
 						
 		return new ModelAndView("verificacionCompra");
 	}
-
-	
 
 }

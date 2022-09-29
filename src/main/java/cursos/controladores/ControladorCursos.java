@@ -44,7 +44,6 @@ public class ControladorCursos {
 		return new ModelAndView("miscursos");
 	}
 	
-	
 	// Se obtienen todos los registros de la tabla 'curso' de la bd
 	@RequestMapping(path= "/verListaCursos", method= RequestMethod.GET)
 	public ModelAndView verListaCursos(Model modelo) {

@@ -11,7 +11,7 @@ public class Usuario {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="Identificador")
-	private Long id;
+	private int id;
 	
 	@Column(name="Nombre")
 	private String nombre;
@@ -22,7 +22,7 @@ public class Usuario {
 	@Column(name="Password")
 	private String password;
 	
-	@Column(name="Nro")
+	@Column(name="NumeroTarjeta")
 	private Integer nroTarjeta;
 	
 	@OneToMany
@@ -37,10 +37,10 @@ public class Usuario {
 		this.nroTarjeta = nroTarjeta;
 	}
 
-	public Long getId() {
+	public int getId() {
 		return id;
 	}
-	public void setId(Long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 	public String getEmail() {
