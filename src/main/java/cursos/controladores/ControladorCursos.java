@@ -12,13 +12,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import modelo.Curso;
+import modelo.Usuario;
 import servicios.ServicioCurso;
+import servicios.ServicioUsuario;
 
 @Controller
 public class ControladorCursos {
 	
 	@Autowired
 	private ServicioCurso servicioCurso;
+	
+	@Autowired
+	private ServicioUsuario servicioUsuario;
 	
 	@RequestMapping(path = "/buscar", method = RequestMethod.GET)
 	public ModelAndView buscar(@RequestParam("nombreCurso") String nombreCurso) {
@@ -61,6 +66,18 @@ public class ControladorCursos {
 	public ModelAndView verCursosPorCategoria(@RequestParam("categoria") String categoria, Model modelo) {
 		
 		List<Curso> cursos = servicioCurso.getCursosPorCategoria(categoria);
+		
+		modelo.addAttribute("lista_cursos", cursos);
+		
+		return new ModelAndView("seccionCursos");
+	}
+	
+	@RequestMapping(path= "/verCursosDelUsuario", method= RequestMethod.GET)
+	public ModelAndView verCursosDelUsuario(@RequestParam("email") String email, Model modelo) {
+		
+		Usuario usuario = servicioUsuario.buscarUsuarioPorEmail(email);
+		
+		List<Curso> cursos = usuario.getMisCursos();
 		
 		modelo.addAttribute("lista_cursos", cursos);
 		

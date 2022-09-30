@@ -51,7 +51,9 @@ public class ControladorCompra {
 				
 				System.out.println("Se realiza la compra con exito! ");
 				
-				//usuario.añadirCursoALista(curso_obtenido);
+				usuario.getMisCursos().add(curso_obtenido);
+				
+				System.out.println("Se logro añadir el curso!");
 				
 				return new ModelAndView("compraRealizada");
 			}
