@@ -1,5 +1,6 @@
 package modelo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.*;
@@ -11,7 +12,7 @@ public class Usuario {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="Identificador")
-	private Long id;
+	private int id;
 	
 	@Column(name="Nombre")
 	private String nombre;
@@ -22,12 +23,14 @@ public class Usuario {
 	@Column(name="Password")
 	private String password;
 	
-	@Column(name="Nro")
+	@Column(name="NumeroTarjeta")
 	private Integer nroTarjeta;
 	
-	@OneToMany
-	@Column(name="Cursos")
-	private List<Curso> listaCursos;//guarda lo que compro el usuario
+	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
+	@JoinTable(name = "usuario_curso",
+			   joinColumns = @JoinColumn(name = "usuario_id"),
+			   inverseJoinColumns = @JoinColumn(name = "curso_id"))
+	private List<Curso> misCursos = new ArrayList<Curso>();
 	
 	public Usuario() { }
 
@@ -38,10 +41,10 @@ public class Usuario {
 		this.nroTarjeta = nroTarjeta;
 	}
 
-	public Long getId() {
+	public int getId() {
 		return id;
 	}
-	public void setId(Long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 	public String getEmail() {
@@ -73,12 +76,12 @@ public class Usuario {
 		this.nroTarjeta = nroTarjeta;
 	}
 
-	public List<Curso> getListaCursos() {
-		return listaCursos;
+	public List<Curso> getMisCursos() {
+		return misCursos;
 	}
 
-	public void setListaCursos(List<Curso> listaCursos) {
-		this.listaCursos = listaCursos;
+	public void setMisCursos(List<Curso> misCursos) {
+		this.misCursos = misCursos;
 	}
 
 	@Override

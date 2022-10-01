@@ -29,5 +29,13 @@
 		</div>
 	</div>
 	
+			<form action="verCursosDelUsuario" method="get">
+			
+				<label for="email">Email</label>
+				<input id="email" type="text" name="email" placeholder="email">
+
+				<input id="enviar" type="submit" value="comprar">
+			</form>
+	
 </body>
 </html>

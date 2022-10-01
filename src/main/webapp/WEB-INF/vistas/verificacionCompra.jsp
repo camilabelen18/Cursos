@@ -28,11 +28,16 @@
 		<%--Caja contenedora principal --%>
 		<div class="contenedor2">
 			<form action="verificarCompra" method="post">
+			
+			    <input type="hidden" name="curso_id" value="${idCurso}">
+			    
 				<h6>Pagar con tarjeta</h6>
 				<label for="nroTarjeta">Numero de tarjeta</label>
-				<input id="nroTarjeta" type="text" name="nroTarjeta" placeholder="numero-tarjeta">
+				<input id="nroTarjeta" type="number" name="nroTarjeta" placeholder="numero-tarjeta">
+				
 				<label for="nroTarjeta">Email</label>
 				<input id="email" type="text" name="email" placeholder="email">
+				
 				<input id="comprar"type="submit" value="comprar">
 			</form>
 		</div>
