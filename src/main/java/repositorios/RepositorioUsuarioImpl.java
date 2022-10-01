@@ -10,6 +10,8 @@ import org.hibernate.criterion.Restrictions;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import modelo.Curso;
 import modelo.Usuario;
 
 @Repository
@@ -51,6 +53,16 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario{
 	public void agregarUsuario(Usuario usuario) {
 		sessionFactory.getCurrentSession().save(usuario);
 		
+	}
+
+	@Override
+	public void guardarCursoDelUsuario(Curso curso_obtenido, Usuario usuario) {
+		
+		Session sesion = sessionFactory.getCurrentSession();
+		
+		usuario.getMisCursos().add(curso_obtenido);
+		
+		sesion.update(usuario);
 	}
 
 }

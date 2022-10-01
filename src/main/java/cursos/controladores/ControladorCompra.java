@@ -48,22 +48,14 @@ public class ControladorCompra {
 			// Se verifica si el numero de tarjeta del usuario es igual al numero de tarjeta ingresado
 			
 			if (usuario.getNroTarjeta().equals(nroTarjeta)) {
-				
-				System.out.println("Se realiza la compra con exito! ");
-				
-				usuario.getMisCursos().add(curso_obtenido);
-				
-				System.out.println("Se logro añadir el curso!");
-				
+
+				servicioUsuario.guardarCursoEnListaUsuario(curso_obtenido, usuario);
+			    
 				return new ModelAndView("compraRealizada");
-			}
-			else {
-				System.out.println("El numero de tarjeta ingresado es incorrecto!");
 			}
 			
 		}
 		catch (Exception e) {
-			System.out.println("ERORRRRR!!!!");
 			e.getMessage();
 		}
 						

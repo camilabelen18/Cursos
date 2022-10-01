@@ -72,6 +72,7 @@ public class ControladorCursos {
 		return new ModelAndView("seccionCursos");
 	}
 	
+	// Se obtiene la lista de los cursos comprados por el usuario y los muestra en la vista 'seccionCursos.jsp'
 	@RequestMapping(path= "/verCursosDelUsuario", method= RequestMethod.GET)
 	public ModelAndView verCursosDelUsuario(@RequestParam("email") String email, Model modelo) {
 		
