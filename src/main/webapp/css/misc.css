@@ -1,7 +1,25 @@
-.dropdown{
-	margin-left: 500px;
+
+/* FILTRO */
+
+
+#titulo {
+display: flex;
 }
 
-.titulo{
-	float: left;
+#contenedorFiltros{
+	margin-left: 400px;
+}
+/* 
+	display: flex;
+	flex-direction: row;
+	justify-content: space;
+	margin-top: 40px; */
+
+#contenedorFiltros label {
+	padding: 0px 20px;
+}
+
+#contenedorFiltros select {
+	border-radius: 5px;
+	padding: 2px;
 }

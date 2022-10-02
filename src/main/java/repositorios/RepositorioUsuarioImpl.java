@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import modelo.Curso;
+import modelo.Estado;
 import modelo.Usuario;
 
 @Repository
@@ -54,9 +55,18 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario{
 		sessionFactory.getCurrentSession().save(usuario);
 		
 	}
+	
+	
+	public void actualizarEstado(Curso curso_obtenido, Estado estado) {
+		
+		curso_obtenido.setEstado(estado);
+		sessionFactory.getCurrentSession().update(curso_obtenido);
+	}
 
 	@Override
 	public void guardarCursoDelUsuario(Curso curso_obtenido, Usuario usuario) {
+			
+		actualizarEstado(curso_obtenido,Estado.EN_CURSO);
 		
 		Session sesion = sessionFactory.getCurrentSession();
 		

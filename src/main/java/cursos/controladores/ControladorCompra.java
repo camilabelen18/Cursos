@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import modelo.Curso;
+import modelo.Estado;
 import modelo.Usuario;
 import servicios.ServicioCurso;
 import servicios.ServicioUsuario;
@@ -48,6 +49,8 @@ public class ControladorCompra {
 			// Se verifica si el numero de tarjeta del usuario es igual al numero de tarjeta ingresado
 			
 			if (usuario.getNroTarjeta().equals(nroTarjeta)) {
+				
+				
 
 				servicioUsuario.guardarCursoEnListaUsuario(curso_obtenido, usuario);
 			    
