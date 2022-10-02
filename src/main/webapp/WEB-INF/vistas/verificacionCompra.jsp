@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
     
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
     
 <!DOCTYPE html>
 <html lang="es">
@@ -16,11 +17,11 @@
 <body>
 
 	<%@ include file="header.jsp"%>
-
+<main>
 	<%--Contenido de la pagina --%>
 
-	<main>
-		<%--Titulo --%>
+    <c:if test="${empty cursoEncontrado}">
+    <%--Titulo --%>
 		<div id="titulo">
 			<h4>VERIFICACION DE COMPRA</h4>
 		</div>
@@ -41,8 +42,13 @@
 				<input id="comprar"type="submit" value="comprar">
 			</form>
 		</div>
-	</main>
+    </c:if>
 	
+		
+	
+	
+	<h2>${cursoEncontrado}</h2>
+	</main>
 	<%@ include file="footer.jsp" %>
 
 </body>

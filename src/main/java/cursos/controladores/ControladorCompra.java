@@ -40,17 +40,24 @@ public class ControladorCompra {
 	public ModelAndView verificarCompra(@RequestParam("nroTarjeta") Integer nroTarjeta, 
 			@RequestParam("email") String email, @RequestParam("curso_id") int id) {
 		
+		ModelMap modelo = new ModelMap();
+		
 		try {
 			
 			Curso curso_obtenido = servicioCurso.busquedaPorID(id);
 			
 			Usuario usuario = servicioUsuario.buscarUsuarioPorEmail(email);
 			
+			//verificar que el curso no este en la lista
+			
+			if(usuario.getMisCursos().contains(curso_obtenido)) {
+				modelo.put("cursoEncontrado", "El curso ya fue comprado, compre otro curso.");
+			}
+			
+			
 			// Se verifica si el numero de tarjeta del usuario es igual al numero de tarjeta ingresado
 			
-			if (usuario.getNroTarjeta().equals(nroTarjeta)) {
-				
-				
+			if (usuario.getNroTarjeta().equals(nroTarjeta)) {			
 
 				servicioUsuario.guardarCursoEnListaUsuario(curso_obtenido, usuario);
 			    
@@ -62,7 +69,7 @@ public class ControladorCompra {
 			e.getMessage();
 		}
 						
-		return new ModelAndView("verificacionCompra");
+		return new ModelAndView("verificacionCompra",modelo);
 	}
 
 }
