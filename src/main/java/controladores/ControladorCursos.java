@@ -103,8 +103,11 @@ public class ControladorCursos {
 		return new ModelAndView("cursoAgregado", modelo);
 	}
 	
-	@RequestMapping ("/descripcionCurso")
-	public ModelAndView irADescCurso() {
+	@RequestMapping (path= "/descripcionCurso", method= RequestMethod.GET)
+	public ModelAndView irADescCurso(@RequestParam("id_curso") Integer id_curso, Model modelo) {
+		Curso curso = servicioCurso.busquedaPorID(id_curso);
+		modelo.addAttribute(curso);
+
 		
 		return new ModelAndView("descripcionCurso");
 	}

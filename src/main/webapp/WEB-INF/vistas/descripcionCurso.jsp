@@ -20,12 +20,12 @@
 
 	<div id="contenedor">
 		<div id="cont1">
-			<img id="cursophp" alt="" src="imagenes/cursophp.jpg">
+			<img id="img1" src="imagenes/cursos/${curso.imagen}">
 		</div>
 
 		<div id="cont2">
-			<p id="nombreCurso">Curso PHP desde 0</p>
-			<p id="precioCurso">10,00$</p>
+			<p id="nombreCurso">${curso.nombre}</p>
+			<p id="precioCurso">${curso.precio}</p>
 		</div>
 
 		<div id="cont3">
@@ -44,14 +44,7 @@
 
 	<div id="descripcion">
 		<p id="descTit">Descripción</p>
-		<p id="descCuerpo">Lorem ipsum dolor sit amet, consectetuer
-			adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum
-			sociis natoque penatibus et magnis dis parturient montes, nascetur
-			ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu,
-			pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo,
-			fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo,
-			rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis
-			eu pede mollis pretium. Integer tincidunt.</p>
+		<p id="descCuerpo">${curso.descripcion}</p>
 	</div>
 
 	<%@ include file="footer.jsp"%>
