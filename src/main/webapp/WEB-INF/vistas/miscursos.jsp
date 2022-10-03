@@ -37,6 +37,7 @@
 			name="email" placeholder="email"> <input id="enviar"
 			type="submit" value="comprar">
 	</form>
-
+	
+	        
 </body>
 </html>
