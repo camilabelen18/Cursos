@@ -1,4 +1,4 @@
-package cursos.controladores;
+package controladores;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -62,7 +62,7 @@ public class ControladorCompra {
 			e.getMessage();
 		}
 						
-		return new ModelAndView("verificacionCompra");
+		return new ModelAndView("redirect:/");
 	}
 
 }

@@ -1,4 +1,4 @@
-.registro-main {
+.login-main {
 	width: 30%;
 	margin: auto;
 	margin-top: 60px;
@@ -10,10 +10,10 @@ h1 {
 }
 
 h1, p {
-	margin-bottom: 30px;
+	margin-bottom: 40px;
 }
 
-input[type="text"], input[type="email"], input[type="password"] {
+input[type="email"], input[type="password"] {
     width: 100%;
     display: block;
     padding: 0.3em;
@@ -24,14 +24,13 @@ input[type="text"], input[type="email"], input[type="password"] {
 input[type="submit"] {
     display: block;
     float: right;
+    margin-top: 20px;
 }
 
 .error {
     color: crimson;
-    margin-bottom: 20px;
 }
 
 .error p {
     margin-bottom: 5px;
 }
-

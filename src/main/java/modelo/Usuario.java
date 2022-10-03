@@ -26,6 +26,9 @@ public class Usuario {
 	@Column(name="NumeroTarjeta")
 	private Integer nroTarjeta;
 	
+	@Column(name="Rol")
+	private String rol;
+	
 	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
 	@JoinTable(name = "usuario_curso",
 			   joinColumns = @JoinColumn(name = "usuario_id"),
@@ -34,11 +37,11 @@ public class Usuario {
 	
 	public Usuario() { }
 
-	public Usuario(String nombre, String email, String password, Integer nroTarjeta) {
+	public Usuario(String nombre, String email, String password, String rol) {
 		this.nombre = nombre;
 		this.email = email;
 		this.password = password;
-		this.nroTarjeta = nroTarjeta;
+		this.rol  = rol;
 	}
 
 	public int getId() {
@@ -75,6 +78,14 @@ public class Usuario {
 	public void setNroTarjeta(Integer nroTarjeta) {
 		this.nroTarjeta = nroTarjeta;
 	}
+	
+	public String getRol() {
+		return rol;
+	}
+
+	public void setRol(String rol) {
+		this.rol = rol;
+	}
 
 	public List<Curso> getMisCursos() {
 		return misCursos;
@@ -87,7 +98,7 @@ public class Usuario {
 	@Override
 	public String toString() {
 		return "Usuario [id=" + id + ", nombre=" + nombre + ", email=" + email + ", password=" + password
-				+ ", nroTarjeta=" + nroTarjeta + "]";
+				+ ", nroTarjeta=" + nroTarjeta + ", rol=" + rol + "]";
 	}
 	
 }

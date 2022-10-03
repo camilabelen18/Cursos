@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <header>
 	<div class="cont-1-header">
@@ -15,10 +17,16 @@
 		</div>
 
 		<%-- Login --%>
-		<div id="login">
-			<a href="registroUsuario">Creá tu cuenta</a>
-			<a href="#">Ingresá</a>
-		</div>
+		
+		<!-- Aca se valida si el usuario no inicio sesión -->
+		<c:if test='<%= session.getAttribute("idUsuario") == null %>'>
+		
+			<div id="login">
+				<a href="registro">Creá tu cuenta</a>
+				<a href="login">Ingresá</a>
+			</div>
+    		
+		</c:if>
 
 		<%--Carrito --%>
 		<div>
@@ -26,6 +34,17 @@
 				<img id="carrito" alt="" src="imagenes/carrito.png">
 			</a>
 		</div>
+		
+		<!-- Aca se valida si el usuario inicio sesión -->
+		<c:if test='<%= session.getAttribute("idUsuario") != null %>'>
+    		
+    		<div>
+    			<p><%= session.getAttribute("nombreUsuario") %></p>
+    			<a href="misCursos">Ver mis cursos</a>
+    			<a href="cerrarSesion">Cerrar sesión</a>
+    		</div>
+    		
+		</c:if>
 
 	</div>
 

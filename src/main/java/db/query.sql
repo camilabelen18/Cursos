@@ -14,5 +14,5 @@ VALUES
 ('Curso de piano completo', 'musica', 'Aprendelo Todo: Armonia , Composicion, Improvisacion , Acompañar con acordes, Lectura & Solfeo, Tecnica y Relajacion.', 2000.0, 3, 'curso-piano.jpg'),
 ('Curso de canto para principiantes', 'musica', '¡Encuentra tu voz de canto de forma natural y diviértete haciéndolo! Un enfoque moderno para las clases de canto.', 2000.0, 3, 'curso-canto.jpg');
 
-INSERT INTO usuario(Nombre, Email, Password, NumeroTarjeta)
-VALUES ('Juan','hola@hola.com','1234', 555);
+INSERT INTO usuario(Nombre, Email, Password, NumeroTarjeta, Rol)
+VALUES ('Juan','hola@hola.com','1234', 555, 'admin');

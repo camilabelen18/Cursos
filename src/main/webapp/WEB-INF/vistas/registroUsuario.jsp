@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 
 <!DOCTYPE html>
 <html lang="es">
@@ -14,34 +15,45 @@
 </head>
 <body>
 
-<%@ include file="header.jsp" %>
-<div id = "main">
+	<%@ include file="header.jsp" %>
 
-	<form action="usuarioRegistrado" method = "POST">
-		<label for="nombreUsuario">Nombre de usuario *</label> 
-		<br>
-		<input id="nombreUsuario" type="text" name="nombreUsuario" required>
-		<br><br><br>
-		<label for="emailUsuario">Direccion de correo electronico *</label>
-		<br>
-		<input id="emailUsuario" type="text" name="emailUsuario" required>
-		<br><br><br>
-		<label for="pass1">Contraseña *</label>
-		<br>
-		<input id="pass1" type = "text" name="pass1" required>
-		<br><br><br>
-		<label for="pass2">Repita la contraseña *</label>
-		<br>
-		<input id="pass2" type = "text" name="pass2" required>
-		<br><br><br>
-		<label for="nroTarjeta">Número de tarjeta *</label>
-		<br>
-		<input id="nroTarjeta" type = "number" name="nroTarjeta" required>
-		<br><br><br>
-		<input id="registrar"type="submit" value="Registrarse">	
-	</form>
+	<div class="registro-main">
+
+		<h1>Registro</h1>
+
+		<p>Para registrarse en este sitio simplemente rellena los
+			siguientes campos y tendrás una nueva cuenta creada para vos al
+			instante.</p>
+
+		<form:form class="registro-form" action="validar-registro" method="POST" 
+				   modelAttribute="datosRegistro" onsubmit="return validar()">
+
+			<label for="nombre">Nombre de usuario *</label>
+			<form:input path="nombre" type="text" id="nombre" name="nombre" />
+
+			<label for="email">Direccion de correo electronico *</label>
+			<form:input path="email" type="email" id="email" name="email" />
+
+			<label for="contrasenia">Escribe una contraseña *</label>
+			<form:input path="contrasenia" type="password" id="contrasenia" name="contrasenia" />
+
+			<label for="repetirContrasenia">Confirma la contraseña *</label>
+			<form:input path="repetirContrasenia" type="password" id="repetirContrasenia" name="repetirContrasenia" />
+
+			<div id="mensaje" class="error"></div>
+
+			<c:if test="${not empty error}">
+				<div class="error">${error}</div>
+			</c:if>
+
+			<input id="registrar" type="submit" value="Completar registro">
+
+		</form:form>
+	</div>
+
+	<%@ include file="/WEB-INF/vistas/footer.jsp" %>
 	
-</div>
+	<script src="js/registroUsuario.js"></script>
 
 </body>
 </html>

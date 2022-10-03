@@ -15,7 +15,7 @@
 <body>
 
 	<!-- Aca se incluye el "HEADER" -->
-	<%@ include file="/WEB-INF/vistas/header.jsp" %>
+	<%@ include file="header.jsp"%>
 
 	<!-- PRESENTACIÓN -->
 	<div class="cont-index-1" style="background-image: url('imagenes/slaider.jpg');">
@@ -73,7 +73,7 @@
 	</div>
 	
 	<!-- Aca se incluye el "FOOTER" -->
-	<%@ include file="/WEB-INF/vistas/footer.jsp" %>
+	<%@ include file="footer.jsp"%>
 
 </body>
 </html>
