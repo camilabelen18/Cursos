@@ -22,15 +22,18 @@
 		<c:if test="${not empty lista_cursos}">
 	
 			<div id="contenedorFiltros">
-				<label for="filtro">Filtrar por:</label>
-				<select id="filtro" name="filtro">
-					<option value=1>Más relevantes</option>
-					<option value=2>Programacion</option>
-					<option value=3>Diseño</option>
-					<option value=4>Musica</option>
-				</select>
+			
+				<div class="dropdown">
+					<button id="filtrarPor">Filtrar por</button>
+				    <div class="dropdown-content">
+				    	<a href="#">Más relevantes</a>
+						<a href="verCursosPorCategoria?categoria=programacion">C. de programacion</a>
+						<a href="verCursosPorCategoria?categoria=diseno">C. de diseño</a>
+						<a href="verCursosPorCategoria?categoria=musica">C. de música</a>
+				    </div>
+				</div>
 			</div>
-
+			
 			<div class="listaSeccionCursos">
 		
 				<!-- SE INICIA UN BUCLE EN DONDE POR CADA CURSO SE VA MOSTRANDO SUS DATOS EN UN CUADRO -->

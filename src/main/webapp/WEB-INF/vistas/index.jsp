@@ -18,8 +18,10 @@
 	<%@ include file="header.jsp"%>
 
 	<!-- PRESENTACIÓN -->
-	<div class="cont-index-1" style="background-image: url('imagenes/slaider.jpg');">
+	<div class="cont-index-1" style="background-image: linear-gradient(rgba(0, 0, 0, 0.0), rgba(0, 0, 0, 0.4)), url('imagenes/slaider.jpg');">
+		
 		<h1>CURSOS ONLINE</h1>
+		
     </div>
 
 	<!-- CATEGORÍAS -->

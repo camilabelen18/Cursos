@@ -36,7 +36,8 @@
 		</form:form>
 		
 		<p>
-			<a href="registro">Registrarme</a>
+			<span>¿No tenes cuenta? </span>
+			<a href="registro">Registrate</a>
 		</p>
 		
 		<div id="mensaje" class="error"></div>

@@ -7,7 +7,11 @@
 	<div class="cont-1-header">
 
 		<%--Logo cursos --%>
-		<h1>Cursos</h1>
+		<div class="cursosLogo">
+			<h1>Cursos</h1>
+			<img id="logoCurso" src="imagenes/logo-curso.png">
+		</div>
+		
 
 		<%--Buscador --%>
 		<div id="barra_busqueda">
@@ -17,7 +21,6 @@
 		</div>
 
 		<%-- Login --%>
-		
 		<!-- Aca se valida si el usuario no inicio sesión -->
 		<c:if test='<%= session.getAttribute("idUsuario") == null %>'>
 		
@@ -28,20 +31,27 @@
     		
 		</c:if>
 
-		<%--Carrito --%>
+		<%-- Carrito --%>
 		<div>
 			<a href="#">
 				<img id="carrito" alt="" src="imagenes/carrito.png">
 			</a>
 		</div>
 		
+		<%-- Usuario --%>
 		<!-- Aca se valida si el usuario inicio sesión -->
 		<c:if test='<%= session.getAttribute("idUsuario") != null %>'>
     		
-    		<div>
-    			<p><%= session.getAttribute("nombreUsuario") %></p>
-    			<a href="misCursos">Ver mis cursos</a>
-    			<a href="cerrarSesion">Cerrar sesión</a>
+    		<div class="menuCuentaUsuario">
+    			<div class="usuarioNombreFoto">
+    				<img id="fotoUsuario" src="imagenes/usuario.png">
+    				<p><%= session.getAttribute("nombreUsuario") %></p>
+    			</div>
+    			<div class="linksUsuario">
+    				<a href="#">Editar perfil</a>
+    				<a href="misCursos">Ver mis cursos</a>
+    				<a href="cerrarSesion">Cerrar sesión</a>
+    			</div>
     		</div>
     		
 		</c:if>
