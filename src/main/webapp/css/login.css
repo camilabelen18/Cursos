@@ -5,11 +5,12 @@
 	margin-bottom: 150px;
 }
 
-h1 {
+.login-main h1 {
 	font-weight: 500;
+	margin-bottom: 40px;
 }
 
-h1, p {
+.login-main p {
 	margin-bottom: 40px;
 }
 

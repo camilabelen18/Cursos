@@ -13,11 +13,18 @@ public class ControladorPrincipal {
 	@Autowired
 	private ServicioPrincipal servicioPrincipal;
 	
+	private static boolean ingresaPorPrimeraVez = true;
+	
 	@RequestMapping(path = "/", method = RequestMethod.GET)
     public ModelAndView inicio() {
 		
-		// Se insertan todos los registros necesarios del sistema
-		servicioPrincipal.insertarRegistros();
+		if (ingresaPorPrimeraVez) {
+			
+			// Se insertan todos los registros necesarios del sistema
+			servicioPrincipal.insertarRegistros();
+			
+			ingresaPorPrimeraVez = false;
+		}
 		
         return new ModelAndView("index");
     }
