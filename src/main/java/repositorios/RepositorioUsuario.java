@@ -8,9 +8,11 @@ public interface RepositorioUsuario {
 	Boolean buscarTarjetaEmail(Integer nroTarjeta, String email);
 
 	Usuario buscarUsuarioPorEmail(String email);
-
-	void agregarUsuario(Usuario usuario);
-
+	
 	void guardarCursoDelUsuario(Curso curso_obtenido, Usuario usuario);
+
+	Usuario buscarUsuario(String email, String password);
+
+	void guardarUsuario(Usuario nuevoUsuario);
 
 }

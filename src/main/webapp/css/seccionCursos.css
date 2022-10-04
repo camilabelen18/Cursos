@@ -9,7 +9,7 @@
 #msj_error_curso {
 	text-align : center;
 	margin-top: 100px;
-	margin-bottom: 300px;
+	margin-bottom: 200px;
 	font-size: 20px;
 	font-weight:bold; 
 }
@@ -20,17 +20,53 @@
 	flex-direction: row;
 	justify-content: flex-end;
 	margin-top: 40px;
+	margin-bottom: 20px;
 	padding: 10px;
 	padding-top: 20px;
 }
 
-#contenedorFiltros label {
-	padding: 0px 20px;
+#filtrarPor {
+	padding: 10px 50px;
+	color: white;
+	font-size: 16px;
+	font-weight: bold;
+	border: 0;
+	border-radius: 5px;
+	background-color: #37B9CB;
 }
 
-#contenedorFiltros select {
-	border-radius: 5px;
-	padding: 2px;
+.dropdown {
+	display: inline-block;
+	position: relative;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    width: 100%;
+    overflow: auto;
+    background-color: white;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+}
+
+.dropdown:hover .dropdown-content {
+	display: block;
+	cursor: pointer;
+}
+
+.dropdown:hover #filtrarPor {
+	background: #5dcede;
+}
+
+.dropdown-content a {
+    display: block;
+    color: #000000;
+    padding: 5px 10px;
+    text-decoration: none;
+}
+
+.dropdown-content a:hover {
+	background-color: #f2f2f2;
 }
 
 /* LISTA DE CURSOS */

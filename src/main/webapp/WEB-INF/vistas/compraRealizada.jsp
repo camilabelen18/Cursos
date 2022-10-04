@@ -5,6 +5,9 @@
 
 
 
+
+
+
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!DOCTYPE html>
@@ -52,21 +55,30 @@
 
     <%@ include file="header.jsp"%>
 
-   <%--Contenido de la pagina --%>
+<meta charset="UTF-8">
+<title>CompraRealizada</title>
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1">
+<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="css/exito.css">
+</head>
+<body>
 
-   <main>
-        <%--Titulo --%>
-        <div id="titulo">
-            <h2>Compra Realizada</h2>
-        </div>
+	<%@ include file="header.jsp"%>
 
-       <%--Caja contenedora principal --%>
-        <div class="contenedor2">
-        	<h4>Puede regresar al inicio</h4>
-        </div>
-    </main>
-    
-    <%@ include file="footer.jsp" %>
+	<%--Contenido de la pagina --%>
+
+	<main>
+
+
+	<div id="tituloCompra">
+		<h2>LA COMPRA FUE REALIZADA DE MANERA EXITOSA!!!</h2>
+		<h4>Muchas gracias por comprar el curso.</h4>
+	</div>
+	</main>
+
+
+	<%@ include file="footer.jsp"%>
 
 
 	<h1>Compra realizada </h1>

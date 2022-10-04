@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import modelo.Curso;
+import modelo.Estado;
 import modelo.Usuario;
 
 @Repository
@@ -50,19 +51,39 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario{
 	}
 
 	@Override
-	public void agregarUsuario(Usuario usuario) {
-		sessionFactory.getCurrentSession().save(usuario);
-		
-	}
-
-	@Override
 	public void guardarCursoDelUsuario(Curso curso_obtenido, Usuario usuario) {
+			
+		actualizarEstado(curso_obtenido,Estado.EN_CURSO);
 		
 		Session sesion = sessionFactory.getCurrentSession();
 		
 		usuario.getMisCursos().add(curso_obtenido);
 		
 		sesion.update(usuario);
+	}
+	
+	private void actualizarEstado(Curso curso_obtenido, Estado estado) {
+		
+		curso_obtenido.setEstado(estado);
+		sessionFactory.getCurrentSession().update(curso_obtenido);
+	}
+
+	@Override
+	public Usuario buscarUsuario(String email, String password) {
+		
+		Session session = sessionFactory.getCurrentSession();
+		
+		Usuario usuario = (Usuario) session.createCriteria(Usuario.class)
+						  .add(Restrictions.eq("email", email))
+						  .add(Restrictions.eq("password", password))
+						  .uniqueResult();
+		
+		return usuario;
+	}
+
+	@Override
+	public void guardarUsuario(Usuario nuevoUsuario) {
+		sessionFactory.getCurrentSession().save(nuevoUsuario);
 	}
 
 }

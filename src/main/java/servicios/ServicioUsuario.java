@@ -9,10 +9,10 @@ public interface ServicioUsuario {
 
 	Usuario buscarUsuarioPorEmail(String email);
 
-	void agregarUsuario(Usuario usuario);
-
 	void guardarCursoEnListaUsuario(Curso curso_obtenido, Usuario usuario);
-	
-	
 
+	Usuario consultarUsuario(String email, String password);
+
+	void registrar(String nombre, String email, String contrasenia);
+	
 }

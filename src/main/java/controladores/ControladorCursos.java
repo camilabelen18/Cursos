@@ -1,4 +1,4 @@
-package cursos.controladores;
+package controladores;
 
 import java.util.List;
 
@@ -44,8 +44,8 @@ public class ControladorCursos {
 		return new ModelAndView("seccionCursos", model);
 	}
 	
-	@RequestMapping(path="/miseccion")
-	public ModelAndView miseccion(){
+	@RequestMapping(path="/misCursos")
+	public ModelAndView misCursos(){
 		return new ModelAndView("miscursos");
 	}
 	
@@ -83,6 +83,33 @@ public class ControladorCursos {
 		modelo.addAttribute("lista_cursos", cursos);
 		
 		return new ModelAndView("seccionCursos");
+	}
+	
+	@RequestMapping("/agregarCurso")
+	public ModelAndView irAAgregarCurso() {
+		return new ModelAndView("crearCurso");
+		
+	}
+
+	@RequestMapping(path="/cursoAgregado", method = RequestMethod.POST)
+	public ModelAndView agregarCurso(@RequestParam("nombreCurso") String nombreCurso, @RequestParam("descCurso") String descCurso, @RequestParam("precioCurso") Double precioCurso) {
+		ModelMap modelo=new ModelMap();
+		Curso curso = new Curso();
+		curso.setNombre(nombreCurso);
+		curso.setDescripcion(descCurso);
+		curso.setPrecio(precioCurso);
+		servicioCurso.agregarCurso(curso);
+		
+		return new ModelAndView("cursoAgregado", modelo);
+	}
+	
+	@RequestMapping (path= "/descripcionCurso", method= RequestMethod.GET)
+	public ModelAndView irADescCurso(@RequestParam("id_curso") Integer id_curso, Model modelo) {
+		Curso curso = servicioCurso.busquedaPorID(id_curso);
+		modelo.addAttribute(curso);
+
+		
+		return new ModelAndView("descripcionCurso");
 	}
 
 }

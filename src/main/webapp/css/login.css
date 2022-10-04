@@ -1,20 +1,20 @@
-.registro-main {
+.login-main {
 	width: 30%;
 	margin: auto;
 	margin-top: 60px;
 	margin-bottom: 150px;
 }
 
-.registro-main h1 {
+.login-main h1 {
 	font-weight: 500;
-	margin-bottom: 30px;
+	margin-bottom: 40px;
 }
 
-.registro-main p {
-	margin-bottom: 30px;
+.login-main p {
+	margin-bottom: 40px;
 }
 
-input[type="text"], input[type="email"], input[type="password"] {
+input[type="email"], input[type="password"] {
     width: 100%;
     padding: 6px;
     display: block;
@@ -40,10 +40,8 @@ input[type="submit"] {
 
 .error {
     color: crimson;
-    margin-bottom: 20px;
 }
 
 .error p {
     margin-bottom: 5px;
 }
-
