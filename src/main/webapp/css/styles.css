@@ -26,7 +26,7 @@ a {
 
 ::placeholder {
     color: #cecece;
-    font-size: 20px;
+    font-size: 16px;
     font-weight: normal;
 }
 
@@ -45,7 +45,7 @@ input[type="submit"]:hover {
 }
 
 /* HEADER */
-.contenedor1 {
+.cont-1-header {
 	background: white;
     width: 80%;
     margin: auto;
@@ -55,22 +55,37 @@ input[type="submit"]:hover {
     align-items: center;
 }
 
+.cursosLogo {
+	display: flex;
+}
+
+.cursosLogo h1 {
+	font-weight: lighter;
+	color: #5a5a5a;
+}
+
+#logoCurso {
+	width: 40px;
+}
+
 #barra_busqueda {
 	width: 60%;
 }
 
 #barra_busqueda input {
-    padding: 8px 12px;
+    padding: 12px;
     box-sizing: border-box;
     width: 90%;
-    border: 0;
-    border: 1px solid rgb(185, 185, 185);
     border-radius: 20px;
+    border: 2px solid #cecece;
+    color: #404040;
+    font-size: 16px;
+    font-weight: normal;
 }
 
 #barra_busqueda input:focus {
     outline: none;
-    border: 1px solid gray;
+    border: 2px solid rgb(54, 129, 226);
 }
 
 #login {
@@ -85,6 +100,30 @@ input[type="submit"]:hover {
 
 #carrito {
 	width: 50px;
+}
+
+#fotoUsuario {
+	width: 50px;
+}
+
+.menuCuentaUsuario {
+	display: flex;
+}
+
+.menuCuentaUsuario a {
+	color: #3c3b37;
+}
+
+.usuarioNombreFoto {
+	padding: 0px 20px;
+	text-align: center;
+}
+
+.linksUsuario {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	text-align: right;
 }
 
 /* NAVBAR */
@@ -115,7 +154,7 @@ nav a:hover {
 }
 
 /* FOOTER */
-.cont-foot-2 {
+.cont-foot {
     height: 230px;
     background-color: #2C2E41;
     color: white;

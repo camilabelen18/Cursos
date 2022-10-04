@@ -1,7 +1,8 @@
 /* MAIN */
 .cont-index-1 {
 	height: 550px;
-	width: 100%;
+	width: 90%;
+	margin: auto;
     background: no-repeat center center;
     background-size: cover;
     display: flex;
@@ -80,7 +81,7 @@
 }
 
 .nom-cor input {
-    width: 44.5%;
+    width: 42%;
     padding: 12px;
     border: 2px solid #cecece;
     border-radius: 5px;
@@ -103,6 +104,11 @@
     color: #404040;
     font-size: 18px;
     font-weight: normal;
+}
+
+input[type="text"]:focus, textarea:focus {
+	outline: none;
+    border: 2px solid rgb(54, 129, 226);
 }
 
 .txt-btn {

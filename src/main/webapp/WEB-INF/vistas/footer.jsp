@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 
 <footer>
-	<div class="cont-foot-2">
+	<div class="cont-foot">
 		<div class="barra-inferior">
 			<div class="informacion">
 				<a href="#"> Términos y condiciones </a>

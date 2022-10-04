@@ -15,11 +15,13 @@
 <body>
 
 	<!-- Aca se incluye el "HEADER" -->
-	<%@ include file="/WEB-INF/vistas/header.jsp" %>
+	<%@ include file="header.jsp"%>
 
 	<!-- PRESENTACIÓN -->
-	<div class="cont-index-1" style="background-image: url('imagenes/slaider.jpg');">
+	<div class="cont-index-1" style="background-image: linear-gradient(rgba(0, 0, 0, 0.0), rgba(0, 0, 0, 0.4)), url('imagenes/slaider.jpg');">
+		
 		<h1>CURSOS ONLINE</h1>
+		
     </div>
 
 	<!-- CATEGORÍAS -->
@@ -29,21 +31,21 @@
 
 		<div class="categorias-index">
 			<div class="cat-index">
-				<a href="#">
+				<a href="verCursosPorCategoria?categoria=diseno">
 					<img src="imagenes/cat-diseño.jpg">
 					<p>Diseño</p>
 				</a>
 			</div>
 
 			<div class="cat-index">
-				<a href="#">
+				<a href="verCursosPorCategoria?categoria=programacion">
 					<img src="imagenes/cat-programacion.jpg">
 					<p>Programación</p>
 				</a>
 			</div>
 
 			<div class="cat-index">
-				<a href="#">
+				<a href="verCursosPorCategoria?categoria=musica">
 					<img src="imagenes/cat-musica.jpg">
 					<p>Música</p>
 				</a>
@@ -73,7 +75,7 @@
 	</div>
 	
 	<!-- Aca se incluye el "FOOTER" -->
-	<%@ include file="/WEB-INF/vistas/footer.jsp" %>
+	<%@ include file="footer.jsp"%>
 
 </body>
 </html>

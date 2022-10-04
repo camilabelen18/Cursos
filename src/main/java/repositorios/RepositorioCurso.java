@@ -3,15 +3,18 @@ package repositorios;
 import java.util.List;
 
 import modelo.Curso;
+import modelo.Usuario;
 
 public interface RepositorioCurso {
 
-	List<Curso> obtenerListaCursosPorDescripcion(String descripcion);
+	List<Curso> obtenerListaTotalCursos();
+	
+	List<Curso> obtenerListaCursosPorCategoria(String categoria);
+	
+	List<Curso> obtenerListaCursosPorNombre(String nombreCurso);
+	
+	Curso obtenerCursoPorID(int id);
 
-	Curso obtenerListaCursosPorID(Long id);
-
-	Curso añadirCurso(Curso curso);
-
-
+	void agregarCurso(Curso curso);
 	
 }

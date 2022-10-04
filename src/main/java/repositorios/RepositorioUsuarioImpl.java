@@ -1,13 +1,18 @@
 package repositorios;
 
-import javax.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import modelo.Curso;
+import modelo.Estado;
 import modelo.Usuario;
 
 @Repository
@@ -30,12 +35,55 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario{
 		return false;
 
 	}
-
+	
 	@Override
 	public Usuario buscarUsuarioPorEmail(String email) {
-		return (Usuario) sessionFactory.getCurrentSession()
-				.createCriteria(Usuario.class)
-				.add(Restrictions.eq("email",email)).uniqueResult();
+		
+		Session sesion = sessionFactory.getCurrentSession();
+		
+		// Se obtiene un usuario por su 'email'
+		
+		Usuario usuario = (Usuario) sesion.createCriteria(Usuario.class)
+				          .add(Restrictions.eq("email", email))
+				          .uniqueResult();
+
+		return usuario;
+	}
+
+	@Override
+	public void guardarCursoDelUsuario(Curso curso_obtenido, Usuario usuario) {
+			
+		actualizarEstado(curso_obtenido,Estado.EN_CURSO);
+		
+		Session sesion = sessionFactory.getCurrentSession();
+		
+		usuario.getMisCursos().add(curso_obtenido);
+		
+		sesion.update(usuario);
+	}
+	
+	private void actualizarEstado(Curso curso_obtenido, Estado estado) {
+		
+		curso_obtenido.setEstado(estado);
+		sessionFactory.getCurrentSession().update(curso_obtenido);
+	}
+
+	@Override
+	public Usuario buscarUsuario(String email, String password) {
+		
+		Session session = sessionFactory.getCurrentSession();
+		
+		Usuario usuario = (Usuario) session.createCriteria(Usuario.class)
+						  .add(Restrictions.eq("email", email))
+						  .add(Restrictions.eq("password", password))
+						  .uniqueResult();
+		
+		return usuario;
+	}
+
+	@Override
+	public void guardarUsuario(Usuario nuevoUsuario) {
+		sessionFactory.getCurrentSession().save(nuevoUsuario);
 	}
 
 }

@@ -1,0 +1,46 @@
+.login-main {
+	width: 30%;
+	margin: auto;
+	margin-top: 60px;
+	margin-bottom: 150px;
+}
+
+h1 {
+	font-weight: 500;
+}
+
+h1, p {
+	margin-bottom: 40px;
+}
+
+input[type="email"], input[type="password"] {
+    width: 100%;
+    padding: 6px;
+    display: block;
+    box-sizing: border-box;
+    border: 2px solid #cecece;
+    border-radius: 5px;
+    color: #404040;
+    font-size: 16px;
+    font-weight: normal;
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+
+input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus {
+    outline: none;
+    border: 2px solid rgb(54, 129, 226);
+}
+
+input[type="submit"] {
+    display: block;
+    float: right;
+}
+
+.error {
+    color: crimson;
+}
+
+.error p {
+    margin-bottom: 5px;
+}
