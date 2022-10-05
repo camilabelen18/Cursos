@@ -44,6 +44,7 @@ public class ServicioUsuarioImpl implements ServicioUsuario{
         nuevoUsuario.setEmail(email);
         nuevoUsuario.setPassword(contrasenia);
         nuevoUsuario.setRol("cliente");
+        nuevoUsuario.setNroTarjeta(999);
 
         repositorioUsuario.guardarUsuario(nuevoUsuario);
 	}

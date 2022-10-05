@@ -5,11 +5,12 @@
 	margin-bottom: 150px;
 }
 
-h1 {
+.registro-main h1 {
 	font-weight: 500;
+	margin-bottom: 30px;
 }
 
-h1, p {
+.registro-main p {
 	margin-bottom: 30px;
 }
 

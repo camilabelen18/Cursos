@@ -119,7 +119,7 @@ public class ControladorUsuarios {
 		session.removeAttribute("idUsuario");
 		session.removeAttribute("nombreUsuario");
 		session.removeAttribute("ROL");
-		
+				
         return new ModelAndView("redirect:/");
     }
 
