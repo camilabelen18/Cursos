@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -51,11 +52,13 @@ public class ControladorCursos {
 	
 	// Se obtienen todos los registros de la tabla 'curso' de la bd
 	@RequestMapping(path= "/verListaCursos", method= RequestMethod.GET)
-	public ModelAndView verListaCursos(Model modelo) {
+	public ModelAndView verListaCursos(Model modelo, @ModelAttribute("error_sesion") String msj_sesion, @ModelAttribute("cursoYaComprado") String msj_curso) {
 		
 		List<Curso> cursos = servicioCurso.getCursos();
 		
 		modelo.addAttribute("lista_cursos", cursos);
+		modelo.addAttribute("msj_error_sesion", msj_sesion);
+		modelo.addAttribute("msj_error_curso", msj_curso);
 		
 		return new ModelAndView("seccionCursos");
 	}
