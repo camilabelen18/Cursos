@@ -18,26 +18,51 @@
 	<%@ include file="header.jsp"%>
 
 	<div id="titulo">
-		<h3>SECCION: MIS CURSOS</h3>
-		<div id="contenedorFiltros">
-
-			<label for="filtro">Filtrar por:</label> <select id="filtro"
-				name="filtro">
-				<option value=1>Todos mis cursos</option>
-				<option value=2>En curso</option>
-				<option value=3>Finalizado</option>
-				<option value=4>Cancelado</option>
-			</select>
+		<h2>SECCION: MIS CURSOS</h2>
+		<div class="dropdown">
+			<button id="filtrarPor">Filtrar por</button>
+			<div class="dropdown-content">
+				<a href="#">Todos los cursos</a> <a href="#">En Curso</a> <a
+					href="#">Finalizado</a> <a href="#">Cancelado</a>
+			</div>
 		</div>
 	</div>
+	</div>
 
-	<form action="verCursosDelUsuario" method="get">
+	<div class="listaSeccionCursos">
 
-		<label for="email">Email</label> <input id="email" type="text"
-			name="email" placeholder="email"> <input id="enviar"
-			type="submit" value="comprar">
-	</form>
-	
-	        
+		<!-- SE INICIA UN BUCLE EN DONDE POR CADA CURSO SE VA MOSTRANDO SUS DATOS EN UN CUADRO -->
+		
+		<c:forEach var="curso" items="${lista_cursos}">
+
+			<div class="cuadro-seccion-cursos">
+				<div>
+					<img src="imagenes/cursos/${curso.imagen}">
+				</div>
+
+				<div class="cotenido-1-curso">
+					<p class="nombreCurso">${curso.nombre}</p>
+					<p>${curso.descripcion}</p>
+
+				</div>
+
+
+				<div class="enCurso">
+					<form action="#">
+					<p class="estado">${curso.estado}</p>
+					</form>
+				</div>
+				
+				<div class="cotenido-2-curso">
+					<form action="#">
+						<input type="submit" name="detalles" value="detalles">
+					</form>
+				</div>
+			</div>
+
+		</c:forEach>
+	</div>
+
+
 </body>
 </html>
