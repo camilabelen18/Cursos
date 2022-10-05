@@ -2,6 +2,8 @@ package controladores;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -45,7 +47,16 @@ public class ControladorCursos {
 	}
 	
 	@RequestMapping(path="/misCursos")
-	public ModelAndView misCursos(){
+	public ModelAndView misCursos(HttpSession session, Model modelo){
+		
+		int id = (int) session.getAttribute("idUsuario");
+		
+		Usuario usuario = servicioUsuario.buscarUsuarioPorId(id);
+		
+		List<Curso> cursos = usuario.getMisCursos();
+		
+		modelo.addAttribute("lista_cursos", cursos);
+	
 		return new ModelAndView("miscursos");
 	}
 	

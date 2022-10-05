@@ -15,4 +15,6 @@ public interface RepositorioUsuario {
 
 	void guardarUsuario(Usuario nuevoUsuario);
 
+	Usuario buscarUsuarioPorId(int id);
+
 }

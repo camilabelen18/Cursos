@@ -49,4 +49,9 @@ public class ServicioUsuarioImpl implements ServicioUsuario{
         repositorioUsuario.guardarUsuario(nuevoUsuario);
 	}
 
+	@Override
+	public Usuario buscarUsuarioPorId(int id) {
+		return repositorioUsuario.buscarUsuarioPorId(id);
+	}
+
 }
