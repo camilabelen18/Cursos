@@ -71,7 +71,6 @@ public class ControladorCompra {
 		Usuario usuario = servicioUsuario.buscarUsuarioPorID(id_user);
 		Curso curso_obtenido = servicioCurso.busquedaPorID(id);
 
-		System.out.println(id_user);
 		// Se verifica si el numero de tarjeta del usuario es igual al numero de tarjeta ingresado
 		if (usuario.getNroTarjeta().equals(nroTarjeta)) {
 

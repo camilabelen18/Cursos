@@ -17,52 +17,52 @@
 
 	<%@ include file="header.jsp"%>
 
-	<div id="titulo">
-		<h2>SECCION: MIS CURSOS</h2>
-		<div class="dropdown">
-			<button id="filtrarPor">Filtrar por</button>
-			<div class="dropdown-content">
-				<a href="#">Todos los cursos</a> <a href="#">En Curso</a> <a
-					href="#">Finalizado</a> <a href="#">Cancelado</a>
+	<div class="cont-seccion-miscursos">
+
+		<div id="contenedorFiltros">
+		
+			<div class="dropdown">
+				<button id="filtrarPor">Filtrar por</button>
+				<div class="dropdown-content">
+					<a href="#">Todos los cursos</a>
+					<a href="#">En Curso</a>
+					<a href="#">Finalizado</a>
+					<a href="#">Cancelado</a>
+				</div>
 			</div>
 		</div>
+
+		<div class="listaSeccionCursos">
+
+			<!-- SE INICIA UN BUCLE EN DONDE POR CADA CURSO SE VA MOSTRANDO SUS DATOS EN UN CUADRO -->
+
+			<c:forEach var="curso" items="${lista_cursos}">
+
+				<div class="cuadro-seccion-cursos">
+					<div>
+						<img src="imagenes/cursos/${curso.imagen}">
+					</div>
+
+					<div class="cotenido-1-curso">
+						<p class="nombreCurso">${curso.nombre}</p>
+						<p>${curso.descripcion}</p>
+
+					</div>
+
+					<div class="cotenido-2-curso">
+						<p class="estado">${curso.estado}</p>
+						<form action="#">
+							<input type="submit" name="detalles" value="detalles">
+						</form>
+					</div>
+				</div>
+
+			</c:forEach>
+		</div>
+
 	</div>
-	</div>
-
-	<div class="listaSeccionCursos">
-
-		<!-- SE INICIA UN BUCLE EN DONDE POR CADA CURSO SE VA MOSTRANDO SUS DATOS EN UN CUADRO -->
-		
-		<c:forEach var="curso" items="${lista_cursos}">
-
-			<div class="cuadro-seccion-cursos">
-				<div>
-					<img src="imagenes/cursos/${curso.imagen}">
-				</div>
-
-				<div class="cotenido-1-curso">
-					<p class="nombreCurso">${curso.nombre}</p>
-					<p>${curso.descripcion}</p>
-
-				</div>
-
-
-				<div class="enCurso">
-					<form action="#">
-					<p class="estado">${curso.estado}</p>
-					</form>
-				</div>
-				
-				<div class="cotenido-2-curso">
-					<form action="#">
-						<input type="submit" name="detalles" value="detalles">
-					</form>
-				</div>
-			</div>
-
-		</c:forEach>
-	</div>
-
+	
+	<%@ include file="/WEB-INF/vistas/footer.jsp" %>
 
 </body>
 </html>

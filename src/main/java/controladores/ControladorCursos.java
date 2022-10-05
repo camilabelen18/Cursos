@@ -52,7 +52,7 @@ public class ControladorCursos {
 		
 		int id = (int) session.getAttribute("idUsuario");
 		
-		Usuario usuario = servicioUsuario.buscarUsuarioPorId(id);
+		Usuario usuario = servicioUsuario.buscarUsuarioPorID(id);
 		
 		List<Curso> cursos = usuario.getMisCursos();
 		
