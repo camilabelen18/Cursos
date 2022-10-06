@@ -119,11 +119,19 @@ public class ControladorCursos {
 	
 	@RequestMapping (path= "/descripcionCurso", method= RequestMethod.GET)
 	public ModelAndView irADescCurso(@RequestParam("id_curso") Integer id_curso, Model modelo) {
-		Curso curso = servicioCurso.busquedaPorID(id_curso);
-		modelo.addAttribute(curso);
-
 		
-		return new ModelAndView("descripcionCurso");
+		String view = "";
+		
+		try {
+			Curso curso = servicioCurso.busquedaPorID(id_curso);
+			modelo.addAttribute(curso);
+			view = "descripcionCurso";
+		}
+		catch(Exception e) {
+			view = "index";
+		}
+		
+		return new ModelAndView(view);
 	}
 
 }
