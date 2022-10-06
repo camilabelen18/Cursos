@@ -65,11 +65,10 @@ public class ControladorCompra {
 	public ModelAndView verificarCompra(@RequestParam("nroTarjeta") Integer nroTarjeta, @RequestParam("curso_id") int id, HttpSession session) {
 		
 		ModelMap model = new ModelMap();
-		String viewName = "";
-
 		int id_user = Integer.parseInt(session.getAttribute("idUsuario").toString());
 		Usuario usuario = servicioUsuario.buscarUsuarioPorID(id_user);
 		Curso curso_obtenido = servicioCurso.busquedaPorID(id);
+		String viewName = "";
 
 		// Se verifica si el numero de tarjeta del usuario es igual al numero de tarjeta ingresado
 		if (usuario.getNroTarjeta().equals(nroTarjeta)) {
