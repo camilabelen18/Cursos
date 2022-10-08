@@ -2,10 +2,13 @@ package controladores;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -45,17 +48,28 @@ public class ControladorCursos {
 	}
 	
 	@RequestMapping(path="/misCursos")
-	public ModelAndView misCursos(){
+	public ModelAndView misCursos(HttpSession session, Model modelo){
+		
+		int id = (int) session.getAttribute("idUsuario");
+		
+		Usuario usuario = servicioUsuario.buscarUsuarioPorID(id);
+		
+		List<Curso> cursos = usuario.getMisCursos();
+		
+		modelo.addAttribute("lista_cursos", cursos);
+	
 		return new ModelAndView("miscursos");
 	}
 	
 	// Se obtienen todos los registros de la tabla 'curso' de la bd
 	@RequestMapping(path= "/verListaCursos", method= RequestMethod.GET)
-	public ModelAndView verListaCursos(Model modelo) {
+	public ModelAndView verListaCursos(Model modelo, @ModelAttribute("error_sesion") String msj_sesion, @ModelAttribute("cursoYaComprado") String msj_curso) {
 		
 		List<Curso> cursos = servicioCurso.getCursos();
 		
 		modelo.addAttribute("lista_cursos", cursos);
+		modelo.addAttribute("msj_error_sesion", msj_sesion);
+		modelo.addAttribute("msj_error_curso", msj_curso);
 		
 		return new ModelAndView("seccionCursos");
 	}
@@ -105,11 +119,19 @@ public class ControladorCursos {
 	
 	@RequestMapping (path= "/descripcionCurso", method= RequestMethod.GET)
 	public ModelAndView irADescCurso(@RequestParam("id_curso") Integer id_curso, Model modelo) {
-		Curso curso = servicioCurso.busquedaPorID(id_curso);
-		modelo.addAttribute(curso);
-
 		
-		return new ModelAndView("descripcionCurso");
+		String view = "";
+		
+		try {
+			Curso curso = servicioCurso.busquedaPorID(id_curso);
+			modelo.addAttribute(curso);
+			view = "descripcionCurso";
+		}
+		catch(Exception e) {
+			view = "index";
+		}
+		
+		return new ModelAndView(view);
 	}
 
 }
