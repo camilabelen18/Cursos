@@ -36,8 +36,10 @@
 		</div>
 
 		<div id="cont4">
-			<form action="comprar">
-				<input id="comprarAhora" type="submit" value="Comprar Ahora">
+			<form action="comprar" method="get">
+				<input type="hidden" name="id_curso" value="${curso.id}">
+				<input type="hidden" name="precio" value="${curso.precio}">
+				<input id="comprarAhora" name = "comprarAhora" type="submit" value="Comprar Ahora">
 			</form>
 		</div>
 	</div>
