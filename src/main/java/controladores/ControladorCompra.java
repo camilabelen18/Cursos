@@ -85,5 +85,44 @@ public class ControladorCompra {
 		
 		return new ModelAndView(viewName, model);
 	}
+	
+	//FUNCIONALIDAD CANCELAR
+	@RequestMapping(path = "/cancelarCompra", method = RequestMethod.POST)
+	public ModelAndView cancelarCompra(@RequestParam("curso_id") int idCurso, HttpSession session) {
+		
+		ModelMap model = new ModelMap();
+		
+		//validar si el curso existe y cambiar el estado a cancelar
+		int id_user = Integer.parseInt(session.getAttribute("idUsuario").toString());
+		Usuario usuario = servicioUsuario.buscarUsuarioPorID(id_user);
+		Curso curso_obtenido = servicioCurso.busquedaPorID(idCurso);
+		String viewName = "redirect:/misCursos";
+		
+		if(servicioUsuario.existeCursoEnListaUsuario(idCurso, usuario)) {
+			servicioUsuario.cancelarCurso(curso_obtenido,usuario);
+			model.put("curso_cancelado",curso_obtenido);
+		}
+		
+		return new ModelAndView(viewName, model);
+	}
+	
+	@RequestMapping(path = "/eliminarCompra", method = RequestMethod.POST)
+	public ModelAndView eliminarCompra(@RequestParam("curso_id") int idCurso, HttpSession session) {
+		
+		ModelMap model = new ModelMap();
+		
+		//validar si el curso existe y cambiar el estado a cancelar
+		int id_user = Integer.parseInt(session.getAttribute("idUsuario").toString());
+		Usuario usuario = servicioUsuario.buscarUsuarioPorID(id_user);
+		Curso curso_obtenido = servicioCurso.busquedaPorID(idCurso);
+		String viewName = "redirect:/misCursos";
+		
+		if(servicioUsuario.existeCursoEnListaUsuario(idCurso, usuario)) {
+			servicioUsuario.eliminarCurso(curso_obtenido,usuario);
+			model.put("curso_cancelado",curso_obtenido);
+		}
+		
+		return new ModelAndView(viewName, model);
+	}
 
 }

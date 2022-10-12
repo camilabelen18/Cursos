@@ -48,7 +48,7 @@ public class ControladorCursos {
 	}
 	
 	@RequestMapping(path="/misCursos")
-	public ModelAndView misCursos(HttpSession session, Model modelo){
+	public ModelAndView misCursos(HttpSession session, Model modelo,@ModelAttribute("curso_cancelado")Curso curso_cancelado){
 		
 		int id = (int) session.getAttribute("idUsuario");
 		
@@ -58,6 +58,8 @@ public class ControladorCursos {
 		
 		modelo.addAttribute("lista_cursos", cursos);
 	
+		modelo.addAttribute("curso_cancelado",curso_cancelado);
+		
 		return new ModelAndView("miscursos");
 	}
 	
@@ -133,5 +135,6 @@ public class ControladorCursos {
 		
 		return new ModelAndView(view);
 	}
+	
 
 }
