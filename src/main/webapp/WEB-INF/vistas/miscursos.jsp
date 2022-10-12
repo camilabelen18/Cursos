@@ -51,13 +51,34 @@
 
 					<div class="cotenido-2-curso">
 						<p class="estado">${curso.estado}</p>
-						<form action="#">
-							<input type="submit" name="detalles" value="detalles">
-						</form>
+
+						<c:if test="${curso.estado == 'CANCELADO'}">
+							<form action="eliminarCompra?curso_id=${curso.id}" method="POST">
+								<input type="submit" name="eliminar" value="Eliminar">
+							</form>
+							<form action="comprar" method="get">
+								<input type="hidden" name="id_curso" value="${curso.id}">
+								<input type="hidden" name="precio" value="${curso.precio}">
+								<input type="submit" name="comprarAhora" value="Comprar">
+							</form>
+						</c:if>
+
+						<c:if test="${curso.estado == 'EN_CURSO'}">
+							<form action="#">
+								<input type="submit" name="detalles" value="detalles">
+							</form>
+							<form action="cancelarCompra?curso_id=${curso.id}" method="POST">
+								<input type="submit" name="cancelar" value="cancelar">
+							</form>
+						</c:if>
 					</div>
 				</div>
 
 			</c:forEach>
+
+			
+
+
 		</div>
 
 	</div>
