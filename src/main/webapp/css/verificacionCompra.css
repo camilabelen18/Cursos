@@ -9,88 +9,82 @@ gris oscuro: #3c3b37
 celeste: #37B9CB
 */
 
+/* Generales */
+main {
+	width: 50%;
+	margin: auto;
+	margin-bottom: 150px;
+}
 
 /* Titulo */
 #titulo {
-	padding: 30px;
-    margin: 25px;
-    display: flex;
-    justify-content: center;
-    align-items:center;
-	text-align:center;
-
-}
-/* Titulo */
-h4{
-	font-size: 20px;
-}
-
-
-/* contenido principal  */
-.contenedor2{
-	display: flex;
-    flex-direction: row;
-    justify-content: center;
-    padding: 25px;
-    margin: 25px;
-    width: auto;
-    border: 2px solid grey;  
-    
-	
-}
-/*formulario */
-form{
+	height: 80px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin: 80px 0px 100px 0px;
 }
 
-/*titulo del contenedor*/
-h6{
-	padding: 5px;
-    margin: 5px;
-    font-size: 18px;
-    font-weight: bold;
-    text-align:center;
+#titulo a {
+	color: #3c3b37;
+	font-size: 14px;
 }
 
-
-/*label*/
-label{
-    padding: 5px;
-    margin: 5px;
-    font-size: 15px;
-    font-weight: bold;
+#titulo span {
+	font-weight: bold;
+	font-size: 14px;
 }
-/*input*/
 
-#nroTarjeta{
-    padding: 5px;
-    margin: 10px;
-    font-size: 15px;
+/* Contenido principal  */
+.contenedor2 {
+	width: 30%;
+	margin: auto;
+    background-color: #FCFCB6;
+    padding: 100px;
+}
+
+#resumen {
+	padding-bottom: 15px;
+	border-bottom: 1px solid #636363;
+}
+
+#precioTotal {
+	display: flex;
+	justify-content: space-between;
+	margin: 15px 0px;
+	font-weight: 600;
+	margin-bottom: 60px;
+}
+
+#pagarTarjeta {
+	margin-bottom: 20px;
+}
+
+#comprar {
+	width: 100%;
+}
+
+input[type="number"] {
+    width: 100%;
+    padding: 6px;
+    display: block;
+    box-sizing: border-box;
+    border: 2px solid #cecece;
+    border-radius: 5px;
+    color: #404040;
+    font-size: 16px;
     font-weight: normal;
-
+    margin-top: 10px;
+    margin-bottom: 30px;
 }
 
-#comprar{
-    padding: 5px;
-    margin: 10px;
-    font-size: 15px;
-    font-weight: normal;
-    background-color: #37B9CB;
+input[type="number"]:focus {
+    outline: none;
+    border: 2px solid rgb(54, 129, 226);
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.error {
+    color: crimson;
+    margin-top: 20px;
+}

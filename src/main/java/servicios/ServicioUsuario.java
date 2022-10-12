@@ -14,5 +14,9 @@ public interface ServicioUsuario {
 	Usuario consultarUsuario(String email, String password);
 
 	void registrar(String nombre, String email, String contrasenia);
-	
+
+	Usuario buscarUsuarioPorID(int id_user);
+
+	boolean existeCursoEnListaUsuario(int idCurso, Usuario usuario);
+
 }

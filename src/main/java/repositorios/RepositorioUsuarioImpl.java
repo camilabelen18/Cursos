@@ -86,4 +86,16 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario{
 		sessionFactory.getCurrentSession().save(nuevoUsuario);
 	}
 
+	@Override
+	public Usuario buscarUsuarioPorID(int id_user) {
+		
+		Session sesion = sessionFactory.getCurrentSession();
+		
+		// Se obtiene un usuario por su id
+		
+		Usuario curso = sesion.get(Usuario.class, id_user);
+		
+		return curso;
+	}
+
 }

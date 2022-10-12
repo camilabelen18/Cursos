@@ -1,6 +1,7 @@
 package controladores;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,48 +29,61 @@ public class ControladorCompra {
 	private ServicioCurso servicioCurso;
 
 	@RequestMapping(path = "/comprar", method = RequestMethod.GET)
-	public ModelAndView verificacionCompra(@RequestParam("id_curso") int id, Model modelo) {
+	public ModelAndView verificacionCompra(@RequestParam("id_curso") int idCurso, @RequestParam("precio") Double precioCurso, HttpSession session) {
 		
-		modelo.addAttribute("idCurso", id);
-								
-		return new ModelAndView("verificacionCompra");
+		ModelMap model = new ModelMap();
+		String viewName = "";
+		
+		// Si comprueba si el usuario tiene iniciada la sesión
+		if (session.getAttribute("idUsuario") != null) {
+			
+			int id_user = Integer.parseInt(session.getAttribute("idUsuario").toString());
+			Usuario usuario = servicioUsuario.buscarUsuarioPorID(id_user);
+			
+			//Se comprueba que el curso no se encuentre en la lista de cursos del usuario
+			if(!servicioUsuario.existeCursoEnListaUsuario(idCurso, usuario)) {
+				
+				model.put("idCurso", idCurso);
+				model.put("precioCurso", precioCurso);
+				viewName = "verificacionCompra";
+			}
+			else {
+				model.addAttribute("cursoYaComprado", "El curso ya fue comprado, compre otro curso.");
+				viewName = "redirect:/verListaCursos";
+			}
+		}
+		else {
+			model.addAttribute("error_sesion", "Para comprar necesitas ingresar a tu cuenta.");
+			viewName = "redirect:/verListaCursos";
+		}
+		
+		return new ModelAndView(viewName, model);
 	}
 	
-		
+	
 	@RequestMapping(path = "/verificarCompra", method = RequestMethod.POST)
-	public ModelAndView verificarCompra(@RequestParam("nroTarjeta") Integer nroTarjeta, 
-			@RequestParam("email") String email, @RequestParam("curso_id") int id) {
+	public ModelAndView verificarCompra(@RequestParam("nroTarjeta") Integer nroTarjeta, @RequestParam("curso_id") int id, HttpSession session) {
 		
-		ModelMap modelo = new ModelMap();
-		
-		try {
-			
-			Curso curso_obtenido = servicioCurso.busquedaPorID(id);
-			
-			Usuario usuario = servicioUsuario.buscarUsuarioPorEmail(email);
-			
-			//verificar que el curso no este en la lista
-			
-			if(usuario.getMisCursos().contains(curso_obtenido)) {
-				modelo.put("cursoEncontrado", "El curso ya fue comprado, compre otro curso.");
-			}
-			
-			
-			// Se verifica si el numero de tarjeta del usuario es igual al numero de tarjeta ingresado
-			
-			if (usuario.getNroTarjeta().equals(nroTarjeta)) {			
+		ModelMap model = new ModelMap();
+		int id_user = Integer.parseInt(session.getAttribute("idUsuario").toString());
+		Usuario usuario = servicioUsuario.buscarUsuarioPorID(id_user);
+		Curso curso_obtenido = servicioCurso.busquedaPorID(id);
+		String viewName = "";
 
-				servicioUsuario.guardarCursoEnListaUsuario(curso_obtenido, usuario);
-			    
-				return new ModelAndView("compraRealizada");
-			}
-			
+		// Se verifica si el numero de tarjeta del usuario es igual al numero de tarjeta ingresado
+		if (usuario.getNroTarjeta().equals(nroTarjeta)) {
+
+			servicioUsuario.guardarCursoEnListaUsuario(curso_obtenido, usuario);
+			viewName = "compraRealizada";
 		}
-		catch (Exception e) {
-			e.getMessage();
+		else {
+			model.put("tarjetaIncorrecta", "El número de tarjeta ingresado es incorrecto.");
+			model.put("idCurso", curso_obtenido.getId());
+			model.put("precioCurso", curso_obtenido.getPrecio());
+			viewName = "verificacionCompra";
 		}
-						
-		return new ModelAndView("redirect:/");
+		
+		return new ModelAndView(viewName, model);
 	}
 
 }

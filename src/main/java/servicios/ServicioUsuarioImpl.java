@@ -1,5 +1,7 @@
 package servicios;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -47,6 +49,31 @@ public class ServicioUsuarioImpl implements ServicioUsuario{
         nuevoUsuario.setNroTarjeta(999);
 
         repositorioUsuario.guardarUsuario(nuevoUsuario);
+	}
+
+	@Override
+	public Usuario buscarUsuarioPorID(int id_user) {
+		return repositorioUsuario.buscarUsuarioPorID(id_user);
+	}
+
+	@Override
+	public boolean existeCursoEnListaUsuario(int idCurso, Usuario usuario) {
+		
+		boolean yaExisteElCurso = false;
+		List<Curso> cursos = usuario.getMisCursos();
+		
+		// Se recorre la lista de los cursos del usuario y se verifica si ya existe un curso
+		// con el id del curso seleccionado
+		for (Curso curso : cursos) {
+			
+			if (curso.getId() == idCurso) {
+				
+				yaExisteElCurso = true;
+				break;
+			}
+		}
+		
+		return yaExisteElCurso;
 	}
 
 }

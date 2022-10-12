@@ -17,6 +17,7 @@ public class Curso {
 	@Column(name="Nombre")
 	private String nombre;
 	
+	// Crear entidad "categoria"
 	@Column(name="Categoria")
 	private String categoria;
 	
@@ -26,6 +27,7 @@ public class Curso {
 	@Column(name="Precio")
 	private Double precio;
 	
+	// Crear entidad "estado"
 	@Column(name="Estado")
 	private Estado estado;
 	
