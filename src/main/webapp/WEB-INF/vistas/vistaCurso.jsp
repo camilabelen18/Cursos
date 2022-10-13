@@ -40,15 +40,15 @@
 			</div>
 			<div class="botones-vistaCurso">
 				<form action="misCursos">
-					<input type="submit" name="volver" value="Volver">
+					<input type="submit" name="volver" value="Volver" class=".btn-tipo-1">
 				</form>
 				<br>
 				<form action="finalizar?curso_id=${curso.id}" method="POST">
-					<input type="submit" name="finalizar" value="Finalizar">
+					<input type="submit" name="finalizar" value="Finalizar" class=".btn-tipo-2">
 				</form>
 				<br>
 				<form action="cancelarCompra?curso_id=${curso.id}" method="POST">
-					<input type="submit" name="cancelar" value="cancelar">
+					<input type="submit" name="cancelar" value="cancelar" class=".btn-tipo-1">
 				</form>
 
 			</div>

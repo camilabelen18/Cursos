@@ -57,7 +57,7 @@
 	flex-direction: column;
 }
 
-.botones-vistaCurso a {
+.botones-vistaCurso input {
 	padding: 10px;
     text-align: center;
     margin-bottom: 20px;
@@ -69,11 +69,11 @@
 }
 
 .btn-tipo-1 {
-	background: #429FF4;
+	background-color: #429FF4;
 }
 
 .btn-tipo-2 {
-	background: #737373;
+	background-color: #737373;
 }
 
 .btn-tipo-1:hover {
