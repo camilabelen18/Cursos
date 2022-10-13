@@ -3,6 +3,7 @@ package repositorios;
 import java.util.List;
 
 import modelo.Curso;
+import modelo.Estado;
 import modelo.Usuario;
 
 public interface RepositorioCurso {
@@ -16,5 +17,7 @@ public interface RepositorioCurso {
 	Curso obtenerCursoPorID(int id);
 
 	void agregarCurso(Curso curso);
+
+	List<Curso> obtenerListaCursosPorEstado(Estado estado);
 	
 }

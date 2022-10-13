@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import modelo.Curso;
+import modelo.Estado;
 import modelo.Usuario;
 import repositorios.RepositorioCurso;
 
@@ -49,6 +50,12 @@ public class ServicioCursoImpl implements ServicioCurso {
 	@Override
 	public void agregarCurso(Curso curso) {
 		repositorioCurso.agregarCurso(curso);
+	}
+
+	@Override
+	public List<Curso> getCursosPorEstado(Estado estado) {
+
+		return repositorioCurso.obtenerListaCursosPorEstado(estado);
 	}
 
 }
