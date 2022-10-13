@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import modelo.Curso;
+import modelo.Estado;
 import modelo.Usuario;
 import servicios.ServicioCurso;
 import servicios.ServicioUsuario;
@@ -48,7 +49,7 @@ public class ControladorCursos {
 	}
 	
 	@RequestMapping(path="/misCursos")
-	public ModelAndView misCursos(HttpSession session, Model modelo){
+	public ModelAndView misCursos(HttpSession session, Model modelo,@ModelAttribute("curso_cancelado")Curso curso_cancelado){
 		
 		int id = (int) session.getAttribute("idUsuario");
 		
@@ -58,6 +59,8 @@ public class ControladorCursos {
 		
 		modelo.addAttribute("lista_cursos", cursos);
 	
+		modelo.addAttribute("curso_cancelado",curso_cancelado);
+		
 		return new ModelAndView("miscursos");
 	}
 	
@@ -73,8 +76,19 @@ public class ControladorCursos {
 		
 		return new ModelAndView("seccionCursos");
 	}
-
 	
+	// Se obtiene una lista de cursos por estado
+	@RequestMapping(path= "/verCursosPorEstado", method= RequestMethod.GET)
+	public ModelAndView verCursosPorEstado(@RequestParam("estado") Estado estado, Model modelo) {
+
+		List<Curso> cursos = servicioCurso.getCursosPorEstado(estado);
+
+		modelo.addAttribute("lista_cursos", cursos);
+
+		return new ModelAndView("miscursos");
+	}
+
+
 	// Se obtiene una lista de cursos por categoria
 	@RequestMapping(path= "/verCursosPorCategoria", method= RequestMethod.GET)
 	public ModelAndView verCursosPorCategoria(@RequestParam("categoria") String categoria, Model modelo) {
@@ -133,5 +147,17 @@ public class ControladorCursos {
 		
 		return new ModelAndView(view);
 	}
+	
+	@RequestMapping (path= "/verCurso", method= RequestMethod.POST)
+	public ModelAndView verCurso(@RequestParam("curso_id") Integer curso_id) {
+		
+		ModelMap model = new ModelMap();
+		
+		Curso curso = servicioCurso.busquedaPorID(curso_id);
+		model.put("curso", curso);
+		
+		return new ModelAndView("vistaCurso", model);
+	}
+	
 
 }

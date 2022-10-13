@@ -47,27 +47,30 @@
 			<c:forEach var="curso" items="${lista_cursos}">
 
 				<div class="cuadro-seccion-cursos">
-					<div>
-						<a href="descripcionCurso?id_curso=${curso.id}">
-							<img src="imagenes/cursos/${curso.imagen}">
-						</a>
-					</div>
-
-					<div class="cotenido-1-curso">
-						<a href="descripcionCurso?id_curso=${curso.id}">
-							<p class="nombreCurso">${curso.nombre}</p>
-							<p>${curso.descripcion}</p>
-						</a>
-					</div>
-
-					<div class="cotenido-2-curso">
-						<p class="precioCurso">${curso.precio}$</p>
-						<form action="comprar" method="get">
-							<input type="hidden" name="id_curso" value="${curso.id}">
-							<input type="hidden" name="precio" value="${curso.precio}">
-							<input type="submit" name="comprarAhora" value="Comprar">
-						</form>
-					</div>
+				
+					<a href="descripcionCurso?id_curso=${curso.id}">
+					
+						<div class="cuadro-seccion-cursos-flex">
+							<div>
+								<img src="imagenes/cursos/${curso.imagen}">
+							</div>
+		
+							<div class="cotenido-1-curso">
+								<p class="nombreCurso">${curso.nombre}</p>
+								<p>${curso.descripcion}</p>
+							</div>
+		
+							<div class="cotenido-2-curso">
+								<p class="precioCurso">${curso.precio}$</p>
+								<form action="comprar" method="get">
+									<input type="hidden" name="id_curso" value="${curso.id}">
+									<input type="hidden" name="precio" value="${curso.precio}">
+									<input type="submit" name="comprarAhora" value="Comprar">
+								</form>
+							</div>
+						</div>
+						
+					</a>
 				</div>
 
 			</c:forEach>

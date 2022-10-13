@@ -9,6 +9,7 @@
 		<property name="url" value="jdbc:mysql://localhost:3306/proyecto_cursos?serverTimezone=UTC" />
 		<property name="username" value="root" />
 		<property name="password" value="Mysqlunlam" />
+
 	</bean>
 
 

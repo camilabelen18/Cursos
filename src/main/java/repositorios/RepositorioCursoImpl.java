@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import modelo.Curso;
+import modelo.Estado;
 import modelo.Usuario;
 
 @Repository("repositorioCurso")
@@ -77,6 +78,19 @@ public class RepositorioCursoImpl implements RepositorioCurso{
 	@Override
 	public void agregarCurso(Curso curso) {
 		sessionFactory.getCurrentSession().save(curso);
+	}
+
+	@Override
+	public List<Curso> obtenerListaCursosPorEstado(Estado estado) {
+		Session sesion = sessionFactory.getCurrentSession();
+
+		// Se obtiene una lista de cursos por estado
+		
+		List<Curso> lista_cursos = sesion.createCriteria(Curso.class)
+				                   .add(Restrictions.eq("estado", estado))
+				                   .list();
+
+		return lista_cursos;
 	}
 
 }
