@@ -42,9 +42,11 @@
 				<form action="misCursos">
 					<input type="submit" name="volver" value="Volver">
 				</form>
+				<br>
 				<form action="finalizar?curso_id=${curso.id}" method="POST">
 					<input type="submit" name="finalizar" value="Finalizar">
 				</form>
+				<br>
 				<form action="cancelarCompra?curso_id=${curso.id}" method="POST">
 					<input type="submit" name="cancelar" value="cancelar">
 				</form>
