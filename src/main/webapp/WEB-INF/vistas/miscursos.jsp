@@ -24,7 +24,7 @@
 			<div class="dropdown">
 				<button id="filtrarPor">Filtrar por</button>
 				<div class="dropdown-content">
-					<a href="#">Todos los cursos</a>
+					<a href="misCursos">Todos los cursos</a>
 					<a href="verCursosPorEstado?estado=EN_CURSO">En Curso</a>
 					<a href="verCursosPorEstado?estado=FINALIZADO">Finalizado</a>
 					<a href="verCursosPorEstado?estado=CANCELADO">Cancelado</a>
