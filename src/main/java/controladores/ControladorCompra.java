@@ -120,6 +120,7 @@ public class ControladorCompra {
 		if(servicioUsuario.existeCursoEnListaUsuario(idCurso, usuario)) {
 			servicioUsuario.eliminarCurso(curso_obtenido,usuario);
 			model.put("curso_cancelado",curso_obtenido);
+			viewName = "eliminado";
 		}
 		
 		return new ModelAndView(viewName, model);
