@@ -23,4 +23,6 @@ public interface ServicioUsuario {
 
 	void eliminarCurso(Curso curso_obtenido, Usuario usuario);
 
+	void finalizarCurso(Curso curso_obtenido, Usuario usuario);
+
 }

@@ -39,9 +39,16 @@
 				</div>
 			</div>
 			<div class="botones-vistaCurso">
-				<a href="misCursos" class="btn-tipo-1">Volver</a>
-				<a href="#" class="btn-tipo-2">Terminar curso</a>
-				<a href="#" class="btn-tipo-1">Cancelar</a>
+				<form action="misCursos">
+					<input type="submit" name="volver" value="Volver">
+				</form>
+				<form action="finalizar?curso_id=${curso.id}" method="POST">
+					<input type="submit" name="finalizar" value="Finalizar">
+				</form>
+				<form action="cancelarCompra?curso_id=${curso.id}" method="POST">
+					<input type="submit" name="cancelar" value="cancelar">
+				</form>
+
 			</div>
 		</div>
 		

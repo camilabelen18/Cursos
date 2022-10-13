@@ -86,4 +86,10 @@ public class ServicioUsuarioImpl implements ServicioUsuario{
 		repositorioUsuario.eliminarCurso(curso_obtenido, usuario);	
 	}
 
+	@Override
+	public void finalizarCurso(Curso curso_obtenido, Usuario usuario) {
+		repositorioUsuario.finalizarCurso(curso_obtenido, usuario);
+		
+	}
+
 }

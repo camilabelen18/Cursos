@@ -125,5 +125,24 @@ public class ControladorCompra {
 		
 		return new ModelAndView(viewName, model);
 	}
+	
+	
+	
+	@RequestMapping(path = "/finalizar", method = RequestMethod.POST)
+	public ModelAndView finalizar(@RequestParam("curso_id") int idCurso, HttpSession session) {
+		
+		ModelMap model = new ModelMap();
+		
+		//validar si el curso existe y cambiar el estado a cancelar
+		int id_user = Integer.parseInt(session.getAttribute("idUsuario").toString());
+		Usuario usuario = servicioUsuario.buscarUsuarioPorID(id_user);
+		Curso curso_obtenido = servicioCurso.busquedaPorID(idCurso);
 
+		
+		if(servicioUsuario.existeCursoEnListaUsuario(idCurso, usuario)) {
+			servicioUsuario.finalizarCurso(curso_obtenido,usuario);
+		}
+		
+		return new ModelAndView("finalizado");
+	}
 }

@@ -121,4 +121,17 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario{
 	
 	}
 
+	@Override
+	public void finalizarCurso(Curso curso_obtenido, Usuario usuario) {
+		
+		actualizarEstado(curso_obtenido,Estado.FINALIZADO);
+
+//		Session sesion = sessionFactory.getCurrentSession();
+//
+//		usuario.getMisCursos().add(curso_obtenido);
+//
+//		sesion.update(usuario);
+//		
+	}
+
 }
