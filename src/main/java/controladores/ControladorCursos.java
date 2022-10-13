@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import modelo.Curso;
+import modelo.Estado;
 import modelo.Usuario;
 import servicios.ServicioCurso;
 import servicios.ServicioUsuario;
@@ -75,8 +76,19 @@ public class ControladorCursos {
 		
 		return new ModelAndView("seccionCursos");
 	}
-
 	
+	// Se obtiene una lista de cursos por estado
+	@RequestMapping(path= "/verCursosPorEstado", method= RequestMethod.GET)
+	public ModelAndView verCursosPorEstado(@RequestParam("estado") Estado estado, Model modelo) {
+
+		List<Curso> cursos = servicioCurso.getCursosPorEstado(estado);
+
+		modelo.addAttribute("lista_cursos", cursos);
+
+		return new ModelAndView("miscursos");
+	}
+
+
 	// Se obtiene una lista de cursos por categoria
 	@RequestMapping(path= "/verCursosPorCategoria", method= RequestMethod.GET)
 	public ModelAndView verCursosPorCategoria(@RequestParam("categoria") String categoria, Model modelo) {
