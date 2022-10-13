@@ -76,4 +76,20 @@ public class ServicioUsuarioImpl implements ServicioUsuario{
 		return yaExisteElCurso;
 	}
 
+	@Override
+	public void cancelarCurso(Curso curso_obtenido, Usuario usuario) {
+		repositorioUsuario.cancelarCurso(curso_obtenido, usuario);	
+	}
+
+	@Override
+	public void eliminarCurso(Curso curso_obtenido, Usuario usuario) {
+		repositorioUsuario.eliminarCurso(curso_obtenido, usuario);	
+	}
+
+	@Override
+	public void finalizarCurso(Curso curso_obtenido, Usuario usuario) {
+		repositorioUsuario.finalizarCurso(curso_obtenido, usuario);
+		
+	}
+
 }

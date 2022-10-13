@@ -24,10 +24,10 @@
 			<div class="dropdown">
 				<button id="filtrarPor">Filtrar por</button>
 				<div class="dropdown-content">
-					<a href="#">Todos los cursos</a>
-					<a href="#">En Curso</a>
-					<a href="#">Finalizado</a>
-					<a href="#">Cancelado</a>
+					<a href="misCursos">Todos los cursos</a>
+					<a href="verCursosPorEstado?estado=EN_CURSO">En Curso</a>
+					<a href="verCursosPorEstado?estado=FINALIZADO">Finalizado</a>
+					<a href="verCursosPorEstado?estado=CANCELADO">Cancelado</a>
 				</div>
 			</div>
 		</div>
@@ -51,13 +51,34 @@
 
 					<div class="cotenido-2-curso">
 						<p class="estado">${curso.estado}</p>
-						<form action="#">
-							<input type="submit" name="detalles" value="detalles">
-						</form>
+
+						<c:if test="${curso.estado == 'CANCELADO'}">
+							<form action="eliminarCompra?curso_id=${curso.id}" method="POST">
+								<input type="submit" name="eliminar" value="Eliminar">
+							</form>
+							<form action="comprar" method="get">
+								<input type="hidden" name="id_curso" value="${curso.id}">
+								<input type="hidden" name="precio" value="${curso.precio}">
+								<input type="submit" name="comprarAhora" value="Comprar">
+							</form>
+						</c:if>
+
+						<c:if test="${curso.estado == 'EN_CURSO'}">
+							<form action="verCurso?curso_id=${curso.id}" method="POST">
+								<input type="submit" name="verCurso" value="Ver curso">
+							</form>
+							<form action="cancelarCompra?curso_id=${curso.id}" method="POST">
+								<input type="submit" name="cancelar" value="cancelar">
+							</form>
+						</c:if>
 					</div>
 				</div>
 
 			</c:forEach>
+
+			
+
+
 		</div>
 
 	</div>

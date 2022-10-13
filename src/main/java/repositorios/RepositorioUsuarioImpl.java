@@ -98,4 +98,40 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario{
 		return curso;
 	}
 
+	@Override
+	public void cancelarCurso(Curso curso_obtenido, Usuario usuario) {
+		
+		actualizarEstado(curso_obtenido,Estado.CANCELADO);
+		
+	}
+
+	@Override
+	public void eliminarCurso(Curso curso_obtenido, Usuario usuario) {
+		
+		Session sesion = sessionFactory.getCurrentSession();
+		
+		List<Curso> lista_cursos =usuario.getMisCursos();
+
+		for (int i = 0; i < lista_cursos.size(); i++) {
+			if(lista_cursos.get(i).getId()==curso_obtenido.getId()) {
+				usuario.getMisCursos().remove(i);
+				sesion.update(usuario);
+			}
+		}
+	
+	}
+
+	@Override
+	public void finalizarCurso(Curso curso_obtenido, Usuario usuario) {
+		
+		actualizarEstado(curso_obtenido,Estado.FINALIZADO);
+
+//		Session sesion = sessionFactory.getCurrentSession();
+//
+//		usuario.getMisCursos().add(curso_obtenido);
+//
+//		sesion.update(usuario);
+//		
+	}
+
 }

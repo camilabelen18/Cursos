@@ -1,0 +1,18 @@
+@charset "ISO-8859-1";
+
+#tituloCompra{
+	background-color:#ff1515;
+	padding: 30px;
+	margin-left:300px;
+	margin-right: 300px;
+	margin-top: 150px;
+	margin-bottom: 150px;
+}
+
+h2{
+	color: white;
+}
+
+h4{
+	color: white;
+}

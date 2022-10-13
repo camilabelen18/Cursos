@@ -3,6 +3,7 @@ package servicios;
 import java.util.List;
 
 import modelo.Curso;
+import modelo.Estado;
 import modelo.Usuario;
 
 public interface ServicioCurso {
@@ -16,5 +17,7 @@ public interface ServicioCurso {
 	Curso busquedaPorID(int id);
 
 	void agregarCurso(Curso curso);
+
+	List<Curso> getCursosPorEstado(Estado estado);
 
 }
