@@ -25,9 +25,9 @@
 				<button id="filtrarPor">Filtrar por</button>
 				<div class="dropdown-content">
 					<a href="#">Todos los cursos</a>
-					<a href="#">En Curso</a>
-					<a href="#">Finalizado</a>
-					<a href="#">Cancelado</a>
+					<a href="verCursosPorEstado?estado=EN_CURSO">En Curso</a>
+					<a href="verCursosPorEstado?estado=FINALIZADO">Finalizado</a>
+					<a href="verCursosPorEstado?estado=CANCELADO">Cancelado</a>
 				</div>
 			</div>
 		</div>
