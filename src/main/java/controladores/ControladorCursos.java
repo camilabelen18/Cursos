@@ -148,5 +148,16 @@ public class ControladorCursos {
 		return new ModelAndView(view);
 	}
 	
+	@RequestMapping (path= "/verCurso", method= RequestMethod.POST)
+	public ModelAndView verCurso(@RequestParam("curso_id") Integer curso_id) {
+		
+		ModelMap model = new ModelMap();
+		
+		Curso curso = servicioCurso.busquedaPorID(curso_id);
+		model.put("curso", curso);
+		
+		return new ModelAndView("vistaCurso", model);
+	}
+	
 
 }

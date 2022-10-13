@@ -24,7 +24,7 @@
 			<div class="dropdown">
 				<button id="filtrarPor">Filtrar por</button>
 				<div class="dropdown-content">
-					<a href="#">Todos los cursos</a>
+					<a href="misCursos">Todos los cursos</a>
 					<a href="verCursosPorEstado?estado=EN_CURSO">En Curso</a>
 					<a href="verCursosPorEstado?estado=FINALIZADO">Finalizado</a>
 					<a href="verCursosPorEstado?estado=CANCELADO">Cancelado</a>
@@ -64,8 +64,8 @@
 						</c:if>
 
 						<c:if test="${curso.estado == 'EN_CURSO'}">
-							<form action="#">
-								<input type="submit" name="detalles" value="detalles">
+							<form action="verCurso?curso_id=${curso.id}" method="POST">
+								<input type="submit" name="verCurso" value="Ver curso">
 							</form>
 							<form action="cancelarCompra?curso_id=${curso.id}" method="POST">
 								<input type="submit" name="cancelar" value="cancelar">
