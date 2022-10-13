@@ -1,0 +1,87 @@
+.contenedor-vistaCurso {
+	width: 70%;
+	margin: auto;
+	margin-top: 100px;
+	margin-bottom: 100px;
+	display: flex;
+	justify-content: space-between;
+}
+
+#contVistaCurso-1 {
+	width: 60%;
+}
+
+#contVistaCurso-1 h1 {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+#contVistaCurso-1 h2 {
+    margin-bottom: 10px;
+}
+
+#img-curso {
+	margin-top: 20px;
+	margin-bottom: 60px;
+}
+
+#img-curso img {
+	width: 100%;
+}
+
+#contVistaCurso-2 {
+	width: 30%;
+}
+
+.temario {
+	border: 2px solid #737373;
+}
+
+.temario h3 {
+	padding: 20px;
+	font-size: 20px;
+	border-bottom: 2px solid #737373;
+}
+
+#contenido-curso {
+	margin: 10px 0px;
+}
+
+#contenido-curso p {
+	padding: 10px 20px;
+}
+
+.botones-vistaCurso {
+	margin-top: 50px;
+	display: flex;
+	flex-direction: column;
+}
+
+.botones-vistaCurso a {
+	padding: 10px;
+    text-align: center;
+    margin-bottom: 20px;
+    width: 100%;
+    color: white;
+    border: 0;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.btn-tipo-1 {
+	background: #429FF4;
+}
+
+.btn-tipo-2 {
+	background: #737373;
+}
+
+.btn-tipo-1:hover {
+    background: #61aff5;
+    cursor: pointer;
+}
+
+.btn-tipo-2:hover {
+    background: #898989;
+    cursor: pointer;
+}
