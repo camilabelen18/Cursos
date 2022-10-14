@@ -134,10 +134,14 @@ public class ControladorCursos {
 	}
 	
 	@RequestMapping("/editarCurso")
-	public ModelAndView irAEditarCurso() {
+	public ModelAndView irAEditarCurso(@RequestParam("nombre") String nombreCurso, @RequestParam("categoria") String catCurso, @RequestParam("descripcion") String descCurso, @RequestParam("precio") String precioCurso) {
 		ModelMap modelo = new ModelMap();
 		DatosCreacionCurso datosCrearCurso = new DatosCreacionCurso();
 		modelo.put("datosCrearCurso", datosCrearCurso);
+		modelo.put("nombreCurso", nombreCurso);
+		modelo.put("catCurso", catCurso);
+		modelo.put("descCurso", descCurso);
+		modelo.put("precioCurso", precioCurso);
 		return new ModelAndView("editarCurso", modelo);
 		
 	}

@@ -68,6 +68,10 @@
 								<p class="precioCurso">${curso.precio}$</p>
 								<form action="editarCurso" method="get">
 									<input type="hidden" name="id_curso" value="${curso.id}">
+									<input type="hidden" name="nombre" value="${curso.nombre}">
+									<input type="hidden" name="categoria" value="${curso.categoria}">
+									<input type="hidden" name="descripcion" value="${curso.descripcion}">
+									<input type="hidden" name="precio" value="${curso.precio}">
 									<input type="submit" name="editarCurso" value="Editar Curso">
 								</form>
 							</div>

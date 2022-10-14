@@ -18,16 +18,16 @@
 <div id ="formularioCrearCurso">
 	<form:form action="cursoActualizado" method = "POST" modelAttribute="datosActualizarCurso">
 		<label for="nombre">Nombre del curso</label>
-		<input id="nombre" type="text" name="nombre">
+		<input id="nombre" type="text" name="nombre" value="${nombreCurso}">
 		
 		<label for="categoria">Categoria</label>
-		<input id="categoria" type="text" name="categoria">
+		<input id="categoria" type="text" name="categoria" value="${catCurso}">
 		
 		<label for="descripcion">Descripción</label>
-		<input id="descripcion" type="text" name="descripcion">
+		<input id="descripcion" type="text" name="descripcion" value="${descCurso}">
 		
 		<label for="precio">Precio</label>
-		<input id="precio" type="number" name="precio">
+		<input id="precio" type="number" name="precio" value="${precioCurso}">
 		<input type="hidden" name="id_curso" value="${idCurso}">
 				
 		<input id="añadir"type="submit" value="Actualizar">	
