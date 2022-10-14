@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import modelo.Curso;
+import modelo.DatosActualizarCurso;
+import modelo.DatosRegistro;
+import modelo.DatosCreacionCurso;
 import modelo.Estado;
 import modelo.Usuario;
 import servicios.ServicioCurso;
@@ -66,15 +69,23 @@ public class ControladorCursos {
 	
 	// Se obtienen todos los registros de la tabla 'curso' de la bd
 	@RequestMapping(path= "/verListaCursos", method= RequestMethod.GET)
-	public ModelAndView verListaCursos(Model modelo, @ModelAttribute("error_sesion") String msj_sesion, @ModelAttribute("cursoYaComprado") String msj_curso) {
+	public ModelAndView verListaCursos(Model modelo, @ModelAttribute("error_sesion") String msj_sesion, @ModelAttribute("cursoYaComprado") String msj_curso, HttpSession session) {
 		
+		
+		String view= "seccionCursos";
 		List<Curso> cursos = servicioCurso.getCursos();
 		
 		modelo.addAttribute("lista_cursos", cursos);
 		modelo.addAttribute("msj_error_sesion", msj_sesion);
 		modelo.addAttribute("msj_error_curso", msj_curso);
 		
-		return new ModelAndView("seccionCursos");
+		//Si el usuario no es nulo, y su rol es "admin", entonces se mostrara la seccion de cursos de administrador
+		if(session.getAttribute("idUsuario") != null){
+			if(session.getAttribute("ROL").equals("admin"))
+			view = "seccionCursosAdmin";
+		}
+		
+		return new ModelAndView(view);
 	}
 	
 	// Se obtiene una lista de cursos por estado
@@ -115,21 +126,41 @@ public class ControladorCursos {
 	
 	@RequestMapping("/agregarCurso")
 	public ModelAndView irAAgregarCurso() {
-		return new ModelAndView("crearCurso");
+		ModelMap modelo = new ModelMap();
+		DatosCreacionCurso datosCrearCurso = new DatosCreacionCurso();
+		modelo.put("datosCrearCurso", datosCrearCurso);
+		return new ModelAndView("crearCurso", modelo);
+		
+	}
+	
+	@RequestMapping("/editarCurso")
+	public ModelAndView irAEditarCurso() {
+		ModelMap modelo = new ModelMap();
+		DatosCreacionCurso datosCrearCurso = new DatosCreacionCurso();
+		modelo.put("datosCrearCurso", datosCrearCurso);
+		return new ModelAndView("editarCurso", modelo);
 		
 	}
 
 	@RequestMapping(path="/cursoAgregado", method = RequestMethod.POST)
-	public ModelAndView agregarCurso(@RequestParam("nombreCurso") String nombreCurso, @RequestParam("descCurso") String descCurso, @RequestParam("precioCurso") Double precioCurso) {
+	public ModelAndView agregarCurso(@ModelAttribute ("datosCrearCurso") DatosCreacionCurso datosCrearCurso) {
 		ModelMap modelo=new ModelMap();
-		Curso curso = new Curso();
-		curso.setNombre(nombreCurso);
-		curso.setDescripcion(descCurso);
-		curso.setPrecio(precioCurso);
-		servicioCurso.agregarCurso(curso);
+		
+		servicioCurso.agregarCurso(datosCrearCurso.getNombre(), datosCrearCurso.getCategoria(), datosCrearCurso.getDescripcion(), datosCrearCurso.getPrecio(), datosCrearCurso.getImagen());
+		modelo.put("datosCrearCurso", new DatosCreacionCurso());
 		
 		return new ModelAndView("cursoAgregado", modelo);
 	}
+	
+//	@RequestMapping(path="/cursoActualizado", method = RequestMethod.POST)
+//	public ModelAndView actualizarCurso(@RequestParam("id_curso") int idCurso, @ModelAttribute ("datosActualizarCurso") DatosActualizarCurso datosActualizarCurso) {
+//		ModelMap modelo=new ModelMap();
+//		
+//		servicioCurso.actualizarCurso(idCurso, datosActualizarCurso.getNombre(), datosActualizarCurso.getCategoria(), datosActualizarCurso.getDescripcion(), datosActualizarCurso.getPrecio());
+//		modelo.put("datosActualizarCurso", new DatosActualizarCurso());
+//		
+//		return new ModelAndView("cursoActualizado", modelo);
+//	}
 	
 	@RequestMapping (path= "/descripcionCurso", method= RequestMethod.GET)
 	public ModelAndView irADescCurso(@RequestParam("id_curso") Integer id_curso, Model modelo) {

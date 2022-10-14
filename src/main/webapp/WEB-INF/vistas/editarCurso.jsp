@@ -7,7 +7,7 @@
 <html lang="es">
 <head>
 	<meta charset="UTF-8">
-	<title>Añadir Curso</title>
+	<title>Editar Curso</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="css/styles.css">
 	<link rel="stylesheet" href="css/crearCurso.css">
@@ -16,7 +16,7 @@
 
 	<%@ include file="header.jsp" %>
 <div id ="formularioCrearCurso">
-	<form:form action="cursoAgregado" method = "POST" modelAttribute="datosCrearCurso" enctype="multipart/formdata" onsubmit = "return validar()">
+	<form:form action="cursoActualizado" method = "POST" modelAttribute="datosActualizarCurso">
 		<label for="nombre">Nombre del curso</label>
 		<input id="nombre" type="text" name="nombre">
 		
@@ -28,20 +28,13 @@
 		
 		<label for="precio">Precio</label>
 		<input id="precio" type="number" name="precio">
-		
-		<label for="imgCurso">Imagen del Curso</label>
-		<input id="imgCurso" type="file" name="imagen" />
-		
-		<div id="mensaje" class="error"></div>
-		<c:if test="${not empty error}">
-				<div class="error">${error}</div>
-			</c:if>
-		
-		<input id="añadir"type="submit" value="Añadir">	
+		<input type="hidden" name="id_curso" value="${idCurso}">
+				
+		<input id="añadir"type="submit" value="Actualizar">	
 	</form:form>
 </div>
 
-<script src="js/crearCurso.js"></script>
+
 
 </body>
 </html>

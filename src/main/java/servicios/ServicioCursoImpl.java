@@ -58,4 +58,17 @@ public class ServicioCursoImpl implements ServicioCurso {
 		return repositorioCurso.obtenerListaCursosPorEstado(estado);
 	}
 
+	@Override
+	public void agregarCurso(String nombre, String categoria, String descripcion, Double precio, String imagen) {
+		Curso curso = new Curso();
+		curso.setNombre(nombre);
+		curso.setCategoria(categoria);
+		curso.setDescripcion(descripcion);
+		curso.setPrecio(precio);
+		curso.setImagen(imagen);
+		
+		repositorioCurso.agregarCurso(curso);
+	}
+
+
 }
