@@ -68,20 +68,20 @@
     font-weight: 600;
 }
 
-.btn-tipo-1 {
+input[type="submit"].btn-tipo-1 {
 	background-color: #429FF4;
 }
 
-.btn-tipo-2 {
+input[type="submit"].btn-tipo-2 {
 	background-color: #737373;
 }
 
-.btn-tipo-1:hover {
+input[type="submit"].btn-tipo-1:hover {
     background: #61aff5;
     cursor: pointer;
 }
 
-.btn-tipo-2:hover {
+input[type="submit"].btn-tipo-2:hover {
     background: #898989;
     cursor: pointer;
 }

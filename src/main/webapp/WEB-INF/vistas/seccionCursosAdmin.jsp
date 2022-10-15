@@ -15,9 +15,13 @@
 <body>
 
 	<%@ include file="header.jsp"%>
-
+	
 	<div class="cont-seccion-cursos">
 
+		<div id ="contAgregarCurso">
+			<a href ="agregarCurso" id="agregarCurso">Agregar Curso</a>
+		</div>
+		
 		<div id="contenedorFiltros">
 
 			<div class="dropdown">
@@ -61,11 +65,14 @@
 							</div>
 		
 							<div class="cotenido-2-curso">
-								<p class="precioCurso">$ ${curso.precio}</p>
-								<form action="comprar" method="get">
+								<p class="precioCurso">${curso.precio}$</p>
+								<form action="editarCurso" method="get">
 									<input type="hidden" name="id_curso" value="${curso.id}">
+									<input type="hidden" name="nombre" value="${curso.nombre}">
+									<input type="hidden" name="categoria" value="${curso.categoria}">
+									<input type="hidden" name="descripcion" value="${curso.descripcion}">
 									<input type="hidden" name="precio" value="${curso.precio}">
-									<input type="submit" name="comprarAhora" value="Comprar">
+									<input type="submit" name="editarCurso" value="Editar Curso">
 								</form>
 							</div>
 						</div>

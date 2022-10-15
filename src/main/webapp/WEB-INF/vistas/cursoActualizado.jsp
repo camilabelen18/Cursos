@@ -7,7 +7,7 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Curso añadido</title>
+<title>Curso actualizado</title>
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, maximum-scale=1">
 <link rel="stylesheet" href="css/styles.css">
@@ -21,7 +21,7 @@
 	<main>
 
 	<div id="tituloCompra">
-		<h2>El curso fue añadido correctamente</h2>
+		<h2>El curso se actualizo</h2>
 	
 	</div>
 	</main>
