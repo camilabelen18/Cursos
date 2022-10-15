@@ -1,0 +1,68 @@
+
+/* SECCION CARRITO */
+.cont-seccion-carrito {
+	width: 60%;
+	margin: auto;
+	margin-bottom: 100px;
+}
+
+
+
+/* LISTA DE CURSOS */
+.listaSeccionCarrito{
+	display: flex;
+	flex-direction: column;
+}
+
+.cuadro-seccion-carrito {
+	display: flex;
+	border: 1px solid #c7c7c7;
+	margin: 20px;
+	padding: 20px;
+}
+
+.cotenido-1-curso {
+	padding: 0px 20px;
+}
+
+.cotenido-1-curso p {
+	color: #3c3b37;
+}
+
+.total {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	text-align: right; 
+}
+
+.nombreCurso {
+	font-size: 20px;
+	font-weight: bold;
+	padding-bottom: 10px;
+}
+
+/* Titulo */
+#titulo {
+	height: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin: 80px 0px 100px 0px;
+}
+
+#titulo a {
+	color: #3c3b37;
+	font-size: 14px;
+}
+
+/*------------------------------------------RESPONSIVE----------------------------------*/
+
+@media (max-width: 1250px) {
+	
+	.cont-seccion-miscursos {
+		width: 80%;
+	}
+    
+}
