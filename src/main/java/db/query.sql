@@ -15,4 +15,6 @@ VALUES
 ('Curso de canto para principiantes', 'musica', '¡Encuentra tu voz de canto de forma natural y diviértete haciéndolo! Un enfoque moderno para las clases de canto.', 2000.0, 3, 'curso-canto.jpg');
 
 INSERT INTO usuario(Nombre, Email, Password, NumeroTarjeta, Rol)
-VALUES ('Juan','hola@hola.com','1234', 555, 'admin');
+VALUES ('Juan','hola@hola.com','1234', 555, 'admin'),
+       ('Ana','ana@gmail.com','111', 4407, 'cliente')
+       ('Ale','ale@gmail.com','123', 5809, 'cliente');
