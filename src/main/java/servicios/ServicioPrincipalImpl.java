@@ -40,11 +40,18 @@ public class ServicioPrincipalImpl implements ServicioPrincipal {
 		
 		/* SE INSERTAN LOS REGISTROS DE TODOS LOS USUARIOS DEL SISTEMA */
 		
-		Usuario user = new Usuario("Juan", "hola@hola.com","1234", "admin");
-		user.setNroTarjeta(555);
+		Usuario admin = new Usuario("Juan", "hola@hola.com","1234", "admin");
+		admin.setNroTarjeta(555);
 		
-		sesion.save(user);
+		Usuario cliente1 = new Usuario("Ana", "ana@gmail.com","111", "cliente");
+		cliente1.setNroTarjeta(4407);
 		
+		Usuario cliente2 = new Usuario("Ale", "ale@gmail.com","123", "cliente");
+		cliente2.setNroTarjeta(5809);
+		
+		sesion.save(admin);
+		sesion.save(cliente1);
+		sesion.save(cliente2);
 	}
 
 }

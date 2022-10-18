@@ -99,8 +99,9 @@ public class ControladorCompra {
 		String viewName = "redirect:/misCursos";
 		
 		if(servicioUsuario.existeCursoEnListaUsuario(idCurso, usuario)) {
+			
 			servicioUsuario.cancelarCurso(curso_obtenido,usuario);
-			model.put("curso_cancelado",curso_obtenido);
+			model.put("curso_cancelado", "La compra fue cancelada con exito!");
 		}
 		
 		return new ModelAndView(viewName, model);
