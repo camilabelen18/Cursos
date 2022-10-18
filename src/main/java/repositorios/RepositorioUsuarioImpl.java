@@ -11,6 +11,7 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import modelo.Carrito;
 import modelo.Curso;
 import modelo.Estado;
 import modelo.Usuario;
@@ -132,6 +133,27 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario{
 //
 //		sesion.update(usuario);
 //		
+	}
+
+	@Override
+	public void agregarCursoAlCarrito(Curso curso_obtenido, Carrito carrito ) {
+		
+        Session sesion = sessionFactory.getCurrentSession();
+		
+		//usuario.getCursosCarrito().add(curso_obtenido);
+        
+        carrito.getCursosDelCarrito().add(curso_obtenido);
+        
+		
+		sesion.update(carrito);
+	}
+	
+
+	@Override
+	public void guardarCarritoEnUsuario(Carrito nuevoCarrito) {
+		Session sesion = sessionFactory.getCurrentSession();
+		
+		sesion.update(nuevoCarrito);
 	}
 
 }

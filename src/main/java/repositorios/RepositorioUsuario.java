@@ -1,5 +1,8 @@
 package repositorios;
 
+import java.util.List;
+
+import modelo.Carrito;
 import modelo.Curso;
 import modelo.Usuario;
 
@@ -22,6 +25,10 @@ public interface RepositorioUsuario {
 	void eliminarCurso(Curso curso_obtenido, Usuario usuario);
 
 	void finalizarCurso(Curso curso_obtenido, Usuario usuario);
+
+	void agregarCursoAlCarrito(Curso curso_obtenido, Carrito carrito);
+
+	void guardarCarritoEnUsuario(Carrito nuevoCarrito);
 
 	
 }

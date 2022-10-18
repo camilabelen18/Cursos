@@ -1,5 +1,9 @@
 package servicios;
 
+import java.util.List;
+import java.util.Set;
+
+import modelo.Carrito;
 import modelo.Curso;
 import modelo.Usuario;
 
@@ -24,5 +28,9 @@ public interface ServicioUsuario {
 	void eliminarCurso(Curso curso_obtenido, Usuario usuario);
 
 	void finalizarCurso(Curso curso_obtenido, Usuario usuario);
+
+	void agregarCursoAlCarrito(Curso curso_obtenido, Carrito carrito);
+
+	double getTotalDePrecios(Set<Curso> cursos);
 
 }

@@ -1,11 +1,13 @@
 package servicios;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import modelo.Carrito;
 import modelo.Curso;
 import modelo.Usuario;
 import repositorios.RepositorioUsuario;
@@ -41,12 +43,16 @@ public class ServicioUsuarioImpl implements ServicioUsuario{
 	public void registrar(String nombre, String email, String contrasenia) {
 		
 		Usuario nuevoUsuario = new Usuario();
+		Carrito nuevoCarrito = new Carrito();
 		
 		nuevoUsuario.setNombre(nombre);
         nuevoUsuario.setEmail(email);
         nuevoUsuario.setPassword(contrasenia);
         nuevoUsuario.setRol("cliente");
         nuevoUsuario.setNroTarjeta(999);
+        nuevoUsuario.setCarrito(nuevoCarrito);
+        
+        //repositorioUsuario.guardarCarritoEnUsuario(nuevoCarrito);
 
         repositorioUsuario.guardarUsuario(nuevoUsuario);
 	}
@@ -89,6 +95,23 @@ public class ServicioUsuarioImpl implements ServicioUsuario{
 	@Override
 	public void finalizarCurso(Curso curso_obtenido, Usuario usuario) {
 		repositorioUsuario.finalizarCurso(curso_obtenido, usuario);
+	}
+
+	@Override
+	public void agregarCursoAlCarrito(Curso curso_obtenido,Carrito carrito) {
+		
+		repositorioUsuario.agregarCursoAlCarrito(curso_obtenido, carrito);
+	}
+
+	@Override
+	public double getTotalDePrecios(Set<Curso> cursos) {
+		double resultadoTotal=0;
+		
+		for (Curso curso : cursos) {
+			resultadoTotal +=curso.getPrecio();
+		}
+		
+		return resultadoTotal;
 	}
 
 }

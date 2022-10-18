@@ -147,19 +147,7 @@ public class ControladorCompra {
 		return new ModelAndView("finalizado");
 	}
 	
-	@RequestMapping(path ="/carrito", method = RequestMethod.GET)
-      public ModelAndView carrito() {
-		ModelMap model = new ModelMap();
-		String viewName="";
-		
-		viewName="carrito";
-		
-		
-		return new ModelAndView(viewName, model);
-		
-      }
-	
-	
+
 	
 	
 	

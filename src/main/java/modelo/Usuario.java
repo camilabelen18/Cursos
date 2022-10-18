@@ -29,11 +29,21 @@ public class Usuario {
 	@Column(name="Rol")
 	private String rol;
 	
+	
+	
+	 // (cascade = CascadeType.ALL)
+	//@JoinColumn(name="id")
+	@OneToOne (cascade = CascadeType.ALL)
+	@JoinColumn(name="id")
+	private Carrito carrito;
+	
+	
 	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
 	@JoinTable(name = "usuario_curso",
 			   joinColumns = @JoinColumn(name = "usuario_id"),
 			   inverseJoinColumns = @JoinColumn(name = "curso_id"))
 	private List<Curso> misCursos = new ArrayList<Curso>();
+	
 	
 	public Usuario() { }
 
@@ -92,9 +102,20 @@ public class Usuario {
 		return misCursos;
 	}
 
+	
 	public void setMisCursos(List<Curso> misCursos) {
 		this.misCursos = misCursos;
 	}
+	
+	
+	public Carrito getCarrito() {
+		return carrito;
+	}
+
+	public void setCarrito(Carrito carrito) {
+		this.carrito = carrito;
+	}
+	
 
 	@Override
 	public String toString() {
