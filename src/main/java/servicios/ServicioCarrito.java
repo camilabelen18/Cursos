@@ -1,12 +1,18 @@
 package servicios;
 
+import java.util.Set;
+
 import modelo.Carrito;
 import modelo.Curso;
 
 public interface ServicioCarrito {
 
-  void guardarCursoEnListaDeCarrito(Curso curso_obtenido);
+    Carrito buscarCarritoPorId(int id_carrito);
 
-  Carrito buscarCarritoPorId(int id_carrito);
-  
+    double getTotalDePrecios(Set<Curso> cursos);
+
+	void calcularTotal(Carrito carrito);
+
+	void agregarCursoAlCarrito(Curso curso_obtenido, Carrito carrito);
+    
 }

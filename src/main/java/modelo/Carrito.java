@@ -1,55 +1,60 @@
 package modelo;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import javax.persistence.*;
 
-import org.hibernate.annotations.Cascade;
-
 @Entity
 @Table(name="Carrito")
 public class Carrito {
+
 	
-	//Atributos
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id")
 	private int id;
 	
-	@Column(name="nombre")
-	private String nombre;
+	@Column(name="cantidad")
+	private Integer cantidad;
 	
+	@Column(name="total")
+	private Double total;
 
 	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
 	@JoinTable(name = "carrito_curso",
 			   joinColumns = @JoinColumn(name = "carrito_id"),
-			   inverseJoinColumns = @JoinColumn(name = "curso_id"))
+			   inverseJoinColumns = @JoinColumn(name = "curso_ident"))
 	private Set<Curso> cursosDelCarrito = new HashSet<Curso>(); 
 	
-	//Constructor
-	public Carrito() { }
-	
-	public Carrito(String nombre) {
-		this.nombre=nombre;
+
+	public Carrito() { 
+		this.cantidad = 0;
+		this.total = 0.0;
 	}
 	
-   //Metodos
 	public int getId() {
 		return id;
 	}
+	
 	public void setId(int id) {
 		this.id = id;
 	}
-	
-	public String getNombre() {
-		return nombre;
+
+	public Integer getCantidad() {
+		return cantidad;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setCantidad(Integer cantidad) {
+		this.cantidad = cantidad;
+	}
+
+	public Double getTotal() {
+		return total;
+	}
+
+	public void setTotal(Double total) {
+		this.total = total;
 	}
 
 	public Set<Curso> getCursosDelCarrito() {
@@ -59,12 +64,10 @@ public class Carrito {
 	public void setCursosDelCarrito(Set<Curso> cursosCarrito) {
 		this.cursosDelCarrito = cursosCarrito;
 	}
-	
 
 	@Override
 	public String toString() {
-		return "Carrito [id=" + id + ", nombre=" + nombre + "]";
+		return "Carrito [id=" + id + ", cantidad=" + cantidad + ", total=" + total + "]";
 	}
-	
 
 }

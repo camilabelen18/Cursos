@@ -2,9 +2,7 @@ package servicios;
 
 import org.springframework.transaction.annotation.Transactional;
 
-import modelo.Curso;
-import modelo.Estado;
-import modelo.Usuario;
+import modelo.*;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -45,9 +43,11 @@ public class ServicioPrincipalImpl implements ServicioPrincipal {
 		
 		Usuario cliente1 = new Usuario("Ana", "ana@gmail.com","111", "cliente");
 		cliente1.setNroTarjeta(4407);
+		cliente1.setCarrito(new Carrito());
 		
 		Usuario cliente2 = new Usuario("Ale", "ale@gmail.com","123", "cliente");
 		cliente2.setNroTarjeta(5809);
+		cliente2.setCarrito(new Carrito());
 		
 		sesion.save(admin);
 		sesion.save(cliente1);

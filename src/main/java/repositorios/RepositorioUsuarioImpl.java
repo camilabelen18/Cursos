@@ -135,25 +135,4 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario{
 //		
 	}
 
-	@Override
-	public void agregarCursoAlCarrito(Curso curso_obtenido, Carrito carrito ) {
-		
-        Session sesion = sessionFactory.getCurrentSession();
-		
-		//usuario.getCursosCarrito().add(curso_obtenido);
-        
-        carrito.getCursosDelCarrito().add(curso_obtenido);
-        
-		
-		sesion.update(carrito);
-	}
-	
-
-	@Override
-	public void guardarCarritoEnUsuario(Carrito nuevoCarrito) {
-		Session sesion = sessionFactory.getCurrentSession();
-		
-		sesion.update(nuevoCarrito);
-	}
-
 }

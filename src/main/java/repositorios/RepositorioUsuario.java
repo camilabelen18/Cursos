@@ -26,9 +26,4 @@ public interface RepositorioUsuario {
 
 	void finalizarCurso(Curso curso_obtenido, Usuario usuario);
 
-	void agregarCursoAlCarrito(Curso curso_obtenido, Carrito carrito);
-
-	void guardarCarritoEnUsuario(Carrito nuevoCarrito);
-
-	
 }

@@ -29,8 +29,4 @@ public interface ServicioUsuario {
 
 	void finalizarCurso(Curso curso_obtenido, Usuario usuario);
 
-	void agregarCursoAlCarrito(Curso curso_obtenido, Carrito carrito);
-
-	double getTotalDePrecios(Set<Curso> cursos);
-
 }

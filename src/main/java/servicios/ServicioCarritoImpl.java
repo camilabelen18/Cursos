@@ -1,5 +1,7 @@
 package servicios;
 
+import java.util.Set;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,15 +20,43 @@ public class ServicioCarritoImpl implements ServicioCarrito {
 	
 
 	@Override
-	public void guardarCursoEnListaDeCarrito(Curso curso_obtenido) {
-		repositorioCarrito.guardarCursoDelCarrito(curso_obtenido);
-		
+	public Carrito buscarCarritoPorId(int id_carrito) {
+		return repositorioCarrito.buscarCarritoPorID(id_carrito);
 	}
 
 
 	@Override
-	public Carrito buscarCarritoPorId(int id_carrito) {
-		return repositorioCarrito.buscarCarritoPorID(id_carrito);
+	public double getTotalDePrecios(Set<Curso> cursos) {
+		
+		double resultadoTotal=0;
+		
+		for (Curso curso : cursos) {
+			resultadoTotal +=curso.getPrecio();
+		}
+		
+		return resultadoTotal;
+	}
+
+
+	@Override
+	public void calcularTotal(Carrito carrito) {
+		
+		Double resultadoTotal = 0.0;
+		Set<Curso> cursos = carrito.getCursosDelCarrito();
+		
+		for (Curso curso : cursos) {
+			
+			resultadoTotal += curso.getPrecio();
+		}
+		
+		carrito.setTotal(resultadoTotal);
+		repositorioCarrito.actualizarCarrito(carrito);
+	}
+
+
+	@Override
+	public void agregarCursoAlCarrito(Curso curso_obtenido, Carrito carrito) {
+		repositorioCarrito.agregarCursoALista(curso_obtenido, carrito);
 	}
 
 }

@@ -15,21 +15,7 @@ public class RepositorioCarritoImpl implements RepositorioCarrito {
 	
 	@Autowired
 	private SessionFactory sessionFactory;
-
-	@Override
-	public void guardarCursoDelCarrito(Curso curso_obtenido) {
-		
-
-		Session sesion = sessionFactory.getCurrentSession();
-		Carrito carrito = null;
-		
-		//carrito.getCursosDelCarrito().add(curso_obtenido);
-		
-		sesion.update(carrito);
-		
-	}
-
-
+	
 
 	@Override
 	public Carrito buscarCarritoPorID(int id_carrito) {
@@ -41,6 +27,23 @@ public class RepositorioCarritoImpl implements RepositorioCarrito {
 		Carrito carrito = sesion.get(Carrito.class, id_carrito);
 		
 		return carrito;
+	}
+
+	
+	@Override
+	public void actualizarCarrito(Carrito carrito) {
+		sessionFactory.getCurrentSession().update(carrito);
+	}
+
+	
+	@Override
+	public void agregarCursoALista(Curso curso_obtenido, Carrito carrito ) {
+		
+        Session sesion = sessionFactory.getCurrentSession();
+		
+        carrito.getCursosDelCarrito().add(curso_obtenido);
+        
+		sesion.update(carrito);
 	}
 
 }

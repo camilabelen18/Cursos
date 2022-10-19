@@ -200,6 +200,5 @@ public class ControladorCursos {
 		
 		return new ModelAndView("vistaCurso", model);
 	}
-	
 
 }

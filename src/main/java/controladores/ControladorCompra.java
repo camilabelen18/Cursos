@@ -128,7 +128,6 @@ public class ControladorCompra {
 	}
 	
 	
-	
 	@RequestMapping(path = "/finalizar", method = RequestMethod.POST)
 	public ModelAndView finalizar(@RequestParam("curso_id") int idCurso, HttpSession session) {
 		
@@ -146,22 +145,5 @@ public class ControladorCompra {
 		
 		return new ModelAndView("finalizado");
 	}
-	
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 }

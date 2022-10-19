@@ -17,13 +17,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 
-import modelo.Carrito;
-import modelo.Curso;
-import modelo.Usuario;
+import modelo.*;
 import servicios.ServicioCarrito;
 import servicios.ServicioCurso;
 import servicios.ServicioUsuario;
-
 
 
 @Controller
@@ -39,110 +36,40 @@ public class ControladorCarrito {
 	private ServicioCarrito servicioCarrito;
 
 	
-	//Cambiar a post si es necesario 
-	
-	@RequestMapping(path ="/carrito", method = RequestMethod.GET)
-    public ModelAndView carrito(@RequestParam("id_curso") int id,HttpSession sesion) {
-	
-	    ModelMap model = new ModelMap();
-		
-		int id_user = (int) sesion.getAttribute("idUsuario");
-		
-		Curso curso_obtenido = servicioCurso.busquedaPorID(id);
-		
-		Usuario usuario = servicioUsuario.buscarUsuarioPorID(id_user);
-		
-		
-	    servicioUsuario.agregarCursoAlCarrito(curso_obtenido,usuario.getCarrito());
-	    
-	    
-	    Set<Curso> cursos = usuario.getCarrito().getCursosDelCarrito();
-	    
-	    
-	    double preciosTotal= servicioUsuario.getTotalDePrecios(cursos);
-		
-		model.put("lista_cursos_carrito",cursos );
-		model.put("precio_total", preciosTotal);
-	
-	   //Mostrar un cartel que diga agregaste al carrito con exito 	
-		return new ModelAndView("carrito", model);
-		
-	
-		
-    }
-	
-	
 	@RequestMapping(path ="/vistaCarrito", method = RequestMethod.GET)
 	public ModelAndView vistaCarrito(HttpSession sesion) {
 		
-	    ModelMap model = new ModelMap();
-		
+	    ModelMap model = new ModelMap();	    
 		int id_user = (int) sesion.getAttribute("idUsuario");
-		
 		Usuario usuario = servicioUsuario.buscarUsuarioPorID(id_user);
+		Carrito carrito = usuario.getCarrito();
 		
-		Set<Curso> cursos = usuario.getCarrito().getCursosDelCarrito();
+		Set<Curso> cursos = carrito.getCursosDelCarrito();
 	    
-	    double preciosTotal= servicioUsuario.getTotalDePrecios(cursos);
+		servicioCarrito.calcularTotal(carrito);
 		
-		model.put("lista_cursos_carrito",cursos );
+	    double preciosTotal = carrito.getTotal();
+		
+		model.put("lista_cursos_carrito", cursos);
 		model.put("precio_total", preciosTotal);
-	
 		
 		return new ModelAndView("carrito", model);
-		
 	}
 	
 	
+	//Cambiar a post si es necesario 
+	@RequestMapping(path ="/agregarCursoAlCarrito", method = RequestMethod.GET)
+    public ModelAndView agregarCursoAlCarrito(@RequestParam("id_curso") int id, HttpSession sesion) {
 	
-	
-	
-	
-	
-	
-	
-	
-/*	
-	@RequestMapping(path ="/carrito", method = RequestMethod.GET)
-    public ModelAndView carrito(@RequestParam("id_curso") int id) {
-		//boton en descripcion de agregar carrito, ese boton tiene un id que me identifica el carrito
-		//idcurso y algo de carrito para guardar el curso en el carrito
-		//pasar el idcurso y obtener el curso
-	 	//servicio.guardarCursoEnElCarrito(carrito,cursoobtenido)
-		
-		
-		ModelMap model = new ModelMap();
-	//	String viewName="";
-		
+		int id_user = (int) sesion.getAttribute("idUsuario");
 		Curso curso_obtenido = servicioCurso.busquedaPorID(id);
+		Usuario usuario = servicioUsuario.buscarUsuarioPorID(id_user);
+		Carrito carrito = usuario.getCarrito();
 		
-	//	int id_carrito = (int) session.getAttribute("idCarrito");
+		servicioCarrito.agregarCursoAlCarrito(curso_obtenido, carrito);
 		
-
-	    Carrito carrito = servicioCarrito.buscarCarritoPorId(id);
-		
-		servicioCarrito.guardarCursoEnListaDeCarrito(curso_obtenido,carrito);
-		
-		List<Curso> cursos_carrito = carrito.getCursosDelCarrito();
-		
-		
-        model.put("listaCarrito", cursos_carrito);
-		
-		
-		
-		
- //		viewName="carrito";
-		
-		return new ModelAndView("carrito", model);
-		
+	    //Mostrar un cartel que diga agregaste al carrito con exito 	
+		return new ModelAndView("index");
     }
-	
-	*/
-	
-	
-	
-	
-	
-	
 
 }

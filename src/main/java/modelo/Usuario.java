@@ -6,37 +6,33 @@ import java.util.List;
 import javax.persistence.*;
 
 @Entity
-@Table(name="Usuario")
+@Table(name = "Usuario")
 public class Usuario {
 
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="Identificador")
+	@Column(name = "Identificador")
 	private int id;
 	
-	@Column(name="Nombre")
+	@Column(name = "Nombre")
 	private String nombre;
 	
-	@Column(name="Email")
+	@Column(name = "Email")
 	private String email;
 	
-	@Column(name="Password")
+	@Column(name = "Password")
 	private String password;
 	
-	@Column(name="NumeroTarjeta")
+	@Column(name = "NumeroTarjeta")
 	private Integer nroTarjeta;
 	
-	@Column(name="Rol")
+	@Column(name = "Rol")
 	private String rol;
 	
-	
-	
-	 // (cascade = CascadeType.ALL)
-	//@JoinColumn(name="id")
 	@OneToOne (cascade = CascadeType.ALL)
-	@JoinColumn(name="id")
+	@JoinColumn(name = "carrito_id")
 	private Carrito carrito;
-	
 	
 	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
 	@JoinTable(name = "usuario_curso",
@@ -51,25 +47,29 @@ public class Usuario {
 		this.nombre = nombre;
 		this.email = email;
 		this.password = password;
-		this.nroTarjeta = nroTarjeta;
 		this.rol  = rol;
 	}
 
 	public int getId() {
 		return id;
 	}
+	
 	public void setId(int id) {
 		this.id = id;
 	}
+	
 	public String getEmail() {
 		return email;
 	}
+	
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
 	public String getPassword() {
 		return password;
 	}
+	
 	public void setPassword(String password) {
 		this.password = password;
 	}
@@ -101,12 +101,10 @@ public class Usuario {
 	public List<Curso> getMisCursos() {
 		return misCursos;
 	}
-
 	
 	public void setMisCursos(List<Curso> misCursos) {
 		this.misCursos = misCursos;
 	}
-	
 	
 	public Carrito getCarrito() {
 		return carrito;
@@ -115,7 +113,6 @@ public class Usuario {
 	public void setCarrito(Carrito carrito) {
 		this.carrito = carrito;
 	}
-	
 
 	@Override
 	public String toString() {

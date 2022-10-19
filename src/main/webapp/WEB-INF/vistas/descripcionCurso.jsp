@@ -29,7 +29,7 @@
 		</div>
 
 		<div id="cont3">
-			<form action="carrito"  method="get">
+			<form action="agregarCursoAlCarrito" method="get">
 			<input type="hidden" name="id_curso" value="${curso.id}">
 				<%-- cambiar por vista de carrito --%>
 				<input id="agregarCarrito" type="submit" value="Agregar al carrito">

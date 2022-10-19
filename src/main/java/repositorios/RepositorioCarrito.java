@@ -5,9 +5,10 @@ import modelo.Curso;
 
 public interface RepositorioCarrito {
 
-
-	void guardarCursoDelCarrito(Curso curso_obtenido);
-
 	Carrito buscarCarritoPorID(int id_carrito);
+
+	void actualizarCarrito(Carrito carrito);
+
+	void agregarCursoALista(Curso curso_obtenido, Carrito carrito);
 
 }

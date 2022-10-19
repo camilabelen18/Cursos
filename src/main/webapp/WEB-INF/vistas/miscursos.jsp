@@ -80,9 +80,6 @@
 
 			</c:forEach>
 
-			
-
-
 		</div>
 
 	</div>
