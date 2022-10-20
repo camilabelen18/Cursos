@@ -1,5 +1,6 @@
 package servicios;
 
+import java.util.List;
 import java.util.Set;
 
 import javax.transaction.Transactional;
@@ -17,7 +18,6 @@ public class ServicioCarritoImpl implements ServicioCarrito {
 	
 	@Autowired
 	private RepositorioCarrito repositorioCarrito;
-	
 
 	@Override
 	public Carrito buscarCarritoPorId(int id_carrito) {
@@ -26,12 +26,12 @@ public class ServicioCarritoImpl implements ServicioCarrito {
 
 
 	@Override
-	public double getTotalDePrecios(Set<Curso> cursos) {
+	public double getTotalDePrecios(List<Curso> cursos) {
 		
-		double resultadoTotal=0;
+		double resultadoTotal = 0;
 		
 		for (Curso curso : cursos) {
-			resultadoTotal +=curso.getPrecio();
+			resultadoTotal += curso.getPrecio();
 		}
 		
 		return resultadoTotal;
@@ -39,24 +39,20 @@ public class ServicioCarritoImpl implements ServicioCarrito {
 
 
 	@Override
-	public void calcularTotal(Carrito carrito) {
-		
-		Double resultadoTotal = 0.0;
-		Set<Curso> cursos = carrito.getCursosDelCarrito();
-		
-		for (Curso curso : cursos) {
-			
-			resultadoTotal += curso.getPrecio();
-		}
-		
-		carrito.setTotal(resultadoTotal);
-		repositorioCarrito.actualizarCarrito(carrito);
+	public void agregarCursoAlCarrito(Curso curso_obtenido, Carrito carrito) {
+		repositorioCarrito.agregarCursoALista(curso_obtenido, carrito);
 	}
 
 
 	@Override
-	public void agregarCursoAlCarrito(Curso curso_obtenido, Carrito carrito) {
-		repositorioCarrito.agregarCursoALista(curso_obtenido, carrito);
+	public Carrito obtenerCarritoPorIdUsuario(int id_user) {
+		return repositorioCarrito.obtenerCarritoPorIdUsuario(id_user);
+	}
+
+
+	@Override
+	public List<Curso> obtenerCursosDelCarrito(Carrito carrito) {
+		return repositorioCarrito.obtenerCursosDelCarrito(carrito);
 	}
 
 }

@@ -22,6 +22,7 @@ import modelo.Estado;
 import modelo.Usuario;
 import servicios.ServicioCurso;
 import servicios.ServicioUsuario;
+import servicios.ServicioUsuarioCurso;
 
 @Controller
 public class ControladorCursos {
@@ -31,6 +32,9 @@ public class ControladorCursos {
 	
 	@Autowired
 	private ServicioUsuario servicioUsuario;
+	
+	@Autowired
+	private ServicioUsuarioCurso servicioUsuarioCurso;
 	
 	@RequestMapping(path = "/buscar", method = RequestMethod.GET)
 	public ModelAndView buscar(@RequestParam("nombreCurso") String nombreCurso) {
@@ -60,7 +64,7 @@ public class ControladorCursos {
 		
 		Usuario usuario = servicioUsuario.buscarUsuarioPorID(id);
 		
-		List<Curso> cursos = usuario.getMisCursos();
+		List<Curso> cursos = servicioUsuarioCurso.obtenerCursosDelUsuario(usuario);
 		
 		model.put("lista_cursos", cursos);
 		model.put("curso_cancelado", msj_curso_cancelado);
@@ -117,7 +121,7 @@ public class ControladorCursos {
 	}
 	
 	// Se obtiene la lista de los cursos comprados por el usuario y los muestra en la vista 'seccionCursos.jsp'
-	@RequestMapping(path= "/verCursosDelUsuario", method= RequestMethod.GET)
+	/*@RequestMapping(path= "/verCursosDelUsuario", method= RequestMethod.GET)
 	public ModelAndView verCursosDelUsuario(@RequestParam("email") String email) {
 		
 		ModelMap model = new ModelMap();
@@ -129,7 +133,7 @@ public class ControladorCursos {
 		model.put("lista_cursos", cursos);
 		
 		return new ModelAndView("seccionCursos", model);
-	}
+	}*/
 	
 	@RequestMapping("/agregarCurso")
 	public ModelAndView irAAgregarCurso() {

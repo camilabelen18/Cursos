@@ -13,21 +13,21 @@ celeste: #37B9CB
 main {
 	width: 50%;
 	margin: auto;
-	margin-bottom: 150px;
+	margin-bottom: 100px;
 }
 
 /* Titulo */
 #titulo {
-	height: 80px;
+	height: 70px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: flex-start;
-    margin: 80px 0px 100px 0px;
+    margin: 80px 0px;
 }
 
 #titulo a {
-	color: #3c3b37;
+	color: blue;
 	font-size: 14px;
 }
 
@@ -41,7 +41,7 @@ main {
 	width: 30%;
 	margin: auto;
     background-color: #FCFCB6;
-    padding: 100px;
+    padding: 60px 100px;
 }
 
 #resumen {

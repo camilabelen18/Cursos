@@ -1,9 +1,7 @@
 package controladores;
 
 import java.util.List;
-import java.util.Set;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,16 +16,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 
 import modelo.*;
-import servicios.ServicioCarrito;
-import servicios.ServicioCurso;
-import servicios.ServicioUsuario;
+import servicios.*;
 
 
 @Controller
 public class ControladorCarrito {
-	
-	@Autowired
-	private ServicioUsuario servicioUsuario;
 	
 	@Autowired
 	private ServicioCurso servicioCurso;
@@ -41,14 +34,11 @@ public class ControladorCarrito {
 		
 	    ModelMap model = new ModelMap();	    
 		int id_user = (int) sesion.getAttribute("idUsuario");
-		Usuario usuario = servicioUsuario.buscarUsuarioPorID(id_user);
-		Carrito carrito = usuario.getCarrito();
+		Carrito carrito = servicioCarrito.obtenerCarritoPorIdUsuario(id_user);
 		
-		Set<Curso> cursos = carrito.getCursosDelCarrito();
-	    
-		servicioCarrito.calcularTotal(carrito);
+		List<Curso> cursos = servicioCarrito.obtenerCursosDelCarrito(carrito);
 		
-	    double preciosTotal = carrito.getTotal();
+	    double preciosTotal = servicioCarrito.getTotalDePrecios(cursos);
 		
 		model.put("lista_cursos_carrito", cursos);
 		model.put("precio_total", preciosTotal);
@@ -63,8 +53,7 @@ public class ControladorCarrito {
 	
 		int id_user = (int) sesion.getAttribute("idUsuario");
 		Curso curso_obtenido = servicioCurso.busquedaPorID(id);
-		Usuario usuario = servicioUsuario.buscarUsuarioPorID(id_user);
-		Carrito carrito = usuario.getCarrito();
+		Carrito carrito = servicioCarrito.obtenerCarritoPorIdUsuario(id_user);
 		
 		servicioCarrito.agregarCursoAlCarrito(curso_obtenido, carrito);
 		

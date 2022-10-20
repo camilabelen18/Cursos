@@ -1,8 +1,5 @@
 package modelo;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import javax.persistence.*;
 
 @Entity
@@ -17,20 +14,14 @@ public class Carrito {
 	
 	@Column(name="cantidad")
 	private Integer cantidad;
-	
-	@Column(name="total")
-	private Double total;
 
-	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
-	@JoinTable(name = "carrito_curso",
-			   joinColumns = @JoinColumn(name = "carrito_id"),
-			   inverseJoinColumns = @JoinColumn(name = "curso_ident"))
-	private Set<Curso> cursosDelCarrito = new HashSet<Curso>(); 
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "usuario_id")
+	private Usuario usuario;
 	
 
 	public Carrito() { 
 		this.cantidad = 0;
-		this.total = 0.0;
 	}
 	
 	public int getId() {
@@ -49,25 +40,17 @@ public class Carrito {
 		this.cantidad = cantidad;
 	}
 
-	public Double getTotal() {
-		return total;
+	public Usuario getUsuario() {
+		return usuario;
 	}
 
-	public void setTotal(Double total) {
-		this.total = total;
-	}
-
-	public Set<Curso> getCursosDelCarrito() {
-		return cursosDelCarrito;
-	}
-
-	public void setCursosDelCarrito(Set<Curso> cursosCarrito) {
-		this.cursosDelCarrito = cursosCarrito;
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 
 	@Override
 	public String toString() {
-		return "Carrito [id=" + id + ", cantidad=" + cantidad + ", total=" + total + "]";
+		return "Carrito [id=" + id + ", cantidad=" + cantidad + ", usuario=" + usuario + "]";
 	}
 
 }

@@ -24,8 +24,8 @@
 		<%--Titulo --%>
 		<div id="titulo">
 			<div>
-				<a href="index.jsp">INICIO / </a>
-				<a href="verListaCursos">CURSOS / </a>
+				<a href="index.jsp">INICIO </a> /
+				<a href="verListaCursos"> CURSOS </a> / 
 				<span>VERIFICAR COMPRA</span>
 			</div>
 			<h1>Verificar compra</h1>

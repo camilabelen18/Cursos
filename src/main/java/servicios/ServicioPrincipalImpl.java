@@ -16,6 +16,8 @@ public class ServicioPrincipalImpl implements ServicioPrincipal {
 	@Autowired
 	private SessionFactory sessionFactory;
 
+	// Crear respositorio
+	
 	@Override
 	public void insertarRegistros() {
 		
@@ -43,15 +45,19 @@ public class ServicioPrincipalImpl implements ServicioPrincipal {
 		
 		Usuario cliente1 = new Usuario("Ana", "ana@gmail.com","111", "cliente");
 		cliente1.setNroTarjeta(4407);
-		cliente1.setCarrito(new Carrito());
+		Carrito car1 = new Carrito();
+		car1.setUsuario(cliente1);
 		
 		Usuario cliente2 = new Usuario("Ale", "ale@gmail.com","123", "cliente");
 		cliente2.setNroTarjeta(5809);
-		cliente2.setCarrito(new Carrito());
-		
+		Carrito car2 = new Carrito();
+		car2.setUsuario(cliente2);
+
 		sesion.save(admin);
 		sesion.save(cliente1);
 		sesion.save(cliente2);
+		sesion.save(car1);
+		sesion.save(car2);
 	}
 
 }

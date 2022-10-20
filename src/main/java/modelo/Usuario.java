@@ -30,17 +30,6 @@ public class Usuario {
 	@Column(name = "Rol")
 	private String rol;
 	
-	@OneToOne (cascade = CascadeType.ALL)
-	@JoinColumn(name = "carrito_id")
-	private Carrito carrito;
-	
-	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
-	@JoinTable(name = "usuario_curso",
-			   joinColumns = @JoinColumn(name = "usuario_id"),
-			   inverseJoinColumns = @JoinColumn(name = "curso_id"))
-	private List<Curso> misCursos = new ArrayList<Curso>();
-	
-	
 	public Usuario() { }
 
 	public Usuario(String nombre, String email, String password, String rol) {
@@ -96,22 +85,6 @@ public class Usuario {
 
 	public void setRol(String rol) {
 		this.rol = rol;
-	}
-
-	public List<Curso> getMisCursos() {
-		return misCursos;
-	}
-	
-	public void setMisCursos(List<Curso> misCursos) {
-		this.misCursos = misCursos;
-	}
-	
-	public Carrito getCarrito() {
-		return carrito;
-	}
-
-	public void setCarrito(Carrito carrito) {
-		this.carrito = carrito;
 	}
 
 	@Override
