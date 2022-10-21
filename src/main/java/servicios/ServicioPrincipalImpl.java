@@ -2,9 +2,7 @@ package servicios;
 
 import org.springframework.transaction.annotation.Transactional;
 
-import modelo.Curso;
-import modelo.Estado;
-import modelo.Usuario;
+import modelo.*;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -18,6 +16,8 @@ public class ServicioPrincipalImpl implements ServicioPrincipal {
 	@Autowired
 	private SessionFactory sessionFactory;
 
+	// Crear respositorio
+	
 	@Override
 	public void insertarRegistros() {
 		
@@ -40,11 +40,24 @@ public class ServicioPrincipalImpl implements ServicioPrincipal {
 		
 		/* SE INSERTAN LOS REGISTROS DE TODOS LOS USUARIOS DEL SISTEMA */
 		
-		Usuario user = new Usuario("Juan", "hola@hola.com","1234", "admin");
-		user.setNroTarjeta(555);
+		Usuario admin = new Usuario("Juan", "hola@hola.com","1234", "admin");
+		admin.setNroTarjeta(555);
 		
-		sesion.save(user);
+		Usuario cliente1 = new Usuario("Ana", "ana@gmail.com","111", "cliente");
+		cliente1.setNroTarjeta(4407);
+		Carrito car1 = new Carrito();
+		car1.setUsuario(cliente1);
 		
+		Usuario cliente2 = new Usuario("Ale", "ale@gmail.com","123", "cliente");
+		cliente2.setNroTarjeta(5809);
+		Carrito car2 = new Carrito();
+		car2.setUsuario(cliente2);
+
+		sesion.save(admin);
+		sesion.save(cliente1);
+		sesion.save(cliente2);
+		sesion.save(car1);
+		sesion.save(car2);
 	}
 
 }

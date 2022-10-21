@@ -31,6 +31,10 @@
 				</div>
 			</div>
 		</div>
+		
+		<c:if test="${not empty curso_cancelado}">
+			<p class="msj_error">${curso_cancelado}</p>
+		</c:if>
 
 		<div class="listaSeccionCursos">
 
@@ -75,9 +79,6 @@
 				</div>
 
 			</c:forEach>
-
-			
-
 
 		</div>
 

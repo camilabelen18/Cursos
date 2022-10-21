@@ -33,7 +33,7 @@
 
 		<%-- Carrito --%>
 		<div>
-			<a href="#">
+			<a href="vistaCarrito">
 				<img id="carrito" alt="" src="imagenes/carrito.png">
 			</a>
 		</div>

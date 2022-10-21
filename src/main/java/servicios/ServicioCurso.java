@@ -16,8 +16,11 @@ public interface ServicioCurso {
 	
 	Curso busquedaPorID(int id);
 
-	void agregarCurso(Curso curso);
+	void agregarCurso(String nombre, String Categoria, String descripcion, Double precio, String imagen);
 
 	List<Curso> getCursosPorEstado(Estado estado);
+
+	void agregarCurso(Curso curso);
+
 
 }

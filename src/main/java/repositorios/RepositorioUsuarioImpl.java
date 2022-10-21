@@ -11,9 +11,12 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import modelo.Carrito;
 import modelo.Curso;
 import modelo.Estado;
 import modelo.Usuario;
+import modelo.UsuarioCurso;
+import servicios.ServicioUsuarioCurso;
 
 @Repository
 @Transactional
@@ -21,6 +24,9 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario{
 
 	@Autowired
 	private SessionFactory sessionFactory;
+	
+	@Autowired
+	private ServicioUsuarioCurso servicioUsuarioCurso;
 	
 	@Override
 	public Boolean buscarTarjetaEmail(Integer nroTarjeta, String email) {
@@ -33,7 +39,6 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario{
 		}
 		
 		return false;
-
 	}
 	
 	@Override
@@ -57,17 +62,14 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario{
 		
 		Session sesion = sessionFactory.getCurrentSession();
 		
-		usuario.getMisCursos().add(curso_obtenido);
+		UsuarioCurso usuarioCurso = new UsuarioCurso();
+		usuarioCurso.setCurso(curso_obtenido);
+		usuarioCurso.setUsuario(usuario);
 		
-		sesion.update(usuario);
+		sesion.save(usuarioCurso);
 	}
 	
-	private void actualizarEstado(Curso curso_obtenido, Estado estado) {
-		
-		curso_obtenido.setEstado(estado);
-		sessionFactory.getCurrentSession().update(curso_obtenido);
-	}
-
+	
 	@Override
 	public Usuario buscarUsuario(String email, String password) {
 		
@@ -98,11 +100,17 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario{
 		return curso;
 	}
 
+	
 	@Override
 	public void cancelarCurso(Curso curso_obtenido, Usuario usuario) {
 		
 		actualizarEstado(curso_obtenido,Estado.CANCELADO);
+	}
+	
+	private void actualizarEstado(Curso curso_obtenido, Estado estado) {
 		
+		curso_obtenido.setEstado(estado);
+		sessionFactory.getCurrentSession().update(curso_obtenido);
 	}
 
 	@Override
@@ -110,11 +118,13 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario{
 		
 		Session sesion = sessionFactory.getCurrentSession();
 		
-		List<Curso> lista_cursos =usuario.getMisCursos();
+		List<Curso> lista_cursos = servicioUsuarioCurso.obtenerCursosDelUsuario(usuario);
 
 		for (int i = 0; i < lista_cursos.size(); i++) {
-			if(lista_cursos.get(i).getId()==curso_obtenido.getId()) {
-				usuario.getMisCursos().remove(i);
+			
+			if(lista_cursos.get(i).getId() == curso_obtenido.getId()) {
+				
+				servicioUsuarioCurso.obtenerCursosDelUsuario(usuario).remove(i);
 				sesion.update(usuario);
 			}
 		}

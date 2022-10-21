@@ -15,10 +15,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import modelo.Curso;
+import modelo.DatosActualizarCurso;
+import modelo.DatosRegistro;
+import modelo.DatosCreacionCurso;
 import modelo.Estado;
 import modelo.Usuario;
 import servicios.ServicioCurso;
 import servicios.ServicioUsuario;
+import servicios.ServicioUsuarioCurso;
 
 @Controller
 public class ControladorCursos {
@@ -28,6 +32,9 @@ public class ControladorCursos {
 	
 	@Autowired
 	private ServicioUsuario servicioUsuario;
+	
+	@Autowired
+	private ServicioUsuarioCurso servicioUsuarioCurso;
 	
 	@RequestMapping(path = "/buscar", method = RequestMethod.GET)
 	public ModelAndView buscar(@RequestParam("nombreCurso") String nombreCurso) {
@@ -49,103 +56,142 @@ public class ControladorCursos {
 	}
 	
 	@RequestMapping(path="/misCursos")
-	public ModelAndView misCursos(HttpSession session, Model modelo,@ModelAttribute("curso_cancelado")Curso curso_cancelado){
+	public ModelAndView misCursos(HttpSession session, @ModelAttribute("curso_cancelado") String msj_curso_cancelado) {
+		
+		ModelMap model = new ModelMap();
 		
 		int id = (int) session.getAttribute("idUsuario");
 		
 		Usuario usuario = servicioUsuario.buscarUsuarioPorID(id);
 		
-		List<Curso> cursos = usuario.getMisCursos();
+		List<Curso> cursos = servicioUsuarioCurso.obtenerCursosDelUsuario(usuario);
 		
-		modelo.addAttribute("lista_cursos", cursos);
-	
-		modelo.addAttribute("curso_cancelado",curso_cancelado);
+		model.put("lista_cursos", cursos);
+		model.put("curso_cancelado", msj_curso_cancelado);
 		
-		return new ModelAndView("miscursos");
+		return new ModelAndView("miscursos", model);
 	}
 	
 	// Se obtienen todos los registros de la tabla 'curso' de la bd
 	@RequestMapping(path= "/verListaCursos", method= RequestMethod.GET)
-	public ModelAndView verListaCursos(Model modelo, @ModelAttribute("error_sesion") String msj_sesion, @ModelAttribute("cursoYaComprado") String msj_curso) {
+	public ModelAndView verListaCursos(@ModelAttribute("error_sesion") String msj_sesion, @ModelAttribute("cursoYaComprado") String msj_curso, HttpSession session) {
 		
+		ModelMap model = new ModelMap();
 		List<Curso> cursos = servicioCurso.getCursos();
+		String view= "seccionCursos";
 		
-		modelo.addAttribute("lista_cursos", cursos);
-		modelo.addAttribute("msj_error_sesion", msj_sesion);
-		modelo.addAttribute("msj_error_curso", msj_curso);
+		model.put("lista_cursos", cursos);
+		model.put("msj_error_sesion", msj_sesion);
+		model.put("msj_error_curso", msj_curso);
 		
-		return new ModelAndView("seccionCursos");
+		//Si el usuario no es nulo, y su rol es "admin", entonces se mostrara la seccion de cursos de administrador
+		if(session.getAttribute("idUsuario") != null) {
+			
+			if(session.getAttribute("ROL").equals("admin")) {
+				view = "seccionCursosAdmin";
+			}
+		}
+		
+		return new ModelAndView(view, model);
 	}
 	
 	// Se obtiene una lista de cursos por estado
 	@RequestMapping(path= "/verCursosPorEstado", method= RequestMethod.GET)
-	public ModelAndView verCursosPorEstado(@RequestParam("estado") Estado estado, Model modelo) {
+	public ModelAndView verCursosPorEstado(@RequestParam("estado") Estado estado) {
 
+		ModelMap model = new ModelMap();
 		List<Curso> cursos = servicioCurso.getCursosPorEstado(estado);
 
-		modelo.addAttribute("lista_cursos", cursos);
+		model.put("lista_cursos", cursos);
 
-		return new ModelAndView("miscursos");
+		return new ModelAndView("miscursos", model);
 	}
 
 
 	// Se obtiene una lista de cursos por categoria
 	@RequestMapping(path= "/verCursosPorCategoria", method= RequestMethod.GET)
-	public ModelAndView verCursosPorCategoria(@RequestParam("categoria") String categoria, Model modelo) {
+	public ModelAndView verCursosPorCategoria(@RequestParam("categoria") String categoria) {
 		
+		ModelMap model = new ModelMap();
 		List<Curso> cursos = servicioCurso.getCursosPorCategoria(categoria);
 		
-		modelo.addAttribute("lista_cursos", cursos);
+		model.put("lista_cursos", cursos);
 		
-		return new ModelAndView("seccionCursos");
+		return new ModelAndView("seccionCursos", model);
 	}
 	
 	// Se obtiene la lista de los cursos comprados por el usuario y los muestra en la vista 'seccionCursos.jsp'
-	@RequestMapping(path= "/verCursosDelUsuario", method= RequestMethod.GET)
-	public ModelAndView verCursosDelUsuario(@RequestParam("email") String email, Model modelo) {
+	/*@RequestMapping(path= "/verCursosDelUsuario", method= RequestMethod.GET)
+	public ModelAndView verCursosDelUsuario(@RequestParam("email") String email) {
+		
+		ModelMap model = new ModelMap();
 		
 		Usuario usuario = servicioUsuario.buscarUsuarioPorEmail(email);
 		
 		List<Curso> cursos = usuario.getMisCursos();
 		
-		modelo.addAttribute("lista_cursos", cursos);
+		model.put("lista_cursos", cursos);
 		
-		return new ModelAndView("seccionCursos");
-	}
+		return new ModelAndView("seccionCursos", model);
+	}*/
 	
 	@RequestMapping("/agregarCurso")
 	public ModelAndView irAAgregarCurso() {
-		return new ModelAndView("crearCurso");
+		ModelMap modelo = new ModelMap();
+		DatosCreacionCurso datosCrearCurso = new DatosCreacionCurso();
+		modelo.put("datosCrearCurso", datosCrearCurso);
+		return new ModelAndView("crearCurso", modelo);
+	}
+	
+	@RequestMapping("/editarCurso")
+	public ModelAndView irAEditarCurso(@RequestParam("nombre") String nombreCurso, @RequestParam("categoria") String catCurso, @RequestParam("descripcion") String descCurso, @RequestParam("precio") String precioCurso) {
+		ModelMap modelo = new ModelMap();
+		DatosCreacionCurso datosCrearCurso = new DatosCreacionCurso();
+		modelo.put("datosCrearCurso", datosCrearCurso);
+		modelo.put("nombreCurso", nombreCurso);
+		modelo.put("catCurso", catCurso);
+		modelo.put("descCurso", descCurso);
+		modelo.put("precioCurso", precioCurso);
+		return new ModelAndView("editarCurso", modelo);
 		
 	}
 
 	@RequestMapping(path="/cursoAgregado", method = RequestMethod.POST)
-	public ModelAndView agregarCurso(@RequestParam("nombreCurso") String nombreCurso, @RequestParam("descCurso") String descCurso, @RequestParam("precioCurso") Double precioCurso) {
+	public ModelAndView agregarCurso(@ModelAttribute ("datosCrearCurso") DatosCreacionCurso datosCrearCurso) {
 		ModelMap modelo=new ModelMap();
-		Curso curso = new Curso();
-		curso.setNombre(nombreCurso);
-		curso.setDescripcion(descCurso);
-		curso.setPrecio(precioCurso);
-		servicioCurso.agregarCurso(curso);
+		
+		servicioCurso.agregarCurso(datosCrearCurso.getNombre(), datosCrearCurso.getCategoria(), datosCrearCurso.getDescripcion(), datosCrearCurso.getPrecio(), datosCrearCurso.getImagen());
+		modelo.put("datosCrearCurso", new DatosCreacionCurso());
 		
 		return new ModelAndView("cursoAgregado", modelo);
 	}
 	
+//	@RequestMapping(path="/cursoActualizado", method = RequestMethod.POST)
+//	public ModelAndView actualizarCurso(@RequestParam("id_curso") int idCurso, @ModelAttribute ("datosActualizarCurso") DatosActualizarCurso datosActualizarCurso) {
+//		ModelMap modelo=new ModelMap();
+//		
+//		servicioCurso.actualizarCurso(idCurso, datosActualizarCurso.getNombre(), datosActualizarCurso.getCategoria(), datosActualizarCurso.getDescripcion(), datosActualizarCurso.getPrecio());
+//		modelo.put("datosActualizarCurso", new DatosActualizarCurso());
+//		
+//		return new ModelAndView("cursoActualizado", modelo);
+//	}
+	
 	@RequestMapping (path= "/descripcionCurso", method= RequestMethod.GET)
-	public ModelAndView irADescCurso(@RequestParam("id_curso") Integer id_curso, Model modelo) {
+	public ModelAndView irADescCurso(@RequestParam("id_curso") Integer id_curso) {
 		
+		ModelMap modelo = new ModelMap();
 		String view = "";
 		
 		try {
 			Curso curso = servicioCurso.busquedaPorID(id_curso);
-			modelo.addAttribute(curso);
+			modelo.put("curso", curso);
 			view = "descripcionCurso";
 		}
 		catch(Exception e) {
 			view = "index";
 		}
 		
-		return new ModelAndView(view);
+		return new ModelAndView(view, modelo);
 	}
 	
 	@RequestMapping (path= "/verCurso", method= RequestMethod.POST)
@@ -158,6 +204,5 @@ public class ControladorCursos {
 		
 		return new ModelAndView("vistaCurso", model);
 	}
-	
 
 }

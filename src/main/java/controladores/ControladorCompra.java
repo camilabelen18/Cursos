@@ -40,9 +40,10 @@ public class ControladorCompra {
 			int id_user = Integer.parseInt(session.getAttribute("idUsuario").toString());
 			Usuario usuario = servicioUsuario.buscarUsuarioPorID(id_user);
 			
+			System.out.println("Comprobando si existe curso..");
 			//Se comprueba que el curso no se encuentre en la lista de cursos del usuario
 			if(!servicioUsuario.existeCursoEnListaUsuario(idCurso, usuario)) {
-				
+				System.out.println("Curso encontrado..");
 				model.put("idCurso", idCurso);
 				model.put("precioCurso", precioCurso);
 				viewName = "verificacionCompra";
@@ -99,8 +100,9 @@ public class ControladorCompra {
 		String viewName = "redirect:/misCursos";
 		
 		if(servicioUsuario.existeCursoEnListaUsuario(idCurso, usuario)) {
+			
 			servicioUsuario.cancelarCurso(curso_obtenido,usuario);
-			model.put("curso_cancelado",curso_obtenido);
+			model.put("curso_cancelado", "La compra fue cancelada con exito!");
 		}
 		
 		return new ModelAndView(viewName, model);
@@ -118,6 +120,7 @@ public class ControladorCompra {
 		String viewName = "redirect:/misCursos";
 		
 		if(servicioUsuario.existeCursoEnListaUsuario(idCurso, usuario)) {
+			
 			servicioUsuario.eliminarCurso(curso_obtenido,usuario);
 			model.put("curso_cancelado",curso_obtenido);
 			viewName = "eliminado";
@@ -125,7 +128,6 @@ public class ControladorCompra {
 		
 		return new ModelAndView(viewName, model);
 	}
-	
 	
 	
 	@RequestMapping(path = "/finalizar", method = RequestMethod.POST)
@@ -140,9 +142,11 @@ public class ControladorCompra {
 
 		
 		if(servicioUsuario.existeCursoEnListaUsuario(idCurso, usuario)) {
+			
 			servicioUsuario.finalizarCurso(curso_obtenido,usuario);
 		}
 		
 		return new ModelAndView("finalizado");
 	}
+	
 }

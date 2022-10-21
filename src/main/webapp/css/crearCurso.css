@@ -1,0 +1,34 @@
+#formularioCrearCurso{
+	width: 30%;
+	margin: auto;
+	margin-top: 60px;
+	margin-bottom: 150px;
+}
+
+#categoria, #descripcion, #precio, #imgCurso{
+	margin-top: 15px;
+}
+
+.error {
+    color: crimson;
+    margin-bottom: 20px;
+}
+
+input[type="text"], input[type="number"], input[type="file"] {
+    width: 100%;
+    padding: 6px;
+    display: block;
+    box-sizing: border-box;
+    border: 2px solid #cecece;
+    border-radius: 5px;
+    color: #404040;
+    font-size: 16px;
+    font-weight: normal;
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+
+input[type="submit"] {
+    display: block;
+    float: right;
+}

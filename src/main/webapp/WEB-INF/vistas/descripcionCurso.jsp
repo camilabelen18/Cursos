@@ -29,7 +29,8 @@
 		</div>
 
 		<div id="cont3">
-			<form action="index.jsp">
+			<form action="agregarCursoAlCarrito" method="get">
+			<input type="hidden" name="id_curso" value="${curso.id}">
 				<%-- cambiar por vista de carrito --%>
 				<input id="agregarCarrito" type="submit" value="Agregar al carrito">
 			</form>

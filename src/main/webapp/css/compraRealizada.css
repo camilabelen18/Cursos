@@ -1,0 +1,99 @@
+/* 
+Tipo de fuente:
+Arial, Helvetica, sans-serif
+
+Colores clave:
+
+gris oscuro: #3c3b37
+
+celeste: #37B9CB
+*/
+
+
+/* Titulo */
+#titulo {
+	padding: 30px;
+    margin: 25px;
+    display: flex;
+    justify-content: center;
+    align-items:center;
+	text-align:center;
+
+}
+/* Titulo */
+h2{
+	font-size: 30px;
+	font-weight: bold;
+
+}
+
+
+/* contenido principal  */
+.contenedor2{
+	display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 25px;
+    margin: 25px;
+    width: auto;
+    font-weight: bold;
+ /*  border: 2px solid grey;  */
+    
+	
+}
+/*formulario */
+form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/*titulo del contenedor*/
+h4{
+	padding: 5px;
+    margin: 5px;
+    font-size: 18px;
+    font-weight: bold;
+    text-align:center;
+}
+
+
+/*label*/
+label{
+    padding: 5px;
+    margin: 5px;
+    font-size: 15px;
+    font-weight: bold;
+}
+/*input*/
+
+#nroTarjeta{
+    padding: 5px;
+    margin: 10px;
+    font-size: 15px;
+    font-weight: normal;
+
+}
+
+#comprar{
+    padding: 5px;
+    margin: 10px;
+    font-size: 15px;
+    font-weight: normal;
+    background-color: #37B9CB;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
