@@ -22,5 +22,7 @@ public interface ServicioCurso {
 
 	void agregarCurso(Curso curso);
 
+	void cambiarEstadoCurso(Curso curso_obtenido, Estado estado);
+
 
 }

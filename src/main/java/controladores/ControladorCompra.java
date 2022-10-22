@@ -33,6 +33,7 @@ public class ControladorCompra {
 		
 		ModelMap model = new ModelMap();
 		String viewName = "";
+		Curso curso_obtenido = servicioCurso.busquedaPorID(idCurso);
 		
 		// Si comprueba si el usuario tiene iniciada la sesión
 		if (session.getAttribute("idUsuario") != null) {
@@ -42,10 +43,13 @@ public class ControladorCompra {
 			
 			System.out.println("Comprobando si existe curso..");
 			//Se comprueba que el curso no se encuentre en la lista de cursos del usuario
-			if(!servicioUsuario.existeCursoEnListaUsuario(idCurso, usuario)) {
+			
+
+			if(!servicioUsuario.existeCursoEnListaUsuario(idCurso, usuario)||curso_obtenido.getEstado()==Estado.CANCELADO) {
 				System.out.println("Curso encontrado..");
 				model.put("idCurso", idCurso);
 				model.put("precioCurso", precioCurso);
+				model.put("curso", curso_obtenido);
 				viewName = "verificacionCompra";
 			}
 			else {
@@ -73,9 +77,14 @@ public class ControladorCompra {
 
 		// Se verifica si el numero de tarjeta del usuario es igual al numero de tarjeta ingresado
 		if (usuario.getNroTarjeta().equals(nroTarjeta)) {
-
-			servicioUsuario.guardarCursoEnListaUsuario(curso_obtenido, usuario);
+			if(curso_obtenido.getEstado()==Estado.CANCELADO) {
+				servicioCurso.cambiarEstadoCurso(curso_obtenido,Estado.EN_CURSO);
+			}else {
+				servicioUsuario.guardarCursoEnListaUsuario(curso_obtenido, usuario);
+			}
+			
 			viewName = "compraRealizada";
+
 		}
 		else {
 			model.put("tarjetaIncorrecta", "El número de tarjeta ingresado es incorrecto.");
@@ -99,8 +108,8 @@ public class ControladorCompra {
 		Curso curso_obtenido = servicioCurso.busquedaPorID(idCurso);
 		String viewName = "redirect:/misCursos";
 		
+		//cuando cancelo el curso tengo que eliminarlo porque sino no me deja volver a comprarlo
 		if(servicioUsuario.existeCursoEnListaUsuario(idCurso, usuario)) {
-			
 			servicioUsuario.cancelarCurso(curso_obtenido,usuario);
 			model.put("curso_cancelado", "La compra fue cancelada con exito!");
 		}

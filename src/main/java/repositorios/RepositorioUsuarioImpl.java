@@ -105,6 +105,7 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario{
 	public void cancelarCurso(Curso curso_obtenido, Usuario usuario) {
 		
 		actualizarEstado(curso_obtenido,Estado.CANCELADO);
+		
 	}
 	
 	private void actualizarEstado(Curso curso_obtenido, Estado estado) {
@@ -142,6 +143,12 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario{
 //
 //		sesion.update(usuario);
 //		
+	}
+
+	@Override
+	public void cambiarEstadoCurso(Curso curso_obtenido, Estado estado) {
+		actualizarEstado(curso_obtenido,estado);
+		
 	}
 
 }

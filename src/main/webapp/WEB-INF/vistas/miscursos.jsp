@@ -54,7 +54,13 @@
 					</div>
 
 					<div class="cotenido-2-curso">
+						<c:if test="${curso.estado == 'EN_CURSO'}">
+							<p class="estado">EN CURSO</p>
+						</c:if>
+						<c:if test="${curso.estado != 'EN_CURSO'}">
 						<p class="estado">${curso.estado}</p>
+						</c:if>
+
 
 						<c:if test="${curso.estado == 'CANCELADO'}">
 							<form action="eliminarCompra?curso_id=${curso.id}" method="POST">

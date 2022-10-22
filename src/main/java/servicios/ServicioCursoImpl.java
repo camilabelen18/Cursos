@@ -10,6 +10,7 @@ import modelo.Curso;
 import modelo.Estado;
 import modelo.Usuario;
 import repositorios.RepositorioCurso;
+import repositorios.RepositorioUsuario;
 
 @Service("servicioCurso")
 @Transactional
@@ -17,6 +18,9 @@ public class ServicioCursoImpl implements ServicioCurso {
 
 	@Autowired
 	private RepositorioCurso repositorioCurso;
+	
+	@Autowired
+	private RepositorioUsuario repositorioUsuario;
 
 	@Override
 	public List<Curso> getCursos() {
@@ -68,6 +72,11 @@ public class ServicioCursoImpl implements ServicioCurso {
 		curso.setImagen(imagen);
 		
 		repositorioCurso.agregarCurso(curso);
+	}
+
+	@Override
+	public void cambiarEstadoCurso(Curso curso_obtenido, Estado estado) {
+		repositorioUsuario.cambiarEstadoCurso(curso_obtenido,estado);
 	}
 
 
