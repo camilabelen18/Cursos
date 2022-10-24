@@ -3,7 +3,8 @@ package modelo;
 	import javax.persistence.Column;
 
 	public class DatosActualizarCurso {
-
+		
+		private int id_curso;
 		private String nombre;
 		private String categoria;
 		private String descripcion;
@@ -34,4 +35,11 @@ package modelo;
 		public void setPrecio(Double precio) {
 			this.precio = precio;
 		}
+		public int getId_curso() {
+			return id_curso;
+		}
+		public void setId_curso(int id_curso) {
+			this.id_curso = id_curso;
+		}
+
 }

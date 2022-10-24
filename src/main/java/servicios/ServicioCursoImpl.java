@@ -79,5 +79,13 @@ public class ServicioCursoImpl implements ServicioCurso {
 		repositorioUsuario.cambiarEstadoCurso(curso_obtenido,estado);
 	}
 
-
+	@Override
+	public void actualizarCurso(int idCurso, String nombre, String categoria, String descripcion, Double precio) {
+		Curso curso = repositorioCurso.obtenerCursoPorID(idCurso);
+		curso.setNombre(nombre);
+		curso.setCategoria(categoria);
+		curso.setDescripcion(descripcion);
+		curso.setPrecio(precio);
+		
+	}
 }

@@ -16,7 +16,7 @@
 
 	<%@ include file="header.jsp" %>
 <div id ="formularioCrearCurso">
-	<form:form action="cursoActualizado" method = "POST" modelAttribute="datosActualizarCurso">
+	<form:form action="cursoActualizado" method = "POST" modelAttribute="datosCrearCurso">
 		<label for="nombre">Nombre del curso</label>
 		<input id="nombre" type="text" name="nombre" value="${nombreCurso}">
 		
@@ -28,7 +28,10 @@
 		
 		<label for="precio">Precio</label>
 		<input id="precio" type="number" name="precio" value="${precioCurso}">
-		<input type="hidden" name="id_curso" value="${idCurso}">
+		
+		
+		
+		<input type="hidden" name="id_curso" value="${cursoID}">
 				
 		<input id="añadir"type="submit" value="Actualizar">	
 	</form:form>

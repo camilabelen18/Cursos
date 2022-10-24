@@ -24,5 +24,6 @@ public interface ServicioCurso {
 
 	void cambiarEstadoCurso(Curso curso_obtenido, Estado estado);
 
+	void actualizarCurso(int idCurso, String nombre, String categoria, String descripcion, Double precio);
 
 }
