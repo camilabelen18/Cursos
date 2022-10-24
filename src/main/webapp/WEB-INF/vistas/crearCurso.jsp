@@ -30,7 +30,7 @@
 		<input id="precio" type="number" name="precio">
 		
 		<label for="imgCurso">Imagen del Curso</label>
-		<input id="imgCurso" type="file" name="imagen" />
+		<input id="imgCurso" type="file" name="imgCurso" />
 		
 		<div id="mensaje" class="error"></div>
 		<c:if test="${not empty error}">
