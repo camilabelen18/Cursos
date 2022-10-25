@@ -204,5 +204,28 @@ public class ControladorCursos {
 		
 		return new ModelAndView("vistaCurso", model);
 	}
+	
+	//Para hacer el controlador de examen 
+
+	 @RequestMapping (path="/examen", method= RequestMethod.GET)
+     public ModelAndView examen() {
+		 
+    	 ModelMap model = new ModelMap();
+    	 
+    	 return new ModelAndView("vistaExamen",model);
+    	 
+     }
+	 
+	 //Finalizar el examen y que te sumen los puntos al usuario
+	 
+	 @RequestMapping (path="/finalizoExamen", method= RequestMethod.GET)
+     public ModelAndView finalizoExamen() {
+		 
+    	 ModelMap model = new ModelMap();
+    	 
+    	 return new ModelAndView("vistaExamenFinalizado",model);
+    	 
+     }
+	
 
 }
