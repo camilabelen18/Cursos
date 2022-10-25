@@ -6,35 +6,44 @@ import java.util.List;
 import javax.persistence.*;
 
 @Entity
-@Table(name="Curso")
+@Table(name = "Cursos")
 public class Curso {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="Identificador")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "Identificador")
 	private int id;
 	
-	@Column(name="Nombre")
+	@Column(name = "Nombre")
 	private String nombre;
 	
 	// Crear entidad "categoria"
-	@Column(name="Categoria")
+	@Column(name = "Categoria")
 	private String categoria;
 	
-	@Column(name="Descripcion")
+	@Column(name = "Descripcion")
 	private String descripcion;
 	
-	@Column(name="Precio")
+	@Column(name = "Precio")
 	private Double precio;
 	
 	// Crear entidad "estado"
-	@Column(name="Estado")
+	@Column(name = "Estado")
 	private Estado estado;
 	
-	@Column(name="Imagen")
+	@Column(name = "Imagen")
 	private String imagen;
 	
-	public Curso() { }
+	@Column(name = "progreso")
+	private Double progreso;
+	
+	@Column(name = "curso_completado")
+	private Boolean cursoTerminado;
+	
+	public Curso() { 
+		this.progreso = 0.00;
+		this.cursoTerminado = false;
+	}
 
 	public Curso(String nombre, String categoria, String descripcion, Double precio, Estado estado, String imagen) {
 		this.nombre = nombre;
@@ -43,6 +52,8 @@ public class Curso {
 		this.precio = precio;
 		this.estado = estado;
 		this.imagen = imagen;
+		this.progreso = 0.00;
+		this.cursoTerminado = false;
 	}
 
 	public int getId() {
@@ -101,10 +112,27 @@ public class Curso {
 		this.categoria = categoria;
 	}
 
+	public Double getProgreso() {
+		return progreso;
+	}
+
+	public void setProgreso(Double progreso) {
+		this.progreso = progreso;
+	}
+
+	public Boolean getCursoTerminado() {
+		return cursoTerminado;
+	}
+
+	public void setCursoTerminado(Boolean cursoTerminado) {
+		this.cursoTerminado = cursoTerminado;
+	}
+
 	@Override
 	public String toString() {
-		return "Curso [id=" + id + ", nombre=" + nombre + ", descripcion=" + descripcion + ", precio=" + precio
-				+ ", estado=" + estado + ", imagen=" + imagen + ", categoria=" + categoria + "]";
+		return "Curso [id=" + id + ", nombre=" + nombre + ", categoria=" + categoria + ", descripcion=" + descripcion
+				+ ", precio=" + precio + ", estado=" + estado + ", imagen=" + imagen + ", progreso=" + progreso
+				+ ", cursoTerminado=" + cursoTerminado + "]";
 	}
 	
 }

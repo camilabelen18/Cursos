@@ -14,45 +14,83 @@
 </head>
 <body>
 	<%@ include file="header.jsp"%>
+	
+	<div class="tituloCurso">
+		<h1>${curso.nombre}</h1>
+	</div>
+	
+	<c:if test="${not empty msj_progreso}">
+		<p class="msj_progreso">${msj_progreso}</p>
+	</c:if>
 
 	<div class="contenedor-vistaCurso">
 		
 		<div id="contVistaCurso-1">
-			<h1>${curso.nombre}</h1>
-			<div id="img-curso">
-				<img src="imagenes/cursos/${curso.imagen}">
+			<h2>${unidad.descripcion}</h2>
+			<div id="video-curso">
+				<iframe src="${unidad.video_url}" frameborder="0" allowfullscreen></iframe>
 			</div>
-			<h2>Descripción</h2>
-			<p>${curso.descripcion}</p>
+			<div id="marcarUnidad">
+				<c:if test="${unidad.completado == false}">
+					<a href="completarUnidad?unidad_id=${unidad.id}&curso_id=${curso.id}">
+						MARCAR ESTA UNIDAD COMO COMPLETA
+					</a>
+				</c:if>
+				
+				<c:if test="${unidad.completado == true}">
+					<p>UNIDAD COMPLETADA</p>
+				</c:if>
+			</div>
 		</div>
 		
 		<div id="contVistaCurso-2">
-			<div class="temario">
-				<h3>Temario</h3>
+			<div class="progreso">
+				<h2>Progreso ${curso.progreso}%</h2>
+				<progress max="100" value="${curso.progreso}"></progress>
+			</div>
+			
+			<div class="contenido">
+				<h2>Contenido</h2>
+				
 				<div id="contenido-curso">
-					<p>● Curso Introducción. Video 1</p>
-					<p>● Curso Video 2</p>
-					<p>● Curso Video 3</p>
-					<p>● Curso Video 4</p>
-					<p>● Curso Video 5</p>
-					<p>● Curso Video 6</p>
+				
+					<c:forEach var="itemUnidad" items="${unidades}">
+					
+						<c:if test="${itemUnidad.completado == false}">
+							<a href="verUnidadCurso?unidad_id=${itemUnidad.id}&curso_id=${curso.id}">
+								<i class="fa-solid fa-circle" id="icon_circulo"></i> ${itemUnidad.descripcion}
+							</a>
+						</c:if>
+						
+						<c:if test="${itemUnidad.completado == true}">
+							<a href="verUnidadCurso?unidad_id=${itemUnidad.id}&curso_id=${curso.id}">
+								<i class="fa-solid fa-circle-check" id="icon_check"></i> ${itemUnidad.descripcion}
+							</a>
+						</c:if>
+
+					</c:forEach>
 				</div>
 			</div>
+			
 			<div class="botones-vistaCurso">
 				<form action="misCursos">
 					<input type="submit" name="volver" value="Volver" class="btn-tipo-1">
 				</form>
-				<form action="finalizar?curso_id=${curso.id}" method="POST">
-					<input type="submit" name="finalizar" value="Finalizar" class="btn-tipo-2">
-				</form>
-				<form action="cancelarCompra?curso_id=${curso.id}" method="POST">
-					<input type="submit" name="cancelar" value="cancelar" class="btn-tipo-1">
-				</form>
+				
+				<c:if test="${curso.cursoTerminado == false}">
+					<form action="finalizar?curso_id=${curso.id}" method="POST">
+						<input type="submit" name="terminarCurso" value="Terminar curso" class="btn-tipo-2">
+					</form>
+				</c:if>
 			</div>
 		</div>
 		
 	</div>
 
 	<%@ include file="footer.jsp"%>
+	
+	<!-- Se importan las librerias de fontawasome para poder usar iconos '<i>' -->
+	<script src="https://kit.fontawesome.com/83c17d370e.js" crossorigin="anonymous"></script>
+	
 </body>
 </html>

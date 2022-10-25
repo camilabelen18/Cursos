@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Set;
 
 import modelo.Carrito;
+import modelo.Carrito_Curso;
 import modelo.Curso;
 
 public interface RepositorioCarrito {

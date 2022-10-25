@@ -1,8 +1,17 @@
-.contenedor-vistaCurso {
-	width: 70%;
+
+.tituloCurso {
+	width: 80%;
 	margin: auto;
-	margin-top: 100px;
-	margin-bottom: 100px;
+	font-size: 20px;
+    font-weight: bold;
+    margin-top: 100px;
+    margin-bottom: 60px;
+}
+
+.contenedor-vistaCurso {
+	width: 80%;
+	margin: auto;
+	margin-bottom: 150px;
 	display: flex;
 	justify-content: space-between;
 }
@@ -11,44 +20,95 @@
 	width: 60%;
 }
 
-#contVistaCurso-1 h1 {
-    font-size: 30px;
-    font-weight: bold;
-}
-
 #contVistaCurso-1 h2 {
     margin-bottom: 10px;
+    font-weight: 500;
 }
 
-#img-curso {
+#video-curso {
 	margin-top: 20px;
-	margin-bottom: 60px;
 }
 
-#img-curso img {
+#video-curso iframe {
 	width: 100%;
+	height: 400px;
+}
+
+#marcarUnidad {
+	width: 100%;
+	text-align: center;
+	margin-top: 40px;
+}
+
+#marcarUnidad a {
+	color: #2E2E2E;
+	font-weight: bold;
+	font-size: 14px;
+	border: 1px solid #3c3b37;
+	padding: 12px 40px;
+}
+
+#marcarUnidad p {
+	display: inline;
+	background-color: #1dbb06;
+	color: white;
+	font-weight: bold;
+	font-size: 14px;
+	padding: 12px 80px;
 }
 
 #contVistaCurso-2 {
-	width: 30%;
+	width: 33%;
 }
 
-.temario {
+.progreso {
+	margin-bottom: 60px;
+}
+
+.progreso h2 {
+	margin-bottom: 20px;
+    font-weight: 500;
+}
+
+.progreso progress {
+	width: 100%;
+	height: 20px;
+}
+
+.contenido {
 	border: 2px solid #737373;
 }
 
-.temario h3 {
+.contenido h2 {
 	padding: 20px;
-	font-size: 20px;
+	font-weight: 500;
 	border-bottom: 2px solid #737373;
 }
 
 #contenido-curso {
-	margin: 10px 0px;
+	padding: 20px 0px;
+	display: flex;
+	flex-direction: column;
 }
 
-#contenido-curso p {
-	padding: 10px 20px;
+#contenido-curso a {
+	color: #2E2E2E;
+	margin: 8px 20px;
+	font-size: 15px;
+	font-weight: normal;
+	line-height: 23px;
+}
+
+#icon_circulo {
+	color: #474747;
+	font-size: 14px;
+	padding-right: 10px;
+}
+
+#icon_check {
+	color: #1dbb06;
+	font-size: 14px;
+	padding-right: 10px;
 }
 
 .botones-vistaCurso {
@@ -84,4 +144,17 @@ input[type="submit"].btn-tipo-1:hover {
 input[type="submit"].btn-tipo-2:hover {
     background: #898989;
     cursor: pointer;
+}
+
+/* MENSAJES */
+.msj_progreso {
+	width: 80%;
+	margin: auto;
+	margin-bottom: 20px;
+	background-color: #fff0c9;
+	padding: 20px;
+	font-size: 16px;
+	color: #444444;
+	border: 2px solid #fed054;
+	border-radius: 5px;
 }

@@ -23,10 +23,12 @@ public interface ServicioUsuario {
 
 	boolean existeCursoEnListaUsuario(int idCurso, Usuario usuario);
 
-	void cancelarCurso(Curso curso_obtenido, Usuario usuario);
+	void cancelarCurso(Curso curso_obtenido);
 
 	void eliminarCurso(Curso curso_obtenido, Usuario usuario);
 
-	void finalizarCurso(Curso curso_obtenido, Usuario usuario);
+	void finalizarCurso(Curso curso_obtenido);
+
+	List<Curso> obtenerCursosDelUsuario(Usuario usuario);
 
 }

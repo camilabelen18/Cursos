@@ -16,6 +16,10 @@
 	padding-top: 20px;
 }
 
+input[type="submit"] {
+	width: 100%;
+}
+
 
 /*Menu de filtros*/
 .dropdown {
@@ -99,12 +103,26 @@
 	padding-bottom: 10px;
 }
 
-.estado{
-	color: green;
+#estadoEnCurso {
+	color: #06BD0D;
+	font-size: 18px;
+	font-weight: bold;
 }
 
-/* MENSAJES DE ERROR */
-.msj_error {
+#estadoCompletado {
+	color: #EE8100;
+	font-size: 18px;
+	font-weight: bold;
+}
+
+#estadoCancelado {
+	color: #5F7385;
+	font-size: 18px;
+	font-weight: bold;
+}
+
+/* MENSAJES */
+.msj_info {
 	background-color: #fff0c9;
 	padding: 20px;
 	font-size: 16px;

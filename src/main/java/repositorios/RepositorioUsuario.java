@@ -21,12 +21,10 @@ public interface RepositorioUsuario {
 
 	Usuario buscarUsuarioPorID(int id_user);
 
-	void cancelarCurso(Curso curso_obtenido, Usuario usuario);
-
 	void eliminarCurso(Curso curso_obtenido, Usuario usuario);
 
-	void finalizarCurso(Curso curso_obtenido, Usuario usuario);
-
 	void cambiarEstadoCurso(Curso curso_obtenido, Estado estado);
+
+	List<Curso> obtenerCursosDelUsuario(Usuario usuario);
 
 }

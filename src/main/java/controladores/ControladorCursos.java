@@ -1,5 +1,6 @@
 package controladores;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -14,15 +15,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import modelo.Curso;
-import modelo.DatosActualizarCurso;
-import modelo.DatosRegistro;
-import modelo.DatosCreacionCurso;
-import modelo.Estado;
-import modelo.Usuario;
+import modelo.*;
 import servicios.ServicioCurso;
 import servicios.ServicioUsuario;
-import servicios.ServicioUsuarioCurso;
 
 @Controller
 public class ControladorCursos {
@@ -32,9 +27,6 @@ public class ControladorCursos {
 	
 	@Autowired
 	private ServicioUsuario servicioUsuario;
-	
-	@Autowired
-	private ServicioUsuarioCurso servicioUsuarioCurso;
 	
 	@RequestMapping(path = "/buscar", method = RequestMethod.GET)
 	public ModelAndView buscar(@RequestParam("nombreCurso") String nombreCurso) {
@@ -55,8 +47,8 @@ public class ControladorCursos {
 		return new ModelAndView("seccionCursos", model);
 	}
 	
-	@RequestMapping(path="/misCursos")
-	public ModelAndView misCursos(HttpSession session, @ModelAttribute("curso_cancelado") String msj_curso_cancelado) {
+	@RequestMapping(path="/misCursos", method= RequestMethod.GET)
+	public ModelAndView misCursos(HttpSession session, @ModelAttribute("msj") String msj) {
 		
 		ModelMap model = new ModelMap();
 		
@@ -64,10 +56,10 @@ public class ControladorCursos {
 		
 		Usuario usuario = servicioUsuario.buscarUsuarioPorID(id);
 		
-		List<Curso> cursos = servicioUsuarioCurso.obtenerCursosDelUsuario(usuario);
+		List<Curso> cursos = servicioUsuario.obtenerCursosDelUsuario(usuario);
 		
 		model.put("lista_cursos", cursos);
-		model.put("curso_cancelado", msj_curso_cancelado);
+		model.put("msj", msj);
 		
 		return new ModelAndView("miscursos", model);
 	}
@@ -120,21 +112,6 @@ public class ControladorCursos {
 		return new ModelAndView("seccionCursos", model);
 	}
 	
-	// Se obtiene la lista de los cursos comprados por el usuario y los muestra en la vista 'seccionCursos.jsp'
-	/*@RequestMapping(path= "/verCursosDelUsuario", method= RequestMethod.GET)
-	public ModelAndView verCursosDelUsuario(@RequestParam("email") String email) {
-		
-		ModelMap model = new ModelMap();
-		
-		Usuario usuario = servicioUsuario.buscarUsuarioPorEmail(email);
-		
-		List<Curso> cursos = usuario.getMisCursos();
-		
-		model.put("lista_cursos", cursos);
-		
-		return new ModelAndView("seccionCursos", model);
-	}*/
-	
 	@RequestMapping("/agregarCurso")
 	public ModelAndView irAAgregarCurso() {
 		ModelMap modelo = new ModelMap();
@@ -183,7 +160,7 @@ public class ControladorCursos {
 		String view = "";
 		
 		try {
-			Curso curso = servicioCurso.busquedaPorID(id_curso);
+			Curso curso = servicioCurso.buscarCursoPorId(id_curso);
 			modelo.put("curso", curso);
 			view = "descripcionCurso";
 		}
@@ -198,11 +175,79 @@ public class ControladorCursos {
 	public ModelAndView verCurso(@RequestParam("curso_id") Integer curso_id) {
 		
 		ModelMap model = new ModelMap();
+		Curso curso = servicioCurso.buscarCursoPorId(curso_id);
+		List<Unidad> unidades = servicioCurso.obtenerUnidades(curso);
 		
-		Curso curso = servicioCurso.busquedaPorID(curso_id);
 		model.put("curso", curso);
+		model.put("unidades", unidades);
+		model.put("unidad", unidades.get(0));
+				
+		return new ModelAndView("vistaCurso", model);
+	}
+	
+	@RequestMapping (path= "/verUnidadCurso", method= RequestMethod.GET)
+	public ModelAndView verUnidadCurso(@RequestParam("unidad_id") Integer unidad_id, @RequestParam("curso_id") Integer curso_id) {
+		
+		ModelMap model = new ModelMap();
+		Curso curso = servicioCurso.buscarCursoPorId(curso_id);
+		List<Unidad> unidades = servicioCurso.obtenerUnidades(curso);
+		Unidad unidad = servicioCurso.obtenerUnidadPorID(unidad_id);
+		
+		model.put("curso", curso);
+		model.put("unidades", unidades);
+		model.put("unidad", unidad);
 		
 		return new ModelAndView("vistaCurso", model);
+	}
+	
+	@RequestMapping (path= "/completarUnidad", method= RequestMethod.GET)
+	public ModelAndView completarUnidad(@RequestParam("unidad_id") Integer unidad_id, @RequestParam("curso_id") Integer curso_id) {
+		
+		ModelMap model = new ModelMap();
+		Curso curso = servicioCurso.buscarCursoPorId(curso_id);
+		Unidad unidad = servicioCurso.obtenerUnidadPorID(unidad_id);
+		
+		if (unidad.getCompletado() == false) {
+			
+			servicioCurso.completarUnidad(unidad, curso, servicioCurso.obtenerUnidades(curso));
+		}
+		
+		List<Unidad> unidades = servicioCurso.obtenerUnidades(curso);
+		
+		model.put("curso", curso);
+		model.put("unidades", unidades);
+		model.put("unidad", unidad);
+		
+		return new ModelAndView("vistaCurso", model);
+	}
+	
+	@RequestMapping(path = "/finalizar", method = RequestMethod.POST)
+	public ModelAndView finalizar(@RequestParam("curso_id") int idCurso) {
+		
+		ModelMap model = new ModelMap();
+		Curso curso_obtenido = servicioCurso.buscarCursoPorId(idCurso);
+		List<Unidad> unidades = servicioCurso.obtenerUnidades(curso_obtenido);
+		String view = "";
+		
+		if (curso_obtenido.getCursoTerminado() == false) {
+			
+			// Se valida si el progreso del curso esta en un 50% o más
+			if (curso_obtenido.getProgreso() >= 50.0) {
+				
+				servicioUsuario.finalizarCurso(curso_obtenido);
+				model.put("msj", "Felicidades! Completaste el curso: " + curso_obtenido.getNombre());
+				view = "redirect:/misCursos";
+			}
+			else {
+				model.put("curso", curso_obtenido);
+				model.put("unidades", unidades);
+				model.put("unidad", unidades.get(0));
+				model.put("msj_progreso", "Para completar el curso debe estar completado en un 50% o mas.");
+				view = "vistaCurso";
+			}
+		}
+		
+		return new ModelAndView(view, model);
 	}
 
 }

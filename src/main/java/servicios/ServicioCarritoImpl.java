@@ -1,5 +1,6 @@
 package servicios;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -8,8 +9,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import modelo.Carrito;
-import modelo.Curso;
+import modelo.*;
 import repositorios.RepositorioCarrito;
 
 @Service("servicioCarrito")
@@ -52,6 +52,7 @@ public class ServicioCarritoImpl implements ServicioCarrito {
 
 	@Override
 	public List<Curso> obtenerCursosDelCarrito(Carrito carrito) {
+		
 		return repositorioCarrito.obtenerCursosDelCarrito(carrito);
 	}
 

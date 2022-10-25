@@ -52,7 +52,7 @@ public class ControladorCarrito {
     public ModelAndView agregarCursoAlCarrito(@RequestParam("id_curso") int id, HttpSession sesion) {
 	
 		int id_user = (int) sesion.getAttribute("idUsuario");
-		Curso curso_obtenido = servicioCurso.busquedaPorID(id);
+		Curso curso_obtenido = servicioCurso.buscarCursoPorId(id);
 		Carrito carrito = servicioCarrito.obtenerCarritoPorIdUsuario(id_user);
 		
 		servicioCarrito.agregarCursoAlCarrito(curso_obtenido, carrito);
