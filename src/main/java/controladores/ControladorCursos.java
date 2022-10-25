@@ -144,7 +144,7 @@ public class ControladorCursos {
 	}
 	
 	@RequestMapping("/editarCurso")
-	public ModelAndView irAEditarCurso(@RequestParam("nombre") String nombreCurso, @RequestParam("categoria") String catCurso, @RequestParam("descripcion") String descCurso, @RequestParam("precio") String precioCurso) {
+	public ModelAndView irAEditarCurso(@RequestParam("id_curso") int cursoID, @RequestParam("nombre") String nombreCurso, @RequestParam("categoria") String catCurso, @RequestParam("descripcion") String descCurso, @RequestParam("precio") String precioCurso) {
 		ModelMap modelo = new ModelMap();
 		DatosCreacionCurso datosCrearCurso = new DatosCreacionCurso();
 		modelo.put("datosCrearCurso", datosCrearCurso);
@@ -152,6 +152,7 @@ public class ControladorCursos {
 		modelo.put("catCurso", catCurso);
 		modelo.put("descCurso", descCurso);
 		modelo.put("precioCurso", precioCurso);
+		modelo.put("cursoID", cursoID);
 		return new ModelAndView("editarCurso", modelo);
 		
 	}
@@ -166,15 +167,15 @@ public class ControladorCursos {
 		return new ModelAndView("cursoAgregado", modelo);
 	}
 	
-//	@RequestMapping(path="/cursoActualizado", method = RequestMethod.POST)
-//	public ModelAndView actualizarCurso(@RequestParam("id_curso") int idCurso, @ModelAttribute ("datosActualizarCurso") DatosActualizarCurso datosActualizarCurso) {
-//		ModelMap modelo=new ModelMap();
-//		
-//		servicioCurso.actualizarCurso(idCurso, datosActualizarCurso.getNombre(), datosActualizarCurso.getCategoria(), datosActualizarCurso.getDescripcion(), datosActualizarCurso.getPrecio());
-//		modelo.put("datosActualizarCurso", new DatosActualizarCurso());
-//		
-//		return new ModelAndView("cursoActualizado", modelo);
-//	}
+	@RequestMapping(path="/cursoActualizado", method = RequestMethod.POST)
+	public ModelAndView actualizarCurso(@RequestParam("id_curso") int idCurso, @ModelAttribute ("datosCrearCurso") DatosCreacionCurso datosCrearCurso) {
+		ModelMap modelo=new ModelMap();
+		
+		servicioCurso.actualizarCurso(idCurso, datosCrearCurso.getNombre(), datosCrearCurso.getCategoria(), datosCrearCurso.getDescripcion(), datosCrearCurso.getPrecio());
+		modelo.put("datosCrearCurso", new DatosCreacionCurso());
+		
+		return new ModelAndView("cursoActualizado", modelo);
+	}
 	
 	@RequestMapping (path= "/descripcionCurso", method= RequestMethod.GET)
 	public ModelAndView irADescCurso(@RequestParam("id_curso") Integer id_curso) {

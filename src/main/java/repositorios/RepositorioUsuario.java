@@ -4,6 +4,7 @@ import java.util.List;
 
 import modelo.Carrito;
 import modelo.Curso;
+import modelo.Estado;
 import modelo.Usuario;
 
 public interface RepositorioUsuario {
@@ -28,5 +29,7 @@ public interface RepositorioUsuario {
 	
 	void modoficarUsuario(Usuario usuario);
 	
+
+	void cambiarEstadoCurso(Curso curso_obtenido, Estado estado);
 
 }
