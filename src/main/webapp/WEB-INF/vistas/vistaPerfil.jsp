@@ -14,44 +14,41 @@
 </head>
 <body>
 	<%@ include file="header.jsp"%>
-	
+
 	<h1 id="perfil">PERFIL</h1>
-	
+
 	<div class="contenedorPerfil">
 		<div class="datosPerfil">
+
 			<p id="nombrePerfil">Nombre: ${usuario.nombre}</p>
-				<%-- <%=session.getAttribute("nombreUsuario")%> --%>
-			
-			
+
+
+
 			<p id="emailPerfil">
 				Email: ${usuario.email}
 				<%-- <%=session.getAttribute("emailUsuario")%> --%>
-				</p>
-				
+			</p>
+
 			<p id="passwordPerfil">
 				Contraseña: ${usuario.password}
 				<%-- <%=session.getAttribute("passwordUsuario")%> --%>
-				</p>
-				
+			</p>
+
 			<p id="rolPerfil">
 				Rol: ${usuario.rol}
 				<%-- <%=session.getAttribute("rolUsuario")%> --%>
-				</p>
-				
-			<input id="editarPerfil" name="editarPerfil" type="submit"
-				value="Editar perfil">
+			</p>
+			<a href="editarPerfil"> <input id="editarPerfil"
+				name="editarPerfil" type="submit" value="Editar perfil"></a>
 		</div>
 
 		<div class="fotoPerfil">
-			<img id="fotoPerfil" src="imagenes/logoPerfil.png" >
+			<img id="fotoPerfil" src="imagenes/usuario.png"> <br> <input
+				id="cambiarFotoPerfil" name="cambiarFotoPerfil" type="submit"
+				value="Cambiar foto">
 
-		<br>
-	
-	<input id="cambiarFotoPerfil" name="cambiarFotoPerfil" type="submit"
-		value="Cambiar foto">
-		
 		</div>
-</div>
+	</div>
 
 
 

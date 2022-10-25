@@ -29,5 +29,7 @@ public interface ServicioUsuario {
 
 	void finalizarCurso(Curso curso_obtenido, Usuario usuario);
 	
+	void modificarUsuario(Usuario usuario);
+	
 
 }

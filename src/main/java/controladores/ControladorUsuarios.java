@@ -119,16 +119,64 @@ public class ControladorUsuarios {
 		return new ModelAndView("redirect:/");
 	}
 
-	@RequestMapping(path="/verPerfil", method= RequestMethod.GET)
-	public ModelAndView verPerfil(@RequestParam("idUsuario") Integer idUsuario, HttpSession session) {
-		
+	@RequestMapping(path = "/verPerfil", method = RequestMethod.GET)
+	public ModelAndView verPerfil(HttpSession session) {
+
 		ModelMap model = new ModelMap();
-		Usuario usuario = servicioUsuario.buscarUsuarioPorID(idUsuario);
+		String view = "";
+		
+		try {
+			int id_user = Integer.parseInt(session.getAttribute("idUsuario").toString());
+			Usuario usuario = servicioUsuario.buscarUsuarioPorID(id_user);
+
+			model.put("usuario", usuario);
+			view = "vistaPerfil";
+		}
+		catch(Exception e) {
+			view = "errorVisualizacionPerfil";
+		}
+		
+		return new ModelAndView(view, model);
+
+	}
+
+	@RequestMapping(path = "/editarPerfil", method = RequestMethod.GET)
+	public ModelAndView editarPerfil(HttpSession session) {
+		ModelMap model = new ModelMap();
+		String view = "";
+		
+		try {
+			int id_user = Integer.parseInt(session.getAttribute("idUsuario").toString());
+			Usuario usuario = servicioUsuario.buscarUsuarioPorID(id_user);
+
+			model.put("usuario", usuario);
+			view = "editarPerfil";
+		}
+		catch(Exception e) {
+			view = "errorVisualizacionPerfil";
+		}
+		
+		return new ModelAndView(view, model);
+
+	}
+
+	@RequestMapping(path = "actualizarCambiosPerfil", method = RequestMethod.POST)
+	public ModelAndView actualizarCambiosPerfil(HttpSession session) {
+		ModelMap model = new ModelMap();
+
+		int id_user = Integer.parseInt(session.getAttribute("idUsuario").toString());
+		Usuario usuario = servicioUsuario.buscarUsuarioPorID(id_user);
+
+		servicioUsuario.modificarUsuario(usuario);
+		
+		/*session.setAttribute("nombreUsuario", usuario.getNombre());
+		session.setAttribute("nombreEmail", usuario.getEmail());
+		session.setAttribute("nombrePassword", usuario.getPassword());*/
 
 		model.put("usuario", usuario);
-		
-		return new ModelAndView("vistaPerfil");
-		
+
+		return new ModelAndView("redirect:/verPerfil", model);
+
 	}
 
 }

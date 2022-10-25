@@ -132,7 +132,7 @@ public class ControladorCursos {
 		
 		model.put("lista_cursos", cursos);
 		
-		return new ModelAndView("seccionCursos", model);
+		return new ModelAndView("seccionCursos", model); 
 	}*/
 	
 	@RequestMapping("/agregarCurso")

@@ -144,6 +144,13 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario{
 //		
 	}
 
+	@Override
+	public void modoficarUsuario(Usuario usuario) {
+
+		sessionFactory.getCurrentSession().update(usuario);
+		
+	}
+
 	
 
 }

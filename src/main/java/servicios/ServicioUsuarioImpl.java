@@ -104,6 +104,13 @@ public class ServicioUsuarioImpl implements ServicioUsuario{
 		repositorioUsuario.finalizarCurso(curso_obtenido, usuario);
 	}
 
+	@Override
+	public void modificarUsuario(Usuario usuario) {
+		repositorioUsuario.modoficarUsuario(usuario);
+		
+		
+	}
+
 	
 
 }
