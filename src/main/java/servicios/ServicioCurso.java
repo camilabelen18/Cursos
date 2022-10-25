@@ -30,5 +30,6 @@ public interface ServicioCurso {
 	Unidad obtenerUnidadPorID(Integer unidad_id);
 
 	void completarUnidad(Unidad unidad, Curso curso, List<Unidad> unidades);
+	void actualizarCurso(int idCurso, String nombre, String categoria, String descripcion, Double precio);
 
 }
