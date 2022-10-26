@@ -145,13 +145,15 @@
    
        <div class="finalizado">
               
-                <input type="submit" name="finalizoExamen" value="Finalizar" id="cambiar">
+                <input type="button" name="finalizoExamen" value="Finalizar" id="cambiar">
              
                
                <div class="contenido" id="contenido" style="display: none;">
 
                
                </div>
+               
+               <!--  Despues hacer un form con action para redirigir  -->
 
               
           </div>
