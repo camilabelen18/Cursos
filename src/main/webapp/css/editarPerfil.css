@@ -1,0 +1,42 @@
+@charset "UTF-8";
+.contenedorEditar{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	margin: 10px;
+	padding: 30px;
+	
+}
+#fotoPerfil{
+	height: 200px;
+	width: 200px;
+}
+.fotoPerfil{
+	display: flex;
+	flex-flow: column;
+	align-self: center;
+	
+}
+.formEditar{
+	font-size: large;
+}
+input#nombreUsuario,#emailUsuario,#passwordUsuario{
+	border-radius: 5px;
+	border-color: black;
+	border-width: thin;
+	padding: 7px;
+}
+
+.textoEditar{
+	margin: 10px;
+	padding: 10px;
+}
+#cambiarFotoPerfil,#aniadirCambios{
+	border-radius: 10px;
+	padding: 10px;
+}
+.editarPerfiltitulo{
+	padding:20px;
+	margin-top: 20px;
+	margin-left: 20px;
+}

@@ -44,11 +44,13 @@
     		
     		<div class="menuCuentaUsuario">
     			<div class="usuarioNombreFoto">
+    			<a href="verPerfil">
     				<img id="fotoUsuario" src="imagenes/usuario.png">
     				<p><%= session.getAttribute("nombreUsuario") %></p>
+    				</a>
     			</div>
     			<div class="linksUsuario">
-    				<a href="#">Editar perfil</a>
+    				<a href="editarPerfil">Editar perfil</a>
     				<a href="misCursos">Ver mis cursos</a>
     				<a href="cerrarSesion">Cerrar sesión</a>
     			</div>

@@ -1,0 +1,59 @@
+@charset "UTF-8";
+
+.contenedorPerfil{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	margin: 10px;
+	padding: 30px;
+	
+}
+#nombrePerfil {
+	padding: 20px;
+   font-size: large;
+	}
+
+#emailPerfil{
+	padding: 20px;
+    font-size: large;
+}
+#passwordPerfil{
+	padding: 20px;
+    font-size: large;
+}
+#rolPerfil{
+	padding: 20px;
+    font-size: large;
+}
+#perfil{
+	padding:20px;
+	margin-top: 20px;
+	margin-left: 20px;
+}
+#cambiarFotoPerfil{
+	border-radius: 8px;
+}
+#editarPerfil{
+	border-radius: 8px;
+}
+
+.fotoPerfil{
+	display: flex;
+	flex-flow: column;
+	align-self: center;
+	
+}
+#fotoPerfil{
+	height: 200px;
+	width: 200px;
+}
+.errorPerfil{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	margin: 80px;
+	padding: 50px;
+	margin-left: 200px;
+	background-color:rgba(255, 56, 56, 0.322);
+	text-align: center;
+}
