@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import modelo.Carrito;
 import modelo.Curso;
 import modelo.Usuario;
+import modelo.UsuarioCurso;
 import repositorios.RepositorioCarrito;
 import repositorios.RepositorioUsuario;
 import repositorios.RepositorioUsuarioCurso;
@@ -90,8 +91,8 @@ public class ServicioUsuarioImpl implements ServicioUsuario{
 	}
 
 	@Override
-	public void cancelarCurso(Curso curso_obtenido, Usuario usuario) {
-		repositorioUsuario.cancelarCurso(curso_obtenido, usuario);	
+	public Boolean cancelarCurso(Curso curso_obtenido, UsuarioCurso usuarioCurso) {
+		return repositorioUsuario.cancelarCurso(curso_obtenido, usuarioCurso);	
 	}
 
 	@Override
@@ -102,6 +103,11 @@ public class ServicioUsuarioImpl implements ServicioUsuario{
 	@Override
 	public void finalizarCurso(Curso curso_obtenido, Usuario usuario) {
 		repositorioUsuario.finalizarCurso(curso_obtenido, usuario);
+	}
+
+	@Override
+	public UsuarioCurso obtenerUsuarioCurso(Curso curso_obtenido, Usuario usuario) {
+		return repositorioUsuario.obtenerUsuarioCurso(curso_obtenido, usuario);
 	}
 
 }

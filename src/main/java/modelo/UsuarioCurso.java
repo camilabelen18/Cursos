@@ -1,5 +1,7 @@
 package modelo;
 
+import java.time.*;
+
 import javax.persistence.*;
 
 
@@ -21,6 +23,10 @@ public class UsuarioCurso {
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "curso_id")
 	private Curso curso;
+	
+
+	private LocalDate fecha_incio_compra;
+	private LocalTime hora;
 	
 	
 	public UsuarioCurso() {}
@@ -47,6 +53,23 @@ public class UsuarioCurso {
 
 	public void setCurso(Curso curso) {
 		this.curso = curso;
+	}
+		
+
+	public LocalDate getFecha_incio_compra() {
+		return fecha_incio_compra;
+	}
+
+	public void setFecha_incio_compra(LocalDate fecha_incio_compra) {
+		this.fecha_incio_compra = fecha_incio_compra;
+	}
+
+	public LocalTime getHora() {
+		return hora;
+	}
+
+	public void setHora(LocalTime hora) {
+		this.hora = hora;
 	}
 
 	@Override

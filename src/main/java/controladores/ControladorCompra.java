@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import modelo.Curso;
 import modelo.Estado;
 import modelo.Usuario;
+import modelo.UsuarioCurso;
 import servicios.ServicioCurso;
 import servicios.ServicioUsuario;
 
@@ -107,11 +108,15 @@ public class ControladorCompra {
 		Usuario usuario = servicioUsuario.buscarUsuarioPorID(id_user);
 		Curso curso_obtenido = servicioCurso.busquedaPorID(idCurso);
 		String viewName = "redirect:/misCursos";
+		UsuarioCurso usuarioCurso = servicioUsuario.obtenerUsuarioCurso(curso_obtenido, usuario);
 		
 		//cuando cancelo el curso tengo que eliminarlo porque sino no me deja volver a comprarlo
 		if(servicioUsuario.existeCursoEnListaUsuario(idCurso, usuario)) {
-			servicioUsuario.cancelarCurso(curso_obtenido,usuario);
-			model.put("curso_cancelado", "La compra fue cancelada con exito!");
+			if(servicioUsuario.cancelarCurso(curso_obtenido,usuarioCurso)) {
+				model.put("curso_cancelado", "La compra fue cancelada con exito!");
+			}else {
+				model.put("curso_no_cancelado", "La compra no puede ser cancelada luego de 48 horas");
+			}
 		}
 		
 		return new ModelAndView(viewName, model);

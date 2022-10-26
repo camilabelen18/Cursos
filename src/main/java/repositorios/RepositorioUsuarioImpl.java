@@ -2,6 +2,10 @@ package repositorios;
 
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -63,6 +67,8 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario{
 		Session sesion = sessionFactory.getCurrentSession();
 		
 		UsuarioCurso usuarioCurso = new UsuarioCurso();
+		usuarioCurso.setFecha_incio_compra(LocalDate.now());
+		usuarioCurso.setHora(LocalTime.now());
 		usuarioCurso.setCurso(curso_obtenido);
 		usuarioCurso.setUsuario(usuario);
 		
@@ -102,12 +108,35 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario{
 
 	
 	@Override
-	public void cancelarCurso(Curso curso_obtenido, Usuario usuario) {
+	public Boolean cancelarCurso(Curso curso_obtenido, UsuarioCurso usuarioCurso) {
 		
+		if(restarFechas(usuarioCurso) == true) {
 		actualizarEstado(curso_obtenido,Estado.CANCELADO);
+		return true;
+		}
 		
+		return false;
 	}
-	
+
+	public UsuarioCurso obtenerUsuarioCurso(Curso curso_obtenido, Usuario usuario) {
+		return (UsuarioCurso) sessionFactory.getCurrentSession()
+				.createCriteria(UsuarioCurso.class)
+				.add(Restrictions.eq("usuario", usuario))
+				.add(Restrictions.eq("curso", curso_obtenido))
+				.uniqueResult();
+	}
+
+	private Boolean restarFechas(UsuarioCurso usuarioCurso) {
+		Long diferencia_dias = ChronoUnit.DAYS.between(usuarioCurso.getFecha_incio_compra(),LocalDate.now());
+		if(diferencia_dias == 1) {		
+		Long minuto = ChronoUnit.MINUTES.between(usuarioCurso.getHora(),LocalTime.now());
+		if(minuto <= 2) {
+			return true;
+		}
+		}
+		return false;
+	}
+
 	private void actualizarEstado(Curso curso_obtenido, Estado estado) {
 		
 		curso_obtenido.setEstado(estado);
