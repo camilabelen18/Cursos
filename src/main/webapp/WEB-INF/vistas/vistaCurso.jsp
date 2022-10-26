@@ -48,6 +48,9 @@
 				<form action="cancelarCompra?curso_id=${curso.id}" method="POST">
 					<input type="submit" name="cancelar" value="cancelar" class="btn-tipo-1">
 				</form>
+				<form action="examen" method="GET">
+					<input type="submit" name="examen" value="Examen" class="btn-tipo-1">
+				</form>
 			</div>
 		</div>
 		
