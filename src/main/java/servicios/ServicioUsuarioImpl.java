@@ -13,7 +13,7 @@ import modelo.Curso;
 import modelo.Estado;
 import modelo.Unidad;
 import modelo.Usuario;
-import modelo.UsuarioCurso;
+import modelo.Usuario_Curso;
 import repositorios.RepositorioCarrito;
 import repositorios.RepositorioCurso;
 import repositorios.RepositorioUsuario;
@@ -94,7 +94,7 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
 	}
 
 	@Override
-	public Boolean cancelarCurso(Curso curso_obtenido, UsuarioCurso usuarioCurso) {
+	public Boolean cancelarCurso(Curso curso_obtenido, Usuario_Curso usuarioCurso) {
 		return repositorioUsuario.cancelarCurso(curso_obtenido, usuarioCurso);	
 	}
 
@@ -127,7 +127,7 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
 	}
 
 	@Override
-	public UsuarioCurso obtenerUsuarioCurso(Curso curso_obtenido, Usuario usuario) {
+	public Usuario_Curso obtenerUsuarioCurso(Curso curso_obtenido, Usuario usuario) {
 		return repositorioUsuario.obtenerUsuarioCurso(curso_obtenido, usuario);
 	}
 
@@ -145,7 +145,5 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
 		}
 
 	}
-
-
 
 }

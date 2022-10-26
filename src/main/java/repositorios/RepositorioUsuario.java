@@ -2,11 +2,7 @@ package repositorios;
 
 import java.util.List;
 
-import modelo.Carrito;
-import modelo.Curso;
-import modelo.Estado;
-import modelo.Usuario;
-import modelo.UsuarioCurso;
+import modelo.*;
 
 public interface RepositorioUsuario {
 
@@ -22,13 +18,11 @@ public interface RepositorioUsuario {
 
 	Usuario buscarUsuarioPorID(int id_user);
 
-	Boolean cancelarCurso(Curso curso_obtenido, UsuarioCurso usuarioCurso);
+	Boolean cancelarCurso(Curso curso_obtenido, Usuario_Curso usuarioCurso);
 	
-	UsuarioCurso obtenerUsuarioCurso(Curso curso_obtenido, Usuario usuario);
+	Usuario_Curso obtenerUsuarioCurso(Curso curso_obtenido, Usuario usuario);
 
 	void eliminarCurso(Curso curso_obtenido, Usuario usuario);
-
-	void finalizarCurso(Curso curso_obtenido, Usuario usuario);
 	
 	void cambiarEstadoCurso(Curso curso_obtenido, Estado estado);
 

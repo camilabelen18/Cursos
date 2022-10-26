@@ -28,9 +28,6 @@ public class ControladorCarrito {
 	@Autowired
 	private ServicioCarrito servicioCarrito;
 	
-	@Autowired
-	private ServicioUsuario servicioUsuario;
-
 	
 	@RequestMapping(path ="/vistaCarrito", method = RequestMethod.GET)
 	public ModelAndView vistaCarrito(HttpSession sesion) {
@@ -74,7 +71,7 @@ public class ControladorCarrito {
 		servicioCarrito.agregarCursoAlCarrito(curso_obtenido, carrito);
 		
 	    //Mostrar un cartel que diga agregaste al carrito con exito 	
-		return new ModelAndView("index");
+		return new ModelAndView("redirect:/verListaCursos");
     }
 	
 	

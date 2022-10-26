@@ -64,7 +64,7 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario{
 		
 		Session sesion = sessionFactory.getCurrentSession();
 		
-		UsuarioCurso usuarioCurso = new UsuarioCurso();
+		Usuario_Curso usuarioCurso = new Usuario_Curso();
 		usuarioCurso.setFecha_incio_compra(LocalDate.now());
 		usuarioCurso.setHora(LocalTime.now());
 		usuarioCurso.setCurso(curso_obtenido);
@@ -97,44 +97,54 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario{
 		
 		Session sesion = sessionFactory.getCurrentSession();
 		
-		// Se obtiene un usuario por su id
-		
 		Usuario curso = sesion.get(Usuario.class, id_user);
 		
 		return curso;
 	}
 	
 	@Override
-	public void cambiarEstadoCurso(Curso curso_obtenido, Estado estado) {
-		actualizarEstado(curso_obtenido, estado);
-	}
-	public Boolean cancelarCurso(Curso curso_obtenido, UsuarioCurso usuarioCurso) {
+	public Boolean cancelarCurso(Curso curso_obtenido, Usuario_Curso usuarioCurso) {
 		
-		if(restarFechas(usuarioCurso) == true) {
-		actualizarEstado(curso_obtenido,Estado.CANCELADO);
-		return true;
-		}
-		
-		return false;
-	}
-
-	public UsuarioCurso obtenerUsuarioCurso(Curso curso_obtenido, Usuario usuario) {
-		return (UsuarioCurso) sessionFactory.getCurrentSession()
-				.createCriteria(UsuarioCurso.class)
-				.add(Restrictions.eq("usuario", usuario))
-				.add(Restrictions.eq("curso", curso_obtenido))
-				.uniqueResult();
-	}
-
-	private Boolean restarFechas(UsuarioCurso usuarioCurso) {
-		Long diferencia_dias = ChronoUnit.DAYS.between(usuarioCurso.getFecha_incio_compra(),LocalDate.now());
-		if(diferencia_dias == 1) {		
-		Long minuto = ChronoUnit.MINUTES.between(usuarioCurso.getHora(),LocalTime.now());
-		if(minuto <= 2) {
+		if (restarFechas(usuarioCurso) == true) {
+			
+			actualizarEstado(curso_obtenido,Estado.CANCELADO);
 			return true;
 		}
+		
+		return false;
+	}
+	
+	private Boolean restarFechas(Usuario_Curso usuarioCurso) {
+		
+		Long diferencia_dias = ChronoUnit.DAYS.between(usuarioCurso.getFecha_incio_compra(), LocalDate.now());
+		
+		if (diferencia_dias == 1) {	
+			
+			Long minuto = ChronoUnit.MINUTES.between(usuarioCurso.getHora(),LocalTime.now());
+			
+			if(minuto <= 2) {
+				return true;
+			}
 		}
 		return false;
+	}
+
+	@Override
+	public Usuario_Curso obtenerUsuarioCurso(Curso curso_obtenido, Usuario usuario) {
+		
+		Session sesion = sessionFactory.getCurrentSession();
+		
+		Usuario_Curso usuarioCurso = (Usuario_Curso) sesion.createCriteria(Usuario_Curso.class)
+									 .add(Restrictions.eq("usuario", usuario))
+									 .add(Restrictions.eq("curso", curso_obtenido))
+									 .uniqueResult();
+		
+		return usuarioCurso;
+	}
+	
+	@Override
+	public void cambiarEstadoCurso(Curso curso_obtenido, Estado estado) {
+		actualizarEstado(curso_obtenido, estado);
 	}
 
 	private void actualizarEstado(Curso curso_obtenido, Estado estado) {
@@ -163,12 +173,6 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario{
 		List<Usuario_Curso> usuario_cursos = sesion.createCriteria(Usuario_Curso.class)
 											 .add(Restrictions.eq("usuario", usuario))
 											 .list();
-//		Session sesion = sessionFactory.getCurrentSession();
-//
-//		usuario.getMisCursos().add(curso_obtenido);
-//
-//		sesion.update(usuario);
-//	
 		
 		List<Curso> lista_curso = new ArrayList<Curso>();
 		
@@ -179,14 +183,5 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario{
 
 		return lista_curso;
 	}
-
-	@Override
-	public void cambiarEstadoCurso(Curso curso_obtenido, Estado estado) {
-		actualizarEstado(curso_obtenido,estado);
-	}
-
-	
-
-	
 
 }

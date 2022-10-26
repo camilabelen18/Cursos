@@ -21,7 +21,7 @@ import modelo.Curso;
 import modelo.Estado;
 import modelo.Usuario;
 import servicios.ServicioCarrito;
-import modelo.UsuarioCurso;
+import modelo.*;
 import servicios.ServicioCurso;
 import servicios.ServicioUsuario;
 
@@ -49,10 +49,6 @@ public class ControladorCompra {
 			
 			int id_user = (int) session.getAttribute("idUsuario");
 			Usuario usuario = servicioUsuario.buscarUsuarioPorID(id_user);
-			
-			System.out.println("Comprobando si existe curso..");
-			//Se comprueba que el curso no se encuentre en la lista de cursos del usuario
-			
 
 			if(!servicioUsuario.existeCursoEnListaUsuario(idCurso, usuario) || curso_obtenido.getEstado() == Estado.CANCELADO) {
 				model.put("idCurso", idCurso);
@@ -85,9 +81,12 @@ public class ControladorCompra {
 
 		// Se verifica si el numero de tarjeta del usuario es igual al numero de tarjeta ingresado
 		if (usuario.getNroTarjeta().equals(nroTarjeta)) {
-			if(curso_obtenido.getEstado()==Estado.CANCELADO) {
+			
+			if(curso_obtenido.getEstado() == Estado.CANCELADO) {
+				
 				servicioCurso.cambiarEstadoCurso(curso_obtenido,Estado.EN_CURSO);
-			}else {
+			}
+			else {
 				servicioUsuario.guardarCursoEnListaUsuario(curso_obtenido, usuario);
 			}
 			
@@ -112,18 +111,17 @@ public class ControladorCompra {
 		
 		int id_user = Integer.parseInt(session.getAttribute("idUsuario").toString());
 		Usuario usuario = servicioUsuario.buscarUsuarioPorID(id_user);
-		Curso curso_obtenido = servicioCurso.busquedaPorID(idCurso);
-		String viewName = "redirect:/misCursos";
-		UsuarioCurso usuarioCurso = servicioUsuario.obtenerUsuarioCurso(curso_obtenido, usuario);
+		Curso curso_obtenido = servicioCurso.buscarCursoPorId(idCurso);
+		Usuario_Curso usuarioCurso = servicioUsuario.obtenerUsuarioCurso(curso_obtenido, usuario);
 		
 		if(servicioUsuario.existeCursoEnListaUsuario(idCurso, usuario)) {
 			
 			if(servicioUsuario.cancelarCurso(curso_obtenido,usuarioCurso)) {
-				model.put("curso_cancelado", "La compra fue cancelada con exito!");
+				
 				model.put("msj", "La compra fue cancelada con exito!");
 			}
 			else {
-				model.put("curso_no_cancelado", "La compra no puede ser cancelada luego de 48 horas");
+				model.put("msj", "La compra no puede ser cancelada luego de 48 horas");
 			}
 		}
 		else {
