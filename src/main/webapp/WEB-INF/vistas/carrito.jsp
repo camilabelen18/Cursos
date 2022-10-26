@@ -47,6 +47,14 @@
 			  <h3> ${precio_total }</h3>
 			</div>
 			
+			</div>
+				<form action="comprar" method="get">
+								<input type="hidden" name="id_curso" value="${curso.id}">
+								<input type="hidden" name="precio" value="${curso.precio}">
+								<input type="submit" name="Compra" value="Comprar">
+				</form>
+				</div>
+			
 			
 			
 		
