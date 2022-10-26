@@ -82,6 +82,10 @@
 						<input type="submit" name="terminarCurso" value="Terminar curso" class="btn-tipo-2">
 					</form>
 				</c:if>
+
+				<form action="examen" method="GET">
+					<input type="submit" name="examen" value="Examen" class="btn-tipo-1">
+				</form>
 			</div>
 		</div>
 		

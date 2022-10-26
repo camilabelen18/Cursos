@@ -6,6 +6,7 @@ import modelo.Carrito;
 import modelo.Curso;
 import modelo.Estado;
 import modelo.Usuario;
+import modelo.UsuarioCurso;
 
 public interface RepositorioUsuario {
 
@@ -21,8 +22,14 @@ public interface RepositorioUsuario {
 
 	Usuario buscarUsuarioPorID(int id_user);
 
+	Boolean cancelarCurso(Curso curso_obtenido, UsuarioCurso usuarioCurso);
+	
+	UsuarioCurso obtenerUsuarioCurso(Curso curso_obtenido, Usuario usuario);
+
 	void eliminarCurso(Curso curso_obtenido, Usuario usuario);
 
+	void finalizarCurso(Curso curso_obtenido, Usuario usuario);
+	
 	void cambiarEstadoCurso(Curso curso_obtenido, Estado estado);
 
 	List<Curso> obtenerCursosDelUsuario(Usuario usuario);

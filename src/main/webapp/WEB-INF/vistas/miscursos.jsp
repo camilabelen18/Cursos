@@ -35,6 +35,10 @@
 		<c:if test="${not empty msj}">
 			<p class="msj_info">${msj}</p>
 		</c:if>
+		
+		<c:if test="${not empty curso_no_cancelado}">
+			<p class="msj_error">${curso_no_cancelado}</p>
+		</c:if>
 
 		<div class="listaSeccionCursos">
 

@@ -3,9 +3,12 @@ package servicios;
 import java.util.List;
 import java.util.Set;
 
+import javax.servlet.http.HttpSession;
+
 import modelo.Carrito;
 import modelo.Curso;
 import modelo.Usuario;
+import modelo.UsuarioCurso;
 
 public interface ServicioUsuario {
 
@@ -30,5 +33,15 @@ public interface ServicioUsuario {
 	void finalizarCurso(Curso curso_obtenido);
 
 	List<Curso> obtenerCursosDelUsuario(Usuario usuario);
+	Boolean cancelarCurso(Curso curso_obtenido, UsuarioCurso usuarioCurso);
+
+	void eliminarCurso(Curso curso_obtenido, Usuario usuario);
+
+	void finalizarCurso(Curso curso_obtenido, Usuario usuario);
+	
+	void actualizarUsuario(int idUsuario,String nombre, String email,String password, HttpSession session);
+	
+
+	UsuarioCurso obtenerUsuarioCurso(Curso curso_obtenido, Usuario usuario);
 
 }

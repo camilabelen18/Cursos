@@ -13,7 +13,7 @@
 						http://www.springframework.org/schema/tx	
 						http://www.springframework.org/schema/tx/spring-tx-4.2.xsd">
 
-	<import resource="classpath:hibernateContext.xml" />
+	<import resource="classpath:hibernateContext.xml"/>
 
 	<mvc:annotation-driven />
 
@@ -21,10 +21,8 @@
 
 	<context:component-scan base-package="cursos.controladores" />
 	<context:component-scan base-package="controladores" />
-	<context:component-scan base-package="repositorios" />
 	<context:component-scan base-package="servicios" />
-	<context:component-scan base-package="modelo" />
-
+	<context:component-scan base-package="repositorios" />
 
 
 

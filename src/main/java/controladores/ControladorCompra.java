@@ -21,6 +21,7 @@ import modelo.Curso;
 import modelo.Estado;
 import modelo.Usuario;
 import servicios.ServicioCarrito;
+import modelo.UsuarioCurso;
 import servicios.ServicioCurso;
 import servicios.ServicioUsuario;
 
@@ -111,15 +112,23 @@ public class ControladorCompra {
 		
 		int id_user = Integer.parseInt(session.getAttribute("idUsuario").toString());
 		Usuario usuario = servicioUsuario.buscarUsuarioPorID(id_user);
-		Curso curso_obtenido = servicioCurso.buscarCursoPorId(idCurso);
+		Curso curso_obtenido = servicioCurso.busquedaPorID(idCurso);
+		String viewName = "redirect:/misCursos";
+		UsuarioCurso usuarioCurso = servicioUsuario.obtenerUsuarioCurso(curso_obtenido, usuario);
 		
 		if(servicioUsuario.existeCursoEnListaUsuario(idCurso, usuario)) {
 			
-			servicioUsuario.cancelarCurso(curso_obtenido);
-			model.put("msj", "La compra fue cancelada con exito!");
+			if(servicioUsuario.cancelarCurso(curso_obtenido,usuarioCurso)) {
+				model.put("curso_cancelado", "La compra fue cancelada con exito!");
+				model.put("msj", "La compra fue cancelada con exito!");
+			}
+			else {
+				model.put("curso_no_cancelado", "La compra no puede ser cancelada luego de 48 horas");
+			}
 		}
 		else {
 			model.put("msj", "Curso no encontrado...");
+			
 		}
 		
 		return new ModelAndView("redirect:/misCursos", model);

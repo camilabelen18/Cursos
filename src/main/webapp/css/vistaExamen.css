@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+body{
+    font-family: 'Roboto', sans-serif;
+}
+
+.titulo{
+ align-items: center;
+ text-align: center;
+	}	
+
+section{
+    border:1px solid #ccc;
+    margin:0.5em;
+    border-radius: 1em;
+    width: 80%;
+    margin: auto;
+    background-color:rgb(128, 255, 255);
+    margin-bottom:1em;
+    color:#fff;
+    padding:1em;
+    align-items: center;
+    text-align: center;
+}
+article{
+    padding:1em;
+    background-color:#fff;
+    color: #000;
+    border-radius: 0.5em;
+    margin: 0.5em 0;
+}
+
+.finalizado{
+	text-align: center;
+    align-items: center;
+	padding:1em;
+    background-color:#fff;
+    color: #000;
+    border-radius: 0.5em;
+    margin: 0.5em 0;
+	
+}
+
+.contenido{
+	text-align: center;
+    align-items: center;
+	padding:1em;
+    background-color:#fff;
+    color: #000;
+    border-radius: 0.5em;
+    margin: 0.5em 0;
+	
+}
+
+/*------------------------------------------RESPONSIVE----------------------------------*/
+
+@media (max-width: 1250px) {
+	
+	.cont-seccion-miscursos {
+		width: 80%;
+	}
+    
+}
