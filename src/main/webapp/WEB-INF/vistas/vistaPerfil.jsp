@@ -15,7 +15,7 @@
 <body>
 	<%@ include file="header.jsp"%>
 
-	<h1 id="perfil">PERFIL</h1>
+	<h1 id="perfil">Perfil</h1>
 
 	<div class="contenedorPerfil">
 		<div class="datosPerfil">

@@ -20,7 +20,7 @@
 .formEditar{
 	font-size: large;
 }
-input#nombreUsuario,#passwordUsuario,#emailUsuario{
+input#nombreUsuario,#emailUsuario,#passwordUsuario{
 	border-radius: 5px;
 	border-color: black;
 	border-width: thin;
@@ -34,4 +34,9 @@ input#nombreUsuario,#passwordUsuario,#emailUsuario{
 #cambiarFotoPerfil,#aniadirCambios{
 	border-radius: 10px;
 	padding: 10px;
+}
+.editarPerfiltitulo{
+	padding:20px;
+	margin-top: 20px;
+	margin-left: 20px;
 }

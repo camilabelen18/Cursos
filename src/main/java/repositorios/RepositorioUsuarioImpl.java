@@ -143,13 +143,16 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario{
 //		sesion.update(usuario);
 //		
 	}
-
+	
 	@Override
-	public void modoficarUsuario(Usuario usuario) {
-
-		sessionFactory.getCurrentSession().update(usuario);
+	public void cambiarEstadoCurso(Curso curso_obtenido, Estado estado) {
+		actualizarEstado(curso_obtenido,estado);
 		
 	}
+
+	
+
+	
 
 	
 

@@ -27,9 +27,6 @@ public interface RepositorioUsuario {
 
 	void finalizarCurso(Curso curso_obtenido, Usuario usuario);
 	
-	void modoficarUsuario(Usuario usuario);
-	
-
 	void cambiarEstadoCurso(Curso curso_obtenido, Estado estado);
 
 }

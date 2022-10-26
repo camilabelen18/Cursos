@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import modelo.Curso;
+
+import modelo.DatosCreacionCurso;
 import modelo.DatosLogin;
 import modelo.DatosRegistro;
 import modelo.Usuario;
@@ -124,18 +126,17 @@ public class ControladorUsuarios {
 
 		ModelMap model = new ModelMap();
 		String view = "";
-		
+
 		try {
 			int id_user = Integer.parseInt(session.getAttribute("idUsuario").toString());
 			Usuario usuario = servicioUsuario.buscarUsuarioPorID(id_user);
 
 			model.put("usuario", usuario);
 			view = "vistaPerfil";
-		}
-		catch(Exception e) {
+		} catch (Exception e) {
 			view = "errorVisualizacionPerfil";
 		}
-		
+
 		return new ModelAndView(view, model);
 
 	}
@@ -144,39 +145,35 @@ public class ControladorUsuarios {
 	public ModelAndView editarPerfil(HttpSession session) {
 		ModelMap model = new ModelMap();
 		String view = "";
-		
+
 		try {
 			int id_user = Integer.parseInt(session.getAttribute("idUsuario").toString());
 			Usuario usuario = servicioUsuario.buscarUsuarioPorID(id_user);
 
 			model.put("usuario", usuario);
 			view = "editarPerfil";
-		}
-		catch(Exception e) {
+		} catch (Exception e) {
 			view = "errorVisualizacionPerfil";
 		}
-		
+
 		return new ModelAndView(view, model);
 
 	}
 
 	@RequestMapping(path = "actualizarCambiosPerfil", method = RequestMethod.POST)
-	public ModelAndView actualizarCambiosPerfil(HttpSession session) {
+	public ModelAndView actualizarCambiosPerfil(@RequestParam("nombre")String nombre, @RequestParam("email") String email, @RequestParam("password") String password ,HttpSession session) {
 		ModelMap model = new ModelMap();
-
+		
 		int id_user = Integer.parseInt(session.getAttribute("idUsuario").toString());
 		Usuario usuario = servicioUsuario.buscarUsuarioPorID(id_user);
 
-		servicioUsuario.modificarUsuario(usuario);
+		servicioUsuario.actualizarUsuario(usuario.getId(), nombre, email, password, session);
 		
-		/*session.setAttribute("nombreUsuario", usuario.getNombre());
-		session.setAttribute("nombreEmail", usuario.getEmail());
-		session.setAttribute("nombrePassword", usuario.getPassword());*/
-
+		usuario= servicioUsuario.buscarUsuarioPorID(id_user);
 		model.put("usuario", usuario);
+		
 
-		return new ModelAndView("redirect:/verPerfil", model);
-
+		return new ModelAndView("vistaPerfil", model);
 	}
 
 }

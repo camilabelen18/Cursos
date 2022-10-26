@@ -3,6 +3,8 @@ package servicios;
 import java.util.List;
 import java.util.Set;
 
+import javax.servlet.http.HttpSession;
+
 import modelo.Carrito;
 import modelo.Curso;
 import modelo.Usuario;
@@ -29,7 +31,7 @@ public interface ServicioUsuario {
 
 	void finalizarCurso(Curso curso_obtenido, Usuario usuario);
 	
-	void modificarUsuario(Usuario usuario);
+	void actualizarUsuario(int idUsuario,String nombre, String email,String password, HttpSession session);
 	
 
 }
