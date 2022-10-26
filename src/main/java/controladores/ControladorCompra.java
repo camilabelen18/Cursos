@@ -1,5 +1,7 @@
 package controladores;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -13,9 +15,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import modelo.Carrito;
+import modelo.Carrito_Curso;
 import modelo.Curso;
 import modelo.Estado;
 import modelo.Usuario;
+import servicios.ServicioCarrito;
 import servicios.ServicioCurso;
 import servicios.ServicioUsuario;
 
@@ -27,6 +32,9 @@ public class ControladorCompra {
 	
 	@Autowired
 	private ServicioCurso servicioCurso;
+	
+	@Autowired
+	private ServicioCarrito servicioCarrito;
 
 	@RequestMapping(path = "/comprar", method = RequestMethod.GET)
 	public ModelAndView verificacionCompra(@RequestParam("id_curso") int idCurso, @RequestParam("precio") Double precioCurso, HttpSession session) {
@@ -38,7 +46,7 @@ public class ControladorCompra {
 		// Si comprueba si el usuario tiene iniciada la sesión
 		if (session.getAttribute("idUsuario") != null) {
 			
-			int id_user = Integer.parseInt(session.getAttribute("idUsuario").toString());
+			int id_user = (int) session.getAttribute("idUsuario");
 			Usuario usuario = servicioUsuario.buscarUsuarioPorID(id_user);
 			
 			System.out.println("Comprobando si existe curso..");
@@ -136,6 +144,26 @@ public class ControladorCompra {
 		}
 		
 		return new ModelAndView("redirect:/misCursos", model);
+	}
+	
+	@RequestMapping(path = "/comprarCursosDelCarrito", method = RequestMethod.GET)
+	public ModelAndView comprarCursosDelCarrito(HttpSession session) {
+		
+		ModelMap model = new ModelMap();
+		
+		int id_user = (int) session.getAttribute("idUsuario");
+		Usuario usuario = servicioUsuario.buscarUsuarioPorID(id_user);
+		Carrito carrito = servicioCarrito.obtenerCarritoPorIdUsuario(id_user);
+		
+		// Se agregan los cursos a la lista del usuario
+		List<Curso> cursos = servicioCarrito.obtenerCursosDelCarrito(carrito);
+		servicioCarrito.comprarCursosDelCarrito(cursos, usuario);
+		
+		// Se vacia la lista del carrito
+		List<Carrito_Curso> cursosCarrito = servicioCarrito.obtenerCarritoCursos(carrito);
+		servicioCarrito.vaciarCursosDelCarrito(cursosCarrito);
+	
+		return new ModelAndView("compraRealizada", model);
 	}
 	
 }

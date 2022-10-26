@@ -91,4 +91,37 @@ public class RepositorioCarritoImpl implements RepositorioCarrito {
 		return cursos;
 	}
 
+
+	@Override
+	public Carrito_Curso obtenerCarritoCurso(Carrito carrito, Curso curso) {
+		
+		Session sesion = sessionFactory.getCurrentSession();
+		
+		Carrito_Curso carritoCurso = (Carrito_Curso) sesion.createCriteria(Carrito_Curso.class)
+				 					 .add(Restrictions.eq("carrito", carrito))
+				 					 .add(Restrictions.eq("curso", curso))
+				 					 .uniqueResult();
+		return carritoCurso;
+	}
+
+
+	@Override
+	public void eliminarCursoDelCarrito(Carrito_Curso carritoCurso) {
+		sessionFactory.getCurrentSession().delete(carritoCurso);
+	}
+
+
+	@Override
+	public List<Carrito_Curso> obtenerCarritoCursos(Carrito carrito) {
+		
+		Session sesion = sessionFactory.getCurrentSession();
+
+		List<Carrito_Curso> cursosCarrito = sesion.createCriteria(Carrito_Curso.class)
+											.add(Restrictions.eq("carrito", carrito))
+											.list();
+		
+		return cursosCarrito;
+	}
+
+
 }

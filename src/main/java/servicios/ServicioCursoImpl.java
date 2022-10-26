@@ -119,6 +119,7 @@ public class ServicioCursoImpl implements ServicioCurso {
 		repositorioCurso.actualizarCurso(curso);
 	}
 
+	@Override
 	public void actualizarCurso(int idCurso, String nombre, String categoria, String descripcion, Double precio) {
 		Curso curso = repositorioCurso.obtenerCursoPorID(idCurso);
 		curso.setNombre(nombre);

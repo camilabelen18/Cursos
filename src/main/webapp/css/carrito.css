@@ -6,55 +6,126 @@
 	margin-bottom: 100px;
 }
 
-
-
-/* LISTA DE CURSOS */
-.listaSeccionCarrito{
-	display: flex;
-	flex-direction: column;
-}
-
-.cuadro-seccion-carrito {
-	display: flex;
-	border: 1px solid #c7c7c7;
-	margin: 20px;
-	padding: 20px;
-}
-
-.cotenido-1-curso {
-	padding: 0px 20px;
-}
-
-.cotenido-1-curso p {
-	color: #3c3b37;
-}
-
-.total {
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-	text-align: right; 
-}
-
-.nombreCurso {
-	font-size: 20px;
-	font-weight: bold;
-	padding-bottom: 10px;
-}
-
 /* Titulo */
 #titulo {
-	height: 80px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin: 80px 0px 100px 0px;
+    margin: 100px 0px;
 }
 
 #titulo a {
 	color: #3c3b37;
 	font-size: 14px;
+}
+
+/* LISTA DE CURSOS */
+.cuadro-seccion-carrito {
+	display: flex;
+	padding: 20px;
+	justify-content: space-between;
+	border-bottom: 2px solid #c7c7c7;
+}
+
+#producto-precio {
+	display: flex;
+	justify-content: space-between;
+	border-bottom: 2px solid #c7c7c7;
+	padding-bottom: 10px;
+	font-size: 18px;
+	font-weight: bold;
+}
+
+#producto {
+	padding-left: 80px;
+}
+
+#precio {
+	padding-right: 80px;
+}
+
+.eliminar-curso {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.eliminar-curso a {
+	color: #F40000;
+	align-items: center;	
+}
+
+.img-curso {
+	width: 20%;
+}
+
+.img-curso img {
+	width: 100%;
+}
+
+.nombre-curso {
+	width: 45%;
+	display: flex;
+	align-items: center;
+}
+
+.nombre-curso p {
+	font-size: 18px;
+	font-weight: bold;
+	padding-left: 10px;
+}
+
+.precio-curso {
+	width: 20%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.precio-curso p {
+	font-size: 16px;
+	font-weight: bold;
+}
+
+#cuadro-seccion-total {
+	margin-top: 60px;
+	display: flex;
+	justify-content: center;
+}
+
+#cuadro-total {
+	width: 300px;
+	padding: 20px 40px;
+	border: 1px solid #c7c7c7;
+}
+
+#cuadro-total h2 {
+	font-size: 20px;
+	text-align: center;
+	padding-bottom: 10px;
+	border-bottom: 1px solid #c7c7c7;
+}
+
+#cuadro-total p {
+	font-size: 18px;
+	font-weight: bold;
+}
+
+#total-precio {
+	display: flex;
+	justify-content: space-between;
+	margin: 30px 0px;
+}
+
+#realizar-compra input {
+	width: 100%;
+}
+
+
+/* MENSAJES */
+#msj_error {
+	text-align : center;
+	margin-top: 100px;
+	margin-bottom: 200px;
+	font-size: 20px;
+	font-weight:bold; 
 }
 
 /*------------------------------------------RESPONSIVE----------------------------------*/
@@ -64,5 +135,4 @@
 	.cont-seccion-miscursos {
 		width: 80%;
 	}
-    
 }
