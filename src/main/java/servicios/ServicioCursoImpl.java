@@ -127,5 +127,6 @@ public class ServicioCursoImpl implements ServicioCurso {
 		curso.setDescripcion(descripcion);
 		curso.setPrecio(precio);
 		
+		repositorioCurso.actualizarCurso(curso);
 	}
 }
