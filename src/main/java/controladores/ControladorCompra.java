@@ -127,7 +127,7 @@ public class ControladorCompra {
 		else {
 			model.put("msj", "Curso no encontrado...");
 			
-		}
+		}//excepciones
 		
 		return new ModelAndView("redirect:/misCursos", model);
 	}

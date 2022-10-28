@@ -95,6 +95,7 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
 
 	@Override
 	public Boolean cancelarCurso(Curso curso_obtenido, Usuario_Curso usuarioCurso) {
+		//existe curso
 		return repositorioUsuario.cancelarCurso(curso_obtenido, usuarioCurso);	
 	}
 
