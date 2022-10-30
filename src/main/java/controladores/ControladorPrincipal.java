@@ -13,18 +13,16 @@ public class ControladorPrincipal {
 	@Autowired
 	private ServicioPrincipal servicioPrincipal;
 	
-	private static boolean ingresaPorPrimeraVez = true;
-	
 	@RequestMapping(path = "/", method = RequestMethod.GET)
     public ModelAndView inicio() {
 		
-		if (ingresaPorPrimeraVez) {
-			
-			// Se insertan todos los registros necesarios del sistema
-			servicioPrincipal.insertarRegistros();
-			
-			ingresaPorPrimeraVez = false;
-		}
+		//servicioPrincipal.insertarRegistros();
+		
+		/* De ser necesario, descomentar este metodo, eliminar la base de datos "proyecto_cursos", 
+		 * volverla a crear con el mismo nombre y ejecutar el proyecto para que se inserten 
+		 * todos los registros.
+		 * Después, volver a comentar el metodo.
+		 */
 		
         return new ModelAndView("index");
     }
