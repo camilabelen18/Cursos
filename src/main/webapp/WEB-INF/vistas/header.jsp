@@ -51,7 +51,7 @@
     				</div>
 					<a href="verPerfil">Ver perfil</a>
     				<a href="misCursos">Mis cursos</a>
-    				<a href="#">Mi giftcard</a>
+    				<a href="verGiftcard">Mi giftcard</a>
     				<a href="cerrarSesion">Cerrar sesión</a>
 				</div>
     		</div>
