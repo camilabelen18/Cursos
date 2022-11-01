@@ -19,147 +19,48 @@
 
 <%@ include file="header.jsp"%>
 
-
-  <!--   Titulo -->
-   <div class="titulo">
-       <h1>Examen</h1>
-       </div>
-   
       
-   <section id="mesa"> 
+   <div class="contenido-seccion-preguntas"> 
+   
+    <!--   Titulo -->
+   <div id="titulo">
+       <h1>Examen</h1>
+      </div>
    
    <!--   Preguntas -->
    
-            <article id="articulo_1">     
+            <div class="cuadro-seccion-preguntas">     
+            
                    <form action="#" method="post" >
-                       <p>Sirve para solo darle la posibilidad al usuario de seleccionar una sola opcion, todos los inputs del mismo grupo deben tener el mismo name pero distinto value</p>
-                       <input id="1" type="radio" name="respuesta" value="1"> Respuesta 1
+                       <p id="cuadro-pregunta">Sirve para solo darle la posibilidad al usuario de seleccionar una sola opcion, todos los inputs del mismo grupo deben tener el mismo name pero distinto value</p>
+                       <div class="cuadro-respuestas">
+                        <input id="1" type="radio" name="respuesta" value="1"> Respuesta 1
                        <input id="2" type="radio" name="respuesta" value="2"> Respuesta 2
                        <input id="3" type="radio" name="respuesta" value="3"> Respuesta 3
+                       </div>
+                     
+                     
                      
                    </form>
-               
-               </article>
-                  <article>     
-                   <form action="#" method="post" >
-                       <p>Pregunta bla bla bla </p>
-                       <input id="1" type="radio" name="respuesta" value="1"> Respuesta 1
-                       <input id="2" type="radio" name="respuesta" value="2"> Respuesta 2
-                       <input id="3" type="radio" name="respuesta" value="3"> Respuesta 3
-                     
-                   
-               
-                   </form>
-               </article>
-               <article>     
-                <form action="#" method="post" >
-                    <p> Pregunta bla bla bla</p>
-                    <input id="1" type="radio" name="respuesta" value="1"> Respuesta 1
-                    <input id="2" type="radio" name="respuesta" value="2"> Respuesta 2
-                    <input id="3" type="radio" name="respuesta" value="3"> Respuesta 3
-                  
-                
             
-                </form>
-            </article>
-            <article>     
-                <form action="#" method="post" >
-                    <p> Pregunta bla bla bla</p>
-                    <input id="1" type="radio" name="respuesta" value="1"> Respuesta 1
-                    <input id="2" type="radio" name="respuesta" value="2"> Respuesta 2
-                    <input id="3" type="radio" name="respuesta" value="3"> Respuesta 3
-                  
-                
+            </div>
             
-                </form>
-            </article>
-            <article>     
-                <form action="#" method="post" >
-                    <p> Pregunta bla bla bla</p>
-                    <input id="1" type="radio" name="respuesta" value="1"> Respuesta 1
-                    <input id="2" type="radio" name="respuesta" value="2"> Respuesta 2
-                    <input id="3" type="radio" name="respuesta" value="3"> Respuesta 3
-                  
-                
-            
-                </form>
-            </article>
-            <article>     
-                <form action="#" method="post" >
-                    <p> Pregunta bla bla bla</p>
-                    <input id="1" type="radio" name="respuesta" value="1"> Respuesta 1
-                    <input id="2" type="radio" name="respuesta" value="2"> Respuesta 2
-                    <input id="3" type="radio" name="respuesta" value="3"> Respuesta 3
-                  
-                
-            
-                </form>
-            </article>
-            <article>     
-                <form action="#" method="post" >
-                    <p> Pregunta bla bla bla</p>
-                    <input id="1" type="radio" name="respuesta" value="1"> Respuesta 1
-                    <input id="2" type="radio" name="respuesta" value="2"> Respuesta 2
-                    <input id="3" type="radio" name="respuesta" value="3"> Respuesta 3
-                  
-                
-            
-                </form>
-            </article>
-            <article>     
-                <form action="#" method="post" >
-                    <p> Pregunta bla bla bla</p>
-                    <input id="1" type="radio" name="respuesta" value="1"> Respuesta 1
-                    <input id="2" type="radio" name="respuesta" value="2"> Respuesta 2
-                    <input id="3" type="radio" name="respuesta" value="3"> Respuesta 3
-                  
-                
-            
-                </form>
-            </article>
-            <article>     
-                <form action="#" method="post" >
-                    <p> Pregunta bla bla bla</p>
-                    <input id="1" type="radio" name="respuesta" value="1"> Respuesta 1
-                    <input id="2" type="radio" name="respuesta" value="2"> Respuesta 2
-                    <input id="3" type="radio" name="respuesta" value="3"> Respuesta 3
-                  
-                
-            
-                </form>
-            </article>
-            <article>     
-                <form action="#" method="post" >
-                    <p> Pregunta bla bla bla</p>
-                    <input id="1" type="radio" name="respuesta" value="1"> Respuesta 1
-                    <input id="2" type="radio" name="respuesta" value="2"> Respuesta 2
-                    <input id="3" type="radio" name="respuesta" value="3"> Respuesta 3
-                  
-                
-            
-                </form>
-            </article>
-            
-         
-               
-   </section>
-   
-       <div class="finalizado">
+           <div id="cuadro-seccion-finalizado">
               
-                <input type="button" name="finalizoExamen" value="Finalizar" id="cambiar">
+              <div id="cuadro-finalizado">
+               <input type="button" name="finalizoExamen" value="Finalizar" id="cambiar">
              
+              <div class="contenido" id="contenido" style="display: none;">
                
-               <div class="contenido" id="contenido" style="display: none;">
-
-               
-               </div>
+              </div>
+              
+              </div>
+              
                
                <!--  Despues hacer un form con action para redirigir  -->
 
               
-          </div>
-
-         
+      </div>
 
 
 <%@ include file="/WEB-INF/vistas/footer.jsp" %>
@@ -167,6 +68,10 @@
    <script src="js/jquery-3.6.0.min.js"></script>
    <script src="js/examenFuncion.js"></script>
 
-
+            
+               
+   </div>
+   
+    
 </body>
 </html>

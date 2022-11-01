@@ -3,53 +3,70 @@ body{
     font-family: 'Roboto', sans-serif;
 }
 
-.titulo{
- align-items: center;
- text-align: center;
-	}	
-
-section{
-    border:1px solid #ccc;
-    margin:0.5em;
-    border-radius: 1em;
-    width: 80%;
-    margin: auto;
-    background-color:rgb(128, 255, 255);
-    margin-bottom:1em;
-    color:#fff;
-    padding:1em;
-    align-items: center;
-    text-align: center;
-}
-article{
-    padding:1em;
-    background-color:#fff;
-    color: #000;
-    border-radius: 0.5em;
-    margin: 0.5em 0;
-}
-
-.finalizado{
-	text-align: center;
-    align-items: center;
-	padding:1em;
-    background-color:#fff;
-    color: #000;
-    border-radius: 0.5em;
-    margin: 0.5em 0;
+/* SECCION PREGUNTAS */
+.contenido-seccion-preguntas{
+   width: 60%;
+	margin: auto;
+	margin-bottom: 100px;
 	
 }
 
-.contenido{
-	text-align: center;
-    align-items: center;
-	padding:1em;
-    background-color:#fff;
-    color: #000;
-    border-radius: 0.5em;
-    margin: 0.5em 0;
-	
+/* Titulo */
+#titulo {
+    margin: 100px 0px;
 }
+
+#titulo a {
+	color: #3c3b37;
+	font-size: 14px;
+}
+	
+/* LISTA DE PREGUNTAS */
+.cuadro-seccion-preguntas {
+	display: flex;
+	padding: 30px;
+	margin: 20px;
+	justify-content: space-between;
+	border-bottom: 2px solid #c7c7c7;
+	border-top: 2px solid #c7c7c7;
+}
+
+/* PREGUNTA */
+#cuadro-pregunta{
+	margin-top: 0px;
+	display: flex;
+	justify-content: center;
+	margin-bottom: 20px;
+}
+
+/* RESPUESTAS */
+.cuadro-respuestas{
+	display: flex;
+	justify-content: center;
+}
+
+
+/*El resultado Total */
+#cuadro-seccion-finalizado {
+	margin-top: 60px;
+	display: flex;
+	justify-content: center;
+}
+
+#cuadro-finalizado {
+	width: 300px;
+	padding: 20px 40px;
+	border: 1px solid #c7c7c7;
+}
+
+	
+	
+	
+	
+	
+
+
+
 
 /*------------------------------------------RESPONSIVE----------------------------------*/
 
