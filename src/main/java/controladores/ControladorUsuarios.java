@@ -1,5 +1,7 @@
 package controladores;
 
+import java.io.IOException;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,22 +12,20 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import modelo.Curso;
-
-import modelo.DatosCreacionCurso;
-import modelo.DatosLogin;
-import modelo.DatosRegistro;
-import modelo.Usuario;
-import servicios.ServicioCurso;
-import servicios.ServicioUsuario;
+import modelo.*;
+import servicios.*;
 
 @Controller
 public class ControladorUsuarios {
 
 	@Autowired
 	private ServicioUsuario servicioUsuario;
+	
+	@Autowired
+	private ServicioSubirImagen servicioSubirImagen;
 
 	@RequestMapping("/registro")
 	public ModelAndView irARegistro() {
@@ -173,6 +173,21 @@ public class ControladorUsuarios {
 		model.put("usuario", usuario);
 		
 
+		return new ModelAndView("vistaPerfil", model);
+	}
+	
+	@RequestMapping(path = "cambiarFotoPerfil", method = RequestMethod.POST)
+	public ModelAndView cambiarFotoPerfil(HttpSession session, @RequestParam("imagen") MultipartFile foto) throws IOException {
+		ModelMap model = new ModelMap();
+		
+		int id_user = Integer.parseInt(session.getAttribute("idUsuario").toString());
+		Usuario usuario = servicioUsuario.buscarUsuarioPorID(id_user);
+		
+		String nombreImagen = servicioSubirImagen.guardarImagen(foto);
+		usuario.setImagen(nombreImagen);
+		
+		servicioUsuario.actualizarFotoPerfil(usuario, nombreImagen);
+		
 		return new ModelAndView("vistaPerfil", model);
 	}
 

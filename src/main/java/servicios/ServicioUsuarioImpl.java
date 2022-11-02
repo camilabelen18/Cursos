@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import modelo.Carrito;
 import modelo.Curso;
@@ -145,6 +146,13 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
 			usuario.setPassword(password);
 		}
 
+	}
+
+	@Override
+	public void actualizarFotoPerfil(Usuario usuario, String nombreImagen) {
+		
+		usuario.setImagen(nombreImagen);
+		repositorioUsuario.actualizarUsuario(usuario);
 	}
 
 }
