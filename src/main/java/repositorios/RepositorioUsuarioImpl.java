@@ -2,6 +2,11 @@ package repositorios;
 
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -13,10 +18,10 @@ import org.springframework.stereotype.Repository;
 
 import modelo.Carrito;
 import modelo.Curso;
+import modelo.Curso_Unidad;
 import modelo.Estado;
 import modelo.Usuario;
-import modelo.UsuarioCurso;
-import servicios.ServicioUsuarioCurso;
+import modelo.Usuario_Curso;
 
 @Repository
 @Transactional
@@ -24,9 +29,6 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario{
 
 	@Autowired
 	private SessionFactory sessionFactory;
-	
-	@Autowired
-	private ServicioUsuarioCurso servicioUsuarioCurso;
 	
 	@Override
 	public Boolean buscarTarjetaEmail(Integer nroTarjeta, String email) {
@@ -62,7 +64,9 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario{
 		
 		Session sesion = sessionFactory.getCurrentSession();
 		
-		UsuarioCurso usuarioCurso = new UsuarioCurso();
+		Usuario_Curso usuarioCurso = new Usuario_Curso();
+		usuarioCurso.setFecha_incio_compra(LocalDate.now());
+		usuarioCurso.setHora(LocalTime.now());
 		usuarioCurso.setCurso(curso_obtenido);
 		usuarioCurso.setUsuario(usuario);
 		
@@ -93,22 +97,57 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario{
 		
 		Session sesion = sessionFactory.getCurrentSession();
 		
-		// Se obtiene un usuario por su id
-		
 		Usuario curso = sesion.get(Usuario.class, id_user);
 		
 		return curso;
 	}
-
 	
 	@Override
-	public void cancelarCurso(Curso curso_obtenido, Usuario usuario) {
+	public Boolean cancelarCurso(Curso curso_obtenido, Usuario_Curso usuarioCurso) {
 		
-		actualizarEstado(curso_obtenido,Estado.CANCELADO);
+		if (restarFechas(usuarioCurso) == true) {
+			
+			actualizarEstado(curso_obtenido,Estado.CANCELADO);
+			return true;
+		}
+		
+		return false;
 	}
 	
-	private void actualizarEstado(Curso curso_obtenido, Estado estado) {
+	private Boolean restarFechas(Usuario_Curso usuarioCurso) {
 		
+		Long diferencia_dias = ChronoUnit.DAYS.between(usuarioCurso.getFecha_incio_compra(), LocalDate.now());
+		
+		if (diferencia_dias == 1) {	
+			
+			Long minuto = ChronoUnit.MINUTES.between(usuarioCurso.getHora(),LocalTime.now());
+			
+			if(minuto <= 2) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	@Override
+	public Usuario_Curso obtenerUsuarioCurso(Curso curso_obtenido, Usuario usuario) {
+		
+		Session sesion = sessionFactory.getCurrentSession();
+		
+		Usuario_Curso usuarioCurso = (Usuario_Curso) sesion.createCriteria(Usuario_Curso.class)
+									 .add(Restrictions.eq("usuario", usuario))
+									 .add(Restrictions.eq("curso", curso_obtenido))
+									 .uniqueResult();
+		
+		return usuarioCurso;
+	}
+	
+	@Override
+	public void cambiarEstadoCurso(Curso curso_obtenido, Estado estado) {
+		actualizarEstado(curso_obtenido, estado);
+	}
+
+	private void actualizarEstado(Curso curso_obtenido, Estado estado) {
 		curso_obtenido.setEstado(estado);
 		sessionFactory.getCurrentSession().update(curso_obtenido);
 	}
@@ -117,43 +156,32 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario{
 	public void eliminarCurso(Curso curso_obtenido, Usuario usuario) {
 		
 		Session sesion = sessionFactory.getCurrentSession();
-		
-		List<Curso> lista_cursos = servicioUsuarioCurso.obtenerCursosDelUsuario(usuario);
-
-		for (int i = 0; i < lista_cursos.size(); i++) {
-			
-			if(lista_cursos.get(i).getId() == curso_obtenido.getId()) {
 				
-				servicioUsuarioCurso.obtenerCursosDelUsuario(usuario).remove(i);
-				sesion.update(usuario);
-			}
+		Usuario_Curso usuarioCurso = (Usuario_Curso) sesion.createCriteria(Usuario_Curso.class)
+				 					 .add(Restrictions.eq("usuario", usuario))
+				 					 .add(Restrictions.eq("curso", curso_obtenido))
+				 					 .uniqueResult();
+		
+		sesion.delete(usuarioCurso);
+	}
+	
+	@Override
+	public List<Curso> obtenerCursosDelUsuario(Usuario usuario) {
+		
+		Session sesion = sessionFactory.getCurrentSession();
+
+		List<Usuario_Curso> usuario_cursos = sesion.createCriteria(Usuario_Curso.class)
+											 .add(Restrictions.eq("usuario", usuario))
+											 .list();
+		
+		List<Curso> lista_curso = new ArrayList<Curso>();
+		
+		for (Usuario_Curso usuarioCurso : usuario_cursos) {
+			
+			lista_curso.add(usuarioCurso.getCurso());
 		}
-	
+
+		return lista_curso;
 	}
-
-	@Override
-	public void finalizarCurso(Curso curso_obtenido, Usuario usuario) {
-		
-		actualizarEstado(curso_obtenido,Estado.FINALIZADO);
-
-//		Session sesion = sessionFactory.getCurrentSession();
-//
-//		usuario.getMisCursos().add(curso_obtenido);
-//
-//		sesion.update(usuario);
-//		
-	}
-	
-	@Override
-	public void cambiarEstadoCurso(Curso curso_obtenido, Estado estado) {
-		actualizarEstado(curso_obtenido,estado);
-		
-	}
-
-	
-
-	
-
-	
 
 }

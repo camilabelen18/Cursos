@@ -4,6 +4,7 @@ import java.util.List;
 
 import modelo.Curso;
 import modelo.Estado;
+import modelo.Unidad;
 import modelo.Usuario;
 
 public interface ServicioCurso {
@@ -14,7 +15,7 @@ public interface ServicioCurso {
 	
 	List<Curso> getCursosPorNombre(String nombreCurso);
 	
-	Curso busquedaPorID(int id);
+	Curso buscarCursoPorId(int id);
 
 	void agregarCurso(String nombre, String Categoria, String descripcion, Double precio, String imagen);
 
@@ -24,6 +25,12 @@ public interface ServicioCurso {
 
 	void cambiarEstadoCurso(Curso curso_obtenido, Estado estado);
 
+	List<Unidad> obtenerUnidades(Curso curso);
+
+	Unidad obtenerUnidadPorID(Integer unidad_id);
+
+	void completarUnidad(Unidad unidad, Curso curso, List<Unidad> unidades);
+	
 	void actualizarCurso(int idCurso, String nombre, String categoria, String descripcion, Double precio);
 
 }

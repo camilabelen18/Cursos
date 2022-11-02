@@ -36,7 +36,7 @@ public class RepositorioCarritoImpl implements RepositorioCarrito {
 		
         Session sesion = sessionFactory.getCurrentSession();
         
-        CarritoCurso carritoCurso = new CarritoCurso();
+        Carrito_Curso carritoCurso = new Carrito_Curso();
         
         carritoCurso.setCarrito(carrito);
         carritoCurso.setCurso(curso_obtenido);
@@ -75,22 +75,53 @@ public class RepositorioCarritoImpl implements RepositorioCarrito {
 	@Override
 	public List<Curso> obtenerCursosDelCarrito(Carrito carrito) {
 		
-
 		Session sesion = sessionFactory.getCurrentSession();
 
-		List<CarritoCurso> lista_carrito_curso = sesion.createCriteria(CarritoCurso.class).list();
-		
-		List<Curso> lista_curso = new ArrayList<Curso>();
-		
-		for (CarritoCurso carritoCurso : lista_carrito_curso) {
-			
-			if (carritoCurso.getCarrito().getId() == carrito.getId()) {
-				
-				lista_curso.add(carritoCurso.getCurso());
-			}
-		}
+		List<Carrito_Curso> carrito_cursos = sesion.createCriteria(Carrito_Curso.class)
+											.add(Restrictions.eq("carrito", carrito))
+											.list();
 
-		return lista_curso;
+		List<Curso> cursos = new ArrayList<Curso>();
+		
+		for (Carrito_Curso carritoCurso : carrito_cursos) {
+			
+			cursos.add(carritoCurso.getCurso());
+		}
+		
+		return cursos;
 	}
+
+
+	@Override
+	public Carrito_Curso obtenerCarritoCurso(Carrito carrito, Curso curso) {
+		
+		Session sesion = sessionFactory.getCurrentSession();
+		
+		Carrito_Curso carritoCurso = (Carrito_Curso) sesion.createCriteria(Carrito_Curso.class)
+				 					 .add(Restrictions.eq("carrito", carrito))
+				 					 .add(Restrictions.eq("curso", curso))
+				 					 .uniqueResult();
+		return carritoCurso;
+	}
+
+
+	@Override
+	public void eliminarCursoDelCarrito(Carrito_Curso carritoCurso) {
+		sessionFactory.getCurrentSession().delete(carritoCurso);
+	}
+
+
+	@Override
+	public List<Carrito_Curso> obtenerCarritoCursos(Carrito carrito) {
+		
+		Session sesion = sessionFactory.getCurrentSession();
+
+		List<Carrito_Curso> cursosCarrito = sesion.createCriteria(Carrito_Curso.class)
+											.add(Restrictions.eq("carrito", carrito))
+											.list();
+		
+		return cursosCarrito;
+	}
+
 
 }

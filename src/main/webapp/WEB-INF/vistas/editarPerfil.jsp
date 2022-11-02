@@ -5,12 +5,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Editar Perfil</title>
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, maximum-scale=1">
-<link rel="stylesheet" href="css/styles.css">
-<link rel="stylesheet" href="css/editarPerfil.css">
+	<meta charset="UTF-8">
+	<title>Editar Perfil</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<link rel="shortcut icon" href="imagenes/favicon.ico">
+	<link rel="stylesheet" href="css/styles.css">
+	<link rel="stylesheet" href="css/editarPerfil.css">
 </head>
 <body>
 	<%@ include file="header.jsp"%>
