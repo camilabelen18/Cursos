@@ -1,17 +1,16 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<title>Mis Cursos</title>
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, maximum-scale=1">
-<link rel="stylesheet" href="css/styles.css">
-<link rel="stylesheet" href="css/misc.css">
+	<meta charset="UTF-8">
+	<title>Mis Cursos</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<link rel="shortcut icon" href="imagenes/favicon.ico">
+	<link rel="stylesheet" href="css/styles.css">
+	<link rel="stylesheet" href="css/misc.css">
 </head>
 <body>
 
@@ -25,15 +24,15 @@
 				<button id="filtrarPor">Filtrar por</button>
 				<div class="dropdown-content">
 					<a href="misCursos">Todos los cursos</a>
-					<a href="verCursosPorEstado?estado=EN_CURSO">En Curso</a>
-					<a href="verCursosPorEstado?estado=FINALIZADO">Finalizado</a>
-					<a href="verCursosPorEstado?estado=CANCELADO">Cancelado</a>
+					<a href="verCursosPorEstado?estado=EN_CURSO">En curso</a>
+					<a href="verCursosPorEstado?estado=FINALIZADO">Completados</a>
+					<a href="verCursosPorEstado?estado=CANCELADO">Cancelados</a>
 				</div>
 			</div>
 		</div>
 		
-		<c:if test="${not empty curso_cancelado}">
-			<p class="msj_error">${curso_cancelado}</p>
+		<c:if test="${not empty msj}">
+			<p class="msj_info">${msj}</p>
 		</c:if>
 
 		<div class="listaSeccionCursos">
@@ -54,15 +53,26 @@
 					</div>
 
 					<div class="cotenido-2-curso">
-						<c:if test="${curso.estado == 'EN_CURSO'}">
-							<p class="estado">EN CURSO</p>
-						</c:if>
-						<c:if test="${curso.estado != 'EN_CURSO'}">
-						<p class="estado">${curso.estado}</p>
-						</c:if>
 
+						<c:if test="${curso.estado == 'EN_CURSO'}">
+							<p id="estadoEnCurso">En curso</p>
+							<form action="verCurso?curso_id=${curso.id}" method="POST">
+								<input type="submit" name="verCurso" value="Ver curso">
+							</form>
+							<form action="cancelarCompra?curso_id=${curso.id}" method="POST">
+								<input type="submit" name="cancelar" value="Cancelar">
+							</form>
+						</c:if>
+						
+						<c:if test="${curso.estado == 'FINALIZADO'}">
+							<p id="estadoCompletado">Completado</p>
+							<form action="verCurso?curso_id=${curso.id}" method="POST">
+								<input type="submit" name="verCurso" value="Ver curso">
+							</form>
+						</c:if>
 
 						<c:if test="${curso.estado == 'CANCELADO'}">
+							<p id="estadoCancelado">Cancelado</p>
 							<form action="eliminarCompra?curso_id=${curso.id}" method="POST">
 								<input type="submit" name="eliminar" value="Eliminar">
 							</form>
@@ -73,17 +83,9 @@
 							</form>
 						</c:if>
 
-						<c:if test="${curso.estado == 'EN_CURSO'}">
-							<form action="verCurso?curso_id=${curso.id}" method="POST">
-								<input type="submit" name="verCurso" value="Ver curso">
-							</form>
-							<form action="cancelarCompra?curso_id=${curso.id}" method="POST">
-								<input type="submit" name="cancelar" value="cancelar">
-							</form>
-						</c:if>
 					</div>
 				</div>
-
+				
 			</c:forEach>
 
 		</div>

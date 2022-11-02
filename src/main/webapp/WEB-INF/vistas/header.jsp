@@ -43,19 +43,18 @@
 		<c:if test='<%= session.getAttribute("idUsuario") != null %>'>
     		
     		<div class="menuCuentaUsuario">
-    			<div class="usuarioNombreFoto">
-    			<a href="verPerfil">
-    				<img id="fotoUsuario" src="imagenes/usuario.png">
-    				<p><%= session.getAttribute("nombreUsuario") %></p>
-    				</a>
-    			</div>
-    			<div class="linksUsuario">
-    				<a href="editarPerfil">Editar perfil</a>
-    				<a href="misCursos">Ver mis cursos</a>
+    			<img id="fotoUsuario" src="imagenes/usuario.png">
+    			<div class="contenido-menu">
+    				<div class="fotoNombreUsuario">
+    					<img id="fotoGrandeUsuario" src="imagenes/usuario.png">
+    					<p><%= session.getAttribute("nombreUsuario") %></p>
+    				</div>
+					<a href="verPerfil">Ver perfil</a>
+    				<a href="misCursos">Mis cursos</a>
+    				<a href="verGiftcard">Mi giftcard</a>
     				<a href="cerrarSesion">Cerrar sesión</a>
-    			</div>
+				</div>
     		</div>
-    		
 		</c:if>
 
 	</div>

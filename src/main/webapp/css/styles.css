@@ -104,26 +104,62 @@ input[type="submit"]:hover {
 
 #fotoUsuario {
 	width: 50px;
+	padding: 0px 10px;
+}
+
+#fotoUsuario:hover {
+	cursor: pointer;
 }
 
 .menuCuentaUsuario {
+	display: inline-block;
+	position: relative;
+}
+
+.contenido-menu {
+	display: none;
+    position: absolute;
+    z-index: 1;
+    right: 0px;
+    width: 240px;
+    overflow: auto;
+    background-color: white;
+    border: 1px solid #acacac;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+}
+
+.menuCuentaUsuario:hover .contenido-menu {
+	display: block;
+	cursor: pointer;
+}
+
+.contenido-menu a {
+    display: block;
+    color: #000000;
+    padding: 12px 20px;
+    text-decoration: none;
+}
+
+.contenido-menu a:hover {
+	background-color: #f2f2f2;
+}
+
+.fotoNombreUsuario {
 	display: flex;
+	padding: 20px 20px;
+	border-bottom: 1px solid #acacac;
 }
 
-.menuCuentaUsuario a {
-	color: #3c3b37;
+.fotoNombreUsuario p {
+	align-self: center;
+	font-size: 20px;
+	font-weight: bold;
+	color: black;
+	padding-left: 20px;
 }
 
-.usuarioNombreFoto {
-	padding: 0px 20px;
-	text-align: center;
-}
-
-.linksUsuario {
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-	text-align: right;
+#fotoGrandeUsuario {
+	width: 80px;
 }
 
 /* NAVBAR */

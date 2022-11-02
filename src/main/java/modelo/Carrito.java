@@ -3,7 +3,7 @@ package modelo;
 import javax.persistence.*;
 
 @Entity
-@Table(name="Carrito")
+@Table(name="Carritos")
 public class Carrito {
 
 	

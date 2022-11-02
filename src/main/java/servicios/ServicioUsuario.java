@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import modelo.Carrito;
 import modelo.Curso;
 import modelo.Usuario;
+import modelo.Usuario_Curso;
 
 public interface ServicioUsuario {
 
@@ -25,13 +26,16 @@ public interface ServicioUsuario {
 
 	boolean existeCursoEnListaUsuario(int idCurso, Usuario usuario);
 
-	void cancelarCurso(Curso curso_obtenido, Usuario usuario);
+	List<Curso> obtenerCursosDelUsuario(Usuario usuario);
+	
+	Boolean cancelarCurso(Curso curso_obtenido, Usuario_Curso usuarioCurso);
 
 	void eliminarCurso(Curso curso_obtenido, Usuario usuario);
 
-	void finalizarCurso(Curso curso_obtenido, Usuario usuario);
+	void finalizarCurso(Curso curso_obtenido);
 	
 	void actualizarUsuario(int idUsuario,String nombre, String email,String password, HttpSession session);
-	
+
+	Usuario_Curso obtenerUsuarioCurso(Curso curso_obtenido, Usuario usuario);
 
 }

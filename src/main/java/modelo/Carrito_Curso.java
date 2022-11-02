@@ -12,23 +12,23 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="carrito_curso")
-public class CarritoCurso {
+public class Carrito_Curso {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id")
 	private int id;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
 	@JoinColumn(name = "carrito_id")
 	private Carrito carrito;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
 	@JoinColumn(name = "curso_id")
 	private Curso curso;
 	
 	
-	public CarritoCurso() {}
+	public Carrito_Curso() {}
 
 	public int getId() {
 		return id;

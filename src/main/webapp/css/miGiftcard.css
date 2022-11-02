@@ -1,0 +1,82 @@
+
+/* MI GIFTCARD */
+.tituloGiftcard {
+	width: 800px;
+	margin: auto;
+	font-size: 20px;
+    font-weight: bold;
+    margin-top: 100px;
+    margin-bottom: 60px;
+}
+
+.contenedor-miGiftcard {
+	width: 800px;
+	margin: auto;
+	margin-bottom: 150px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+
+#contMiGiftcard-1 {
+	width: 50%;
+	color: white;
+}
+
+#giftcard {
+	background-image: url("../imagenes/default-giftcard.jpg");
+	background-color: #cccccc;
+    height: 400px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#contMiGiftcard-1 h2 {
+    font-weight: bold;
+    font-size: 30px;
+    text-align: center;
+    padding: 100px 0px;
+}
+
+#numTarjeta {
+	padding-top: 50px;
+	padding-left: 50px;
+}
+
+#numTarjeta p {
+	padding-bottom: 10px;
+}
+
+#contMiGiftcard-2 {
+	width: 42%;
+	height: 300px;
+	background-color: #F0F0F0;
+	display: flex;
+	flex-direction: column;
+}
+
+#contMiGiftcard-2 div {
+	text-align: center;
+}
+
+.giftcardText {
+	padding-top: 55px;
+}
+
+.giftcardNum {
+	width: 60%;
+	margin: auto;
+    padding: 6px;
+    margin-top: 15px;
+    border-radius: 20px;
+    background-color: white;
+    color: #515050;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.giftcardNum:hover {
+	background-color: #63c654;
+    color: white;
+}

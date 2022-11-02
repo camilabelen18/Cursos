@@ -10,10 +10,13 @@ import org.springframework.stereotype.Service;
 
 import modelo.Carrito;
 import modelo.Curso;
+import modelo.Estado;
+import modelo.Unidad;
 import modelo.Usuario;
+import modelo.Usuario_Curso;
 import repositorios.RepositorioCarrito;
+import repositorios.RepositorioCurso;
 import repositorios.RepositorioUsuario;
-import repositorios.RepositorioUsuarioCurso;
 
 @Service
 @Transactional
@@ -26,8 +29,8 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
 	private RepositorioCarrito repositorioCarrito;
 
 	@Autowired
-	private RepositorioUsuarioCurso repositorioUsuarioCurso;
-
+	private RepositorioCurso repositorioCurso;
+	
 	@Override
 	public Boolean validarTarjeta(Integer nroTarjeta, String email) {
 		return repositorioUsuario.buscarTarjetaEmail(nroTarjeta, email);
@@ -74,10 +77,9 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
 	public boolean existeCursoEnListaUsuario(int idCurso, Usuario usuario) {
 
 		boolean yaExisteElCurso = false;
-		List<Curso> cursos = repositorioUsuarioCurso.obtenerCursosDelUsuario(usuario);
-
-		// Se recorre la lista de los cursos del usuario y se verifica si ya existe un
-		// curso
+		List<Curso> cursos = repositorioUsuario.obtenerCursosDelUsuario(usuario);
+		
+		// Se recorre la lista de los cursos del usuario y se verifica si ya existe un curso
 		// con el id del curso seleccionado
 		for (Curso curso : cursos) {
 
@@ -92,8 +94,9 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
 	}
 
 	@Override
-	public void cancelarCurso(Curso curso_obtenido, Usuario usuario) {
-		repositorioUsuario.cancelarCurso(curso_obtenido, usuario);
+	public Boolean cancelarCurso(Curso curso_obtenido, Usuario_Curso usuarioCurso) {
+		//existe curso
+		return repositorioUsuario.cancelarCurso(curso_obtenido, usuarioCurso);	
 	}
 
 	@Override
@@ -102,11 +105,33 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
 	}
 
 	@Override
-	public void finalizarCurso(Curso curso_obtenido, Usuario usuario) {
-		repositorioUsuario.finalizarCurso(curso_obtenido, usuario);
+	public void finalizarCurso(Curso curso_obtenido) {
+		
+		curso_obtenido.setEstado(Estado.FINALIZADO);
+		curso_obtenido.setCursoTerminado(true);
+		curso_obtenido.setProgreso(100.0);
+		repositorioCurso.actualizarCurso(curso_obtenido);
+		
+		List<Unidad> unidades = repositorioCurso.obtenerUnidadesDelCurso(curso_obtenido);
+		
+		for (Unidad unidad : unidades) {
+			
+			unidad.setCompletado(true);
+			repositorioCurso.actualizarUnidad(unidad);
+		}
+		
+	}
+	
+	@Override
+	public List<Curso> obtenerCursosDelUsuario(Usuario usuario) {
+		return repositorioUsuario.obtenerCursosDelUsuario(usuario);
 	}
 
 	@Override
+	public Usuario_Curso obtenerUsuarioCurso(Curso curso_obtenido, Usuario usuario) {
+		return repositorioUsuario.obtenerUsuarioCurso(curso_obtenido, usuario);
+	}
+
 	public void actualizarUsuario(int idUsuario, String nombre, String email, String password, HttpSession session) {
 		Usuario usuario = repositorioUsuario.buscarUsuarioPorID(idUsuario);
 		if (nombre != "") {
@@ -121,7 +146,5 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
 		}
 
 	}
-
-
 
 }
