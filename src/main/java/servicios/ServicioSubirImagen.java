@@ -11,7 +11,8 @@ import org.springframework.web.multipart.MultipartFile;
 public class ServicioSubirImagen {
 	
 	// Carpeta en la que se van a guardar las imagenes
-	private String folder = "\\Documents\\GitHub\\Cursos\\subidas\\";
+	//private String folder = "\\Documents\\GitHub\\Cursos\\subidas\\";
+	private String folder = "\\subidas\\";
 	
 	public String guardarImagen(MultipartFile foto) throws IOException {
 		
@@ -21,7 +22,8 @@ public class ServicioSubirImagen {
 			// Se obtiene la imagen en bytes
 			byte bytes[] = foto.getBytes();
 		
-			String ubicacionProyecto = System.getProperty("user.home");
+			//String ubicacionProyecto = System.getProperty("user.home");
+			String ubicacionProyecto = System.getProperty("user.dir");
 			
 			// Ruta de como se van a guardar las imagenes
 			Path path = Paths.get(ubicacionProyecto + folder + foto.getOriginalFilename());
