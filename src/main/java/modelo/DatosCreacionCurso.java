@@ -9,6 +9,19 @@ public class DatosCreacionCurso {
 	private String descripcion;
 	private Double precio;
 	private String imagen;
+	
+	
+	public DatosCreacionCurso() {
+		super();
+	}
+
+	public DatosCreacionCurso(String nombre, String categoria, String descripcion, Double precio, String imagen) {
+		this.nombre = nombre;
+		this.categoria = categoria;
+		this.descripcion = descripcion;
+		this.precio = precio;
+		this.imagen = imagen;
+	}
 
 	public String getNombre() {
 		return nombre;
