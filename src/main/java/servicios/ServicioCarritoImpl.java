@@ -61,7 +61,15 @@ public class ServicioCarritoImpl implements ServicioCarrito {
 	@Override
 	public List<Curso> obtenerCursosDelCarrito(Carrito carrito) {
 		
-		return repositorioCarrito.obtenerCursosDelCarrito(carrito);
+		List<Curso> cursosCarrito = repositorioCarrito.obtenerCursosDelCarrito(carrito);
+		
+		if (!cursosCarrito.isEmpty()) {
+			
+			return cursosCarrito;
+		}
+		else {
+			throw new ListaCarritoException();
+		}
 	}
 
 

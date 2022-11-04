@@ -1,6 +1,4 @@
-package ar.edu.unlam.tallerweb1.infrastructure;
 
-import ar.edu.unlam.tallerweb1.SpringTest;
 import modelo.*;
 import org.junit.Test;
 import org.springframework.test.annotation.Rollback;

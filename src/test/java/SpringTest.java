@@ -1,4 +1,3 @@
-package ar.edu.unlam.tallerweb1;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -14,7 +13,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 // Clase base para los test que se pretende que se corran dentro del contexto de spring
 public abstract class SpringTest {
 
-    // Tiene inyectado el session factory para que los test que hereden de este tengan acceso al mismo
+    // Tiene inyectado el session factory para que los test que here/en de este tengan acceso al mismo
     @Autowired
     private SessionFactory sessionFactory;
 

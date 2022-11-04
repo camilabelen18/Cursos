@@ -12,9 +12,14 @@ import servicios.*;
 @Controller
 public class ControladorGiftcard {
 	
-	@Autowired
 	private ServicioGiftcard servicioGiftcard;
 	
+	@Autowired
+	public ControladorGiftcard(ServicioGiftcard servicioGiftcard) {
+		this.servicioGiftcard = servicioGiftcard;
+	}
+	
+
 	@RequestMapping(path ="/verGiftcard", method = RequestMethod.GET)
 	public ModelAndView verGiftcard() {
 		

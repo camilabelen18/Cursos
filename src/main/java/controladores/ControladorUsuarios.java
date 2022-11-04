@@ -21,11 +21,15 @@ import servicios.*;
 @Controller
 public class ControladorUsuarios {
 
-	@Autowired
 	private ServicioUsuario servicioUsuario;
+	private ServicioSubirImagen servicioSubirImagen;
 	
 	@Autowired
-	private ServicioSubirImagen servicioSubirImagen;
+	public ControladorUsuarios(ServicioUsuario servicioUsuario, ServicioSubirImagen servicioSubirImagen) {
+		this.servicioUsuario = servicioUsuario;
+		this.servicioSubirImagen = servicioSubirImagen;
+	}
+	
 
 	@RequestMapping("/registro")
 	public ModelAndView irARegistro() {
@@ -47,26 +51,26 @@ public class ControladorUsuarios {
 
 		// Se comprueba si ya existe un usuario registrado mediante el email
 		if (servicioUsuario.buscarUsuarioPorEmail(datosRegistro.getEmail()) == null) {
-
-			// Se comprueba si las contraseñas ingresadas son iguales
-			if (datosRegistro.getContrasenia().equals(datosRegistro.getRepetirContrasenia())) {
-
-				servicioUsuario.registrar(datosRegistro.getNombre(), datosRegistro.getEmail(),
-						datosRegistro.getContrasenia());
+			
+			try {
+				// Si el registro no es valido, lanza una excepción
+				servicioUsuario.registrar(datosRegistro);
 
 				model.put("datosLogin", new DatosLogin());
 				viewName = "login";
-			} else {
+			}
+			catch (Exception e) {
 				model.put("error", "Las contraseñas no son iguales");
 				model.put("datosRegistro", datosRegistro);
 				viewName = "registroUsuario";
 			}
-
-		} else {
+		}
+		else {
 			model.put("error", "Ya existe un usuario registrado con el email ingresado");
 			model.put("datosRegistro", datosRegistro);
 			viewName = "registroUsuario";
 		}
+		
 		return new ModelAndView(viewName, model);
 	}
 
@@ -86,22 +90,20 @@ public class ControladorUsuarios {
 	public ModelAndView validarLogin(@ModelAttribute("datosLogin") DatosLogin datosLogin, HttpSession session) {
 
 		ModelMap model = new ModelMap();
-
-		Usuario usuarioBuscado = servicioUsuario.consultarUsuario(datosLogin.getEmail(), datosLogin.getPassword());
-
-		// Se verifica si se obtuvo un usuario en la bd con el email y contraseña
-		// enviados
-		if (usuarioBuscado != null) {
-
-			// Si crea la sesion, se guardan los datos del usuario en la sesion y se
-			// redirije al index.jsp
-
+		
+		try {
+			// Se obtiene un usuario por email y contraseña, si no existe, devuelve una excepcion
+			Usuario usuarioBuscado = servicioUsuario.consultarUsuario(datosLogin.getEmail(), datosLogin.getPassword());
+			
+			// Se guardan los datos del usuario en la sesion
 			session.setAttribute("idUsuario", usuarioBuscado.getId());
 			session.setAttribute("nombreUsuario", usuarioBuscado.getNombre());
 			session.setAttribute("ROL", usuarioBuscado.getRol());
 
+			// Redirije al home
 			return new ModelAndView("redirect:/");
-		} else {
+		}
+		catch (Exception e) {
 			// si el usuario no existe agrega un mensaje de error en el modelo
 			model.put("error", "Usuario o clave incorrectos");
 		}
