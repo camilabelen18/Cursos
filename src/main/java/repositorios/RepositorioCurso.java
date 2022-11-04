@@ -32,5 +32,7 @@ public interface RepositorioCurso {
 	void actualizarCurso(Curso curso_obtenido);
 
 	Examen obtenerExamenPorID(Integer examen_id);
+
+	List<Examen> obtenerExamenesDelCurso(Curso curso_obtenido);
 	
 }

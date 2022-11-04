@@ -136,4 +136,9 @@ public class ServicioCursoImpl implements ServicioCurso {
 		
 		return repositorioCurso.obtenerExamenPorID(examen_id);
 	}
+
+	@Override
+	public List<Examen> obtenerExamenes(Curso curso_obtenido) {
+		return repositorioCurso.obtenerExamenesDelCurso(curso_obtenido);
+	}
 }

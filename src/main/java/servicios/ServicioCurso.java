@@ -36,4 +36,6 @@ public interface ServicioCurso {
 
 	Examen obtenerExamenPorId(Integer examen_id);
 
+	List<Examen> obtenerExamenes(Curso curso_obtenido);
+
 }

@@ -253,29 +253,27 @@ public class ControladorCursos {
 
 	// Para hacer el controlador de examen
 	@RequestMapping(path = "/examen", method = RequestMethod.GET)
-	public ModelAndView examen(@RequestParam("curso_id") int curso_id) {
+	public ModelAndView examen(@RequestParam("examen_id") int examen_id,@RequestParam("curso_id") int curso_id) {
 		
 		ModelMap model = new ModelMap();
 		//Buscas el curso 	
 		Curso curso_obtenido = servicioCurso.buscarCursoPorId(curso_id); //Por ahora solo del primer curso el del php C1
-		System.out.println("ESTA EL CURSO ???????????????????????? AAAA");
-		System.out.println(curso_obtenido);
-	
-		
+
+		//Esto es robado
+		List<Examen> examenes = servicioCurso.obtenerExamenes(curso_obtenido);
 	
 		//dentro del curso obtenes el examen de ese curso 
-	//	Examen examen = servicioCurso.obtenerExamenPorId(examen_id); //Obtuvimos un examen
+		Examen examen = servicioCurso.obtenerExamenPorId(examen_id); //Obtuvimos un examen
 	    
 		
 		model.put("curso", curso_obtenido);
-	//	model.put("examen", examen);
+		model.put("examen", examen);
+		model.put("examenes", examenes);
 	//	model.put("pregunta",examen.getPregunta().getDescripcion());
 	//	model.put("respuesta", examen.getRespuesta().getDescripcion());
 		
 		
-		
 	
-
 		return new ModelAndView("vistaExamen", model);
 	}
 

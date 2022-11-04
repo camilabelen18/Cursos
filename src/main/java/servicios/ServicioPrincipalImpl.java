@@ -203,10 +203,11 @@ public class ServicioPrincipalImpl implements ServicioPrincipal {
 		sesion.save(resp9);
 		
 		//Registro de examenes, la union de preguntas, respuestas y el puntaje 
-		Examen ex1 = new Examen();
+		Examen ex1 = new Examen(preg1,resp1);
 
 		//Los guardados 
 		sesion.save(ex1);
+		
 	    sesion.save(new Examen( preg1, resp2));
 	    sesion.save(new Examen( preg1, resp3));
 		sesion.save(new Examen( preg2, resp4));

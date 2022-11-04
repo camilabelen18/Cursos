@@ -31,10 +31,10 @@
    
             <div class="cuadro-seccion-preguntas">     
                              
-                             <p id="cuadro-pregunta" >${pregunta.descripcion} </p>
+                         <!--     <p id="cuadro-pregunta" >${pregunta.descripcion} </p>
                               <div class="cuadro-respuestas">${respuesta.descripcion} </div>
           
-                      
+                      --> 
                    
                    
                    
