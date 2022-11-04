@@ -21,12 +21,16 @@ import servicios.ServicioUsuario;
 @Controller
 public class ControladorCursos {
 	
-	@Autowired
 	private ServicioCurso servicioCurso;
-	
-	@Autowired
 	private ServicioUsuario servicioUsuario;
 	
+	@Autowired
+	public ControladorCursos(ServicioCurso servicioCurso, ServicioUsuario servicioUsuario) {
+		this.servicioCurso = servicioCurso;
+		this.servicioUsuario = servicioUsuario;
+	}
+	
+
 	@RequestMapping(path = "/buscar", method = RequestMethod.GET)
 	public ModelAndView buscar(@RequestParam("nombreCurso") String nombreCurso) {
 		

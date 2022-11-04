@@ -6,8 +6,17 @@ public class DatosRegistro {
     private String email;
     private String contrasenia;
     private String repetirContrasenia;
+    
+    public DatosRegistro() {}
 
-    public String getNombre() {
+    public DatosRegistro(String nombre, String email, String contrasenia, String repetirContrasenia) {
+		this.nombre = nombre;
+		this.email = email;
+		this.contrasenia = contrasenia;
+		this.repetirContrasenia = repetirContrasenia;
+	}
+
+	public String getNombre() {
 		return nombre;
 	}
 

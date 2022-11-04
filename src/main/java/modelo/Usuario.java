@@ -30,6 +30,9 @@ public class Usuario {
 	@Column(name = "Rol")
 	private String rol;
 	
+	@Column(name = "Imagen")
+	private String imagen;
+	
 	public Usuario() { }
 
 	public Usuario(String nombre, String email, String password, String rol) {
@@ -87,10 +90,18 @@ public class Usuario {
 		this.rol = rol;
 	}
 
+	public String getImagen() {
+		return imagen;
+	}
+
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
+	}
+
 	@Override
 	public String toString() {
 		return "Usuario [id=" + id + ", nombre=" + nombre + ", email=" + email + ", password=" + password
-				+ ", nroTarjeta=" + nroTarjeta + ", rol=" + rol + "]";
+				+ ", nroTarjeta=" + nroTarjeta + ", rol=" + rol + ", imagen=" + imagen + "]";
 	}
 	
 }

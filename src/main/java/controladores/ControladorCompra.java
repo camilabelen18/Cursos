@@ -28,14 +28,17 @@ import servicios.ServicioUsuario;
 @Controller
 public class ControladorCompra {
 	
-	@Autowired
 	private ServicioUsuario servicioUsuario;
-	
-	@Autowired
 	private ServicioCurso servicioCurso;
+	private ServicioCarrito servicioCarrito;
 	
 	@Autowired
-	private ServicioCarrito servicioCarrito;
+	public ControladorCompra(ServicioUsuario servicioUsuario, ServicioCurso servicioCurso, ServicioCarrito servicioCarrito) {
+		this.servicioUsuario = servicioUsuario;
+		this.servicioCurso = servicioCurso;
+		this.servicioCarrito = servicioCarrito;
+	}
+
 
 	@RequestMapping(path = "/comprar", method = RequestMethod.GET)
 	public ModelAndView verificacionCompra(@RequestParam("id_curso") int idCurso, @RequestParam("precio") Double precioCurso, HttpSession session) {
@@ -78,22 +81,22 @@ public class ControladorCompra {
 		Usuario usuario = servicioUsuario.buscarUsuarioPorID(id_user);
 		Curso curso_obtenido = servicioCurso.buscarCursoPorId(id);
 		String viewName = "";
-
-		// Se verifica si el numero de tarjeta del usuario es igual al numero de tarjeta ingresado
-		if (usuario.getNroTarjeta().equals(nroTarjeta)) {
+		
+		try {
+			// Se verifica si el numero de tarjeta del usuario es igual al numero de tarjeta ingresado.
+			// Si no son iguales, lanza una excepcion.
+			servicioUsuario.verificarTarjetaUsuario(usuario, nroTarjeta);
 			
 			if(curso_obtenido.getEstado() == Estado.CANCELADO) {
 				
-				servicioCurso.cambiarEstadoCurso(curso_obtenido,Estado.EN_CURSO);
+				servicioCurso.cambiarEstadoCurso(curso_obtenido, Estado.EN_CURSO);
 			}
 			else {
 				servicioUsuario.guardarCursoEnListaUsuario(curso_obtenido, usuario);
 			}
-			
 			viewName = "compraRealizada";
-
 		}
-		else {
+		catch (Exception e) {
 			model.put("tarjetaIncorrecta", "El número de tarjeta ingresado es incorrecto.");
 			model.put("idCurso", curso_obtenido.getId());
 			model.put("precioCurso", curso_obtenido.getPrecio());
@@ -116,18 +119,20 @@ public class ControladorCompra {
 		
 		if(servicioUsuario.existeCursoEnListaUsuario(idCurso, usuario)) {
 			
-			if(servicioUsuario.cancelarCurso(curso_obtenido,usuarioCurso)) {
+			try {
+				// Si no se puedo cancelar el curso, se lanza una excepcion
+				servicioUsuario.cancelarCurso(curso_obtenido, usuarioCurso);
 				
 				model.put("msj", "La compra fue cancelada con exito!");
 			}
-			else {
+			catch (Exception e) {
 				model.put("msj", "La compra no puede ser cancelada luego de 48 horas");
 			}
 		}
 		else {
 			model.put("msj", "Curso no encontrado...");
 			
-		}//excepciones
+		}
 		
 		return new ModelAndView("redirect:/misCursos", model);
 	}

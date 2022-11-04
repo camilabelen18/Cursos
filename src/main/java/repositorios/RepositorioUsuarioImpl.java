@@ -184,4 +184,9 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario{
 		return lista_curso;
 	}
 
+	@Override
+	public void actualizarUsuario(Usuario usuario) {
+		sessionFactory.getCurrentSession().update(usuario);
+	}
+
 }
