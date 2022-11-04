@@ -9,7 +9,8 @@ import org.junit.Test;
 import org.springframework.web.servlet.ModelAndView;
 
 import modelo.*;
-import servicios.*;
+import servicios.ServicioSubirImagen;
+import servicios.ServicioUsuario;
 
 public class ControladorUsuariosTest {
 	

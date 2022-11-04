@@ -24,15 +24,18 @@ import repositorios.RepositorioUsuario;
 @Transactional
 public class ServicioUsuarioImpl implements ServicioUsuario {
 
-	@Autowired
 	private RepositorioUsuario repositorioUsuario;
-
-	@Autowired
 	private RepositorioCarrito repositorioCarrito;
-
-	@Autowired
 	private RepositorioCurso repositorioCurso;
 	
+	@Autowired
+	public ServicioUsuarioImpl(RepositorioUsuario repositorioUsuario, RepositorioCarrito repositorioCarrito, RepositorioCurso repositorioCurso) {
+		this.repositorioUsuario = repositorioUsuario;
+		this.repositorioCarrito = repositorioCarrito;
+		this.repositorioCurso = repositorioCurso;
+	}
+	
+
 	@Override
 	public Boolean validarTarjeta(Integer nroTarjeta, String email) {
 		return repositorioUsuario.buscarTarjetaEmail(nroTarjeta, email);
