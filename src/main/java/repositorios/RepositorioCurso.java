@@ -5,6 +5,7 @@ import java.util.List;
 import modelo.Curso;
 import modelo.Curso_Unidad;
 import modelo.Estado;
+import modelo.Examen;
 import modelo.Unidad;
 import modelo.Usuario;
 
@@ -29,5 +30,7 @@ public interface RepositorioCurso {
 	void actualizarUnidad(Unidad unidad);
 
 	void actualizarCurso(Curso curso_obtenido);
+
+	Examen obtenerExamenPorID(Integer examen_id);
 	
 }

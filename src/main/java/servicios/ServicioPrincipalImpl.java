@@ -168,6 +168,66 @@ public class ServicioPrincipalImpl implements ServicioPrincipal {
 		
 		// Nota: se insertan en total 70 registros en la base de datos al ejecutar el proyecto
 		
+		
+	
+		//NOTA Modificar si no funciona 
+		//Registro de preguntas
+		
+		Pregunta preg1 = new Pregunta("¿Permite php los atributos nulos ?");
+		Pregunta preg2 = new Pregunta("¿existen los boolean en php ?");
+		Pregunta preg3 = new Pregunta("¿el creador es steve jobs ?");
+		
+		sesion.save(preg1);
+		sesion.save(preg2);
+		sesion.save(preg3);      
+		
+	    //Registro de respuestas		
+		Respuesta resp1 = new Respuesta("Si", true);
+		Respuesta resp2 = new Respuesta("No", false);
+		Respuesta resp3 = new Respuesta("Tal vez", false);
+		Respuesta resp4 = new Respuesta("Si", true);
+		Respuesta resp5 = new Respuesta("no", false);
+		Respuesta resp6 = new Respuesta("tal ves", true);
+		Respuesta resp7 = new Respuesta("Si", true);
+		Respuesta resp8 = new Respuesta("no", false);
+		Respuesta resp9 = new Respuesta("tal ves", false);
+		
+		sesion.save(resp1);
+		sesion.save(resp2);
+		sesion.save(resp3);
+		sesion.save(resp4);
+		sesion.save(resp5);
+		sesion.save(resp6);
+		sesion.save(resp7);
+		sesion.save(resp8);
+		sesion.save(resp9);
+		
+		//Registro de examenes, la union de preguntas, respuestas y el puntaje 
+		Examen ex1 = new Examen();
+
+		//Los guardados 
+		sesion.save(ex1);
+	    sesion.save(new Examen( preg1, resp2));
+	    sesion.save(new Examen( preg1, resp3));
+		sesion.save(new Examen( preg2, resp4));
+		sesion.save(new Examen( preg2, resp5));
+		sesion.save(new Examen( preg2, resp6));
+		sesion.save(new Examen( preg3, resp7));
+		sesion.save(new Examen( preg3, resp8));
+		sesion.save(new Examen( preg3, resp9)); 
+
+		//Registro de Curso con su examen correspondiente
+		sesion.save(new Curso_Examen(c1,ex1 ));
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 	}
 
 }

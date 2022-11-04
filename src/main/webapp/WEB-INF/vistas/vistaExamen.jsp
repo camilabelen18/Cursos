@@ -30,18 +30,14 @@
    <!--   Preguntas -->
    
             <div class="cuadro-seccion-preguntas">     
-            
-                   <form action="#" method="post" >
-                       <p id="cuadro-pregunta">Sirve para solo darle la posibilidad al usuario de seleccionar una sola opcion, todos los inputs del mismo grupo deben tener el mismo name pero distinto value</p>
-                       <div class="cuadro-respuestas">
-                        <input id="1" type="radio" name="respuesta" value="1"> Respuesta 1
-                       <input id="2" type="radio" name="respuesta" value="2"> Respuesta 2
-                       <input id="3" type="radio" name="respuesta" value="3"> Respuesta 3
-                       </div>
-                     
-                     
-                     
-                   </form>
+                             
+                             <p id="cuadro-pregunta" >${pregunta.descripcion} </p>
+                              <div class="cuadro-respuestas">${respuesta.descripcion} </div>
+          
+                      
+                   
+                   
+                   
             
             </div>
             
@@ -71,6 +67,17 @@
             
                
    </div>
+   
+     <!-- 
+                   <form action="#" method="post" >
+                       <p id="cuadro-pregunta">Sirve para solo darle la posibilidad al usuario de seleccionar una sola opcion, todos los inputs del mismo grupo deben tener el mismo name pero distinto value</p>
+                       <div class="cuadro-respuestas">
+                        <input id="1" type="radio" name="respuesta" value="1"> Respuesta 1
+                       <input id="2" type="radio" name="respuesta" value="2"> Respuesta 2
+                       <input id="3" type="radio" name="respuesta" value="3"> Respuesta 3
+                       </div>   
+                   </form>
+                   -->
    
     
 </body>

@@ -4,6 +4,7 @@ import java.util.List;
 
 import modelo.Curso;
 import modelo.Estado;
+import modelo.Examen;
 import modelo.Unidad;
 import modelo.Usuario;
 
@@ -32,5 +33,7 @@ public interface ServicioCurso {
 	void completarUnidad(Unidad unidad, Curso curso, List<Unidad> unidades);
 	
 	void actualizarCurso(int idCurso, String nombre, String categoria, String descripcion, Double precio);
+
+	Examen obtenerExamenPorId(Integer examen_id);
 
 }

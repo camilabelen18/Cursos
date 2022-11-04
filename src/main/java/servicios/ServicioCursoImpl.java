@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import modelo.Curso;
 import modelo.Curso_Unidad;
 import modelo.Estado;
+import modelo.Examen;
 import modelo.Unidad;
 import modelo.Usuario;
 import modelo.Usuario_Curso;
@@ -128,5 +129,11 @@ public class ServicioCursoImpl implements ServicioCurso {
 		curso.setPrecio(precio);
 		
 		repositorioCurso.actualizarCurso(curso);
+	}
+
+	@Override
+	public Examen obtenerExamenPorId(Integer examen_id) {
+		
+		return repositorioCurso.obtenerExamenPorID(examen_id);
 	}
 }

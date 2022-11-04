@@ -131,4 +131,14 @@ public class RepositorioCursoImpl implements RepositorioCurso{
 		sessionFactory.getCurrentSession().update(curso);
 	}
 
+	@Override
+	public Examen obtenerExamenPorID(Integer examen_id) {
+		
+        Session sesion = sessionFactory.getCurrentSession();
+		
+		Examen examen = sesion.get(Examen.class, examen_id);
+		
+		return examen;
+	}
+
 }

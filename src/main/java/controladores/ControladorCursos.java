@@ -250,11 +250,31 @@ public class ControladorCursos {
 		return new ModelAndView(view, model);
 	}
 
+
 	// Para hacer el controlador de examen
 	@RequestMapping(path = "/examen", method = RequestMethod.GET)
-	public ModelAndView examen() {
-
+	public ModelAndView examen(@RequestParam("curso_id") int curso_id) {
+		
 		ModelMap model = new ModelMap();
+		//Buscas el curso 	
+		Curso curso_obtenido = servicioCurso.buscarCursoPorId(curso_id); //Por ahora solo del primer curso el del php C1
+		System.out.println("ESTA EL CURSO ???????????????????????? AAAA");
+		System.out.println(curso_obtenido);
+	
+		
+	
+		//dentro del curso obtenes el examen de ese curso 
+	//	Examen examen = servicioCurso.obtenerExamenPorId(examen_id); //Obtuvimos un examen
+	    
+		
+		model.put("curso", curso_obtenido);
+	//	model.put("examen", examen);
+	//	model.put("pregunta",examen.getPregunta().getDescripcion());
+	//	model.put("respuesta", examen.getRespuesta().getDescripcion());
+		
+		
+		
+	
 
 		return new ModelAndView("vistaExamen", model);
 	}
@@ -267,5 +287,7 @@ public class ControladorCursos {
 
 		return new ModelAndView("vistaExamenFinalizado", model);
 	}
+  
+
 
 }
