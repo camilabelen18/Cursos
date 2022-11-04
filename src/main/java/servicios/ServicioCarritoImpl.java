@@ -18,14 +18,17 @@ import repositorios.RepositorioUsuario;
 @Transactional
 public class ServicioCarritoImpl implements ServicioCarrito {
 	
-	@Autowired
 	private RepositorioCarrito repositorioCarrito;
-	
-	@Autowired
 	private RepositorioUsuario repositorioUsuario;
+	private ServicioUsuario servicioUsuario;
 	
 	@Autowired
-	private ServicioUsuario servicioUsuario;
+	public ServicioCarritoImpl(RepositorioCarrito repositorioCarrito, RepositorioUsuario repositorioUsuario, ServicioUsuario servicioUsuario) {
+		this.repositorioCarrito = repositorioCarrito;
+		this.repositorioUsuario = repositorioUsuario;
+		this.servicioUsuario = servicioUsuario;
+	}
+
 
 	@Override
 	public Carrito buscarCarritoPorId(int id_carrito) {
@@ -61,7 +64,15 @@ public class ServicioCarritoImpl implements ServicioCarrito {
 	@Override
 	public List<Curso> obtenerCursosDelCarrito(Carrito carrito) {
 		
-		return repositorioCarrito.obtenerCursosDelCarrito(carrito);
+		List<Curso> cursosCarrito = repositorioCarrito.obtenerCursosDelCarrito(carrito);
+		
+		if (!cursosCarrito.isEmpty()) {
+			
+			return cursosCarrito;
+		}
+		else {
+			throw new ListaCarritoException();
+		}
 	}
 
 

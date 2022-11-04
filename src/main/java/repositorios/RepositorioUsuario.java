@@ -28,4 +28,6 @@ public interface RepositorioUsuario {
 
 	List<Curso> obtenerCursosDelUsuario(Usuario usuario);
 
+	void actualizarUsuario(Usuario usuario);
+
 }

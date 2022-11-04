@@ -22,13 +22,16 @@ import servicios.*;
 @Controller
 public class ControladorCarrito {
 	
-	@Autowired
 	private ServicioCurso servicioCurso;
-	
-	@Autowired
 	private ServicioCarrito servicioCarrito;
 	
-	
+	@Autowired
+	public ControladorCarrito(ServicioCurso servicioCurso, ServicioCarrito servicioCarrito) {
+		this.servicioCurso = servicioCurso;
+		this.servicioCarrito = servicioCarrito;
+	}
+
+
 	@RequestMapping(path ="/vistaCarrito", method = RequestMethod.GET)
 	public ModelAndView vistaCarrito(HttpSession sesion) {
 		
@@ -38,18 +41,23 @@ public class ControladorCarrito {
 	    // Si comprueba si el usuario tiene iniciada la sesión
 	 	if (sesion.getAttribute("idUsuario") != null) {
 	 		
-	 		int id_user = (int) sesion.getAttribute("idUsuario");
-			Carrito carrito = servicioCarrito.obtenerCarritoPorIdUsuario(id_user);
-			List<Curso> cursos = servicioCarrito.obtenerCursosDelCarrito(carrito);
-		    double preciosTotal = servicioCarrito.getTotalDePrecios(cursos);
-			
-			model.put("lista_cursos_carrito", cursos);
-			model.put("precio_total", preciosTotal);
-			view = "carrito";
-			
-			// Si la lista se encuantra vacia entonces se guarda un mensaje iformativo
-			if(cursos.isEmpty()) {
-				model.put("msj", "El carrito se encuentra vacio.");
+	 		try {
+	 			int id_user = (int) sesion.getAttribute("idUsuario");
+				Carrito carrito = servicioCarrito.obtenerCarritoPorIdUsuario(id_user);
+				
+				// Si no se obtiene ningun curso del carrito entonces se lanza una excepcion
+				List<Curso> cursos = servicioCarrito.obtenerCursosDelCarrito(carrito);
+				
+			    double preciosTotal = servicioCarrito.getTotalDePrecios(cursos);
+				
+				model.put("lista_cursos_carrito", cursos);
+				model.put("precio_total", preciosTotal);
+				view = "carrito";
+			}
+	 		catch (Exception e) {
+	 			// Si el carrito se encuentra vacio entonces se guarda un mensaje iformativo
+	 			model.put("msj", "El carrito se encuentra vacio.");
+	 			view = "carrito";
 			}
 	 	}
 	 	else {

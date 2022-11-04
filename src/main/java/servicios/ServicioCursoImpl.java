@@ -24,11 +24,15 @@ import repositorios.RepositorioUsuario;
 @Transactional
 public class ServicioCursoImpl implements ServicioCurso {
 
-	@Autowired
 	private RepositorioCurso repositorioCurso;
+	private RepositorioUsuario repositorioUsuario;
 	
 	@Autowired
-	private RepositorioUsuario repositorioUsuario;
+	public ServicioCursoImpl(RepositorioCurso repositorioCurso, RepositorioUsuario repositorioUsuario) {
+		this.repositorioCurso = repositorioCurso;
+		this.repositorioUsuario = repositorioUsuario;
+	}
+	
 
 	@Override
 	public List<Curso> getCursos() {

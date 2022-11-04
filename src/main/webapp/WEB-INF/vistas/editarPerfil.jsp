@@ -44,9 +44,12 @@
 		</article>
 		
 		<article class="fotoPerfil">
-			<img id="fotoPerfil" src="imagenes/usuario.png"> <br> <input
-				id="cambiarFotoPerfil" name="cambiarFotoPerfil" type="submit"
-				value="Cambiar foto">
+			<img id="fotoPerfil" src="imagenes/usuario.png"> <br> 
+			<form action="cambiarFotoPerfil" method="post" enctype="multipart/form-data">
+				<input type="file" name="imagen" id="imagen" size="20">
+				<input id="cambiarFotoPerfil" name="cambiarFotoPerfil" type="submit" value="Cambiar foto">
+			</form>
+			
 		</article>
 	</section>
 

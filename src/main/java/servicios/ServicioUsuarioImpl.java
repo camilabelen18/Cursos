@@ -7,9 +7,11 @@ import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import modelo.Carrito;
 import modelo.Curso;
+import modelo.DatosRegistro;
 import modelo.Estado;
 import modelo.Unidad;
 import modelo.Usuario;
@@ -22,15 +24,18 @@ import repositorios.RepositorioUsuario;
 @Transactional
 public class ServicioUsuarioImpl implements ServicioUsuario {
 
-	@Autowired
 	private RepositorioUsuario repositorioUsuario;
-
-	@Autowired
 	private RepositorioCarrito repositorioCarrito;
-
-	@Autowired
 	private RepositorioCurso repositorioCurso;
 	
+	@Autowired
+	public ServicioUsuarioImpl(RepositorioUsuario repositorioUsuario, RepositorioCarrito repositorioCarrito, RepositorioCurso repositorioCurso) {
+		this.repositorioUsuario = repositorioUsuario;
+		this.repositorioCarrito = repositorioCarrito;
+		this.repositorioCurso = repositorioCurso;
+	}
+	
+
 	@Override
 	public Boolean validarTarjeta(Integer nroTarjeta, String email) {
 		return repositorioUsuario.buscarTarjetaEmail(nroTarjeta, email);
@@ -48,24 +53,41 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
 
 	@Override
 	public Usuario consultarUsuario(String email, String password) {
-		return repositorioUsuario.buscarUsuario(email, password);
+		
+		if (repositorioUsuario.buscarUsuario(email, password) != null) {
+			
+			return repositorioUsuario.buscarUsuario(email, password);
+		}
+		else {
+			throw new UsuarioInexistenteException();
+		}
 	}
 
 	@Override
-	public void registrar(String nombre, String email, String contrasenia) {
+	public Usuario registrar(DatosRegistro datosRegistro) {
 
 		Usuario nuevoUsuario = new Usuario();
 		Carrito carrito = new Carrito();
+		
+		// Se comprueba si las contraseñas ingresadas son iguales
+		if (datosRegistro.getContrasenia().equals(datosRegistro.getRepetirContrasenia())) {
+			
+			nuevoUsuario.setNombre(datosRegistro.getNombre());
+			nuevoUsuario.setEmail(datosRegistro.getEmail());
+			nuevoUsuario.setPassword(datosRegistro.getContrasenia());
+			nuevoUsuario.setRol("cliente");
+			nuevoUsuario.setNroTarjeta(999);
+			carrito.setUsuario(nuevoUsuario);
 
-		nuevoUsuario.setNombre(nombre);
-		nuevoUsuario.setEmail(email);
-		nuevoUsuario.setPassword(contrasenia);
-		nuevoUsuario.setRol("cliente");
-		nuevoUsuario.setNroTarjeta(999);
-		carrito.setUsuario(nuevoUsuario);
+			repositorioUsuario.guardarUsuario(nuevoUsuario);
+			repositorioCarrito.guardarCarrito(carrito);
+			
+			return nuevoUsuario;
+		}
+		else {
+			throw new ClavesNoSonIgualesException();
+		}
 
-		repositorioUsuario.guardarUsuario(nuevoUsuario);
-		repositorioCarrito.guardarCarrito(carrito);
 	}
 
 	@Override
@@ -95,8 +117,13 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
 
 	@Override
 	public Boolean cancelarCurso(Curso curso_obtenido, Usuario_Curso usuarioCurso) {
-		//existe curso
-		return repositorioUsuario.cancelarCurso(curso_obtenido, usuarioCurso);	
+		
+		if (repositorioUsuario.cancelarCurso(curso_obtenido, usuarioCurso) == true) {
+			return true;
+		}
+		else {
+			throw new CancelacionCursoException();
+		}
 	}
 
 	@Override
@@ -145,6 +172,25 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
 			usuario.setPassword(password);
 		}
 
+	}
+
+	@Override
+	public void actualizarFotoPerfil(Usuario usuario, String nombreImagen) {
+		
+		usuario.setImagen(nombreImagen);
+		repositorioUsuario.actualizarUsuario(usuario);
+	}
+
+	@Override
+	public Integer verificarTarjetaUsuario(Usuario usuario, Integer nroTarjeta) {
+		
+		if (usuario.getNroTarjeta().equals(nroTarjeta)) {
+			
+			return nroTarjeta;
+		}
+		else {
+			throw new TarjetaInvalidaException();
+		}
 	}
 
 }

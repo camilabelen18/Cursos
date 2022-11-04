@@ -5,10 +5,9 @@ import java.util.Set;
 
 import javax.servlet.http.HttpSession;
 
-import modelo.Carrito;
-import modelo.Curso;
-import modelo.Usuario;
-import modelo.Usuario_Curso;
+import org.springframework.web.multipart.MultipartFile;
+
+import modelo.*;
 
 public interface ServicioUsuario {
 
@@ -20,7 +19,7 @@ public interface ServicioUsuario {
 
 	Usuario consultarUsuario(String email, String password);
 
-	void registrar(String nombre, String email, String contrasenia);
+	Usuario registrar(DatosRegistro datosRegistro);
 
 	Usuario buscarUsuarioPorID(int id_user);
 
@@ -37,5 +36,10 @@ public interface ServicioUsuario {
 	void actualizarUsuario(int idUsuario,String nombre, String email,String password, HttpSession session);
 
 	Usuario_Curso obtenerUsuarioCurso(Curso curso_obtenido, Usuario usuario);
+
+	void actualizarFotoPerfil(Usuario usuario, String nombreImagen);
+
+	Integer verificarTarjetaUsuario(Usuario usuario, Integer nroTarjeta);
+
 
 }

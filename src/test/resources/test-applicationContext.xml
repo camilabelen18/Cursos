@@ -11,8 +11,11 @@
 						http://www.springframework.org/schema/tx/spring-tx-4.2.xsd">
 
 	<import resource="classpath:test-hibernateContext.xml" />
-	<context:component-scan base-package="ar.edu.unlam.tallerweb1.infrastructure" />
-	<tx:annotation-driven />
+	
+	<tx:annotation-driven transaction-manager="transactionManager" />
+	<context:component-scan base-package="controladores" />
+	<context:component-scan base-package="repositorios" />
+	<context:component-scan base-package="servicios" />
 
 </beans>
 
