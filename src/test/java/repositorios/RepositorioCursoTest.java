@@ -2,11 +2,10 @@ package repositorios;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import javax.transaction.Transactional;
-
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.Rollback;
+import org.springframework.transaction.annotation.Transactional;
 
 import archivos.SpringTest;
 import modelo.Curso;
@@ -27,7 +26,7 @@ public class RepositorioCursoTest extends SpringTest{
 		// Ejecucion
 		repositorioCurso.agregarCurso(curso);
 		// Comprobacion
-		assertThat(curso.getId()).isNotNull();
+		assertThat(curso.getId()).isNotEqualTo(0);
 	}
 
 }

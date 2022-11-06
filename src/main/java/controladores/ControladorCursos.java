@@ -226,7 +226,7 @@ public class ControladorCursos {
 	}
 	
 	@RequestMapping(path = "/finalizar", method = RequestMethod.POST)
-	public ModelAndView finalizar(@RequestParam("curso_id") int idCurso) {
+	public ModelAndView finalizarCurso(@RequestParam("curso_id") int idCurso) {
 		
 		ModelMap model = new ModelMap();
 		Curso curso_obtenido = servicioCurso.buscarCursoPorId(idCurso);

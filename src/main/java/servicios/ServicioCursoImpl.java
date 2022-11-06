@@ -58,8 +58,13 @@ public class ServicioCursoImpl implements ServicioCurso {
 	@Override
 	public Curso buscarCursoPorId(int id) {
 		
-		// Crear excepcion controlada del curso
-		return repositorioCurso.obtenerCursoPorID(id);
+		if (repositorioCurso.obtenerCursoPorID(id) != null) {
+			
+			return repositorioCurso.obtenerCursoPorID(id);
+		}
+		else {
+			throw new CursoInexistenteException();
+		}
 	}
 
 	@Override

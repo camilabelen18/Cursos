@@ -1,11 +1,9 @@
 package servicios;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 import org.junit.Test;
-import org.springframework.web.servlet.ModelAndView;
 
 import modelo.*;
 import repositorios.RepositorioCarrito;
@@ -71,6 +69,9 @@ public class ServicioUsuarioTest {
 		// Ejecución
 		when(repositorioUsuario.buscarUsuario(email, password)).thenReturn(null);
 		servicioUsuario.consultarUsuario(email, password);
+		
+		// Comprobación
+		verify(repositorioUsuario, times(1)).buscarUsuario(email, password);
 	}
 
 }
