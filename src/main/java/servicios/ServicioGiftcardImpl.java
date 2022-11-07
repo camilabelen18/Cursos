@@ -11,7 +11,14 @@ import repositorios.*;
 @Transactional
 public class ServicioGiftcardImpl implements ServicioGiftcard {
 	
-	@Autowired
 	private RepositorioGiftcard repositorioGiftcard;
+
+	@Autowired
+	public ServicioGiftcardImpl(RepositorioGiftcard repositorioGiftcard) {
+		this.repositorioGiftcard = repositorioGiftcard;
+	}
+	
+	
+	
 
 }

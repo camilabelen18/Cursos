@@ -18,14 +18,17 @@ import repositorios.RepositorioUsuario;
 @Transactional
 public class ServicioCarritoImpl implements ServicioCarrito {
 	
-	@Autowired
 	private RepositorioCarrito repositorioCarrito;
-	
-	@Autowired
 	private RepositorioUsuario repositorioUsuario;
+	private ServicioUsuario servicioUsuario;
 	
 	@Autowired
-	private ServicioUsuario servicioUsuario;
+	public ServicioCarritoImpl(RepositorioCarrito repositorioCarrito, RepositorioUsuario repositorioUsuario, ServicioUsuario servicioUsuario) {
+		this.repositorioCarrito = repositorioCarrito;
+		this.repositorioUsuario = repositorioUsuario;
+		this.servicioUsuario = servicioUsuario;
+	}
+
 
 	@Override
 	public Carrito buscarCarritoPorId(int id_carrito) {
