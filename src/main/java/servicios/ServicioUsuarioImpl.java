@@ -77,6 +77,7 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
 			nuevoUsuario.setPassword(datosRegistro.getContrasenia());
 			nuevoUsuario.setRol("cliente");
 			nuevoUsuario.setNroTarjeta(999);
+			nuevoUsuario.setImagen("default-user.png");
 			carrito.setUsuario(nuevoUsuario);
 
 			repositorioUsuario.guardarUsuario(nuevoUsuario);

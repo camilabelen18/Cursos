@@ -42,10 +42,7 @@
 		</div>
 
 		<div class="fotoPerfil">
-			<img id="fotoPerfil" src="imagenes/usuario.png"> <br> <input
-				id="cambiarFotoPerfil" name="cambiarFotoPerfil" type="submit"
-				value="Cambiar foto">
-
+			<img id="fotoPerfil" src='uploads/<%= session.getAttribute("imgUsuario") %>'>
 		</div>
 	</div>
 

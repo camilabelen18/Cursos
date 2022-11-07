@@ -10,41 +10,49 @@ import org.springframework.web.multipart.MultipartFile;
 @Service
 public class ServicioSubirImagen {
 	
-	// Carpeta en la que se van a guardar las imagenes
-	//private String folder = "\\Documents\\GitHub\\Cursos\\subidas\\";
-	private String folder = "\\subidas\\";
+	private String directorio = System.getProperty("catalina.base");
 	
-	public String guardarImagen(MultipartFile foto) throws IOException {
+	// Carpeta en la que se van a guardar las imagenes
+	private String folder = directorio + "\\wtpwebapps\\proyecto-limpio-spring\\uploads\\";
+	
+	public String guardarImagen(MultipartFile foto) {
+		
+		String nombreArchivo;
 		
 		// Se verifica que el objeto 'foto' no este vacio
 		if (!foto.isEmpty()) {
 			
-			// Se obtiene la imagen en bytes
-			byte bytes[] = foto.getBytes();
-		
-			//String ubicacionProyecto = System.getProperty("user.home");
-			String ubicacionProyecto = System.getProperty("user.dir");
+			// Se obtiene el nombre original del archivo
+			nombreArchivo = foto.getOriginalFilename();
 			
-			// Ruta de como se van a guardar las imagenes
-			Path path = Paths.get(ubicacionProyecto + folder + foto.getOriginalFilename());
+			try {
+				// Se forma el nombre completo del archivo a guardar
+				File imageFile = new File(folder + "/" + nombreArchivo);
 			
-			System.out.println(path.toAbsolutePath());
+				System.out.println(imageFile.getAbsolutePath());
 			
-			// Se guarda la imagen en la carpeta '/subidas/'
-			Files.write(path, bytes);
-			
-			// Devuelve el nombre de la imagen
-			return foto.getOriginalFilename();
+				//guardamos fisicamente
+				foto.transferTo(imageFile);
+			}
+			catch (IOException e) {
+				
+				System.out.println("Error: " + e.getMessage());
+				nombreArchivo = "default-user.png";
+			}
+		}
+		else {
+			// Se establece el nombre de la imagen por defecto
+			nombreArchivo = "default-user.png";
 		}
 		
 		// Si no se envia ninguna imagen, entonces se devuelve el nombre de la imagen por defecto
-		return "default-user.png";
+		return nombreArchivo;
 	}
 	
 	public void eliminarImagen(String nombre) {
 		
 		// Se establece la ruta de ubicacion de la imagen
-		File imagen= new File(folder + nombre);
+		File imagen= new File(folder + "/" + nombre);
 		
 		// Se elimina la imagen del servidor apache
 		imagen.delete();

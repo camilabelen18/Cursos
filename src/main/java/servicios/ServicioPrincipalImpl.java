@@ -4,6 +4,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import modelo.*;
 
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,11 +55,13 @@ public class ServicioPrincipalImpl implements ServicioPrincipal {
 		
 		Usuario cliente1 = new Usuario("Ana", "ana@gmail.com","111", "cliente");
 		cliente1.setNroTarjeta(4407);
+		
 		Carrito car1 = new Carrito();
 		car1.setUsuario(cliente1);
 		
 		Usuario cliente2 = new Usuario("Ale", "ale@gmail.com","123", "cliente");
 		cliente2.setNroTarjeta(5809);
+
 		Carrito car2 = new Carrito();
 		car2.setUsuario(cliente2);
 
@@ -168,6 +172,20 @@ public class ServicioPrincipalImpl implements ServicioPrincipal {
 		
 		// Nota: se insertan en total 70 registros en la base de datos al ejecutar el proyecto
 		
+	}
+
+	@Override
+	public void actualizarImagenDeUsuarios() {
+		
+		Session sesion = sessionFactory.getCurrentSession();
+		
+		List<Usuario> usuarios = sesion.createCriteria(Usuario.class).list();
+		
+		for (Usuario usuario : usuarios) {
+			
+			usuario.setImagen("default-user.png");
+			sesion.update(usuario);
+		}
 	}
 
 }

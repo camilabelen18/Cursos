@@ -104,7 +104,9 @@ input[type="submit"]:hover {
 
 #fotoUsuario {
 	width: 50px;
+	height: 50px;
 	padding: 0px 10px;
+	border-radius: 50%;
 }
 
 #fotoUsuario:hover {
@@ -160,6 +162,8 @@ input[type="submit"]:hover {
 
 #fotoGrandeUsuario {
 	width: 80px;
+	height: 80px;
+	border-radius: 50%;
 }
 
 /* NAVBAR */

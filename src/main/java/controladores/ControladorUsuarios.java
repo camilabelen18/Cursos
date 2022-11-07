@@ -99,6 +99,7 @@ public class ControladorUsuarios {
 			session.setAttribute("idUsuario", usuarioBuscado.getId());
 			session.setAttribute("nombreUsuario", usuarioBuscado.getNombre());
 			session.setAttribute("ROL", usuarioBuscado.getRol());
+			session.setAttribute("imgUsuario", usuarioBuscado.getImagen());
 
 			// Redirije al home
 			return new ModelAndView("redirect:/");
@@ -186,11 +187,12 @@ public class ControladorUsuarios {
 		Usuario usuario = servicioUsuario.buscarUsuarioPorID(id_user);
 		
 		String nombreImagen = servicioSubirImagen.guardarImagen(foto);
-		usuario.setImagen(nombreImagen);
 		
 		servicioUsuario.actualizarFotoPerfil(usuario, nombreImagen);
 		
-		return new ModelAndView("vistaPerfil", model);
+		session.setAttribute("imgUsuario", nombreImagen);
+		
+		return new ModelAndView("redirect:/", model);
 	}
 
 }

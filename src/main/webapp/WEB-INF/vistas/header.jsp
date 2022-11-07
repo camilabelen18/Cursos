@@ -43,10 +43,10 @@
 		<c:if test='<%= session.getAttribute("idUsuario") != null %>'>
     		
     		<div class="menuCuentaUsuario">
-    			<img id="fotoUsuario" src="imagenes/usuario.png">
+    			<img id="fotoUsuario" src='uploads/<%= session.getAttribute("imgUsuario") %>'>
     			<div class="contenido-menu">
     				<div class="fotoNombreUsuario">
-    					<img id="fotoGrandeUsuario" src="imagenes/usuario.png">
+    					<img id="fotoGrandeUsuario" src='uploads/<%= session.getAttribute("imgUsuario") %>'>
     					<p><%= session.getAttribute("nombreUsuario") %></p>
     				</div>
 					<a href="verPerfil">Ver perfil</a>
