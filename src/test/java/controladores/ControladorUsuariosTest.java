@@ -22,13 +22,13 @@ public class ControladorUsuariosTest {
 	@Test
 	public void queSePuedaRegistrarUnUsuario() {
 		
-		// Preparación
+		// Preparacion
 		DatosRegistro datosRegistro = new DatosRegistro("Martin", "martin@gmail.com", "123", "123");
 		
-		// Ejecución
+		// Ejecucion
 		ModelAndView mav = controladorUsuarios.registrarNuevoUsuario(datosRegistro);
 		
-		// Comprobación
+		// Comprobacion
 		assertThat(mav.getViewName()).isEqualTo("login");
 	}
 	

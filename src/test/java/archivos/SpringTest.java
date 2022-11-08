@@ -1,3 +1,4 @@
+package archivos;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
