@@ -83,12 +83,13 @@
 					</form>
 				</c:if>
 
-				
-				<c:forEach var="itemExamen" items="${examenes}" >
-				<form action="examen?curso_id=${curso.id}&examen_id=${itemExamen.id}" method="GET">
+          
+       
+				<form action="examen?curso_id=${curso.id}" method="POST">
 					<input type="submit" name="examen" value="Examen" class="btn-tipo-1">
 				</form>  
-				</c:forEach>
+				
+
 				
 				
 			</div>

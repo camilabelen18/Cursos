@@ -36,6 +36,10 @@
           
                       --> 
                    
+                   <c:forEach var="itemExamen" items="${examenes}">
+                                  <p id="cuadro-pregunta" >${examen.getPregunta().getDescripcion()} </p>
+                             <!--    <div class="cuadro-respuestas">${respuesta.descripcion} </div> -->
+                    </c:forEach>
                    
                    
             
