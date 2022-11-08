@@ -16,7 +16,7 @@ public class ControladorPrincipal {
 	@RequestMapping(path = "/", method = RequestMethod.GET)
     public ModelAndView inicio() {
 		
-		servicioPrincipal.insertarRegistros();
+	//	servicioPrincipal.insertarRegistros();
 		
 		/* De ser necesario, descomentar este metodo, eliminar la base de datos "proyecto_cursos", 
 		 * volverla a crear con el mismo nombre y ejecutar el proyecto para que se inserten 

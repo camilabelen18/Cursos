@@ -23,6 +23,14 @@ public class Examen {
 	@JoinColumn(name = "respuesta_id")
 	private Respuesta respuesta;
 	
+	@ManyToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name = "respuesta_id_2")
+	private Respuesta respuesta_2;
+	
+	@ManyToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name = "respuesta_id_3")
+	private Respuesta respuesta_3;
+	
 	
 	public Examen () {}
 
@@ -31,7 +39,28 @@ public class Examen {
 		this.respuesta = respuesta;
 	}
 
+	public Examen(Pregunta pregunta, Respuesta respuesta, Respuesta respuesta_2, Respuesta respuesta_3) {
+		this.pregunta = pregunta;
+		this.respuesta = respuesta;
+		this.respuesta_2 = respuesta_2;
+		this.respuesta_3 = respuesta_3;
+	}
 
+	public Respuesta getRespuesta_2() {
+		return respuesta_2;
+	}
+
+	public void setRespuesta_2(Respuesta respuesta_2) {
+		this.respuesta_2 = respuesta_2;
+	}
+
+	public Respuesta getRespuesta_3() {
+		return respuesta_3;
+	}
+
+	public void setRespuesta_3(Respuesta respuesta_3) {
+		this.respuesta_3 = respuesta_3;
+	}
 
 	public Pregunta getPregunta() {
 		return pregunta;

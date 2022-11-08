@@ -145,4 +145,37 @@ public class ServicioCursoImpl implements ServicioCurso {
 	public List<Examen> obtenerExamenes(Curso curso_obtenido) {
 		return repositorioCurso.obtenerExamenesDelCurso(curso_obtenido);
 	}
+
+
+	@Override
+	public int getTotalDePuntajesExamen(List<Examen> examenes) {
+         
+		int puntajeTotal = 0;
+		
+		for (Examen examen : examenes) {
+			
+			puntajeTotal += examen.getPuntaje();
+		}
+		
+		return puntajeTotal;
+	}
+
+
+	@Override
+	public boolean sumarPuntajeExamen(List<Examen> examenes) {
+	
+		boolean verdadero=false;
+		
+		for (Examen examen : examenes) {
+			
+			if(examen.getRespuesta().getRespuesta_correcta() || examen.getRespuesta_2().getRespuesta_correcta() || examen.getRespuesta_3().getRespuesta_correcta() ) {
+				examen.setPuntaje(1);
+				verdadero=true;
+			}
+			
+		}
+		
+		return verdadero;
+
+	}
 }

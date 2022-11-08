@@ -38,4 +38,8 @@ public interface ServicioCurso {
 
 	List<Examen> obtenerExamenes(Curso curso_obtenido);
 
+	int getTotalDePuntajesExamen(List<Examen> examenes);
+
+	boolean sumarPuntajeExamen(List<Examen> examenes);
+
 }

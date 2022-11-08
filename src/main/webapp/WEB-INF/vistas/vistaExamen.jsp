@@ -31,14 +31,27 @@
    
             <div class="cuadro-seccion-preguntas">     
                              
-                         <!--     <p id="cuadro-pregunta" >${pregunta.descripcion} </p>
-                              <div class="cuadro-respuestas">${respuesta.descripcion} </div>
+                         <!--    
+                                <p id="cuadro-pregunta" >${itemExamen.pregunta.descripcion} </p>
+                                <div class="cuadro-respuestas">${itemExamen.respuesta.descripcion} </div> 
+                                <div>${itemExamen.respuesta_2.descripcion} </div>
+                                 <div>${itemExamen.respuesta_3.descripcion} </div>
+                                 
           
                       --> 
                    
                    <c:forEach var="itemExamen" items="${examenes}">
-                                  <p id="cuadro-pregunta" >${examen.getPregunta().getDescripcion()} </p>
-                             <!--    <div class="cuadro-respuestas">${respuesta.descripcion} </div> -->
+                   
+                                
+                       <p id="cuadro-pregunta">${itemExamen.pregunta.descripcion}</p>
+                       <div class="cuadro-respuestas">
+                       
+                       <input id="1" type="radio" name="respuesta" value="${itemExamen.respuesta.respuesta_correcta}">${itemExamen.respuesta.descripcion} 
+                       <input id="2" type="radio" name="respuesta" value="${itemExamen.respuesta_2.respuesta_correcta}"> ${itemExamen.respuesta_2.descripcion}
+                       <input id="3" type="radio" name="respuesta" value="${itemExamen.respuesta_3.respuesta_correcta}"> ${itemExamen.respuesta_3.descripcion}
+                       
+  
+                       </div>  
                     </c:forEach>
                    
                    
@@ -46,18 +59,26 @@
             </div>
             
            <div id="cuadro-seccion-finalizado">
+           
+                  <div id="cuadro-puntaje-total">
+					<h2>Nota de examen</h2>
+					<div id="total-examen">
+						<p>Nota: </p>
+						<p>${nota_final }</p>
+					</div>
               
-              <div id="cuadro-finalizado">
+           
+              
+               
+               <!--  Despues hacer un form con action para redirigir 
+                  <div id="cuadro-finalizado">
                <input type="button" name="finalizoExamen" value="Finalizar" id="cambiar">
              
               <div class="contenido" id="contenido" style="display: none;">
                
               </div>
               
-              </div>
-              
-               
-               <!--  Despues hacer un form con action para redirigir  -->
+              </div> -->
 
               
       </div>

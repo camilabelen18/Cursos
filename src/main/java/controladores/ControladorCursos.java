@@ -263,18 +263,20 @@ public class ControladorCursos {
 		//Buscas el curso 	
 		Curso curso_obtenido = servicioCurso.buscarCursoPorId(curso_id); //Por ahora solo del primer curso el del php C1
 
-		
+		//Hacemos una lista de preguntas y respuestas que estan en examenes 
 		List<Examen> examenes = servicioCurso.obtenerExamenes(curso_obtenido);
-	
-		//dentro del curso obtenes el examen de ese curso 
-	//	Examen examen = servicioCurso.obtenerExamenPorId(examen_id); //Obtuvimos un examen
-	    
 		
+		 boolean nota_examen =servicioCurso.sumarPuntajeExamen(examenes);
+	
+		//Obtengo el puntaje total sumando el puntaje individual de cada examen 
+		int puntajeFinal = servicioCurso.getTotalDePuntajesExamen(examenes);
+
 		model.put("curso", curso_obtenido);
-	//	model.put("examen", examen);
 		model.put("examenes", examenes);
-	//	model.put("pregunta",examen.getPregunta().getDescripcion());
-	//	model.put("respuesta", examen.getRespuesta().getDescripcion());
+		model.put("nota_final", puntajeFinal);
+		model.put("nota_examen", nota_examen );
+		System.out.println(examenes);
+
 		
 		
 	

@@ -207,8 +207,8 @@ public class ServicioPrincipalImpl implements ServicioPrincipal {
 
 		//Los guardados 
 		//sesion.save(ex1);
-	  Examen examen1 = new Examen(preg1,resp2);
-	  Examen examen2 = new Examen(preg1,resp3);
+	     Examen examen1 = new Examen(preg1, resp1, resp2, resp3);
+	     Examen examen2 = new Examen(preg2, resp4, resp5, resp6);
 	  
 	    sesion.save(examen1);
 	    sesion.save(examen2);
@@ -222,7 +222,7 @@ public class ServicioPrincipalImpl implements ServicioPrincipal {
 
 		//Registro de Curso con su examen correspondiente
 		sesion.save(new Curso_Examen(c1,examen1 ));
-		sesion.save(new Curso_Examen(c1,examen2 ));
+	 	sesion.save(new Curso_Examen(c1,examen2 ));
 		
 		
 		

@@ -27,7 +27,11 @@ public class Curso_Examen {
 	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
 	@JoinColumn(name = "examen_id")
 	private Examen examen;
-
+	
+	/*
+	@Column(name = "puntaje_final")
+	private int puntaje_final;
+    */
 	public Curso_Examen() {
 	}
 
@@ -35,6 +39,16 @@ public class Curso_Examen {
 		this.curso = curso;
 		this.examen = examen;
 	}
+	
+ /*
+	public int getPuntaje_final() {
+		return puntaje_final;
+	}
+
+	public void setPuntaje_final(int puntaje_final) {
+		this.puntaje_final = puntaje_final;
+	}
+	*/
 
 	public int getId() {
 		return id;
