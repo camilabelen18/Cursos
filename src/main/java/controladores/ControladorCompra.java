@@ -178,4 +178,18 @@ public class ControladorCompra {
 		return new ModelAndView("compraRealizada", model);
 	}
 	
+	
+	@RequestMapping(path = "/verMediosDePago", method = RequestMethod.POST)
+	public ModelAndView verMediosDePago(@RequestParam("precio") Double total, @RequestParam("id_curso") int idCurso) {
+		
+		ModelMap model = new ModelMap();
+		
+		Curso curso = servicioCurso.buscarCursoPorId(idCurso);
+		
+		model.put("precioTotal", total);
+		model.put("curso", curso);
+		
+		return new ModelAndView("mediosDePago", model);
+	}
+	
 }

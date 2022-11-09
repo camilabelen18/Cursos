@@ -23,10 +23,10 @@
 		
 		<div id="contMiGiftcard-1">
 			<div id="giftcard">
-				<h2>USUARIO</h2>
+				<h2>${usuario.nombre}</h2>
 				<div id="numTarjeta">
 					<p>Número de tarjeta</p>
-					<h3>1234</h3>
+					<h3>${giftcard.numTarjeta}</h3>
 				</div>
 			</div>
 		</div>
@@ -34,11 +34,11 @@
 		<div id="contMiGiftcard-2">
 			<div>
 				<p class="giftcardText">Mis puntos</p>
-				<p class="giftcardNum">1250</p>
+				<p class="giftcardNum">${giftcard.misPuntos}</p>
 			</div>
 			<div>
 				<p class="giftcardText">Saldo actual</p>
-				<p class="giftcardNum">$ 125</p>
+				<p class="giftcardNum">$ ${giftcard.saldoActual}</p>
 			</div>
 		</div>
 		

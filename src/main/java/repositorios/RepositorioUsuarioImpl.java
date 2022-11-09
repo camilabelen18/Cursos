@@ -20,6 +20,7 @@ import modelo.Carrito;
 import modelo.Curso;
 import modelo.Curso_Unidad;
 import modelo.Estado;
+import modelo.Giftcard;
 import modelo.Usuario;
 import modelo.Usuario_Curso;
 
@@ -187,6 +188,11 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario{
 	@Override
 	public void actualizarUsuario(Usuario usuario) {
 		sessionFactory.getCurrentSession().update(usuario);
+	}
+
+	@Override
+	public void guardarGiftcardDeUsuario(Giftcard gift) {
+		sessionFactory.getCurrentSession().save(gift);
 	}
 
 }

@@ -86,6 +86,10 @@
 				<form action="examen" method="GET">
 					<input type="submit" name="examen" value="Examen" class="btn-tipo-1">
 				</form>
+				
+				<form action="sumarPuntos" method="POST">
+					<input type="submit" name="puntos" value="Dame puntos" class="btn-tipo-1">
+				</form>
 			</div>
 		</div>
 		

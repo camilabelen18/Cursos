@@ -28,13 +28,13 @@
 				<a href="verListaCursos"> CURSOS </a> / 
 				<span>VERIFICAR COMPRA</span>
 			</div>
-			<h1>Verificar compra con tarjeta</h1>
+			<h1>Verificar compra con giftcard</h1>
 		</div>
 
 		<%--Caja contenedora principal --%>
 		<div class="contenedor2">
 
-			<form action="verificarCompra" method="post">
+			<form action="comprarConGiftcard" method="post">
 
 				<input type="hidden" name="curso_id" value="${idCurso}">
 
@@ -42,20 +42,22 @@
 
 				<div id="precioTotal">
 					<span>Total:</span>
-					<p>${precioCurso}$</p>
+					<p>${precioTotal}$</p>
 				</div>
 
-				<h3 id="pagarTarjeta">Pagar con tarjeta</h3>
+				<h3 id="pagarTarjeta">Pagar con giftcard</h3>
 
 				<label for="nroTarjeta">Número de tarjeta</label>
 				<input id="nroTarjeta" type="number" name="nroTarjeta">
-				<input id="comprar" type="submit" value="Realizar compra">
+				<input id="comprarConGiftcard" type="submit" value="Realizar compra">
 			</form>
-			
-			
 
 			<c:if test="${not empty tarjetaIncorrecta}">
 				<div class="error">${tarjetaIncorrecta}</div>
+			</c:if>
+			
+			<c:if test="${not empty saldoInsuficiente}">
+				<div class="error">${saldoInsuficiente}</div>
 			</c:if>
 		</div>
 		

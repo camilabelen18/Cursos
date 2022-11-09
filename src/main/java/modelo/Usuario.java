@@ -33,6 +33,9 @@ public class Usuario {
 	@Column(name = "Imagen")
 	private String imagen;
 	
+	@OneToOne
+	private Giftcard giftcard;
+	
 	public Usuario() { }
 
 	public Usuario(String nombre, String email, String password, String rol) {
@@ -98,10 +101,18 @@ public class Usuario {
 		this.imagen = imagen;
 	}
 
+	public Giftcard getGiftcard() {
+		return giftcard;
+	}
+
+	public void setGiftcard(Giftcard giftcard) {
+		this.giftcard = giftcard;
+	}
+
 	@Override
 	public String toString() {
 		return "Usuario [id=" + id + ", nombre=" + nombre + ", email=" + email + ", password=" + password
-				+ ", nroTarjeta=" + nroTarjeta + ", rol=" + rol + ", imagen=" + imagen + "]";
+				+ ", nroTarjeta=" + nroTarjeta + ", rol=" + rol + ", imagen=" + imagen + ", giftcard=" + giftcard + "]";
 	}
 	
 }

@@ -13,11 +13,13 @@ import modelo.Carrito;
 import modelo.Curso;
 import modelo.DatosRegistro;
 import modelo.Estado;
+import modelo.Giftcard;
 import modelo.Unidad;
 import modelo.Usuario;
 import modelo.Usuario_Curso;
 import repositorios.RepositorioCarrito;
 import repositorios.RepositorioCurso;
+import repositorios.RepositorioGiftcard;
 import repositorios.RepositorioUsuario;
 
 @Service
@@ -27,12 +29,14 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
 	private RepositorioUsuario repositorioUsuario;
 	private RepositorioCarrito repositorioCarrito;
 	private RepositorioCurso repositorioCurso;
+	private RepositorioGiftcard repositorioGiftcard;
 	
 	@Autowired
-	public ServicioUsuarioImpl(RepositorioUsuario repositorioUsuario, RepositorioCarrito repositorioCarrito, RepositorioCurso repositorioCurso) {
+	public ServicioUsuarioImpl(RepositorioUsuario repositorioUsuario, RepositorioCarrito repositorioCarrito, RepositorioCurso repositorioCurso, RepositorioGiftcard repositorioGiftcard) {
 		this.repositorioUsuario = repositorioUsuario;
 		this.repositorioCarrito = repositorioCarrito;
 		this.repositorioCurso = repositorioCurso;
+		this.repositorioGiftcard = repositorioGiftcard;
 	}
 	
 
@@ -68,6 +72,7 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
 
 		Usuario nuevoUsuario = new Usuario();
 		Carrito carrito = new Carrito();
+		Giftcard gift = new Giftcard(222, 0, 0.0);
 		
 		// Se comprueba si las contraseñas ingresadas son iguales
 		if (datosRegistro.getContrasenia().equals(datosRegistro.getRepetirContrasenia())) {
@@ -78,8 +83,10 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
 			nuevoUsuario.setRol("cliente");
 			nuevoUsuario.setNroTarjeta(999);
 			nuevoUsuario.setImagen("default-user.png");
+			nuevoUsuario.setGiftcard(gift);
 			carrito.setUsuario(nuevoUsuario);
 
+			repositorioUsuario.guardarGiftcardDeUsuario(gift);
 			repositorioUsuario.guardarUsuario(nuevoUsuario);
 			repositorioCarrito.guardarCarrito(carrito);
 			
@@ -120,6 +127,23 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
 	public Boolean cancelarCurso(Curso curso_obtenido, Usuario_Curso usuarioCurso) {
 		
 		if (repositorioUsuario.cancelarCurso(curso_obtenido, usuarioCurso) == true) {
+			
+			Usuario user = usuarioCurso.getUsuario();
+			Giftcard giftcard = user.getGiftcard();
+			
+			Double saldoActual = giftcard.getSaldoActual();
+			Integer puntosActuales = giftcard.getMisPuntos();
+			
+			saldoActual = saldoActual + curso_obtenido.getPrecio();
+			
+			Double puntos = curso_obtenido.getPrecio() * 10;
+			puntosActuales += puntos.intValue();
+	
+			giftcard.setSaldoActual(saldoActual);
+			giftcard.setMisPuntos(puntosActuales);
+			
+			repositorioGiftcard.actualizarGiftcard(giftcard);
+			
 			return true;
 		}
 		else {
