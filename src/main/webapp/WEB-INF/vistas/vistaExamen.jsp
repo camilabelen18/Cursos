@@ -1,3 +1,4 @@
+<%@page import="controladores.ControladorCursos"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
@@ -12,13 +13,14 @@
 	content="width=device-width, initial-scale=1, maximum-scale=1">
 <link rel="shortcut icon" href="imagenes/favicon.ico">
 <link rel="stylesheet" href="css/styles.css">
-<link rel="stylesheet" href="css/vistaExamen.css">
+ <link rel="stylesheet" href="css/vistaExamen.css"> 
 
 </head>
 <body>
 
 <%@ include file="header.jsp"%>
 
+     
       
    <div class="contenido-seccion-preguntas"> 
    
@@ -28,49 +30,72 @@
       </div>
    
    <!--   Preguntas -->
-   
-            <div class="cuadro-seccion-preguntas">     
-                             
-                         <!--    
-                                <p id="cuadro-pregunta" >${itemExamen.pregunta.descripcion} </p>
-                                <div class="cuadro-respuestas">${itemExamen.respuesta.descripcion} </div> 
-                                <div>${itemExamen.respuesta_2.descripcion} </div>
-                                 <div>${itemExamen.respuesta_3.descripcion} </div>
-                                 
+    
           
-                      --> 
-                   
+            <div class="cuadro-seccion-preguntas">  
+            
+
                    <c:forEach var="itemExamen" items="${examenes}">
-                   
-                                
+
+                       <form action="finalizarExamen?examen_id=${itemExamen.id}&curso_id=${curso.id}" method="GET" >
+                       
                        <p id="cuadro-pregunta">${itemExamen.pregunta.descripcion}</p>
                        <div class="cuadro-respuestas">
-                       
-                       <input id="1" type="radio" name="respuesta" value="${itemExamen.respuesta.respuesta_correcta}">${itemExamen.respuesta.descripcion} 
-                       <input id="2" type="radio" name="respuesta" value="${itemExamen.respuesta_2.respuesta_correcta}"> ${itemExamen.respuesta_2.descripcion}
-                       <input id="3" type="radio" name="respuesta" value="${itemExamen.respuesta_3.respuesta_correcta}"> ${itemExamen.respuesta_3.descripcion}
-                       
-  
+
+                       <input id="respuesta_1" type="radio" name="respuesta" value="${itemExamen.respuesta.id} " aria-checked  >${itemExamen.respuesta.descripcion} 
+                       <input id="respuesta_2" type="radio" name="respuesta" value="${itemExamen.respuesta_2.id}"> ${itemExamen.respuesta_2.descripcion}
+                       <input id="respuesta_3" type="radio" name="respuesta" value="${itemExamen.respuesta_3.id}"> ${itemExamen.respuesta_3.descripcion}
+                        
                        </div>  
+                       
+                       <!--   <a href="finalizarExamen?examen_id=${itemExamen.id}&curso_id=${curso.id}"> Finalizar</a> -->
+                       </form>
+                       
                     </c:forEach>
-                   
-                   
+                        
+               
+                     </div>
             
+
             </div>
             
-           <div id="cuadro-seccion-finalizado">
-           
+          
+             <form action="finalizarExamen?examen_id=${itemExamen.id}&curso_id=${curso.id}" method="POST">
+               <div id="cuadro-seccion-finalizado">
+               <!--    <input type="submit" name="finalizoExamen" value="Finalizar" id="finalizar">-->
+                
                   <div id="cuadro-puntaje-total">
-					<h2>Nota de examen</h2>
+					<h2 id="nota-examen">Nota de examen</h2>
 					<div id="total-examen">
 						<p>Nota: </p>
 						<p>${nota_final }</p>
-					</div>
+				     </div>
+                </div>  
+                
+                <input id="prueba" type="radio" name="ashe" value="prueba"> tocalo
+                
+                
+              </div>
+              </form> 
+              
               
            
-              
-               
-               <!--  Despues hacer un form con action para redirigir 
+
+         
+         
+
+
+    <%@ include file="/WEB-INF/vistas/footer.jsp" %>
+
+   	 <script src="js/jquery-3.6.0.min.js"></script>
+     <script src="js/examenFuncion.js"></script>
+    
+</body>
+</html>
+
+
+
+        <!--  Despues hacer un form con action para redirigir 
                   <div id="cuadro-finalizado">
                <input type="button" name="finalizoExamen" value="Finalizar" id="cambiar">
              
@@ -79,31 +104,3 @@
               </div>
               
               </div> -->
-
-              
-      </div>
-
-
-<%@ include file="/WEB-INF/vistas/footer.jsp" %>
-
-   <script src="js/jquery-3.6.0.min.js"></script>
-   <script src="js/examenFuncion.js"></script>
-
-            
-               
-   </div>
-   
-     <!-- 
-                   <form action="#" method="post" >
-                       <p id="cuadro-pregunta">Sirve para solo darle la posibilidad al usuario de seleccionar una sola opcion, todos los inputs del mismo grupo deben tener el mismo name pero distinto value</p>
-                       <div class="cuadro-respuestas">
-                        <input id="1" type="radio" name="respuesta" value="1"> Respuesta 1
-                       <input id="2" type="radio" name="respuesta" value="2"> Respuesta 2
-                       <input id="3" type="radio" name="respuesta" value="3"> Respuesta 3
-                       </div>   
-                   </form>
-                   -->
-   
-    
-</body>
-</html>

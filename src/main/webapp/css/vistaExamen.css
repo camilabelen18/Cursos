@@ -9,11 +9,19 @@ body{
 	margin: auto;
 	margin-bottom: 100px;
 	
+	display: flex;
+    flex-direction: column;
+    justify-content: center;
+
 }
 
 /* Titulo */
 #titulo {
-    margin: 100px 0px;
+    padding: 20px;
+    margin: 20px;
+    text-align: center;
+    color: #3c3b37;
+	font-size: 16px;
 }
 
 #titulo a {
@@ -23,45 +31,79 @@ body{
 	
 /* LISTA DE PREGUNTAS */
 .cuadro-seccion-preguntas {
-	display: flex;
 	padding: 30px;
-	margin: 20px;
-	justify-content: space-between;
+    margin: 30px;
+    text-align: center;
+
+
 	border-bottom: 2px solid #c7c7c7;
 	border-top: 2px solid #c7c7c7;
 }
 
 /* PREGUNTA */
 #cuadro-pregunta{
-	margin-top: 0px;
-	display: flex;
-	justify-content: center;
-	margin-bottom: 20px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	padding: 10px;
+	border-bottom: 2px solid #c7c7c7;
+	border-top: 2px solid #c7c7c7;
+
 }
 
 /* RESPUESTAS */
 .cuadro-respuestas{
-	display: flex;
-	justify-content: center;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	padding: 10px;
+}
+
+#respuesta_1 {
+    margin: 10px;
+}
+
+#respuesta_2 {
+    margin: 10px;
+}
+
+#respuesta_3 {
+    margin: 10px;
 }
 
 
 /*El resultado Total */
 #cuadro-seccion-finalizado {
-	margin-top: 60px;
-	display: flex;
-	justify-content: center;
+	padding: 30px;
+    margin: 30px;
+    text-align: center;
+	border-bottom: 2px solid #c7c7c7;
+	border-top: 2px solid #c7c7c7;
+	color: #3c3b37;
+	font-size: 14px;
 }
 
-#cuadro-finalizado {
-	width: 300px;
-	padding: 20px 40px;
-	border: 1px solid #c7c7c7;
+#cuadro-puntaje-total {
+	padding: 25px;
+	border-bottom: 2px solid #c7c7c7;
+	border-top: 2px solid #c7c7c7;
 }
 
-	
-	
-	
+#total-examen {
+	padding: 15px;
+	border-bottom: 2px solid #c7c7c7;
+	border-top: 2px solid #c7c7c7;
+    color: #3c3b37;
+	font-size: 14px;
+}
+#nota-examen {
+	padding-bottom: 15px;
+	font-size: 22px;
+}
+/*
+p{
+	padding: 6px;
+	font-size: 20px;
+}
+*/	
 	
 	
 
