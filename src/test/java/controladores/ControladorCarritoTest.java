@@ -29,6 +29,7 @@ public class ControladorCarritoTest {
 	ServicioCarrito servicioCarrito = mock(ServicioCarrito.class);
 	ServicioUsuario servicioUsuario = mock(ServicioUsuario.class);
 	ControladorCarrito controladorCarrito = new ControladorCarrito(servicioCurso, servicioCarrito);
+	ControladorCompra controladorCompra = new ControladorCompra(servicioUsuario, servicioCurso, servicioCarrito);
 	HttpSession session = mock(HttpSession.class);
 
 	@Test
@@ -93,6 +94,7 @@ public class ControladorCarritoTest {
 
 	@Test
 	public void testQueNoDejeIrACarritoSinIniciarSesion() {
+		// Preparacion
 
 		Integer user_id = null;
 		// Ejecucion
@@ -103,6 +105,36 @@ public class ControladorCarritoTest {
 		// Comprobacion
 
 		assertThat(mav.getViewName()).isEqualTo("redirect:/");
+	}
+
+	// Este test va en controlador compra, lo puse aca para no pisar al que este
+	// haciendo los test de ese controlador->
+	@Test
+	public void testQuePermitaComprarCursosDelCarrito() {
+
+		Integer curso_id = 1;
+		Integer user_id = 1;
+		Carrito carrito = new Carrito();
+		Curso curso1 = new Curso("Curso php", "Programacion", "Curso de programacion php", 1000.0, Estado.EN_CURSO,
+				"cursophp.png");
+		Curso curso2 = new Curso("Curso php", "Programacion", "Curso de programacion php", 1000.0, Estado.EN_CURSO,
+				"cursophp.png");
+		List<Curso> cursos= new ArrayList<>();
+		cursos.add(curso1); 
+		cursos.add(curso2);
+		Usuario usuario = new Usuario("juan", "hola@hola.com", "123", "Cliente");
+		// Ejecucion
+
+		when(servicioUsuario.buscarUsuarioPorID(user_id)).thenReturn(usuario);
+		when(servicioCarrito.obtenerCarritoPorIdUsuario(user_id)).thenReturn(carrito);
+		when(servicioCarrito.obtenerCursosDelCarrito(carrito)).thenReturn(cursos);
+		when(session.getAttribute("idUsuario")).thenReturn(user_id);
+		ModelAndView mav = controladorCompra.comprarCursosDelCarrito(session);
+
+		// Comprobacion
+
+		assertThat(mav.getViewName()).isEqualTo("compraRealizada");
+
 	}
 
 }
