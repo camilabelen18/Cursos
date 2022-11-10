@@ -13,7 +13,7 @@ public class Examen {
 	private int id;
 	
 	@Column(name = "puntaje")
-	private double puntaje;
+	private double puntaje; //se itera 1 por ves 
 	
 	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name = "pregunta_id")

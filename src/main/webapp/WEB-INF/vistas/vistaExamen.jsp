@@ -32,41 +32,36 @@
    <!--   Preguntas -->
     
           
-            <div class="cuadro-seccion-preguntas">  
+          <div class="cuadro-seccion-preguntas">  
             
-
-                   <c:forEach var="itemExamen" items="${examenes}">
-
-                       <form action="finalizarExamen?examen_id=${itemExamen.id}&curso_id=${curso.id}" method="GET" >
-                       
-                       <p id="cuadro-pregunta">${itemExamen.pregunta.descripcion}</p>
+          <form action="finalizarExamen?curso_id=${curso.id}" method="POST"> 
+          
+          <c:forEach var="itemExamen" items="${examenes}">
+          
+                 <p id="cuadro-pregunta">${itemExamen.pregunta.descripcion}</p>
+                 
                        <div class="cuadro-respuestas">
 
-                       <input id="respuesta_1" type="radio" name="respuesta" value="${itemExamen.respuesta.id} " aria-checked  >${itemExamen.respuesta.descripcion} 
-                       <input id="respuesta_2" type="radio" name="respuesta" value="${itemExamen.respuesta_2.id}"> ${itemExamen.respuesta_2.descripcion}
-                       <input id="respuesta_3" type="radio" name="respuesta" value="${itemExamen.respuesta_3.id}"> ${itemExamen.respuesta_3.descripcion}
+                      <input id="respuesta_1" type="radio" name="respuesta${itemExamen.id}" value="${itemExamen.respuesta.id} "  >${itemExamen.respuesta.descripcion} 
+                       <input id="respuesta_2" type="radio" name="respuesta${itemExamen.id}" value="${itemExamen.respuesta_2.id}"> ${itemExamen.respuesta_2.descripcion}
+                       <input id="respuesta_3" type="radio" name="respuesta${itemExamen.id}" value="${itemExamen.respuesta_3.id}"> ${itemExamen.respuesta_3.descripcion}
                         
                        </div>  
-                       
-                       <!--   <a href="finalizarExamen?examen_id=${itemExamen.id}&curso_id=${curso.id}"> Finalizar</a> -->
-                       </form>
-                       
-                    </c:forEach>
-                        
-               
-                     </div>
-            
 
-            </div>
-            
-          
-             <form action="finalizarExamen?examen_id=${itemExamen.id}&curso_id=${curso.id}" method="POST">
-               <div id="cuadro-seccion-finalizado">
-               <!--    <input type="submit" name="finalizoExamen" value="Finalizar" id="finalizar">-->
+                 
+           </c:forEach>
+
+                       <div class="cuadro-respuestas">
+
+                       </div>  
+
+
+                <div id="cuadro-seccion-finalizado">
+                  <input type="submit" name="finalizoExamen" value="Finalizar" id="finalizar">
                 
-                  <div id="cuadro-puntaje-total">
-					<h2 id="nota-examen">Nota de examen</h2>
-					<div id="total-examen">
+                    <div id="cuadro-puntaje-total">
+				 	<h2 id="nota-examen">Nota de examen</h2>
+				 	<div id="total-examen">
 						<p>Nota: </p>
 						<p>${nota_final }</p>
 				     </div>
@@ -76,7 +71,20 @@
                 
                 
               </div>
-              </form> 
+              
+          </form>
+
+                     </div>
+            
+
+            </div>
+            
+          
+            
+             
+             
+               
+              
               
               
            
