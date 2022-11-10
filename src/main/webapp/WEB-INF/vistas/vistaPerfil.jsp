@@ -25,26 +25,24 @@
 
 			<p id="emailPerfil">
 				Email: ${usuario.email}
-				<%-- <%=session.getAttribute("emailUsuario")%> --%>
+				
 			</p>
 
-			<p id="passwordPerfil">
-				Contraseña: ${usuario.password}
-				<%-- <%=session.getAttribute("passwordUsuario")%> --%>
-			</p>
+			<label for="password" id="passwordPerfil" >Contraseña: </label><input id="passwordPerfilCaja" type="password" name="password"
+				value="${usuario.password}" disabled="disabled">
 
 			<p id="rolPerfil">
 				Rol: ${usuario.rol}
-				<%-- <%=session.getAttribute("rolUsuario")%> --%>
+				
 			</p>
 			<a href="editarPerfil"> <input id="editarPerfil"
 				name="editarPerfil" type="submit" value="Editar perfil"></a>
 		</div>
 
 		<div class="fotoPerfil">
-			<img id="fotoPerfil" src="imagenes/usuario.png"> <br> <input
+			<img id="fotoPerfil" src="imagenes/usuario.png"> <br> <a href="editarPerfil"><input
 				id="cambiarFotoPerfil" name="cambiarFotoPerfil" type="submit"
-				value="Cambiar foto">
+				value="Cambiar foto"></a>
 
 		</div>
 	</div>

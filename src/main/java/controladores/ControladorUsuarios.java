@@ -163,16 +163,20 @@ public class ControladorUsuarios {
 	}
 
 	@RequestMapping(path = "actualizarCambiosPerfil", method = RequestMethod.POST)
-	public ModelAndView actualizarCambiosPerfil(@RequestParam("nombre")String nombre, @RequestParam("email") String email, @RequestParam("password") String password ,HttpSession session) {
+	public ModelAndView actualizarCambiosPerfil(@ModelAttribute ("datosEditarUsuario") DatosEditarUsuario datosEditarUsuario,HttpSession session){//(@RequestParam("nombre")String nombre, @RequestParam("email") String email, @RequestParam("password") String password ,HttpSession session) {
 		ModelMap model = new ModelMap();
 		
 		int id_user = Integer.parseInt(session.getAttribute("idUsuario").toString());
 		Usuario usuario = servicioUsuario.buscarUsuarioPorID(id_user);
-
-		servicioUsuario.actualizarUsuario(usuario.getId(), nombre, email, password, session);
 		
-		usuario= servicioUsuario.buscarUsuarioPorID(id_user);
+		
+		servicioUsuario.actualizarUsuario(usuario.getId(),datosEditarUsuario.getNombre() , datosEditarUsuario.getEmail(), datosEditarUsuario.getPasswordAnterior(),datosEditarUsuario.getPasswordNueva(),datosEditarUsuario.getRepeticionPasswordNueva(), session);
+		
+		servicioUsuario.buscarUsuarioPorID(id_user);
+		
+		
 		model.put("usuario", usuario);
+		model.put("datosEditarUsuario", datosEditarUsuario);
 		
 
 		return new ModelAndView("vistaPerfil", model);

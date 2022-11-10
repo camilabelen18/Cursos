@@ -19,11 +19,11 @@
 	<section class="contenedorEditar">
 		<article class="formEditar">
 		
-			<form action="actualizarCambiosPerfil" method="POST" >
+			<form action="actualizarCambiosPerfil" method="POST" modelAttribute="datosEditarUsuario">
 				<div class="textoEditar">
 					<label for="nombre">Nombre: </label> <input
 						 id="nombreUsuario" type="text" name="nombre"
-						value="${usuario.nombre}" >
+						value="${usuario.nombre}">
 				</div>
 				<div class="textoEditar">
 					<label for="email">Email: </label> <input  id="emailUsuario"
@@ -31,13 +31,21 @@
 					<br>
 				</div>
 				<div class="textoEditar">
-					<label for="password">Password: </label> <input
-						id="passwordUsuario" type="text" name="password"
+					<label for="password">Contraseña anterior: </label> <input
+						id="passwordUsuario" type="password" name="passwordAnterior"
 						value="${usuario.password}">
 				</div>
 				<div class="textoEditar">
-					<p>Rol:${usuario.rol}</p>
+					<label for="password">Nueva contraseña: </label> <input
+						id="passwordUsuarioNueva" type="password" name="passwordNueva"
+						value="">
 				</div>
+				<div class="textoEditar">
+					<label for="password">Repetir nueva contraseña: </label> <input
+						id="passwordUsuarioRepetir" type="password" name="repeticionPasswordNueva"
+						value="">
+				</div>
+				
 
 				<input id="aniadirCambios" type="submit" value="Añadir cambios">
 			</form>
@@ -52,9 +60,19 @@
 			
 		</article>
 	</section>
+	
+<%-- 	<div id="mensaje" class="error"></div>
+		
+		<c:if test="${not empty error}">
+			<div class="error">${error}</div>
+		</c:if> --%>
+		
 
 
 	<%@ include file="footer.jsp"%>
+	
+	
+	<!-- <script src="js/editarPerfil.js"></script> -->
 
 </body>
 </html>

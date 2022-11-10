@@ -33,7 +33,7 @@ public interface ServicioUsuario {
 
 	void finalizarCurso(Curso curso_obtenido);
 	
-	void actualizarUsuario(int idUsuario,String nombre, String email,String password, HttpSession session);
+	void actualizarUsuario(int idUsuario,String nombre, String email,String passwordAterior, String passwordNueva, String repeticionPasswordNueva, HttpSession session);
 
 	Usuario_Curso obtenerUsuarioCurso(Curso curso_obtenido, Usuario usuario);
 
@@ -41,5 +41,5 @@ public interface ServicioUsuario {
 
 	Integer verificarTarjetaUsuario(Usuario usuario, Integer nroTarjeta);
 
-
+	Usuario actualizarUsuarioPrueba(int idUsuario,String nombre, String email,String passwordAterior, String passwordNueva, String repeticionPasswordNueva, HttpSession session);
 }

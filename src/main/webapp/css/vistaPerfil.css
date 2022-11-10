@@ -21,6 +21,12 @@
 	padding: 20px;
     font-size: large;
 }
+#passwordPerfilCaja{
+	border-radius: 5px;
+	border-color: black;
+	border-width: thin;
+	padding: 7px;
+}
 #rolPerfil{
 	padding: 20px;
     font-size: large;

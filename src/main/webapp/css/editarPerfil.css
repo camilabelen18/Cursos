@@ -20,7 +20,7 @@
 .formEditar{
 	font-size: large;
 }
-input#nombreUsuario,#emailUsuario,#passwordUsuario{
+input#nombreUsuario,#emailUsuario,#passwordUsuario,#passwordUsuarioNueva,#passwordUsuarioRepetir{
 	border-radius: 5px;
 	border-color: black;
 	border-width: thin;
@@ -39,4 +39,11 @@ input#nombreUsuario,#emailUsuario,#passwordUsuario{
 	padding:20px;
 	margin-top: 20px;
 	margin-left: 20px;
+}
+.error {
+    color: crimson;
+}
+
+.error p {
+    margin-bottom: 5px;
 }

@@ -26,4 +26,16 @@ public class ServicioCursoTest {
 		//Comprobacion
 		assertThat(curso.getId()).isNotNull();
 	}
+	
+	@Test
+	public void queSePuedaVerCursosPorCategoria(){
+		//Preparacion
+		String categoria= "Programacion";
+		
+		//Ejecucion
+		servicioCurso.getCursosPorCategoria(categoria);
+		
+		//Comprobacion
+		assertThat(categoria).isNotNull();
+	}
 }

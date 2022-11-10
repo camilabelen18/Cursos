@@ -30,4 +30,6 @@ public interface RepositorioUsuario {
 
 	void actualizarUsuario(Usuario usuario);
 
+	
+
 }
