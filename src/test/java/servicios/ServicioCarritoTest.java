@@ -35,11 +35,9 @@ public class ServicioCarritoTest {
 		List<Curso> cursos = new ArrayList<>();
 		cursos.add(curso1);
 		cursos.add(curso2);
-		double total = servicioCarrito.getTotalDePrecios(cursos);
+
 		// Ejecucion
-		System.out.println(curso1.getPrecio());
-		System.out.println(curso2.getPrecio());
-		System.out.println(total);
+		Double total = servicioCarrito.getTotalDePrecios(cursos);
 		// Comprobacion
 		assertEquals(5500.0, total, 0.1);
 
