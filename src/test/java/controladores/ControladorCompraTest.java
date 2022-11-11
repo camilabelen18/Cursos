@@ -3,6 +3,7 @@ package controladores;
 import servicios.ServicioCarrito;
 import servicios.ServicioCurso;
 import servicios.ServicioUsuario;
+import servicios.TarjetaInvalidaException;
 
 import static org.assertj.core.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -72,12 +73,12 @@ public class ControladorCompraTest {
 		 Usuario usuario = new Usuario("Camila", "camilabelen906@gmail.com", "1234", "admin");
 		 Curso curso = new Curso("Curso php", "Programacion", 
 								"Curso de programacion php",1000.0, 
-								Estado.EN_CURSO, "cursophp.png");
+								Estado.CANCELADO, "cursophp.png");
 		 Integer nroTarjeta = 111;
 		 //Ejecucion
 		 when(servicioUsuario.buscarUsuarioPorID(usuario.getId())).thenReturn(usuario);
 		 when(servicioCurso.buscarCursoPorId(curso.getId())).thenReturn(curso);
-		 doThrow(Exception.class).when(servicioUsuario).verificarTarjetaUsuario(usuario, nroTarjeta);
+		 doThrow(TarjetaInvalidaException.class).when(servicioUsuario).verificarTarjetaUsuario(usuario, nroTarjeta);
 		 when(session.getAttribute("idUsuario")).thenReturn(usuario.getId());
 		 ModelAndView mav = controladorCompra.verificarCompra(nroTarjeta, curso.getId(), session);
 		 //Comprobacion
