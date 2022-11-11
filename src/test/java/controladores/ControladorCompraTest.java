@@ -40,7 +40,7 @@ public class ControladorCompraTest {
 //		 //Ejecucion
 //		 when(servicioUsuario.buscarUsuarioPorID(usuario.getId())).thenReturn(usuario);
 //		 when(servicioUsuario.existeCursoEnListaUsuario(curso.getId(), usuario)).thenReturn(true);
-//		 when(curso.getEstado()).thenReturn(Estado.EN_CURSO);
+//		 when(curso.getEstado()).thenReturn(Estado.CANCELADO);
 //		 when(session.getAttribute("idUsuario")).thenReturn(usuario.getId());
 //		 ModelAndView mav = controladorCompra.verificacionCompra(curso.getId(), curso.getPrecio(), session);
 //		 //Comprobacion
@@ -124,9 +124,4 @@ public class ControladorCompraTest {
 		 assertThat(mav.getViewName()).isEqualTo("redirect:/misCursos");
 
 	 }
-	 
-	 
-	 //Preparacion
-	 //Ejecucion
-	 //Comprobacion
 }
