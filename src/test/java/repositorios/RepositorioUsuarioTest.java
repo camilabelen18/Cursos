@@ -61,7 +61,7 @@ public class RepositorioUsuarioTest extends SpringTest{
 		Usuario user = new Usuario("test", "test@test", "122", "cliente");
 		
 		// Ejecucion
-		respositorioUsuario.guardarUsuario(user);
+		repositorioUsuario.guardarUsuario(user);
 		
 		// Comprobacion
 		assertThat(user.getId()).isNotEqualTo(0);
@@ -81,7 +81,7 @@ public class RepositorioUsuarioTest extends SpringTest{
 		session().save(user1);
 		session().save(user2);
 		
-		Usuario usuarioObtenido = respositorioUsuario.buscarUsuarioPorEmail("prueba@prueba");
+		Usuario usuarioObtenido = repositorioUsuario.buscarUsuarioPorEmail("prueba@prueba");
 		
 		// Comprobacion
 		assertThat(usuarioObtenido).isNotNull();
