@@ -57,10 +57,12 @@ public class ServicioPrincipalImpl implements ServicioPrincipal {
 		Usuario admin = new Usuario("Juan", "hola@hola.com","1234", "admin");
 		admin.setNroTarjeta(555);
 		admin.setGiftcard(gift1);
+		admin.setImagen("default-user.png");
 		
 		Usuario cliente1 = new Usuario("Ana", "ana@gmail.com","111", "cliente");
 		cliente1.setNroTarjeta(4407);
 		cliente1.setGiftcard(gift2);
+		cliente1.setImagen("default-user.png");
 		
 		Carrito car1 = new Carrito();
 		car1.setUsuario(cliente1);
@@ -68,6 +70,7 @@ public class ServicioPrincipalImpl implements ServicioPrincipal {
 		Usuario cliente2 = new Usuario("Ale", "ale@gmail.com","123", "cliente");
 		cliente2.setNroTarjeta(5809);
 		cliente2.setGiftcard(gift3);
+		cliente2.setImagen("default-user.png");
 
 		Carrito car2 = new Carrito();
 		car2.setUsuario(cliente2);
@@ -188,11 +191,11 @@ public class ServicioPrincipalImpl implements ServicioPrincipal {
 		//Registro de preguntas y respuestas PhP MySql
 		
 		//Registro de preguntas PhP MySql
-		Pregunta preg1 = new Pregunta("¿ Php es un lenguaje que se ejecuta en un servidor ?");
-		Pregunta preg2 = new Pregunta("¿ JavaScript se ejecuta en el lado del cliente ?");
-		Pregunta preg3 = new Pregunta("¿ Las paginas php se guardan en una carpeta especifica ?");
-		Pregunta preg4 = new Pregunta("¿ El nombre de index se lo da a una archivo cuando se lo considera pagina principal ?");
-		Pregunta preg5 = new Pregunta("¿ La variable es un espacio  en la memoria del ordenador donde se almacena un valor ?");
+		Pregunta preg1 = new Pregunta("ï¿½ Php es un lenguaje que se ejecuta en un servidor ?");
+		Pregunta preg2 = new Pregunta("ï¿½ JavaScript se ejecuta en el lado del cliente ?");
+		Pregunta preg3 = new Pregunta("ï¿½ Las paginas php se guardan en una carpeta especifica ?");
+		Pregunta preg4 = new Pregunta("ï¿½ El nombre de index se lo da a una archivo cuando se lo considera pagina principal ?");
+		Pregunta preg5 = new Pregunta("ï¿½ La variable es un espacio  en la memoria del ordenador donde se almacena un valor ?");
 		
 		sesion.save(preg1);
 		sesion.save(preg2);
@@ -258,11 +261,11 @@ public class ServicioPrincipalImpl implements ServicioPrincipal {
 	 	sesion.save(new Curso_Examen(c1,examen5 ));
 		
 	 	//Registro de preguntas Spring FrameWork 5
-	 	Pregunta preg6 = new Pregunta("¿ Spring boot es un subproyecto de Spring Framework  ?");
-	 	Pregunta preg7 = new Pregunta("¿ Con Spring boot una ya empieza con configuraciones por defecto ?");
-	 	Pregunta preg8 = new Pregunta("¿ Podes crear aplicaciones independientes sin usar servidor web ?");
-	 	Pregunta preg9 = new Pregunta("¿ Spring boot provee un modelo de programación parecido a las aplicaciones java ?");
-	 	Pregunta preg10 = new Pregunta("¿ Spring tool es un ide basado en eclipse ?");
+	 	Pregunta preg6 = new Pregunta("ï¿½ Spring boot es un subproyecto de Spring Framework  ?");
+	 	Pregunta preg7 = new Pregunta("ï¿½ Con Spring boot una ya empieza con configuraciones por defecto ?");
+	 	Pregunta preg8 = new Pregunta("ï¿½ Podes crear aplicaciones independientes sin usar servidor web ?");
+	 	Pregunta preg9 = new Pregunta("ï¿½ Spring boot provee un modelo de programaciï¿½n parecido a las aplicaciones java ?");
+	 	Pregunta preg10 = new Pregunta("ï¿½ Spring tool es un ide basado en eclipse ?");
 		
 	 	sesion.save(preg6);
 		sesion.save(preg7);
@@ -271,10 +274,10 @@ public class ServicioPrincipalImpl implements ServicioPrincipal {
 		sesion.save(preg10);  
 		
 		//Registro de respuestas	
-		Respuesta resp16 = new Respuesta("Si, y busca facilitarnos la creación de proyectos",true );
+		Respuesta resp16 = new Respuesta("Si, y busca facilitarnos la creaciï¿½n de proyectos",true );
 		Respuesta resp17 = new Respuesta("No, son diferentes ",false );
 		Respuesta resp18 = new Respuesta("Si, podes crear proyectos que funcionen fuera de Spring Framework", true);
-		Respuesta resp19 = new Respuesta("Si, ya que Spring boot provee configuración para las tecnologías mas usadas",true );
+		Respuesta resp19 = new Respuesta("Si, ya que Spring boot provee configuraciï¿½n para las tecnologï¿½as mas usadas",true );
 		Respuesta resp20 = new Respuesta("No, uno tiene que configurar todo ",false  );
 		Respuesta resp21 = new Respuesta("Si, puede que tenga para algunas cosas pero no para las mas importantes", true);
 		Respuesta resp22 = new Respuesta("Si, utiliza Stand Alone ",true );
@@ -326,11 +329,11 @@ public class ServicioPrincipalImpl implements ServicioPrincipal {
 	 	sesion.save(new Curso_Examen(c2,examen10 ));
 		
 		//Registro de preguntas Python 22
-	 	Pregunta preg11 = new Pregunta("¿ Python es interpretado  ?");
-	 	Pregunta preg12 = new Pregunta("¿ Que es un compilador ?");
-	 	Pregunta preg13 = new Pregunta("¿ Es correcto poner la extensión de python al archivo guardado ?");
-	 	Pregunta preg14 = new Pregunta("¿ Que es una variable ?");
-	 	Pregunta preg15 = new Pregunta("¿ Python puede diferenciar mayúsculas de minúsculas  ?");
+	 	Pregunta preg11 = new Pregunta("ï¿½ Python es interpretado  ?");
+	 	Pregunta preg12 = new Pregunta("ï¿½ Que es un compilador ?");
+	 	Pregunta preg13 = new Pregunta("ï¿½ Es correcto poner la extensiï¿½n de python al archivo guardado ?");
+	 	Pregunta preg14 = new Pregunta("ï¿½ Que es una variable ?");
+	 	Pregunta preg15 = new Pregunta("ï¿½ Python puede diferenciar mayï¿½sculas de minï¿½sculas  ?");
 		
 	 	sesion.save(preg11);
 		sesion.save(preg12);
@@ -346,14 +349,14 @@ public class ServicioPrincipalImpl implements ServicioPrincipal {
 		Respuesta resp35 = new Respuesta(" Es un programa que pasa el lenguaje maquina a codigo fuente  ",false  );
 		Respuesta resp36 = new Respuesta(" Es algo que permite ejecutar el codigo fuente ", true);
 		Respuesta resp37 = new Respuesta("Si, es aconsejable ponerla aunque ya sea de ese tipo ",true );
-		Respuesta resp38 = new Respuesta("No, sin la extensión esta bien ",false  );
+		Respuesta resp38 = new Respuesta("No, sin la extensiï¿½n esta bien ",false  );
 		Respuesta resp39 = new Respuesta("No es necesario ya que es de tipo python ",true );
 		Respuesta resp40 = new Respuesta("Es un espacio en memoria donde se guardan y recuperan los datos que se utiliza", true);
 		Respuesta resp41 = new Respuesta(" Es una ejecucion dentro de un programa", false );
 		Respuesta resp42 = new Respuesta("Es algo que es necesario este en la memoria de un programa ",true );
 		Respuesta resp43 = new Respuesta("Si", true);
 		Respuesta resp44 = new Respuesta("No", false );
-		Respuesta resp45 = new Respuesta("Tal vez si las separa un carácter diferente",true );
+		Respuesta resp45 = new Respuesta("Tal vez si las separa un carï¿½cter diferente",true );
 		
 		sesion.save(resp31);
 		sesion.save(resp32);
@@ -394,11 +397,11 @@ public class ServicioPrincipalImpl implements ServicioPrincipal {
 	 	sesion.save(new Curso_Examen(c3,examen15 ));
 		
 		//Registro de preguntas Adobe Photoshop
-	 	Pregunta preg16 = new Pregunta("¿En la parte izquierda de photoshop tenes las herramientas  ?");
-	 	Pregunta preg17 = new Pregunta("¿Generar capas es como generar una nueva hoja en un libro?");
-	 	Pregunta preg18 = new Pregunta("¿ Usar el navegador es para hacer zoom  ?");
-	 	Pregunta preg19 = new Pregunta("¿  La herramienta tampon de clonar sirve para copiar colores ?");
-	 	Pregunta preg20 = new Pregunta("¿ Con la herramienta lazo se puede usar zoom  ?");
+	 	Pregunta preg16 = new Pregunta("ï¿½En la parte izquierda de photoshop tenes las herramientas  ?");
+	 	Pregunta preg17 = new Pregunta("ï¿½Generar capas es como generar una nueva hoja en un libro?");
+	 	Pregunta preg18 = new Pregunta("ï¿½ Usar el navegador es para hacer zoom  ?");
+	 	Pregunta preg19 = new Pregunta("ï¿½  La herramienta tampon de clonar sirve para copiar colores ?");
+	 	Pregunta preg20 = new Pregunta("ï¿½ Con la herramienta lazo se puede usar zoom  ?");
 		
 	 	sesion.save(preg16);
 		sesion.save(preg17);
@@ -407,11 +410,11 @@ public class ServicioPrincipalImpl implements ServicioPrincipal {
 		sesion.save(preg20);  
 		
 		//Registro de respuestas	
-		Respuesta resp46 = new Respuesta("Si, están por defecto en la izquierda",true );
-		Respuesta resp47 = new Respuesta("No, están abajo  ",false );
+		Respuesta resp46 = new Respuesta("Si, estï¿½n por defecto en la izquierda",true );
+		Respuesta resp47 = new Respuesta("No, estï¿½n abajo  ",false );
 		Respuesta resp48 = new Respuesta("Aparecen en la derecha ", true);
 		Respuesta resp49 = new Respuesta("Si, es agregarle una nueva pagina",true );
-		Respuesta resp50 = new Respuesta("No, las capas no funcionan así ",false  );
+		Respuesta resp50 = new Respuesta("No, las capas no funcionan asï¿½ ",false  );
 		Respuesta resp51 = new Respuesta("Puede que las capas sean temporales ", true);
 		Respuesta resp52 = new Respuesta("Si, sirve como una lupa  ",true );
 		Respuesta resp53 = new Respuesta("No, es solo para tener la imagen quieta ",false  );
@@ -462,11 +465,11 @@ public class ServicioPrincipalImpl implements ServicioPrincipal {
 	 	sesion.save(new Curso_Examen(c4,examen20 ));
 		
 	 	//Registro de preguntas Wordpress
-	 	Pregunta preg21 = new Pregunta("¿En que año se lanzo Wordpress ?");
-	 	Pregunta preg22 = new Pregunta("¿Cual es el lenguaje de programacion ?");
-	 	Pregunta preg23 = new Pregunta("¿Es una aplicacion de Open Source(libre de uso y desarrollo)  ?");
-	 	Pregunta preg24 = new Pregunta("¿Cual de estos es un Page Builder ?");
-	 	Pregunta preg25 = new Pregunta("¿Que es un pluggin  ?");
+	 	Pregunta preg21 = new Pregunta("ï¿½En que aï¿½o se lanzo Wordpress ?");
+	 	Pregunta preg22 = new Pregunta("ï¿½Cual es el lenguaje de programacion ?");
+	 	Pregunta preg23 = new Pregunta("ï¿½Es una aplicacion de Open Source(libre de uso y desarrollo)  ?");
+	 	Pregunta preg24 = new Pregunta("ï¿½Cual de estos es un Page Builder ?");
+	 	Pregunta preg25 = new Pregunta("ï¿½Que es un pluggin  ?");
 		
 	 	sesion.save(preg21);
 		sesion.save(preg22);
@@ -530,11 +533,11 @@ public class ServicioPrincipalImpl implements ServicioPrincipal {
 	 	sesion.save(new Curso_Examen(c5,examen25 ));
 		
 	 	//Registro de preguntas Piano
-	 	Pregunta preg26 = new Pregunta("¿ El piano es un instrumento de cuerda percutida ?");
-	 	Pregunta preg27 = new Pregunta("¿Cuantas teclas tiene un piano estandar ?");
-	 	Pregunta preg28 = new Pregunta("¿ Cuantas octavas tiene un piano estandar ?");
-	 	Pregunta preg29 = new Pregunta("¿Los pianos cunetan con 4 pedales ?");
-	 	Pregunta preg30 = new Pregunta("¿Es verdad que los pianos se afinan ?");
+	 	Pregunta preg26 = new Pregunta("ï¿½ El piano es un instrumento de cuerda percutida ?");
+	 	Pregunta preg27 = new Pregunta("ï¿½Cuantas teclas tiene un piano estandar ?");
+	 	Pregunta preg28 = new Pregunta("ï¿½ Cuantas octavas tiene un piano estandar ?");
+	 	Pregunta preg29 = new Pregunta("ï¿½Los pianos cunetan con 4 pedales ?");
+	 	Pregunta preg30 = new Pregunta("ï¿½Es verdad que los pianos se afinan ?");
 		
 	 	sesion.save(preg26);
 		sesion.save(preg27);
@@ -598,11 +601,11 @@ public class ServicioPrincipalImpl implements ServicioPrincipal {
 	 	sesion.save(new Curso_Examen(c6,examen30 ));
 	 	
 		//Registro de preguntas Guitarra
-	 	Pregunta preg31 = new Pregunta("¿ Cuantas cuerdas tiene la guitarra  ?");
-	 	Pregunta preg32 = new Pregunta("¿Porque parte se afina la guitarra  ?");
-	 	Pregunta preg33 = new Pregunta("¿De que material estan compuestas las guitarras criollas ?");
-	 	Pregunta preg34 = new Pregunta("¿ Cual de estos NO es un tipo de guitarra ?");
-	 	Pregunta preg35 = new Pregunta("¿ Que elemento se le coloca a la guitarra para formar un acorde ?");
+	 	Pregunta preg31 = new Pregunta("ï¿½ Cuantas cuerdas tiene la guitarra  ?");
+	 	Pregunta preg32 = new Pregunta("ï¿½Porque parte se afina la guitarra  ?");
+	 	Pregunta preg33 = new Pregunta("ï¿½De que material estan compuestas las guitarras criollas ?");
+	 	Pregunta preg34 = new Pregunta("ï¿½ Cual de estos NO es un tipo de guitarra ?");
+	 	Pregunta preg35 = new Pregunta("ï¿½ Que elemento se le coloca a la guitarra para formar un acorde ?");
 		
 	 	sesion.save(preg31);
 		sesion.save(preg32);
@@ -666,11 +669,11 @@ public class ServicioPrincipalImpl implements ServicioPrincipal {
 	 	
 	 	
 		//Registro de preguntas Canto
-	 	Pregunta preg36 = new Pregunta("¿ Es verdad que a los hombres se les vuelve mas grave la voz durante su adolecencia porque La distancia entre la laringe y la boca se hace más larga  ?");
-	 	Pregunta preg37 = new Pregunta("¿ Cual de estos elementos es esencial para cantar ?");
-	 	Pregunta preg38 = new Pregunta("¿Que es el vibrato  ?");
-	 	Pregunta preg39 = new Pregunta("¿El soplado consiste en dejar pasar aire por las cuerdas vocales mientras se va produciendo sonido ?");
-	 	Pregunta preg40 = new Pregunta("¿Para que sirven los resonadores?");
+	 	Pregunta preg36 = new Pregunta("ï¿½ Es verdad que a los hombres se les vuelve mas grave la voz durante su adolecencia porque La distancia entre la laringe y la boca se hace mï¿½s larga  ?");
+	 	Pregunta preg37 = new Pregunta("ï¿½ Cual de estos elementos es esencial para cantar ?");
+	 	Pregunta preg38 = new Pregunta("ï¿½Que es el vibrato  ?");
+	 	Pregunta preg39 = new Pregunta("ï¿½El soplado consiste en dejar pasar aire por las cuerdas vocales mientras se va produciendo sonido ?");
+	 	Pregunta preg40 = new Pregunta("ï¿½Para que sirven los resonadores?");
 		
 	 	sesion.save(preg36);
 		sesion.save(preg37);
@@ -685,7 +688,7 @@ public class ServicioPrincipalImpl implements ServicioPrincipal {
 		Respuesta resp109 = new Respuesta("-Elongacion",false );
 		Respuesta resp110 = new Respuesta("-Articulacion ",false  );
 		Respuesta resp111 = new Respuesta("-Respiracion", true);
-		Respuesta resp112 = new Respuesta("-Una oscilación regular de la voz ",false );
+		Respuesta resp112 = new Respuesta("-Una oscilaciï¿½n regular de la voz ",false );
 		Respuesta resp113 = new Respuesta("-Subir y bajar en una misma nota ",false  );
 		Respuesta resp114 = new Respuesta("-Ambas son correctas",true );
 		Respuesta resp115 = new Respuesta("-El soplado no produce sonido", false);
@@ -733,20 +736,6 @@ public class ServicioPrincipalImpl implements ServicioPrincipal {
 	 	sesion.save(new Curso_Examen(c8,examen39 ));
 	 	sesion.save(new Curso_Examen(c8,examen40 ));
 	 	
-	}
-
-	@Override
-	public void actualizarImagenDeUsuarios() {
-		
-		Session sesion = sessionFactory.getCurrentSession();
-		
-		List<Usuario> usuarios = sesion.createCriteria(Usuario.class).list();
-		
-		for (Usuario usuario : usuarios) {
-			
-			usuario.setImagen("default-user.png");
-			sesion.update(usuario);
-		}
 	}
 
 }

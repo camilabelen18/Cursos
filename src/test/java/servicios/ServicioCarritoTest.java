@@ -18,13 +18,15 @@ import modelo.Usuario;
 import repositorios.RepositorioCarrito;
 import repositorios.RepositorioUsuario;
 import repositorios.RepositorioCurso;
+import repositorios.RepositorioGiftcard;
 
 public class ServicioCarritoTest {
 	RepositorioUsuario repositorioUsuario = mock(RepositorioUsuario.class);
 	RepositorioCarrito repositorioCarrito = mock(RepositorioCarrito.class);
 	RepositorioCurso repositorioCurso = mock(RepositorioCurso.class);
+	RepositorioGiftcard repositorioGiftcard = mock(RepositorioGiftcard.class);
 	ServicioCurso servicioCurso=new ServicioCursoImpl(repositorioCurso, repositorioUsuario);
-	ServicioUsuario servicioUsuario = new ServicioUsuarioImpl(repositorioUsuario, repositorioCarrito, repositorioCurso);
+	ServicioUsuario servicioUsuario = new ServicioUsuarioImpl(repositorioUsuario, repositorioCarrito, repositorioCurso, repositorioGiftcard);
 	ServicioCarrito servicioCarrito = new ServicioCarritoImpl(repositorioCarrito, repositorioUsuario, servicioUsuario);
 
 	@Test

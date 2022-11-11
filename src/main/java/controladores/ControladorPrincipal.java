@@ -19,21 +19,12 @@ public class ControladorPrincipal {
 	@RequestMapping(path = "/", method = RequestMethod.GET)
     public ModelAndView inicio() {
 		
-	//	servicioPrincipal.insertarRegistros();
 		
-		/* De ser necesario, descomentar este metodo, eliminar la base de datos "proyecto_cursos", 
-		 * volverla a crear con el mismo nombre, ejecutar el proyecto para que se inserten 
-		 * todos los registros y una vez que se termine de ejecutar detener el servidor.
-		 * 
-		 * Después, volver a comentar el metodo y volver a ejecutar el proyecto para comprobar
-		 * que se insertaron los registros correctamente.
-		 */
-		
-		
-		// Se establece una imagen por defecto a todos los usuarios al ejecutar el proyecto
 		if (ingresaPorPrimeraVez) {
 			
-			servicioPrincipal.actualizarImagenDeUsuarios();
+			// Se insertan todos los registros de los usuarios al ejecutar el proyecto
+			servicioPrincipal.insertarRegistros();
+			
 			ingresaPorPrimeraVez = false;
 		}
 		
