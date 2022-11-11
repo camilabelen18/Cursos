@@ -23,6 +23,7 @@ public class ServicioCursoTest {
 	RepositorioUsuario repositorioUsuario = mock(RepositorioUsuario.class);
 	ServicioCurso servicioCurso = new ServicioCursoImpl(repositorioCurso, repositorioUsuario);
 
+
 	@Test
 	public void testQueAgregaCurso(){
 		//Preparacion
@@ -34,8 +35,7 @@ public class ServicioCursoTest {
 		assertThat(curso.getId()).isNotNull();
 	}
 	
-	
-	
+
 	@Test
 	public void testQueObtieneExamenes() {
 		
@@ -55,8 +55,8 @@ public class ServicioCursoTest {
 	public void testQueObtieneTotalDePuntajesExamen() {
 	
 		//Preparacion
-		Pregunta pregunta_1 = new Pregunta("¿Esto es una prueba ?");
-		Pregunta pregunta_2 = new Pregunta("¿Esto es una prueba_1 ?");
+		Pregunta pregunta_1 = new Pregunta("ï¿½Esto es una prueba ?");
+		Pregunta pregunta_2 = new Pregunta("ï¿½Esto es una prueba_1 ?");
 		Respuesta respuesta_1 = new Respuesta("Si",true);
 		Respuesta respuesta_2 = new Respuesta("no",false);
 		Respuesta respuesta_3 = new Respuesta("no se",true);
@@ -87,8 +87,8 @@ public class ServicioCursoTest {
 	public void testQueSumarPuntajeExamen() {
 		
 		//Preparacion
-		Pregunta pregunta_1 = new Pregunta("¿Esto es una prueba ?");
-		Pregunta pregunta_2 = new Pregunta("¿Esto es una prueba_1 ?");
+		Pregunta pregunta_1 = new Pregunta("ï¿½Esto es una prueba ?");
+		Pregunta pregunta_2 = new Pregunta("ï¿½Esto es una prueba_1 ?");
 		Respuesta respuesta_1 = new Respuesta("Si",true);
 		Respuesta respuesta_2 = new Respuesta("no",false);
 		Respuesta respuesta_3 = new Respuesta("no se",true);
@@ -118,7 +118,15 @@ public class ServicioCursoTest {
 	}
 	
 	
-	
-	
-	
+	@Test
+	public void queSePuedaVerCursosPorCategoria(){
+		//Preparacion
+		String categoria= "Programacion";
+		
+		//Ejecucion
+		servicioCurso.getCursosPorCategoria(categoria);
+		
+		//Comprobacion
+		assertThat(categoria).isNotNull();
+	}
 }

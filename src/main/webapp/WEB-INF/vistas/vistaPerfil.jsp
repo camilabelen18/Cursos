@@ -25,17 +25,15 @@
 
 			<p id="emailPerfil">
 				Email: ${usuario.email}
-				<%-- <%=session.getAttribute("emailUsuario")%> --%>
+				
 			</p>
 
-			<p id="passwordPerfil">
-				Contraseña: ${usuario.password}
-				<%-- <%=session.getAttribute("passwordUsuario")%> --%>
-			</p>
+			<label for="password" id="passwordPerfil" >Contraseña: </label><input id="passwordPerfilCaja" type="password" name="password"
+				value="${usuario.password}" disabled="disabled">
 
 			<p id="rolPerfil">
 				Rol: ${usuario.rol}
-				<%-- <%=session.getAttribute("rolUsuario")%> --%>
+				
 			</p>
 			<a href="editarPerfil"> <input id="editarPerfil"
 				name="editarPerfil" type="submit" value="Editar perfil"></a>
