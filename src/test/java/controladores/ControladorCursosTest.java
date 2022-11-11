@@ -23,6 +23,7 @@ import modelo.Pregunta;
 import modelo.Respuesta;
 import modelo.Unidad;
 import modelo.Usuario;
+import servicios.CursoInexistenteException;
 import servicios.ServicioCurso;
 import servicios.ServicioUsuario;
 
@@ -170,7 +171,7 @@ public class ControladorCursosTest {
 		// Preparacion
 		Integer id_curso = 1;
 		
-		doThrow(Exception.class).when(servicioCurso).buscarCursoPorId(id_curso);
+		doThrow(CursoInexistenteException.class).when(servicioCurso).buscarCursoPorId(id_curso);
 		
 		// Ejecucion
 		ModelAndView mav = controladorCursos.irADescCurso(id_curso);

@@ -50,34 +50,30 @@ public class ServicioPrincipalImpl implements ServicioPrincipal {
 		
 		/* SE INSERTAN LOS REGISTROS DE TODOS LOS USUARIOS DEL SISTEMA */
 		
-		Giftcard gift1 = new Giftcard(448, 0, 10000.0);
-		Giftcard gift2 = new Giftcard(055, 0, 10000.0);
-		Giftcard gift3 = new Giftcard(122, 0, 10000.0);
+		Giftcard gift = new Giftcard(555, 0, 0.0);
 		
 		Usuario admin = new Usuario("Juan", "hola@hola.com","1234", "admin");
 		admin.setNroTarjeta(555);
-		admin.setGiftcard(gift1);
+		admin.setGiftcard(gift);
 		admin.setImagen("default-user.png");
 		
 		Usuario cliente1 = new Usuario("Ana", "ana@gmail.com","111", "cliente");
 		cliente1.setNroTarjeta(4407);
-		cliente1.setGiftcard(gift2);
+		cliente1.setGiftcard(gift);
 		cliente1.setImagen("default-user.png");
+		
+		Usuario cliente2 = new Usuario("Ale", "ale@gmail.com","123", "cliente");
+		cliente2.setNroTarjeta(5809);
+		cliente2.setGiftcard(gift);
+		cliente2.setImagen("default-user.png");
 		
 		Carrito car1 = new Carrito();
 		car1.setUsuario(cliente1);
 		
-		Usuario cliente2 = new Usuario("Ale", "ale@gmail.com","123", "cliente");
-		cliente2.setNroTarjeta(5809);
-		cliente2.setGiftcard(gift3);
-		cliente2.setImagen("default-user.png");
-
 		Carrito car2 = new Carrito();
 		car2.setUsuario(cliente2);
 
-		sesion.save(gift1);
-		sesion.save(gift2);
-		sesion.save(gift3);
+		sesion.save(gift);
 		sesion.save(admin);
 		sesion.save(cliente1);
 		sesion.save(cliente2);

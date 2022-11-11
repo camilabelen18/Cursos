@@ -12,6 +12,7 @@ import org.junit.Test;
 import org.springframework.web.servlet.ModelAndView;
 
 import modelo.*;
+import servicios.ClavesNoSonIgualesException;
 import servicios.ServicioSubirImagen;
 import servicios.ServicioUsuario;
 
@@ -41,9 +42,11 @@ public class ControladorUsuariosTest {
 		// Preparación
 		DatosRegistro datosRegistro = new DatosRegistro("Martin", "martin@gmail.com", "123", "12345");
 		String msjEsperado = "Las contraseñas no son iguales";
+		
+		when(servicioUsuario.buscarUsuarioPorEmail(datosRegistro.getEmail())).thenReturn(null);
 
 		// Ejecución
-		doThrow(Exception.class).when(servicioUsuario).registrar(datosRegistro);
+		doThrow(ClavesNoSonIgualesException.class).when(servicioUsuario).registrar(datosRegistro);
 		ModelAndView mav = controladorUsuarios.registrarNuevoUsuario(datosRegistro);
 
 		// Comprobación
