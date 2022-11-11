@@ -131,4 +131,32 @@ public class RepositorioCursoImpl implements RepositorioCurso{
 		sessionFactory.getCurrentSession().update(curso);
 	}
 
+	@Override
+	public Examen obtenerExamenPorID(Integer examen_id) {
+		
+        Session sesion = sessionFactory.getCurrentSession();
+        
+		Examen examen = sesion.get(Examen.class, examen_id);
+		
+		return examen;
+	}
+
+	@Override
+	public List<Examen> obtenerExamenesDelCurso(Curso curso_obtenido) {
+		Session sesion = sessionFactory.getCurrentSession();
+
+		List<Curso_Examen> curso_examenes = sesion.createCriteria(Curso_Examen.class)
+											.add(Restrictions.eq("curso", curso_obtenido))
+											.list();
+
+		List<Examen> examenes = new ArrayList<Examen>();
+		
+		for (Curso_Examen cursoExamen : curso_examenes) {
+			
+			examenes.add(cursoExamen.getExamen());
+		}
+		
+		return examenes;
+	}
+
 }

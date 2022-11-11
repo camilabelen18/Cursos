@@ -3,53 +3,112 @@ body{
     font-family: 'Roboto', sans-serif;
 }
 
-.titulo{
- align-items: center;
- text-align: center;
-	}	
+/* SECCION PREGUNTAS */
+.contenido-seccion-preguntas{
+   width: 60%;
+	margin: auto;
+	margin-bottom: 100px;
+	
+	display: flex;
+    flex-direction: column;
+    justify-content: center;
 
-section{
-    border:1px solid #ccc;
-    margin:0.5em;
-    border-radius: 1em;
-    width: 80%;
-    margin: auto;
-    background-color:rgb(128, 255, 255);
-    margin-bottom:1em;
-    color:#fff;
-    padding:1em;
-    align-items: center;
+}
+
+/* Titulo */
+#titulo {
+    padding: 20px;
+    margin: 20px;
     text-align: center;
-}
-article{
-    padding:1em;
-    background-color:#fff;
-    color: #000;
-    border-radius: 0.5em;
-    margin: 0.5em 0;
+    color: #3c3b37;
+	font-size: 16px;
 }
 
-.finalizado{
-	text-align: center;
-    align-items: center;
-	padding:1em;
-    background-color:#fff;
-    color: #000;
-    border-radius: 0.5em;
-    margin: 0.5em 0;
+#titulo a {
+	color: #3c3b37;
+	font-size: 14px;
+}
 	
+/* LISTA DE PREGUNTAS */
+.cuadro-seccion-preguntas {
+	padding: 30px;
+    margin: 30px;
+    text-align: center;
+
+
+	border-bottom: 2px solid #c7c7c7;
+	border-top: 2px solid #c7c7c7;
 }
 
-.contenido{
-	text-align: center;
-    align-items: center;
-	padding:1em;
-    background-color:#fff;
-    color: #000;
-    border-radius: 0.5em;
-    margin: 0.5em 0;
-	
+/* PREGUNTA */
+#cuadro-pregunta{
+	margin-top: 10px;
+	margin-bottom: 10px;
+	padding: 10px;
+	border-bottom: 2px solid #c7c7c7;
+	border-top: 2px solid #c7c7c7;
+
 }
+
+/* RESPUESTAS */
+.cuadro-respuestas{
+	margin-top: 10px;
+	margin-bottom: 10px;
+	padding: 10px;
+}
+
+#respuesta_1 {
+    margin: 10px;
+}
+
+#respuesta_2 {
+    margin: 10px;
+}
+
+#respuesta_3 {
+    margin: 10px;
+}
+
+
+/*El resultado Total */
+#cuadro-seccion-finalizado {
+	padding: 30px;
+    margin: 30px;
+    text-align: center;
+	border-bottom: 2px solid #c7c7c7;
+	border-top: 2px solid #c7c7c7;
+	color: #3c3b37;
+	font-size: 14px;
+}
+
+#cuadro-puntaje-total {
+	padding: 25px;
+	border-bottom: 2px solid #c7c7c7;
+	border-top: 2px solid #c7c7c7;
+}
+
+#total-examen {
+	padding: 15px;
+	border-bottom: 2px solid #c7c7c7;
+	border-top: 2px solid #c7c7c7;
+    color: #3c3b37;
+	font-size: 14px;
+}
+#nota-examen {
+	padding-bottom: 15px;
+	font-size: 22px;
+}
+/*
+p{
+	padding: 6px;
+	font-size: 20px;
+}
+*/	
+	
+	
+
+
+
 
 /*------------------------------------------RESPONSIVE----------------------------------*/
 

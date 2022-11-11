@@ -16,6 +16,9 @@ import modelo.Curso;
 import modelo.DatosCreacionCurso;
 import modelo.DatosRegistro;
 import modelo.Estado;
+import modelo.Examen;
+import modelo.Pregunta;
+import modelo.Respuesta;
 import modelo.Unidad;
 import servicios.ServicioCurso;
 import servicios.ServicioUsuario;
@@ -211,6 +214,68 @@ public class ControladorCursosTest {
 		// Comprobacion
 		assertThat(mav.getViewName()).isEqualTo("vistaCurso");
 		assertThat(mav.getModel().get("msj_progreso")).isEqualTo("Para completar el curso debe estar completado en un 50% o mas.");
+	}
+
+
+	@Test 
+	public void testQueSePuedaVerUnExamen () {
+		//Preparacion 
+		Pregunta pregunta_1 = new Pregunta("Esto es una prueba ?");
+		Pregunta pregunta_2 = new Pregunta("Esto es una prueba_1 ?");
+		Respuesta respuesta_1 = new Respuesta("Si",true);
+		Respuesta respuesta_2 = new Respuesta("no",false);
+		Respuesta respuesta_3 = new Respuesta("no se",true);
+				
+		
+		   List<Examen> listaExamenes = new ArrayList();
+		    Examen examen1 = new Examen(pregunta_1,respuesta_1,respuesta_2,respuesta_3);
+			Examen examen2 = new Examen(pregunta_2,respuesta_1,respuesta_2,respuesta_3);
+	        listaExamenes.add(examen1);
+	        listaExamenes.add(examen2);
+	        
+		Curso curso_obtenido = new Curso("Curso php","Programacion","Curso de programacion php", 1000.0,null, "cursophp.png");
+		
+		//Ejecucion
+		when(servicioCurso.buscarCursoPorId(curso_obtenido.getId())).thenReturn(curso_obtenido);
+	    when(servicioCurso.obtenerExamenes(curso_obtenido)).thenReturn(listaExamenes);
+		ModelAndView mav = controladorCursos.examen(curso_obtenido.getId());
+        
+		//Comprobacion
+		assertThat(mav.getViewName()).isEqualTo("vistaExamen");
+	}
+
+
+	@Test
+	public void testFinalizarExamen() {
+		
+		//Preparacion 
+		Pregunta pregunta_1 = new Pregunta("Esto es una prueba ?");
+		Pregunta pregunta_2 = new Pregunta("Esto es una prueba_1 ?");
+		Respuesta respuesta_1 = new Respuesta("Si",true);
+		Respuesta respuesta_2 = new Respuesta("no",false);
+		Respuesta respuesta_3 = new Respuesta("no se",true);
+				
+		   List<Examen> listaExamenes = new ArrayList();
+		    Examen examen1 = new Examen(pregunta_1,respuesta_1,respuesta_2,respuesta_3);
+			Examen examen2 = new Examen(pregunta_2,respuesta_1,respuesta_2,respuesta_3);
+	        listaExamenes.add(examen1);
+	        listaExamenes.add(examen2);
+	        
+		Curso curso_obtenido = new Curso("Curso php","Programacion","Curso de programacion php", 1000.0,null, "cursophp.png");
+		
+		boolean nota_examen = true;
+		int puntajeFinal = 2;
+		
+		//Ejecucion
+		when(servicioCurso.buscarCursoPorId(curso_obtenido.getId())).thenReturn(curso_obtenido);
+		when(servicioCurso.sumarPuntajeExamen(listaExamenes)).thenReturn(nota_examen);
+		when(servicioCurso.getTotalDePuntajesExamen(listaExamenes)).thenReturn(puntajeFinal);
+		 when(servicioCurso.obtenerExamenes(curso_obtenido)).thenReturn(listaExamenes);
+		
+		ModelAndView mav = controladorCursos.finalizarExamen(curso_obtenido.getId());
+        
+		//Comprobacion
+		assertThat(mav.getViewName()).isEqualTo("vistaExamen");
 	}
 
 }

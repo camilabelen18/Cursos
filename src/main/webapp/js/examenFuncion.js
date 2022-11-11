@@ -7,9 +7,9 @@ $(document).ready(function () {
          */
 
     //Variables para hacer la funcion      
-    var resultado = "";
-    var puntosDeLaPagina = 0;
-    var variableDeSumaDeNota = 0;
+   // var resultado = "";
+   // var puntosDeLaPagina = 0;
+   // var variableDeSumaDeNota = 0;
     var nota = 0;
     var resultadoTotal = document.createElement("div");
     var cambiar = document.getElementById("cambiar");
@@ -18,39 +18,24 @@ $(document).ready(function () {
     //Funcion para sumar la nota cuando tocas un input   
     function sumarNota() {
 
-        if ($("input[name=respuesta]:checked").val()) {
+        if ($("input[name=respuesta]:checked").val()==true) {
 
-            variableDeSumaDeNota = (Math.random() * 100);
-
-            if (variableDeSumaDeNota > 25) {
-                nota += 1;
-            }
-            else {
-                nota += 0;
-            }
-
+          nota +=1;
 
 
         }
 
         if (nota >= 7) {
-            resultado = "Aprobado"
-            puntosDeLaPagina += 125;
-            resultadoTotal.innerHTML = `<h3>Nota : </h3>${nota} <h4>Puntos adquiridos por hacer bien el examen : </h4> ${puntosDeLaPagina} <h4>Estado : </h4>  ${resultado} `;
+
+            resultadoTotal.innerHTML = `<h3>Nota : </h3>${nota}  `;
         }
         else {
-            resultado = "Desaprobado"
-            puntosDeLaPagina += 0;
-            resultadoTotal.innerHTML = `<h3>Nota : </h3>${nota} <h4>Puntos adquiridos por hacer el examen : </h4> ${puntosDeLaPagina} <h4>Estado : </h4>  ${resultado} `;
+
+            resultadoTotal.innerHTML = `<h3>Nota : </h3>${nota}  `;
 
         }
 
-
-        //console.log(resultado);
-        //  console.log(variableDeSumaDeNota);
         console.log(nota);
-        console.log(puntosDeLaPagina);
-        console.log(resultadoTotal);
 
     }
 

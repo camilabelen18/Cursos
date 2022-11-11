@@ -254,22 +254,73 @@ public class ControladorCursos {
 		return new ModelAndView(view, model);
 	}
 
+
 	// Para hacer el controlador de examen
-	@RequestMapping(path = "/examen", method = RequestMethod.GET)
-	public ModelAndView examen() {
-
+	@RequestMapping(path = "/examen", method = RequestMethod.POST)
+	public ModelAndView examen(@RequestParam("curso_id") int curso_id) {
+		
 		ModelMap model = new ModelMap();
+	//Buscas el curso 	
+		Curso curso_obtenido = servicioCurso.buscarCursoPorId(curso_id); //Por ahora solo del primer curso el del php C1
+		
+		//Hacemos una lista de preguntas y respuestas que estan en examenes 
+		List<Examen> examenes = servicioCurso.obtenerExamenes(curso_obtenido);
+		
+		
+	//	Examen examen = servicioCurso.obtenerExamenPorId(examen_id);
 
+	
+	//	boolean nota_examen =servicioCurso.sumarPuntajeExamen(examenes);
+	
+		//Obtengo el puntaje total sumando el puntaje individual de cada examen 
+    //	int puntajeFinal = servicioCurso.getTotalDePuntajesExamen(examenes);	
+
+		model.put("curso", curso_obtenido);
+		model.put("examenes", examenes);
+	//	model.put("nota_final", puntajeFinal);
+	//	model.put("nota_examen", nota_examen );
+	//	System.out.println(examenes);
+
+		
+		
+	
 		return new ModelAndView("vistaExamen", model);
 	}
 
+
 	// Finalizar el examen y que te sumen los puntos al usuario
-	@RequestMapping(path = "/finalizoExamen", method = RequestMethod.GET)
-	public ModelAndView finalizoExamen() {
+	@RequestMapping(path = "/finalizarExamen", method = RequestMethod.POST)
+	public ModelAndView finalizarExamen(@RequestParam("curso_id") int curso_id) {
 
 		ModelMap model = new ModelMap();
+		//Buscas el curso 	
+		Curso curso_obtenido = servicioCurso.buscarCursoPorId(curso_id); //Por ahora solo del primer curso el del php C1
+		
+		//Obtenemos la respuesta del input seleccionado
+	//	Examen examen = servicioCurso.obtenerExamenPorId(examen_id); //  java.awt.event.ActionEvent evento (esto en teoria sacaria el evento click usando java)
+		
+		//Hacemos una lista de preguntas y respuestas que estan en examenes 
+		List<Examen> examenes = servicioCurso.obtenerExamenes(curso_obtenido);
+		
+		boolean nota_examen =servicioCurso.sumarPuntajeExamen(examenes);
+	
+		//Obtengo el puntaje total sumando el puntaje individual de cada examen 
+		int puntajeFinal = servicioCurso.getTotalDePuntajesExamen(examenes);
 
-		return new ModelAndView("vistaExamenFinalizado", model);
+		model.put("curso", curso_obtenido);
+		model.put("examenes", examenes);
+		model.put("nota_final", puntajeFinal);
+		model.put("nota_examen", nota_examen );
+	//	model.put("examen", examen);
+	//	System.out.println(examenes);
+
+        
+		
+	
+		return new ModelAndView("vistaExamen", model);
+	//	return new ModelAndView("vistaExamenFinalizado", model);
 	}
+	
+
 
 }

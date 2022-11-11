@@ -83,7 +83,9 @@
 					</form>
 				</c:if>
 
-				<form action="examen" method="GET">
+          
+       
+				<form action="examen?curso_id=${curso.id}" method="POST">
 					<input type="submit" name="examen" value="Examen" class="btn-tipo-1">
 				</form>
 				

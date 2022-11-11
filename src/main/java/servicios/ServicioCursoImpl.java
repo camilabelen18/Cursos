@@ -5,14 +5,18 @@ import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
+
 import javax.transaction.Transactional;
 
+import org.jboss.logging.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import modelo.Curso;
 import modelo.Curso_Unidad;
 import modelo.Estado;
+import modelo.Examen;
 import modelo.Unidad;
 import modelo.Usuario;
 import modelo.Usuario_Curso;
@@ -22,6 +26,8 @@ import repositorios.RepositorioUsuario;
 @Service("servicioCurso")
 @Transactional
 public class ServicioCursoImpl implements ServicioCurso {
+	
+	static Scanner input = new Scanner(System.in);
 
 	private RepositorioCurso repositorioCurso;
 	private RepositorioUsuario repositorioUsuario;
@@ -137,5 +143,52 @@ public class ServicioCursoImpl implements ServicioCurso {
 		curso.setPrecio(precio);
 		
 		repositorioCurso.actualizarCurso(curso);
+	}
+
+	@Override
+	public Examen obtenerExamenPorId(Integer examen_id) {
+		
+		return repositorioCurso.obtenerExamenPorID(examen_id);
+	}
+
+	@Override
+	public List<Examen> obtenerExamenes(Curso curso_obtenido) {
+		return repositorioCurso.obtenerExamenesDelCurso(curso_obtenido);
+	}
+
+
+	@Override
+	public int getTotalDePuntajesExamen(List<Examen> examenes) {
+         
+		int puntajeTotal = 0;
+		
+		for (Examen examen : examenes) {
+			
+			puntajeTotal += examen.getPuntaje();
+		}
+		
+		return puntajeTotal;
+	}
+
+
+	@Override
+	public boolean sumarPuntajeExamen(List<Examen> examenes) {
+	
+		 
+		boolean verdadero=false;
+		
+		for (Examen examen : examenes) {
+			
+			if(examen.getRespuesta().getRespuesta_correcta()  || examen.getRespuesta_2().getRespuesta_correcta()  || examen.getRespuesta_3().getRespuesta_correcta()  ) {
+				examen.setPuntaje(1);
+				verdadero=true;
+			} 
+			
+		
+			
+		}
+		
+		return verdadero;
+
 	}
 }
