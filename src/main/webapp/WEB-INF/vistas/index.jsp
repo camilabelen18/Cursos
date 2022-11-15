@@ -77,6 +77,9 @@
 	
 	<!-- Aca se incluye el "FOOTER" -->
 	<%@ include file="footer.jsp"%>
+	
+	<script src="js/darkmode.js"></script>
+    <script src="https://kit.fontawesome.com/68a93485c2.js" crossorigin="anonymous"></script>
 
 </body>
 </html>

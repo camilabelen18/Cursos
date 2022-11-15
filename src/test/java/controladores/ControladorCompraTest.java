@@ -30,24 +30,23 @@ public class ControladorCompraTest {
 	 HttpSession session = mock(HttpSession.class);
 	 ControladorCompra controladorCompra = new ControladorCompra(servicioUsuario, servicioCurso, servicioCarrito);
 	
-//	 @Test
-//	 public void testQuePermitaVerificacionCompra() {
-//		 //Preparacion
-//		 Usuario usuario = new Usuario("Camila", "camilabelen906@gmail.com", "1234", "admin");
-//		 Curso curso = new Curso("Curso php", "Programacion", 
-//								"Curso de programacion php",1000.0, 
-//								Estado.EN_CURSO, "cursophp.png");
-//		 Integer nroTarjeta = 111;
-//		 //Ejecucion
-//		 when(servicioUsuario.buscarUsuarioPorID(usuario.getId())).thenReturn(usuario);
-//		 when(servicioUsuario.existeCursoEnListaUsuario(curso.getId(), usuario)).thenReturn(true);
-//		 when(curso.getEstado()).thenReturn(Estado.CANCELADO);
-//		 when(session.getAttribute("idUsuario")).thenReturn(usuario.getId());
-//		 ModelAndView mav = controladorCompra.verificacionCompra(curso.getId(), curso.getPrecio(), session);
-//		 //Comprobacion
-//		 assertThat(mav.getViewName()).isEqualTo("redirect:/verListaCursos");
-//		 
-//	 }
+	 @Test
+	 public void testQuePermitaVerificacionCompra() {
+		 //Preparacion
+		 Usuario usuario = new Usuario("Camila", "camilabelen906@gmail.com", "1234", "admin");
+		 Curso curso = new Curso("Curso php", "Programacion", 
+								"Curso de programacion php",1000.0, 
+								Estado.CANCELADO, "cursophp.png");
+		 Integer nroTarjeta = 111;
+		 //Ejecucion
+		 when(servicioUsuario.buscarUsuarioPorID(usuario.getId())).thenReturn(usuario);
+		 when(servicioUsuario.existeCursoEnListaUsuario(curso.getId(), usuario)).thenReturn(false);
+		 when(session.getAttribute("idUsuario")).thenReturn(usuario.getId());
+		 ModelAndView mav = controladorCompra.verificacionCompra(curso.getId(), curso.getPrecio(), session);
+		 //Comprobacion
+		 assertThat(mav.getViewName()).isEqualTo("verificacionCompra");
+		 
+	 }
 	 
 	 @Test
 	 public void testQuePermitaVerificarCompra(){
