@@ -324,6 +324,8 @@ public class ControladorCursosTest {
 		when(servicioCurso.buscarCursoPorId(curso_obtenido.getId())).thenReturn(curso_obtenido);
 	    when(servicioCurso.obtenerExamenes(curso_obtenido)).thenReturn(listaExamenes);
 		ModelAndView mav = controladorCursos.examen(curso_obtenido.getId());
+		
+		//Hacer los mock 
         
 		//Comprobacion
 		assertThat(mav.getViewName()).isEqualTo("vistaExamen");
@@ -358,7 +360,8 @@ public class ControladorCursosTest {
 		 when(servicioCurso.obtenerExamenes(curso_obtenido)).thenReturn(listaExamenes);
 		
 		ModelAndView mav = controladorCursos.finalizarExamen(curso_obtenido.getId());
-        
+		//Hacer los mock 
+		
 		//Comprobacion
 		assertThat(mav.getViewName()).isEqualTo("vistaExamen");
 	}
