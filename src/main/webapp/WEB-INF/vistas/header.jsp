@@ -8,7 +8,7 @@
 </head>
 
 <header>
-	<div class="cont-1-header">
+	<div class="cont-1-header" id="cont-header">
 
 		<%--Logo cursos --%>
 		<div class="cursosLogo">
@@ -64,8 +64,8 @@
 
 	</div>
 
-	<%--Menu --%>
-	<nav>
+	<%-- Menu --%>
+	<nav class="menu">
 		<ul>
 			<li><a href="index.jsp">Inicio</a></li>
 			<li><a href="verListaCursos">Cursos</a></li>

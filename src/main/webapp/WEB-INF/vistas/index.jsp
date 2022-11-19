@@ -55,7 +55,7 @@
 	</div>
 
 	<!-- CONTACTO -->
-	<div class="cont-contacto">
+	<div class="cont-contacto" id="cont-contacto">
 		<div class="txt-contacto">
 			<p>Contacto</p>
 		</div>
@@ -77,9 +77,6 @@
 	
 	<!-- Aca se incluye el "FOOTER" -->
 	<%@ include file="footer.jsp"%>
-	
-	<script src="js/darkmode.js"></script>
-    <script src="https://kit.fontawesome.com/68a93485c2.js" crossorigin="anonymous"></script>
 
 </body>
 </html>
