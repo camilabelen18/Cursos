@@ -53,9 +53,7 @@ public class ControladorCompraTest {
 	 public void testQuePermitaVerificarCompra(){
 		 //Preparacion
 		 Usuario usuario = new Usuario("Camila", "camilabelen906@gmail.com", "1234", "admin");
-		 Curso curso = new Curso("Curso php", "Programacion", 
-								"Curso de programacion php",1000.0, 
-								Estado.EN_CURSO, "cursophp.png");
+		 Curso curso = new Curso("Curso php", "Programacion", "Curso de programacion php", 1000.0, "cursophp.png");
 		 Integer nroTarjeta = 111;
 		 //Ejecucion
 		 when(servicioUsuario.buscarUsuarioPorID(usuario.getId())).thenReturn(usuario);
@@ -71,9 +69,7 @@ public class ControladorCompraTest {
 	 public void testQueNoPermitaVerificarCompra(){
 		 //Preparacion
 		 Usuario usuario = new Usuario("Camila", "camilabelen906@gmail.com", "1234", "admin");
-		 Curso curso = new Curso("Curso php", "Programacion", 
-								"Curso de programacion php",1000.0, 
-								Estado.CANCELADO, "cursophp.png");
+		 Curso curso = new Curso("Curso php", "Programacion", "Curso de programacion php",1000.0, "cursophp.png");
 		 Integer nroTarjeta = 111;
 		 //Ejecucion
 		 when(servicioUsuario.buscarUsuarioPorID(usuario.getId())).thenReturn(usuario);
@@ -91,9 +87,7 @@ public class ControladorCompraTest {
 	 public void testQuePermitaCancelarCompra(){
 		 //Preparacion
 		 Usuario usuario = new Usuario("Camila", "camilabelen906@gmail.com", "1234", "admin");
-		 Curso curso = new Curso("Curso php", "Programacion", 
-								"Curso de programacion php",1000.0, 
-								Estado.EN_CURSO, "cursophp.png");
+		 Curso curso = new Curso("Curso php", "Programacion", "Curso de programacion php",1000.0, "cursophp.png");
 		 Integer nroTarjeta = 111;
 		 Usuario_Curso usuarioCurso = new Usuario_Curso(usuario, curso);
 		 //Ejecucion
@@ -111,9 +105,7 @@ public class ControladorCompraTest {
 	 public void testQuePermitaEliminarCompra(){
 		 //Preparacion
 		 Usuario usuario = new Usuario("Camila", "camilabelen906@gmail.com", "1234", "admin");
-		 Curso curso = new Curso("Curso php", "Programacion", 
-								"Curso de programacion php",1000.0, 
-								Estado.EN_CURSO, "cursophp.png");
+		 Curso curso = new Curso("Curso php", "Programacion", "Curso de programacion php",1000.0, "cursophp.png");
 		 Integer nroTarjeta = 111;
 		 Usuario_Curso usuarioCurso = new Usuario_Curso(usuario, curso);
 		 //Ejecucion

@@ -79,9 +79,8 @@ public class ServicioCursoImpl implements ServicioCurso {
 	}
 
 	@Override
-	public List<Curso> getCursosPorEstado(Estado estado) {
-
-		return repositorioCurso.obtenerListaCursosPorEstado(estado);
+	public List<Usuario_Curso> getCursosPorEstado(Estado estado, Usuario usuario) {
+		return repositorioCurso.obtenerListaCursosPorEstado(estado, usuario);
 	}
 
 	@Override
@@ -97,8 +96,8 @@ public class ServicioCursoImpl implements ServicioCurso {
 	}
 
 	@Override
-	public void cambiarEstadoCurso(Curso curso_obtenido, Estado estado) {
-		repositorioUsuario.cambiarEstadoCurso(curso_obtenido,estado);
+	public void cambiarEstadoCurso(Usuario_Curso usuarioCurso, Estado estado) {
+		repositorioUsuario.cambiarEstadoCurso(usuarioCurso,estado);
 	}
 
 	@Override
@@ -112,15 +111,15 @@ public class ServicioCursoImpl implements ServicioCurso {
 	}
 
 	@Override
-	public void completarUnidad(Unidad unidad, Curso curso, List<Unidad> unidades) {
+	public void completarUnidad(Unidad unidad, Usuario_Curso usuarioCurso, List<Unidad> unidades) {
 		
 		unidad.setCompletado(true);
 		repositorioCurso.actualizarUnidad(unidad);
 		
-		actualizarProgresoCurso(curso, unidades);
+		actualizarProgresoCurso(usuarioCurso, unidades);
 	}
 
-	private void actualizarProgresoCurso(Curso curso, List<Unidad> unidades) {;
+	private void actualizarProgresoCurso(Usuario_Curso usuarioCurso, List<Unidad> unidades) {;
 		
 		double cant_registros = unidades.size();
 		Double progreso_unidad = 100.00 / cant_registros;
@@ -128,10 +127,10 @@ public class ServicioCursoImpl implements ServicioCurso {
 		// Se establece la cantidad maxima de decimales del progreso
 		progreso_unidad = Math.round(progreso_unidad * 100) / 100d;
 		
-		Double progreso_actual = curso.getProgreso() + progreso_unidad;
+		Double progreso_actual = usuarioCurso.getProgreso() + progreso_unidad;
 		
-		curso.setProgreso(progreso_actual);
-		repositorioCurso.actualizarCurso(curso);
+		usuarioCurso.setProgreso(progreso_actual);
+		repositorioUsuario.actualizarCursoDelUsuario(usuarioCurso);
 	}
 
 	@Override

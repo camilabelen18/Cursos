@@ -27,15 +27,15 @@ public class ServicioPrincipalImpl implements ServicioPrincipal {
 
 		/* SE INSERTAN LOS REGISTROS DE TODOS LOS CURSOS DEL SISTEMA */
 		
-		Curso c1 = new Curso("Curso PHP/MySql desde 0", "programacion", "En este curso se vera como crear aplicaciones y sitios web desde cero con PHP y MYSQL.", 3000.0, Estado.EN_VENTA, "php-desde-cero.jpg");
-		Curso c2 = new Curso("Spring Framework 5", "programacion", "Construye aplicaciones web con Spring Framework 5 & Spring Boot: Thymeleaf, JPA, Security, REST, MySQL, Angular, WebFlux.", 2500.0, Estado.EN_VENTA, "curso-spring.jpg");
-		Curso c3 = new Curso("Python 2022", "programacion", "En este curso aprenderas desde las bases de Python hacia temas más avanzados del lenguaje.", 2600.0, Estado.EN_VENTA, "curso-phyton.jpg");
-		Curso c4 = new Curso("Adobe Photoshop: Curso completo", "diseno", "Aprende las herramientas esenciales de Adobe Photoshop para comenzar a diseñar hermosos graficos y fotos en Photoshop.", 1000.0, Estado.EN_VENTA, "adobe-photoshop.jpg");
-		Curso c5 = new Curso("Curso completo de WordPress", "diseno", "El Mejor Curso de WordPress para aprender desde cero... ¡Mas de 5.000 alumnos satisfechos!", 800.0, Estado.EN_VENTA, "wordpress.jpg");
-		Curso c6 = new Curso("Modelado y diseño para videojuegos", "diseno", "Aprende DESDE CERO a Modelar, Texturizar, Iluminacion y Render de modelos 2D 3D Assets Videojuegos MagicaVoxel y Unity", 3200.0, Estado.EN_VENTA, "diseño-videojuegos.jpg");
-		Curso c7 = new Curso("Curso de guitarra practico para principiantes", "musica", "Aprende paso a paso a tocar la guitarra con este curso practico. Aprende tocando y olvídate de ejercicios aburridos.", 1650.0, Estado.EN_VENTA, "curso-guitarra.jpg");
-		Curso c8 = new Curso("Curso de piano completo", "musica", "Aprendelo Todo: Armonia , Composicion, Improvisacion , Acompañar con acordes, Lectura & Solfeo, Tecnica y Relajacion.", 2000.0, Estado.EN_VENTA, "curso-piano.jpg");
-		Curso c9 = new Curso("Curso de canto para principiantes", "musica", "¡Encuentra tu voz de canto de forma natural y diviértete haciéndolo! Un enfoque moderno para las clases de canto.", 2000.0, Estado.EN_VENTA, "curso-canto.jpg");
+		Curso c1 = new Curso("Curso PHP/MySql desde 0", "programacion", "En este curso se vera como crear aplicaciones y sitios web desde cero con PHP y MYSQL.", 3000.0, "php-desde-cero.jpg");
+		Curso c2 = new Curso("Spring Framework 5", "programacion", "Construye aplicaciones web con Spring Framework 5 & Spring Boot: Thymeleaf, JPA, Security, REST, MySQL, Angular, WebFlux.", 2500.0, "curso-spring.jpg");
+		Curso c3 = new Curso("Python 2022", "programacion", "En este curso aprenderas desde las bases de Python hacia temas más avanzados del lenguaje.", 2600.0, "curso-phyton.jpg");
+		Curso c4 = new Curso("Adobe Photoshop: Curso completo", "diseno", "Aprende las herramientas esenciales de Adobe Photoshop para comenzar a diseñar hermosos graficos y fotos en Photoshop.", 1000.0, "adobe-photoshop.jpg");
+		Curso c5 = new Curso("Curso completo de WordPress", "diseno", "El Mejor Curso de WordPress para aprender desde cero... ¡Mas de 5.000 alumnos satisfechos!", 800.0, "wordpress.jpg");
+		Curso c6 = new Curso("Modelado y diseño para videojuegos", "diseno", "Aprende DESDE CERO a Modelar, Texturizar, Iluminacion y Render de modelos 2D 3D Assets Videojuegos MagicaVoxel y Unity", 3200.0, "diseño-videojuegos.jpg");
+		Curso c7 = new Curso("Curso de guitarra practico para principiantes", "musica", "Aprende paso a paso a tocar la guitarra con este curso practico. Aprende tocando y olvídate de ejercicios aburridos.", 1650.0, "curso-guitarra.jpg");
+		Curso c8 = new Curso("Curso de piano completo", "musica", "Aprendelo Todo: Armonia , Composicion, Improvisacion , Acompañar con acordes, Lectura & Solfeo, Tecnica y Relajacion.", 2000.0, "curso-piano.jpg");
+		Curso c9 = new Curso("Curso de canto para principiantes", "musica", "¡Encuentra tu voz de canto de forma natural y diviértete haciéndolo! Un enfoque moderno para las clases de canto.", 2000.0, "curso-canto.jpg");
 		
 		sesion.save(c1);
 		sesion.save(c2);
@@ -50,21 +50,23 @@ public class ServicioPrincipalImpl implements ServicioPrincipal {
 		
 		/* SE INSERTAN LOS REGISTROS DE TODOS LOS USUARIOS DEL SISTEMA */
 		
-		Giftcard gift = new Giftcard(555, 0, 0.0);
+		Giftcard gift1 = new Giftcard(555, 0, 0.0);
+		Giftcard gift2 = new Giftcard(555, 0, 0.0);
+		Giftcard gift3 = new Giftcard(555, 0, 0.0);
 		
 		Usuario admin = new Usuario("Juan", "hola@hola.com","1234", "admin");
 		admin.setNroTarjeta(555);
-		admin.setGiftcard(gift);
+		admin.setGiftcard(gift1);
 		admin.setImagen("default-user.png");
 		
 		Usuario cliente1 = new Usuario("Ana", "ana@gmail.com","111", "cliente");
 		cliente1.setNroTarjeta(4407);
-		cliente1.setGiftcard(gift);
+		cliente1.setGiftcard(gift2);
 		cliente1.setImagen("default-user.png");
 		
 		Usuario cliente2 = new Usuario("Ale", "ale@gmail.com","123", "cliente");
 		cliente2.setNroTarjeta(5809);
-		cliente2.setGiftcard(gift);
+		cliente2.setGiftcard(gift3);
 		cliente2.setImagen("default-user.png");
 		
 		Carrito car1 = new Carrito();
@@ -73,7 +75,9 @@ public class ServicioPrincipalImpl implements ServicioPrincipal {
 		Carrito car2 = new Carrito();
 		car2.setUsuario(cliente2);
 
-		sesion.save(gift);
+		sesion.save(gift1);
+		sesion.save(gift2);
+		sesion.save(gift3);
 		sesion.save(admin);
 		sesion.save(cliente1);
 		sesion.save(cliente2);

@@ -39,46 +39,46 @@
 
 			<!-- SE INICIA UN BUCLE EN DONDE POR CADA CURSO SE VA MOSTRANDO SUS DATOS EN UN CUADRO -->
 
-			<c:forEach var="curso" items="${lista_cursos}">
+			<c:forEach var="cursoUsuario" items="${lista_cursos}">
 
 				<div class="cuadro-seccion-cursos">
 					<div>
-						<img src="imagenes/cursos/${curso.imagen}">
+						<img src="imagenes/cursos/${cursoUsuario.curso.imagen}">
 					</div>
 
 					<div class="cotenido-1-curso">
-						<p class="nombreCurso">${curso.nombre}</p>
-						<p>${curso.descripcion}</p>
+						<p class="nombreCurso">${cursoUsuario.curso.nombre}</p>
+						<p>${cursoUsuario.curso.descripcion}</p>
 
 					</div>
 
 					<div class="cotenido-2-curso">
 
-						<c:if test="${curso.estado == 'EN_CURSO'}">
+						<c:if test="${cursoUsuario.estado == 'EN_CURSO'}">
 							<p id="estadoEnCurso">En curso</p>
-							<form action="verCurso?curso_id=${curso.id}" method="POST">
+							<form action="verCurso?curso_id=${cursoUsuario.curso.id}" method="POST">
 								<input type="submit" name="verCurso" value="Ver curso">
 							</form>
-							<form action="cancelarCompra?curso_id=${curso.id}" method="POST">
+							<form action="cancelarCompra?curso_id=${cursoUsuario.curso.id}" method="POST">
 								<input type="submit" name="cancelar" value="Cancelar">
 							</form>
 						</c:if>
 						
-						<c:if test="${curso.estado == 'FINALIZADO'}">
+						<c:if test="${cursoUsuario.estado == 'FINALIZADO'}">
 							<p id="estadoCompletado">Completado</p>
-							<form action="verCurso?curso_id=${curso.id}" method="POST">
+							<form action="verCurso?curso_id=${cursoUsuario.curso.id}" method="POST">
 								<input type="submit" name="verCurso" value="Ver curso">
 							</form>
 						</c:if>
 
-						<c:if test="${curso.estado == 'CANCELADO'}">
+						<c:if test="${cursoUsuario.estado == 'CANCELADO'}">
 							<p id="estadoCancelado">Cancelado</p>
-							<form action="eliminarCompra?curso_id=${curso.id}" method="POST">
+							<form action="eliminarCompra?curso_id=${cursoUsuario.curso.id}" method="POST">
 								<input type="submit" name="eliminar" value="Eliminar">
 							</form>
 							<form action="comprar" method="get">
-								<input type="hidden" name="id_curso" value="${curso.id}">
-								<input type="hidden" name="precio" value="${curso.precio}">
+								<input type="hidden" name="id_curso" value="${cursoUsuario.curso.id}">
+								<input type="hidden" name="precio" value="${cursoUsuario.curso.precio}">
 								<input type="submit" name="comprarAhora" value="Comprar">
 							</form>
 						</c:if>

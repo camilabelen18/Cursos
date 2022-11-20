@@ -59,7 +59,7 @@ public class ControladorCarritoTest {
 		Integer curso_id = 1;
 		Integer user_id = 1;
 		Carrito carrito = new Carrito();
-		Curso curso1 = new Curso("Curso php", "Programacion", "Curso de programacion php", 1000.0, Estado.EN_CURSO,
+		Curso curso1 = new Curso("Curso php", "Programacion", "Curso de programacion php", 1000.0,
 				"cursophp.png");
 		Carrito_Curso cc = new Carrito_Curso();
 		// Ejecucion
@@ -112,13 +112,10 @@ public class ControladorCarritoTest {
 	@Test
 	public void testQuePermitaComprarCursosDelCarrito() {
 
-		Integer curso_id = 1;
 		Integer user_id = 1;
 		Carrito carrito = new Carrito();
-		Curso curso1 = new Curso("Curso php", "Programacion", "Curso de programacion php", 1000.0, Estado.EN_CURSO,
-				"cursophp.png");
-		Curso curso2 = new Curso("Curso php", "Programacion", "Curso de programacion php", 1000.0, Estado.EN_CURSO,
-				"cursophp.png");
+		Curso curso1 = new Curso("Curso php", "Programacion", "Curso de programacion php", 1000.0, "cursophp.png");
+		Curso curso2 = new Curso("Curso php", "Programacion", "Curso de programacion php", 1000.0, "cursophp.png");
 		List<Curso> cursos= new ArrayList<>();
 		cursos.add(curso1); 
 		cursos.add(curso2);

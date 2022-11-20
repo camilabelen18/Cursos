@@ -80,14 +80,15 @@ public class RepositorioCursoImpl implements RepositorioCurso{
 	}
 
 	@Override
-	public List<Curso> obtenerListaCursosPorEstado(Estado estado) {
+	public List<Usuario_Curso> obtenerListaCursosPorEstado(Estado estado, Usuario usuario) {
+		
 		Session sesion = sessionFactory.getCurrentSession();
 
 		// Se obtiene una lista de cursos por estado
-		
-		List<Curso> lista_cursos = sesion.createCriteria(Curso.class)
-				                   .add(Restrictions.eq("estado", estado))
-				                   .list();
+		List<Usuario_Curso> lista_cursos = sesion.createCriteria(Usuario_Curso.class)
+										   .add(Restrictions.eq("usuario", usuario))
+										   .add(Restrictions.eq("estado", estado))
+				                   		   .list();
 
 		return lista_cursos;
 	}

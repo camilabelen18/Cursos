@@ -45,9 +45,9 @@ public class ServicioCursoTest {
 	public void testQueVerificaObtenerCursos() {
 		 //Preparacion
 		Curso curso = new Curso("Curso php",
-				"Programacion","Curso de programacion php", 1000.0,Estado.EN_VENTA,"cursophp.png");
+				"Programacion","Curso de programacion php", 1000.0, "cursophp.png");
 		Curso curso1 = new Curso("Curso php",
-				"Programacion","Curso de programacion php", 1000.0,Estado.EN_VENTA,"cursophp.png");
+				"Programacion","Curso de programacion php", 1000.0, "cursophp.png");
 		 //Ejecucion
 		servicioCurso.agregarCurso(curso);
 		servicioCurso.agregarCurso(curso1);
@@ -62,7 +62,7 @@ public class ServicioCursoTest {
 		//Preparacion
 		Curso curso = new Curso("Curso php","Pepe",
 				   				"Curso de programacion php", 
-				   				1000.0,Estado.EN_VENTA,"cursophp.png");
+				   				1000.0,"cursophp.png");
 		String categoria = "Programacion";
 		//Ejecucion
 		servicioCurso.agregarCurso(curso);
@@ -84,7 +84,7 @@ public class ServicioCursoTest {
 	public void testQueObtieneExamenes() {
 		
 		//Preparacion
-		Curso curso = new Curso("Curso php","Programacion","Curso de programacion php", 1000.0,Estado.EN_VENTA,"cursophp.png");
+		Curso curso = new Curso("Curso php","Programacion","Curso de programacion php", 1000.0,"cursophp.png");
 		
 		
 		//Ejecucion
@@ -132,7 +132,7 @@ public class ServicioCursoTest {
 		//Preparacion
 		Curso curso = new Curso("Curso php","Pepe",
    				"Curso de programacion php", 
-   				1000.0,Estado.EN_VENTA,"cursophp.png");
+   				1000.0,"cursophp.png");
 		String nombre = "Curso php";
 		//Ejecucion
 		servicioCurso.agregarCurso(curso);
@@ -202,7 +202,7 @@ public class ServicioCursoTest {
 		//Preparacion
 		Curso curso = new Curso("Curso php","Pepe",
    								"Curso de programacion php", 
-   								1000.0,Estado.EN_VENTA,"cursophp.png");
+   								1000.0,"cursophp.png");
 		//Ejecucion
 		servicioCurso.agregarCurso(curso);
 		when(repositorioCurso.obtenerCursoPorID(curso.getId())).thenReturn(curso);

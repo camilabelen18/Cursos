@@ -8,6 +8,7 @@ import modelo.Estado;
 import modelo.Examen;
 import modelo.Unidad;
 import modelo.Usuario;
+import modelo.Usuario_Curso;
 
 public interface RepositorioCurso {
 
@@ -21,7 +22,7 @@ public interface RepositorioCurso {
 
 	void agregarCurso(Curso curso);
 
-	List<Curso> obtenerListaCursosPorEstado(Estado estado);
+	List<Usuario_Curso> obtenerListaCursosPorEstado(Estado estado, Usuario usuario);
 
 	List<Unidad> obtenerUnidadesDelCurso(Curso curso);
 

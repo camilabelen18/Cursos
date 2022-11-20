@@ -25,13 +25,13 @@ public interface ServicioUsuario {
 
 	boolean existeCursoEnListaUsuario(int idCurso, Usuario usuario);
 
-	List<Curso> obtenerCursosDelUsuario(Usuario usuario);
+	List<Usuario_Curso> obtenerCursosDelUsuario(Usuario usuario);
 	
 	Boolean cancelarCurso(Curso curso_obtenido, Usuario_Curso usuarioCurso);
 
 	void eliminarCurso(Curso curso_obtenido, Usuario usuario);
 
-	void finalizarCurso(Curso curso_obtenido);
+	void finalizarCurso(Usuario_Curso usuarioCurso);
 	
 	void actualizarUsuario(int idUsuario,String nombre, String email,String passwordAterior, String passwordNueva, String repeticionPasswordNueva, HttpSession session);
 

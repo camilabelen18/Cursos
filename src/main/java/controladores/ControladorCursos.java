@@ -59,7 +59,7 @@ public class ControladorCursos {
 		
 		Usuario usuario = servicioUsuario.buscarUsuarioPorID(id);
 		
-		List<Curso> cursos = servicioUsuario.obtenerCursosDelUsuario(usuario);
+		List<Usuario_Curso> cursos = servicioUsuario.obtenerCursosDelUsuario(usuario);
 		
 		model.put("lista_cursos", cursos);
 		model.put("msj", msj);
@@ -92,10 +92,13 @@ public class ControladorCursos {
 	
 	// Se obtiene una lista de cursos por estado
 	@RequestMapping(path= "/verCursosPorEstado", method= RequestMethod.GET)
-	public ModelAndView verCursosPorEstado(@RequestParam("estado") Estado estado) {
+	public ModelAndView verCursosPorEstado(@RequestParam("estado") Estado estado, HttpSession session) {
 
 		ModelMap model = new ModelMap();
-		List<Curso> cursos = servicioCurso.getCursosPorEstado(estado);
+		int id = (int) session.getAttribute("idUsuario");
+		Usuario usuario = servicioUsuario.buscarUsuarioPorID(id);
+		
+		List<Usuario_Curso> cursos = servicioCurso.getCursosPorEstado(estado, usuario);
 
 		model.put("lista_cursos", cursos);
 
@@ -176,13 +179,17 @@ public class ControladorCursos {
 	}
 	
 	@RequestMapping (path= "/verCurso", method= RequestMethod.POST)
-	public ModelAndView verCurso(@RequestParam("curso_id") Integer curso_id) {
+	public ModelAndView verCurso(@RequestParam("curso_id") Integer curso_id, HttpSession session) {
 		
 		ModelMap model = new ModelMap();
-		Curso curso = servicioCurso.buscarCursoPorId(curso_id);
-		List<Unidad> unidades = servicioCurso.obtenerUnidades(curso);
+		int id_user = (int) session.getAttribute("idUsuario");
+		Usuario usuario = servicioUsuario.buscarUsuarioPorID(id_user);
+		Curso curso_obtenido = servicioCurso.buscarCursoPorId(curso_id);
+		Usuario_Curso usuarioCurso = servicioUsuario.obtenerUsuarioCurso(curso_obtenido, usuario);
+
+		List<Unidad> unidades = servicioCurso.obtenerUnidades(curso_obtenido);
 		
-		model.put("curso", curso);
+		model.put("cursoUsuario", usuarioCurso);
 		model.put("unidades", unidades);
 		model.put("unidad", unidades.get(0));
 				
@@ -190,14 +197,17 @@ public class ControladorCursos {
 	}
 	
 	@RequestMapping (path= "/verUnidadCurso", method= RequestMethod.GET)
-	public ModelAndView verUnidadCurso(@RequestParam("unidad_id") Integer unidad_id, @RequestParam("curso_id") Integer curso_id) {
+	public ModelAndView verUnidadCurso(@RequestParam("unidad_id") Integer unidad_id, @RequestParam("curso_id") Integer curso_id, HttpSession session) {
 		
 		ModelMap model = new ModelMap();
-		Curso curso = servicioCurso.buscarCursoPorId(curso_id);
-		List<Unidad> unidades = servicioCurso.obtenerUnidades(curso);
+		int id_user = (int) session.getAttribute("idUsuario");
+		Usuario usuario = servicioUsuario.buscarUsuarioPorID(id_user);
+		Curso curso_obtenido = servicioCurso.buscarCursoPorId(curso_id);
+		Usuario_Curso usuarioCurso = servicioUsuario.obtenerUsuarioCurso(curso_obtenido, usuario);
+		List<Unidad> unidades = servicioCurso.obtenerUnidades(curso_obtenido);
 		Unidad unidad = servicioCurso.obtenerUnidadPorID(unidad_id);
 		
-		model.put("curso", curso);
+		model.put("cursoUsuario", usuarioCurso);
 		model.put("unidades", unidades);
 		model.put("unidad", unidad);
 		
@@ -205,20 +215,23 @@ public class ControladorCursos {
 	}
 	
 	@RequestMapping (path= "/completarUnidad", method= RequestMethod.GET)
-	public ModelAndView completarUnidad(@RequestParam("unidad_id") Integer unidad_id, @RequestParam("curso_id") Integer curso_id) {
+	public ModelAndView completarUnidad(@RequestParam("unidad_id") Integer unidad_id, @RequestParam("curso_id") Integer curso_id, HttpSession session) {
 		
 		ModelMap model = new ModelMap();
+		int id_user = (int) session.getAttribute("idUsuario");
+		Usuario usuario = servicioUsuario.buscarUsuarioPorID(id_user);
 		Curso curso = servicioCurso.buscarCursoPorId(curso_id);
+		Usuario_Curso usuarioCurso = servicioUsuario.obtenerUsuarioCurso(curso, usuario);
 		Unidad unidad = servicioCurso.obtenerUnidadPorID(unidad_id);
 		
 		if (unidad.getCompletado() == false) {
 			
-			servicioCurso.completarUnidad(unidad, curso, servicioCurso.obtenerUnidades(curso));
+			servicioCurso.completarUnidad(unidad, usuarioCurso, servicioCurso.obtenerUnidades(curso));
 		}
 		
 		List<Unidad> unidades = servicioCurso.obtenerUnidades(curso);
 		
-		model.put("curso", curso);
+		model.put("cursoUsuario", usuarioCurso);
 		model.put("unidades", unidades);
 		model.put("unidad", unidad);
 		
@@ -226,24 +239,27 @@ public class ControladorCursos {
 	}
 	
 	@RequestMapping(path = "/finalizar", method = RequestMethod.POST)
-	public ModelAndView finalizarCurso(@RequestParam("curso_id") int idCurso) {
+	public ModelAndView finalizarCurso(@RequestParam("curso_id") int idCurso, HttpSession session) {
 		
 		ModelMap model = new ModelMap();
-		Curso curso_obtenido = servicioCurso.buscarCursoPorId(idCurso);
-		List<Unidad> unidades = servicioCurso.obtenerUnidades(curso_obtenido);
+		int id_user = (int) session.getAttribute("idUsuario");
+		Usuario usuario = servicioUsuario.buscarUsuarioPorID(id_user);
+		Curso curso = servicioCurso.buscarCursoPorId(idCurso);
+		Usuario_Curso usuarioCurso = servicioUsuario.obtenerUsuarioCurso(curso, usuario);
+		List<Unidad> unidades = servicioCurso.obtenerUnidades(curso);
 		String view = "";
 		
-		if (curso_obtenido.getCursoTerminado() == false) {
+		if (usuarioCurso.getCursoTerminado() == false) {
 			
 			// Se valida si el progreso del curso esta en un 50% o más
-			if (curso_obtenido.getProgreso() >= 50.0) {
+			if (usuarioCurso.getProgreso() >= 50.0) {
 				
-				servicioUsuario.finalizarCurso(curso_obtenido);
-				model.put("msj", "Felicidades! Completaste el curso: " + curso_obtenido.getNombre());
+				servicioUsuario.finalizarCurso(usuarioCurso);
+				model.put("msj", "Felicidades! Completaste el curso: " + curso.getNombre());
 				view = "redirect:/misCursos";
 			}
 			else {
-				model.put("curso", curso_obtenido);
+				model.put("cursoUsuario", usuarioCurso);
 				model.put("unidades", unidades);
 				model.put("unidad", unidades.get(0));
 				model.put("msj_progreso", "Para completar el curso debe estar completado en un 50% o mas.");

@@ -23,6 +23,7 @@ import modelo.Pregunta;
 import modelo.Respuesta;
 import modelo.Unidad;
 import modelo.Usuario;
+import modelo.Usuario_Curso;
 import servicios.CursoInexistenteException;
 import servicios.ServicioCurso;
 import servicios.ServicioUsuario;
@@ -63,9 +64,10 @@ public class ControladorCursosTest {
 		unidad.setCompletado(false);
 		
 		//Ejecucion	
+		when(session.getAttribute("idUsuario")).thenReturn(1);
 		when(servicioCurso.buscarCursoPorId(curso_id)).thenReturn(new Curso());
 		when(servicioCurso.obtenerUnidadPorID(unidad_id)).thenReturn(unidad);
-		ModelAndView mav = controladorCursos.completarUnidad(unidad_id, curso_id);
+		ModelAndView mav = controladorCursos.completarUnidad(unidad_id, curso_id, session);
 	
 		//Comprobacion
 		assertThat(mav.getViewName()).isEqualTo("vistaCurso");
@@ -96,13 +98,9 @@ public class ControladorCursosTest {
 	@Test
 	public void testQuePermiteBuscar() {
 		//Preparaci�n
-		List<Curso> listaCursos = new ArrayList();
-		Curso curso = new Curso("Curso php", "Programacion", 
-								"Curso de programacion php",1000.0, 
-								Estado.EN_CURSO, "cursophp.png");
-		Curso curso1 = new Curso("Curso php", "Programacion", 
-								"Curso de programacion php",1000.0, 
-								Estado.EN_CURSO, "cursophp.png");
+		List<Curso> listaCursos = new ArrayList<Curso>();
+		Curso curso = new Curso("Curso php", "Programacion", "Curso de programacion php", 1000.0, "cursophp.png");
+		Curso curso1 = new Curso("Curso php", "Programacion", "Curso de programacion php", 1000.0, "cursophp.png");
 		listaCursos.add(curso);
 		listaCursos.add(curso1);
 		
@@ -116,34 +114,37 @@ public class ControladorCursosTest {
 	
 	@Test
 	public void testQuePermitaVerCursosPorEstado() {
-		//List<Curso> cursos = servicioCurso.getCursosPorEstado(estado);
 		
 		//Preparacion
-		List<Curso> listaCursos = new ArrayList();
-		Curso curso = new Curso("Curso php", "Programacion", 
-								"Curso de programacion php",1000.0, 
-								Estado.EN_CURSO, "cursophp.png");
-		Curso curso1 = new Curso("Curso php", "Programacion", 
-								"Curso de programacion php",1000.0, 
-								Estado.EN_CURSO, "cursophp.png");
-		listaCursos.add(curso);
-		listaCursos.add(curso1);
+		Usuario usuario = new Usuario("test", "test@test", "123", "cliente");
+		Curso curso1 = new Curso("Curso php", "Programacion", "Curso de programacion php", 1000.0, "cursophp.png");
+		Curso curso2 = new Curso("Curso php", "Programacion", "Curso de programacion php", 1000.0, "cursophp.png");
+		
+		Usuario_Curso cursoUsuario1 = new Usuario_Curso(usuario, curso1);
+		cursoUsuario1.setEstado(Estado.EN_CURSO);
+		Usuario_Curso cursoUsuario2 = new Usuario_Curso(usuario, curso2);
+		cursoUsuario2.setEstado(Estado.EN_CURSO);
+		
+		List<Usuario_Curso> cursosUsuario = new ArrayList<Usuario_Curso>();
+		cursosUsuario.add(cursoUsuario1);
+		cursosUsuario.add(cursoUsuario2);
 		
 		//Ejecucion
-		when(servicioCurso.getCursosPorEstado(curso.getEstado())).thenReturn(listaCursos);
-		when(servicioCurso.getCursosPorEstado(curso1.getEstado())).thenReturn(listaCursos);
-		ModelAndView mav = controladorCursos.verCursosPorEstado(curso.getEstado());
+		when(session.getAttribute("idUsuario")).thenReturn(1);
+		when(servicioUsuario.buscarUsuarioPorID(1)).thenReturn(usuario);
+		when(servicioCurso.getCursosPorEstado(Estado.EN_CURSO, usuario)).thenReturn(cursosUsuario);
+		ModelAndView mav = controladorCursos.verCursosPorEstado(Estado.EN_CURSO, session);
+		
 		//Comprobacion
 		assertThat(mav.getViewName()).isEqualTo("miscursos");
 	}
 	
 	@Test
 	public void testQuePermitaIrAEditarCursos() {
+		
 		//Preparacion
-		DatosCreacionCurso datosCrearCurso = new DatosCreacionCurso();
-		Curso curso = new Curso("Curso php", "Programacion", 
-								"Curso de programacion php",1000.0, 
-								Estado.EN_CURSO, "cursophp.png");
+		Curso curso = new Curso("Curso php", "Programacion", "Curso de programacion php", 1000.0, "cursophp.png");
+		
 		//Ejecucion
 		ModelAndView mav = controladorCursos.irAEditarCurso(curso.getId(), curso.getNombre(), 
 							curso.getCategoria(),curso.getDescripcion(), curso.getPrecio());
@@ -151,26 +152,29 @@ public class ControladorCursosTest {
 		assertThat(mav.getViewName()).isEqualTo("editarCurso");
 	}
 	
+	
 	@Test
 	public void testQuePermitaVerUnidadCurso() {
+		
 		//Preparacion
-		Curso curso = new Curso("Curso php", "Programacion", 
-								"Curso de programacion php",1000.0, 
-								Estado.EN_CURSO, "cursophp.png");
+		Usuario usuario = new Usuario("test", "test@test", "123", "cliente");
+		Curso curso = new Curso("Curso php", "Programacion", "Curso de programacion php", 1000.0, "cursophp.png");
 		Unidad unidad = new Unidad("prueba", "prueba.com");
-		List<Unidad> unidades = new ArrayList();
+		Usuario_Curso cursoUsuario = new Usuario_Curso(usuario, curso);
+		List<Unidad> unidades = new ArrayList<Unidad>();
 		unidades.add(unidad);
+		
 		//Ejecucion
-		when(servicioCurso.buscarCursoPorId(curso.getId())).thenReturn(new Curso());
+		when(session.getAttribute("idUsuario")).thenReturn(1);
+		when(servicioCurso.buscarCursoPorId(1)).thenReturn(curso);
+		when(servicioUsuario.obtenerUsuarioCurso(curso, usuario)).thenReturn(cursoUsuario);
 		when(servicioCurso.obtenerUnidades(curso)).thenReturn(unidades);
 		when(servicioCurso.obtenerUnidadPorID(unidad.getId())).thenReturn(unidad);
-		ModelAndView mav = controladorCursos.verUnidadCurso(unidad.getId(), curso.getId());
+		ModelAndView mav = controladorCursos.verUnidadCurso(unidad.getId(), curso.getId(), session);
+		
 		//Comprobacion
 		assertThat(mav.getViewName()).isEqualTo("vistaCurso");
 	}
-	//Preparacion
-	//Ejecucion
-	//Comprobacion
 
 
 	private void seCompruebaCantidadEsperadaDeLaLista(ModelAndView mav) {
@@ -208,16 +212,17 @@ public class ControladorCursosTest {
 		
 		// Preparacion
 		Integer curso_id = 1;
-		Curso curso = new Curso("php", "programacion","descripcion curso", 1000.0, Estado.EN_VENTA,"cursophp.png");
+		Curso curso = new Curso("php", "programacion","descripcion curso", 1000.0,"cursophp.png");
 		List<Unidad> unidadesDelCurso = new ArrayList<Unidad>();
 		Unidad unidad = new Unidad("descripcion unidad", "www.videounidad.com");
 		unidadesDelCurso.add(unidad);
 		
+		when(session.getAttribute("idUsuario")).thenReturn(1);
 		when(servicioCurso.buscarCursoPorId(curso_id)).thenReturn(curso);
 		when(servicioCurso.obtenerUnidades(curso)).thenReturn(unidadesDelCurso);
 		
 		// Ejecucion
-		ModelAndView mav = controladorCursos.verCurso(curso_id);
+		ModelAndView mav = controladorCursos.verCurso(curso_id, session);
 		
 		// Comprobacion
 		assertThat(mav.getViewName()).isEqualTo("vistaCurso");
@@ -230,7 +235,7 @@ public class ControladorCursosTest {
 		
 		// Preparacion
 		Integer id_curso = 1;
-		Curso curso = new Curso("test", "programacion","descripcion curso", 100.0, Estado.EN_VENTA,"test.png");
+		Curso curso = new Curso("test", "programacion","descripcion curso", 100.0,"test.png");
 		
 		when(servicioCurso.buscarCursoPorId(id_curso)).thenReturn(curso);
 		
@@ -265,13 +270,23 @@ public class ControladorCursosTest {
 		
 		// Preparacion
 		int idCurso = 1;
-		Curso curso = new Curso("test", "programacion","descripcion curso", 100.0, Estado.EN_VENTA,"test.png");
-		curso.setProgreso(50.0);
+		Usuario usuario = new Usuario("test", "test@test", "123", "cliente");
+		Curso curso = new Curso("Curso php", "Programacion", "Curso de programacion php", 1000.0, "cursophp.png");
+		Unidad unidad = new Unidad("prueba", "prueba.com");
 		
-		when(servicioCurso.buscarCursoPorId(idCurso)).thenReturn(curso);
+		Usuario_Curso cursoUsuario = new Usuario_Curso(usuario, curso);
+		cursoUsuario.setProgreso(70.0);
+		
+		List<Unidad> unidades = new ArrayList<Unidad>();
+		unidades.add(unidad);
 		
 		// Ejecucion
-		ModelAndView mav = controladorCursos.finalizarCurso(idCurso);
+		when(session.getAttribute("idUsuario")).thenReturn(1);
+		when(servicioUsuario.buscarUsuarioPorID(1)).thenReturn(usuario);
+		when(servicioCurso.buscarCursoPorId(idCurso)).thenReturn(curso);
+		when(servicioUsuario.obtenerUsuarioCurso(curso, usuario)).thenReturn(cursoUsuario);
+		when(servicioCurso.obtenerUnidades(curso)).thenReturn(unidades);
+		ModelAndView mav = controladorCursos.finalizarCurso(idCurso, session);
 		
 		// Comprobacion
 		assertThat(mav.getViewName()).isEqualTo("redirect:/misCursos");
@@ -284,17 +299,23 @@ public class ControladorCursosTest {
 		
 		// Preparacion
 		int idCurso = 1;
-		Curso curso = new Curso("test", "programacion","descripcion curso", 100.0, Estado.EN_VENTA,"test.png");
-		curso.setProgreso(30.0);
-		List<Unidad> unidadesDelCurso = new ArrayList<Unidad>();
-		Unidad unidad = new Unidad("descripcion unidad", "www.videounidad.com");
-		unidadesDelCurso.add(unidad);
+		Usuario usuario = new Usuario("test", "test@test", "123", "cliente");
+		Curso curso = new Curso("Curso php", "Programacion", "Curso de programacion php", 1000.0, "cursophp.png");
+		Unidad unidad = new Unidad("prueba", "prueba.com");
 		
-		when(servicioCurso.buscarCursoPorId(idCurso)).thenReturn(curso);
-		when(servicioCurso.obtenerUnidades(curso)).thenReturn(unidadesDelCurso);
+		Usuario_Curso cursoUsuario = new Usuario_Curso(usuario, curso);
+		cursoUsuario.setProgreso(30.0);
+		
+		List<Unidad> unidades = new ArrayList<Unidad>();
+		unidades.add(unidad);
 		
 		// Ejecucion
-		ModelAndView mav = controladorCursos.finalizarCurso(idCurso);
+		when(session.getAttribute("idUsuario")).thenReturn(1);
+		when(servicioUsuario.buscarUsuarioPorID(1)).thenReturn(usuario);
+		when(servicioCurso.buscarCursoPorId(idCurso)).thenReturn(curso);
+		when(servicioUsuario.obtenerUsuarioCurso(curso, usuario)).thenReturn(cursoUsuario);
+		when(servicioCurso.obtenerUnidades(curso)).thenReturn(unidades);
+		ModelAndView mav = controladorCursos.finalizarCurso(idCurso, session);
 		
 		// Comprobacion
 		assertThat(mav.getViewName()).isEqualTo("vistaCurso");
@@ -318,7 +339,7 @@ public class ControladorCursosTest {
 	        listaExamenes.add(examen1);
 	        listaExamenes.add(examen2);
 	        
-		Curso curso_obtenido = new Curso("Curso php","Programacion","Curso de programacion php", 1000.0,null, "cursophp.png");
+		Curso curso_obtenido = new Curso("Curso php","Programacion","Curso de programacion php", 1000.0, "cursophp.png");
 		
 		//Ejecucion
 		when(servicioCurso.buscarCursoPorId(curso_obtenido.getId())).thenReturn(curso_obtenido);
@@ -346,7 +367,7 @@ public class ControladorCursosTest {
 	        listaExamenes.add(examen1);
 	        listaExamenes.add(examen2);
 	        
-		Curso curso_obtenido = new Curso("Curso php","Programacion","Curso de programacion php", 1000.0,null, "cursophp.png");
+		Curso curso_obtenido = new Curso("Curso php","Programacion","Curso de programacion php", 1000.0, "cursophp.png");
 		
 		boolean nota_examen = true;
 		int puntajeFinal = 2;
@@ -366,27 +387,26 @@ public class ControladorCursosTest {
 	
 		@Test
 		public void queSePuedanVerMisCursos() {
-			//preparacion
-			String mensaje="mensaje";
-			Usuario usuario = new Usuario("juan", "hola@hola.com","123","Cliente");
 			
-			 List<Curso> listaCursos = new ArrayList();
-		        Curso curso = new Curso("Curso php", "Programacion",
-		                                "Curso de programacion php",1000.0,
-		                                Estado.EN_CURSO, "cursophp.png");
-		        Curso curso1 = new Curso("Curso php", "Programacion",
-		                                "Curso de programacion php",1000.0,
-		                                Estado.EN_CURSO, "cursophp.png");
-		        listaCursos.add(curso);
-		        listaCursos.add(curso1); 
-		      //ejecucion
+			// Preparacion
+			String mensaje = "mensaje";
+			Usuario usuario = new Usuario("test", "test@test", "123", "cliente");
+			Curso curso1 = new Curso("Curso php", "Programacion", "Curso de programacion php", 1000.0, "cursophp.png");
+			Curso curso2 = new Curso("Curso php", "Programacion", "Curso de programacion php", 1000.0, "cursophp.png");
 			
-			when(servicioUsuario.obtenerCursosDelUsuario(usuario)).thenReturn(listaCursos);
+			Usuario_Curso cursoUsuario1 = new Usuario_Curso(usuario, curso1);
+			Usuario_Curso cursoUsuario2 = new Usuario_Curso(usuario, curso2);
 			
+			List<Usuario_Curso> cursosUsuario = new ArrayList<Usuario_Curso>();
+			cursosUsuario.add(cursoUsuario1);
+			cursosUsuario.add(cursoUsuario2);
+			
+			// Ejecucion
+			when(servicioUsuario.obtenerCursosDelUsuario(usuario)).thenReturn(cursosUsuario);
 			when(session.getAttribute("idUsuario")).thenReturn(1);
+			ModelAndView mav = controladorCursos.misCursos(session, mensaje);
 			
-			ModelAndView mav= controladorCursos.misCursos(session , mensaje);
-			//comprobacion
+			// Comprobacion
 			assertThat(mav.getViewName()).isEqualTo("miscursos");
 		}
 		
@@ -395,13 +415,9 @@ public class ControladorCursosTest {
 			//preparacion
 			String categoria= "Programacion";
 			List<Curso> listaCursos = new ArrayList();
-	        Curso curso = new Curso("Curso php", "Programacion",
-	                                "Curso de programacion php",1000.0,
-	                                Estado.EN_CURSO, "cursophp.png");
-	        Curso curso1 = new Curso("Curso php", "Programacion",
-	                                "Curso de programacion php",1000.0,
-	                                Estado.EN_CURSO, "cursophp.png");
-	        listaCursos.add(curso);
+			Curso curso = new Curso("Curso php", "Programacion", "Curso de programacion php", 1000.0, "cursophp.png");
+			Curso curso1 = new Curso("Curso php", "Programacion", "Curso de programacion php", 1000.0, "cursophp.png");
+			listaCursos.add(curso);
 	        listaCursos.add(curso1);
 			//ejecucion
 	        when(servicioCurso.getCursosPorCategoria(categoria)).thenReturn(listaCursos);

@@ -60,16 +60,13 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario{
 
 	@Override
 	public void guardarCursoDelUsuario(Curso curso_obtenido, Usuario usuario) {
-			
-		actualizarEstado(curso_obtenido,Estado.EN_CURSO);
 		
 		Session sesion = sessionFactory.getCurrentSession();
 		
-		Usuario_Curso usuarioCurso = new Usuario_Curso();
+		Usuario_Curso usuarioCurso = new Usuario_Curso(usuario, curso_obtenido);
+		usuarioCurso.setEstado(Estado.EN_CURSO);
 		usuarioCurso.setFecha_incio_compra(LocalDate.now());
 		usuarioCurso.setHora(LocalTime.now());
-		usuarioCurso.setCurso(curso_obtenido);
-		usuarioCurso.setUsuario(usuario);
 		
 		sesion.save(usuarioCurso);
 	}
@@ -104,11 +101,11 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario{
 	}
 	
 	@Override
-	public Boolean cancelarCurso(Curso curso_obtenido, Usuario_Curso usuarioCurso) {
+	public Boolean cancelarCurso(Usuario_Curso usuarioCurso) {
 		
 		if (restarFechas(usuarioCurso) == true) {
 			
-			actualizarEstado(curso_obtenido,Estado.CANCELADO);
+			actualizarEstado(usuarioCurso, Estado.CANCELADO);
 			return true;
 		}
 		
@@ -144,13 +141,13 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario{
 	}
 	
 	@Override
-	public void cambiarEstadoCurso(Curso curso_obtenido, Estado estado) {
-		actualizarEstado(curso_obtenido, estado);
+	public void cambiarEstadoCurso(Usuario_Curso usuarioCurso, Estado estado) {
+		actualizarEstado(usuarioCurso, estado);
 	}
 
-	private void actualizarEstado(Curso curso_obtenido, Estado estado) {
-		curso_obtenido.setEstado(estado);
-		sessionFactory.getCurrentSession().update(curso_obtenido);
+	private void actualizarEstado(Usuario_Curso usuarioCurso, Estado estado) {
+		usuarioCurso.setEstado(estado);
+		sessionFactory.getCurrentSession().update(usuarioCurso);
 	}
 
 	@Override
@@ -167,22 +164,15 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario{
 	}
 	
 	@Override
-	public List<Curso> obtenerCursosDelUsuario(Usuario usuario) {
+	public List<Usuario_Curso> obtenerCursosDelUsuario(Usuario usuario) {
 		
 		Session sesion = sessionFactory.getCurrentSession();
 
 		List<Usuario_Curso> usuario_cursos = sesion.createCriteria(Usuario_Curso.class)
 											 .add(Restrictions.eq("usuario", usuario))
 											 .list();
-		
-		List<Curso> lista_curso = new ArrayList<Curso>();
-		
-		for (Usuario_Curso usuarioCurso : usuario_cursos) {
-			
-			lista_curso.add(usuarioCurso.getCurso());
-		}
 
-		return lista_curso;
+		return usuario_cursos;
 	}
 
 	@Override
@@ -193,6 +183,11 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario{
 	@Override
 	public void guardarGiftcardDeUsuario(Giftcard gift) {
 		sessionFactory.getCurrentSession().save(gift);
+	}
+
+	@Override
+	public void actualizarCursoDelUsuario(Usuario_Curso usuarioCurso) {
+		sessionFactory.getCurrentSession().update(usuarioCurso);
 	}
 
 }
