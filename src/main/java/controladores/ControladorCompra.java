@@ -15,11 +15,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import modelo.Carrito;
-import modelo.Carrito_Curso;
-import modelo.Curso;
-import modelo.Estado;
-import modelo.Usuario;
 import servicios.ServicioCarrito;
 import modelo.*;
 import servicios.ServicioCurso;
@@ -95,6 +90,10 @@ public class ControladorCompra {
 				servicioUsuario.guardarCursoEnListaUsuario(curso_obtenido, usuario);
 			}
 			viewName = "compraRealizada";
+			List<Notificacion> notificaciones = (List<Notificacion>) session.getAttribute("notificaciones");
+			notificaciones.add(new Notificacion("Compra Realizada"));
+			session.setAttribute("notificaciones", notificaciones);
+			
 		}
 		catch (Exception e) {
 			model.put("tarjetaIncorrecta", "El número de tarjeta ingresado es incorrecto.");

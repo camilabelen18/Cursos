@@ -99,7 +99,7 @@ input[type="submit"]:hover {
 }
 
 #carrito {
-	width: 50px;
+	width: 30px;
 }
 
 #fotoUsuario {
@@ -113,7 +113,12 @@ input[type="submit"]:hover {
 	cursor: pointer;
 }
 
-.menuCuentaUsuario {
+#notificacion {
+	font-size: 20px;
+	color: black;
+}
+
+.menuCuentaUsuario, .menuNotificaciones {
 	display: inline-block;
 	position: relative;
 }
@@ -130,7 +135,17 @@ input[type="submit"]:hover {
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 }
 
+.menuNotificaciones .contenido-menu {
+	left: -90px;
+	
+}
+
 .menuCuentaUsuario:hover .contenido-menu {
+	display: block;
+	cursor: pointer;
+}
+
+.menuNotificaciones:hover .contenido-menu {
 	display: block;
 	cursor: pointer;
 }

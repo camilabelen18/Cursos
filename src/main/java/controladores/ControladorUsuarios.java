@@ -1,6 +1,8 @@
 package controladores;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -100,6 +102,9 @@ public class ControladorUsuarios {
 			session.setAttribute("nombreUsuario", usuarioBuscado.getNombre());
 			session.setAttribute("ROL", usuarioBuscado.getRol());
 			session.setAttribute("imgUsuario", usuarioBuscado.getImagen());
+			List<Notificacion> notificaciones = new ArrayList<Notificacion>();
+			notificaciones.add(new Notificacion("Notificacion 1"));
+			session.setAttribute("notificaciones", notificaciones);
 
 			// Redirije al home
 			return new ModelAndView("redirect:/");
