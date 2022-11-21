@@ -301,7 +301,7 @@ public class ControladorCursosTest {
 		assertThat(mav.getModel().get("msj_progreso")).isEqualTo("Para completar el curso debe estar completado en un 50% o mas.");
 	}
 
-
+ /*
 	@Test 
 	public void testQueSePuedaVerUnExamen () {
 		//Preparacion 
@@ -365,7 +365,7 @@ public class ControladorCursosTest {
 		//Comprobacion
 		assertThat(mav.getViewName()).isEqualTo("vistaExamen");
 	}
-
+ */
 	
 		@Test
 		public void queSePuedanVerMisCursos() {

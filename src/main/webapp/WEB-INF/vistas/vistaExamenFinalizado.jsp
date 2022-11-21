@@ -26,18 +26,16 @@
 
  <!--   Contenido -->
 <div class="Contenido">
- <c:forEach var="itemExamen" items="${examenes}">
- <p> ${itemExamen.respuesta.respuesta_correcta}</p>
-  </c:forEach>
+
       
-       <p>prueba: ${param.ashe} </p>
       
       <div id="cuadro-seccion-finalizado">
                   <div id="cuadro-puntaje-total">
 					<h2 id="nota-examen">Nota de examen</h2>
 					<div id="total-examen">
 						<p>Nota: </p>
-						<p>${nota_final }</p>
+						<p>${notaSacada }</p>
+						<p>${msj } </p>
 				     </div>
                 </div>  
                 </div>

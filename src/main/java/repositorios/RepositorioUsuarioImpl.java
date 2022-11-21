@@ -20,9 +20,11 @@ import modelo.Carrito;
 import modelo.Curso;
 import modelo.Curso_Unidad;
 import modelo.Estado;
+import modelo.Examen;
 import modelo.Giftcard;
 import modelo.Usuario;
 import modelo.Usuario_Curso;
+import modelo.Usuario_Examen;
 
 @Repository
 @Transactional
@@ -193,6 +195,70 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario{
 	@Override
 	public void guardarGiftcardDeUsuario(Giftcard gift) {
 		sessionFactory.getCurrentSession().save(gift);
+	}
+
+	@Override
+	public void guardarExamenDeUsuario(Examen examen, Usuario usuario, int notaSacada) {
+		
+		Session sesion = sessionFactory.getCurrentSession();
+		
+		Usuario_Examen usuarioExamen = new Usuario_Examen();
+		usuarioExamen.setFecha_finalizacion_examen(LocalDate.now());
+		usuarioExamen.setHora_finalizacion_examen(LocalTime.now());
+	    usuarioExamen.setExamen(examen);
+	    usuarioExamen.setPuntaje_final(notaSacada);
+        usuarioExamen.setUsuario(usuario);
+
+		
+		sesion.save(usuarioExamen);
+		
+	}
+
+	@Override
+	public Usuario_Examen obtenerExamenUsuario(Examen examen, Usuario usuario) {
+	
+        Session sesion = sessionFactory.getCurrentSession();
+		
+		Usuario_Examen usuarioExamen = (Usuario_Examen) sesion.createCriteria(Usuario_Examen.class)
+									 .add(Restrictions.eq("usuario", usuario))
+									 .add(Restrictions.eq("examen", examen))
+									 .setMaxResults(1).uniqueResult();
+		
+		return usuarioExamen;
+	}
+
+	@Override
+	public boolean cancelarExamen(Usuario_Examen usuarioExamen) {
+		
+        Long diferencia_dias = ChronoUnit.DAYS.between(usuarioExamen.getFecha_finalizacion_examen(), LocalDate.now());
+		
+		if (diferencia_dias == 1) {	
+			
+			Long minuto = ChronoUnit.MINUTES.between(usuarioExamen.getHora_finalizacion_examen(),LocalTime.now());
+			
+			if(minuto >= 2) { //Fijarse si el condicional esta bien 
+				return true;
+			}
+		}
+		return false;
+	}
+
+	@Override
+	public boolean verificarSiHizoElExamenCuatroVecesOmas(Usuario usuario) {
+		Session sesion = sessionFactory.getCurrentSession();
+		
+
+		List<Usuario_Examen> usuario_examenes = sesion.createCriteria(Usuario_Examen.class)
+											 .add(Restrictions.eq("usuario", usuario))
+											 .list();
+		
+		for (int i = 0; i < usuario_examenes.size(); i++) {
+			if(i>=3) {
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 }

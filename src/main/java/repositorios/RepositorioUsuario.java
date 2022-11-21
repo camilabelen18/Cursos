@@ -32,4 +32,12 @@ public interface RepositorioUsuario {
 
 	void guardarGiftcardDeUsuario(Giftcard gift);
 
+	void guardarExamenDeUsuario(Examen examen, Usuario usuario, int notaSacada);
+
+	Usuario_Examen obtenerExamenUsuario(Examen examen, Usuario usuario);
+
+	boolean cancelarExamen(Usuario_Examen usuarioExamen);
+
+	boolean verificarSiHizoElExamenCuatroVecesOmas(Usuario usuario);
+
 }

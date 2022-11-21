@@ -15,11 +15,16 @@ import org.springframework.stereotype.Service;
 
 import modelo.Curso;
 import modelo.Curso_Unidad;
+import modelo.DatosExamen;
+import modelo.DatosPregunta;
 import modelo.Estado;
 import modelo.Examen;
+import modelo.Pregunta;
+import modelo.Respuesta;
 import modelo.Unidad;
 import modelo.Usuario;
 import modelo.Usuario_Curso;
+import modelo.Usuario_Examen;
 import repositorios.RepositorioCurso;
 import repositorios.RepositorioUsuario;
 
@@ -146,49 +151,111 @@ public class ServicioCursoImpl implements ServicioCurso {
 	}
 
 	@Override
-	public Examen obtenerExamenPorId(Integer examen_id) {
+	public Examen obtenerExamenPorCurso(Curso curso_obtenido) {
 		
-		return repositorioCurso.obtenerExamenPorID(examen_id);
-	}
-
-	@Override
-	public List<Examen> obtenerExamenes(Curso curso_obtenido) {
-		return repositorioCurso.obtenerExamenesDelCurso(curso_obtenido);
+		return repositorioCurso.obtenerExamenPorCurso(curso_obtenido);
 	}
 
 
 	@Override
-	public int getTotalDePuntajesExamen(List<Examen> examenes) {
-         
-		int puntajeTotal = 0;
+	public List<Pregunta> obtenerPreguntasDelExamen(Examen examen) {
 		
-		for (Examen examen : examenes) {
+		return repositorioCurso.obtenerPreguntasDelExamen(examen);
+	}
+
+
+	@Override
+	public Pregunta buscarPreguntaPorId(int pregunta_id) {
+		return repositorioCurso.buscarPreguntaPorId( pregunta_id);
+	}
+
+
+	@Override
+	public Respuesta buscarRespuestaPorId(int respuesta_id) {
+		return repositorioCurso.buscarRespuestaPorId( respuesta_id);
+	}
+
+
+	@Override
+	public List<Pregunta> obtenerPreguntasYrespuestas(List<DatosPregunta> listaDp) {
+		
+		//sacamos la lista de preguntas 
+				
+				int pregunta_id = 0;
 			
-			puntajeTotal += examen.getPuntaje();
-		}
-		
-		return puntajeTotal;
+				
+				List<Pregunta> listaPrObtenidas = new ArrayList<Pregunta>();
+				
+				for (DatosPregunta datosPregunta : listaDp) {
+					pregunta_id=datosPregunta.getPreguntaId();
+					
+					Pregunta pregunta_ =buscarPreguntaPorId(pregunta_id);
+			
+					listaPrObtenidas.add(pregunta_);
+				
+					
+				}
+		return listaPrObtenidas;
 	}
 
 
 	@Override
-	public boolean sumarPuntajeExamen(List<Examen> examenes) {
+	public List<Respuesta> obtenerRespuestas(List<DatosPregunta> listaDp) {
+		//sacamos la lista de respuestas
+		
+		int respuesta_id = 0;
 	
-		 
-		boolean verdadero=false;
 		
-		for (Examen examen : examenes) {
+		List<Respuesta> listaRobtenida = new ArrayList<Respuesta>();
+		
+		for (DatosPregunta datosPregunta : listaDp) {
+			respuesta_id=datosPregunta.getRespuestaElegida();
 			
-			if(examen.getRespuesta().getRespuesta_correcta()  || examen.getRespuesta_2().getRespuesta_correcta()  || examen.getRespuesta_3().getRespuesta_correcta()  ) {
-				examen.setPuntaje(1);
-				verdadero=true;
-			} 
-			
+			Respuesta respuesta_=buscarRespuestaPorId(respuesta_id);
+	
+			listaRobtenida.add(respuesta_);
 		
 			
 		}
-		
-		return verdadero;
-
+         return listaRobtenida;
+         
 	}
+
+
+	@Override
+	public DatosExamen guardarPreguntasEnDatosExamen(List<Pregunta> preguntas) {
+		DatosExamen datosExamen = new DatosExamen();
+		
+		for (Pregunta pregunta : preguntas) {
+			DatosPregunta datosPregunta = new DatosPregunta();
+			datosPregunta.setDescripcion(pregunta.getDescripcion());
+			datosPregunta.setPregunta(pregunta);
+			datosPregunta.setRespuesta_1(pregunta.getRespuesta_1());
+			datosPregunta.setRespuesta_2(pregunta.getRespuesta_2());
+			datosPregunta.setRespuesta_3(pregunta.getRespuesta_3());
+			datosPregunta.setPreguntaId(pregunta.getId());
+			datosExamen.getDatosPregunta().add(datosPregunta); //Fijarse si no es set 
+		}
+		
+		return datosExamen;
+	}
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

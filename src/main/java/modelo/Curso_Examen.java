@@ -1,8 +1,5 @@
 package modelo;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -31,13 +28,7 @@ public class Curso_Examen {
 	@JoinColumn(name = "examen_id")
 	private Examen examen;
 	
-	/*
-	@Column(name = "puntaje_final")
-	private int puntaje_final;
 	
-	private LocalDate fecha_incio_examen;
-	private LocalTime hora_inicio_examen;
-    */
 	public Curso_Examen() {
 	}
 

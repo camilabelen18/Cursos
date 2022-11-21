@@ -3,10 +3,15 @@ package servicios;
 import java.util.List;
 
 import modelo.Curso;
+import modelo.DatosExamen;
+import modelo.DatosPregunta;
 import modelo.Estado;
 import modelo.Examen;
+import modelo.Pregunta;
+import modelo.Respuesta;
 import modelo.Unidad;
 import modelo.Usuario;
+import modelo.Usuario_Examen;
 
 public interface ServicioCurso {
 
@@ -34,12 +39,29 @@ public interface ServicioCurso {
 	
 	void actualizarCurso(int idCurso, String nombre, String categoria, String descripcion, Double precio);
 
-	Examen obtenerExamenPorId(Integer examen_id);
+	Examen obtenerExamenPorCurso(Curso curso_obtenido);
 
-	List<Examen> obtenerExamenes(Curso curso_obtenido);
+	List<Pregunta> obtenerPreguntasDelExamen(Examen examen);
 
-	int getTotalDePuntajesExamen(List<Examen> examenes);
+	Pregunta buscarPreguntaPorId(int pregunta_id);
 
-	boolean sumarPuntajeExamen(List<Examen> examenes);
+	Respuesta buscarRespuestaPorId(int respuesta_id);
+
+	List<Pregunta> obtenerPreguntasYrespuestas(List<DatosPregunta> listaDp);
+
+	List<Respuesta> obtenerRespuestas(List<DatosPregunta> listaDp);
+
+	DatosExamen guardarPreguntasEnDatosExamen(List<Pregunta> preguntas);
+
+	
+
+
+
+
+
+	
+
+
+	
 
 }

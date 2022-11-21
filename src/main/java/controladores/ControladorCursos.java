@@ -254,73 +254,156 @@ public class ControladorCursos {
 		return new ModelAndView(view, model);
 	}
 
-
+	
+	
 	// Para hacer el controlador de examen
-	@RequestMapping(path = "/examen", method = RequestMethod.POST)
-	public ModelAndView examen(@RequestParam("curso_id") int curso_id) {
+		@RequestMapping(path = "/examen", method = RequestMethod.POST)
+		public ModelAndView examen(@RequestParam("curso_id") int curso_id) {
+			
+			ModelMap model = new ModelMap();
+		  //Buscas el curso 	
+			Curso curso_obtenido = servicioCurso.buscarCursoPorId(curso_id); //Por ahora solo del primer curso el del php C1
 		
-		ModelMap model = new ModelMap();
-	//Buscas el curso 	
-		Curso curso_obtenido = servicioCurso.buscarCursoPorId(curso_id); //Por ahora solo del primer curso el del php C1
+			//Hacemos una lista de preguntas y respuestas que estan en examen
+			//Obtenemos el examen del curso 
+	    	Examen examen = servicioCurso.obtenerExamenPorCurso(curso_obtenido );
+	      //  System.out.println("ACA FIJATE SI ESTA EL EXAMEN  ASI MODIFICAS LAS VISTA " + examen);
+	        //Obtenemos una lista de preguntas del examen 
+	    	List<Pregunta> preguntas = servicioCurso.obtenerPreguntasDelExamen(examen);
+	    //	System.out.println("ACA ACA FIJATE QUE SALE" + preguntas);
+	    	//Y lo ponemos en una clase de datos 
+	    //	DatosExamen datosExamen = new DatosExamen();
+	    	//Transformar en un servicio 
+	    DatosExamen datosExamen = servicioCurso.guardarPreguntasEnDatosExamen(preguntas);
+	    /*
+	    	for (Pregunta pregunta : preguntas) {
+				DatosPregunta datosPregunta = new DatosPregunta();
+				datosPregunta.setDescripcion(pregunta.getDescripcion());
+				datosPregunta.setPregunta(pregunta);
+				datosPregunta.setRespuesta_1(pregunta.getRespuesta_1());
+				datosPregunta.setRespuesta_2(pregunta.getRespuesta_2());
+				datosPregunta.setRespuesta_3(pregunta.getRespuesta_3());
+				datosPregunta.setPreguntaId(pregunta.getId());
+				datosExamen.getDatosPregunta().add(datosPregunta); //Fijarse si no es set 
+			}
+			*/
+	    //	System.out.println("FIJARSE ACA SI SE COPIARON BIEN LOS DATOS " + datosExamen);
+	    	
+			model.put("curso", curso_obtenido);
+		//	model.put("examen", examen);
+		//	model.put("preguntas", preguntas);
+			model.put("datosExamen", datosExamen);
 		
-		//Hacemos una lista de preguntas y respuestas que estan en examenes 
-		List<Examen> examenes = servicioCurso.obtenerExamenes(curso_obtenido);
-		
-		
-	//	Examen examen = servicioCurso.obtenerExamenPorId(examen_id);
 
-	
-	//	boolean nota_examen =servicioCurso.sumarPuntajeExamen(examenes);
-	
-		//Obtengo el puntaje total sumando el puntaje individual de cada examen 
-    //	int puntajeFinal = servicioCurso.getTotalDePuntajesExamen(examenes);	
+			
+			
+		
+			return new ModelAndView("vistaExamen", model);
+		}
 
-		model.put("curso", curso_obtenido);
-		model.put("examenes", examenes);
-	//	model.put("nota_final", puntajeFinal);
-	//	model.put("nota_examen", nota_examen );
-	//	System.out.println(examenes);
 
+		// Finalizar el examen y que te sumen los puntos al usuario
+		@RequestMapping(path = "/finalizarExamen", method = RequestMethod.POST)
+		public ModelAndView finalizarExamen(@RequestParam("curso_id") int curso_id,@ModelAttribute("datosExamen") DatosExamen datosExamen, HttpSession session) {
+
+			ModelMap model = new ModelMap();
+		    String view = "";
+			//Buscas el curso 	
+			Curso curso_obtenido = servicioCurso.buscarCursoPorId(curso_id); 
+			//Busco a el usuario que realizo el examen para despues agregarlo a la lista de usuario_examen y ponerle su puntaje y la hora en que lo realizo 
+			int id_user = Integer.parseInt(session.getAttribute("idUsuario").toString());
+		    Usuario usuario = servicioUsuario.buscarUsuarioPorID(id_user);
+		    //Busco el examen que tiene el curso enlazado 
+		    Examen examen = servicioCurso.obtenerExamenPorCurso(curso_obtenido );
+			//sacamos la lista de preguntas con sus respuestas seleccionadas de datosExamen
+			List<DatosPregunta> listaDp = datosExamen.getDatosPregunta();
+			//Obtengo las respuestas en bruto 
+			List<Respuesta> listaRobtenida = servicioCurso.obtenerRespuestas(listaDp);
+			//El puntaje o la nota que saco el usuario al hacer el examen 
+			int notaSacada = servicioUsuario.sumarNota(listaRobtenida);
+			
+			//Se guardaria a Usuario_Examen el usuario que tiene la sesion y el examen que tiene el curso 
+		    //y se setearia la fecha y la hora en que hizo el examen y los puntos que saco de dicho examen 
+		     servicioUsuario.guardarExamenDeUsuario(usuario,examen,notaSacada);
+		     
+		    Usuario_Examen usuarioExamen = servicioUsuario.obtenerExamenUsuario(examen,usuario);
+		  //  System.out.println("FIJARSE ACA " + usuarioExamen);
+		     
+		    
+		  // los intentos para hacer el examen son 3 y te da puntos  y si hiciste el examen por 4 ves no te da puntos 
+		 	//pero si te da el curso como completado o finalizado correctamente si lo aprobaste con mayor a 7 
+		    if (servicioUsuario.verificarSiHizoElExamenCuatroVecesOmas(usuario) == true) { //Ya no ganas puntos 
+		    	//Aprobado
+		    	System.out.println("ENTRASTE ACA A LA PARTE CUANDO YA HICISTE CUATRO VECES O MAS A EL EXAMEN");
+		    	  if(servicioUsuario.aproboExamenUsuario(notaSacada) == true) {
+		
+			    	    model.put("msj", "El examen se aprobo, pero no ganas puntos");
+			    		model.put("notaSacada", notaSacada);
+			    		model.put("curso", curso_obtenido);
+			    		view="vistaExamenFinalizado";
+			    	 
+			    	 
+			     }
+		    	//Desaprobado
+		    	  else {
+			    	    //Si desaprobas 
+						//Te muestran la nota, no te dan puntos y se te desabilita el examen por 2 dias 48 hs (usamos min ) 
+			    	 
+		    		  servicioUsuario.cancelarExamen(usuarioExamen);
+					//	Boolean a =servicioUsuario.cancelarExamen(usuarioExamen);
+					//	System.out.println("FUNCIONA AAA" + a);
+						
+					
+						model.put("msj", "El examen se desaprobo y ya no vas a poder ganar puntos"); //Despues se cambia 
+			    		model.put("notaSacada", notaSacada);
+			    		model.put("curso", curso_obtenido);
+			    		view="vistaExamenFinalizado";
+			    	 
+			     }
+		    	
+		    	
+		    	
+		    }
+		    else {
+		    	System.out.println("ENTRASTE ACA CUANDO ES ENTRE UNA VES O LA TERCERA ");
+		    	 if(servicioUsuario.aproboExamenUsuario(notaSacada) == true) {
+			    		//El camino verdadero
+						//Si aprobas entre la primera ves  y la tercera te dan los puntos dependiendo la  nota de aprobado 10 = 500, 9 =400, etc 
+			    
+			    	    model.put("msj", "El examen se aprobo y ganaste puntos");
+			    		model.put("notaSacada", notaSacada);
+			    		model.put("curso", curso_obtenido);
+			    		view="vistaExamenFinalizado";
+			    	 
+			     }
+		    	//Desaprobado
+		    	  else {
+			    	    //Si desaprobas 
+						//Te muestran la nota, no te dan puntos y se te desabilita el examen por 2 dias 48 hs (usamos min ) 
+			    	 
+		    		    servicioUsuario.cancelarExamen(usuarioExamen);
+						
+					
+						model.put("msj", "El examen se desaprobo y no ganaste puntos"); //Despues se cambia 
+			    		model.put("notaSacada", notaSacada);
+			    		model.put("curso", curso_obtenido);
+			    		view="vistaExamenFinalizado";
+			    	 
+			     }
+		    	
+		    }
+		    
+		    	
+	 	 
+
+			
+			
+
+			return new ModelAndView(view, model);
+		
+		}
 		
 		
-	
-		return new ModelAndView("vistaExamen", model);
-	}
-
-
-	// Finalizar el examen y que te sumen los puntos al usuario
-	@RequestMapping(path = "/finalizarExamen", method = RequestMethod.POST)
-	public ModelAndView finalizarExamen(@RequestParam("curso_id") int curso_id) {
-
-		ModelMap model = new ModelMap();
-		//Buscas el curso 	
-		Curso curso_obtenido = servicioCurso.buscarCursoPorId(curso_id); //Por ahora solo del primer curso el del php C1
-		
-		//Obtenemos la respuesta del input seleccionado
-	//	Examen examen = servicioCurso.obtenerExamenPorId(examen_id); //  java.awt.event.ActionEvent evento (esto en teoria sacaria el evento click usando java)
-		
-		//Hacemos una lista de preguntas y respuestas que estan en examenes 
-		List<Examen> examenes = servicioCurso.obtenerExamenes(curso_obtenido);
-		
-		boolean nota_examen =servicioCurso.sumarPuntajeExamen(examenes);
-	
-		//Obtengo el puntaje total sumando el puntaje individual de cada examen 
-		int puntajeFinal = servicioCurso.getTotalDePuntajesExamen(examenes);
-
-		model.put("curso", curso_obtenido);
-		model.put("examenes", examenes);
-		model.put("nota_final", puntajeFinal);
-		model.put("nota_examen", nota_examen );
-	//	model.put("examen", examen);
-	//	System.out.println(examenes);
-
-        
-		
-	
-		return new ModelAndView("vistaExamen", model);
-	//	return new ModelAndView("vistaExamenFinalizado", model);
-	}
-	
 
 
 }

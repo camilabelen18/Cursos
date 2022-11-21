@@ -181,17 +181,52 @@ public class ServicioPrincipalImpl implements ServicioPrincipal {
 		
 		// Nota: se insertan en total 70 registros en la base de datos al ejecutar el proyecto
 		
+
 		
-	
 		
 		//Registro de preguntas y respuestas PhP MySql
 		
+		  //Registro de respuestas		
+				Respuesta resp1 = new Respuesta("Si, se ejecuta en un servidor ", true);
+				Respuesta resp2 = new Respuesta("No, se ejecuta en el lado del cliente", false);
+				Respuesta resp3 = new Respuesta("Se puede ejecutar en el lado cliente como en el lado servidor", true);
+				Respuesta resp4 = new Respuesta("Si, se ejecuta en el lado del cliente", true);
+				Respuesta resp5 = new Respuesta("No, se ejecuta en el lado del servidor", false);
+				Respuesta resp6 = new Respuesta("Se puede ejecutar en el lado cliente como en el lado servidor", true);
+				Respuesta resp7 = new Respuesta("Si, en la carpeta que guarde por defecto el programa utilizado", true);
+				Respuesta resp8 = new Respuesta("No, lo podes guardar donde quieras ", false);
+				Respuesta resp9 = new Respuesta("Si, en la carpeta www ", true);
+				Respuesta resp10 = new Respuesta("Si, ya que es el primero que quieres que vean los visitantes al ingresar a tu pag", true);
+				Respuesta resp11 = new Respuesta("No, es indiferente ", false);
+				Respuesta resp12 = new Respuesta("Si, pero lo podes llamar como quieras igual ", true);
+				Respuesta resp13 = new Respuesta("Si, puede ser de cualquier tipo de valor", true);
+				Respuesta resp14 = new Respuesta("Si, solo puede almacer numeros enteros ", false);
+				Respuesta resp15 = new Respuesta("Si, puede almacenar tipos de datos como int, boolean, String y float", true);
+
+				
+				sesion.save(resp1);
+				sesion.save(resp2);
+				sesion.save(resp3);
+				sesion.save(resp4);
+				sesion.save(resp5);
+				sesion.save(resp6);
+				sesion.save(resp7);
+				sesion.save(resp8);
+				sesion.save(resp9);
+				sesion.save(resp10);
+				sesion.save(resp11);
+				sesion.save(resp12);
+				sesion.save(resp13);
+				sesion.save(resp14);
+				sesion.save(resp15);
+				
+		
 		//Registro de preguntas PhP MySql
-		Pregunta preg1 = new Pregunta("ï¿½ Php es un lenguaje que se ejecuta en un servidor ?");
-		Pregunta preg2 = new Pregunta("ï¿½ JavaScript se ejecuta en el lado del cliente ?");
-		Pregunta preg3 = new Pregunta("ï¿½ Las paginas php se guardan en una carpeta especifica ?");
-		Pregunta preg4 = new Pregunta("ï¿½ El nombre de index se lo da a una archivo cuando se lo considera pagina principal ?");
-		Pregunta preg5 = new Pregunta("ï¿½ La variable es un espacio  en la memoria del ordenador donde se almacena un valor ?");
+		Pregunta preg1 = new Pregunta("ï¿ Php es un lenguaje que se ejecuta en un servidor ?",resp1,resp2,resp3);
+		Pregunta preg2 = new Pregunta("ï¿ JavaScript se ejecuta en el lado del cliente ?",resp4,resp5,resp6);
+		Pregunta preg3 = new Pregunta("ï¿ Las paginas php se guardan en una carpeta especifica ?",resp7,resp8,resp9);
+		Pregunta preg4 = new Pregunta("ï¿ El nombre de index se lo da a una archivo cuando se lo considera pagina principal ?",resp10,resp11,resp12);
+		Pregunta preg5 = new Pregunta("ï¿ La variable es un espacio  en la memoria del ordenador donde se almacena un valor ?",resp13,resp14,resp15);
 		
 		sesion.save(preg1);
 		sesion.save(preg2);
@@ -199,63 +234,26 @@ public class ServicioPrincipalImpl implements ServicioPrincipal {
 		sesion.save(preg4);  
 		sesion.save(preg5);  
 		
-	    //Registro de respuestas		
-		Respuesta resp1 = new Respuesta("Si, se ejecuta en un servidor ", true);
-		Respuesta resp2 = new Respuesta("No, se ejecuta en el lado del cliente", false);
-		Respuesta resp3 = new Respuesta("Se puede ejecutar en el lado cliente como en el lado servidor", true);
-		Respuesta resp4 = new Respuesta("Si, se ejecuta en el lado del cliente", true);
-		Respuesta resp5 = new Respuesta("No, se ejecuta en el lado del servidor", false);
-		Respuesta resp6 = new Respuesta("Se puede ejecutar en el lado cliente como en el lado servidor", true);
-		Respuesta resp7 = new Respuesta("Si, en la carpeta que guarde por defecto el programa utilizado", true);
-		Respuesta resp8 = new Respuesta("No, lo podes guardar donde quieras ", false);
-		Respuesta resp9 = new Respuesta("Si, en la carpeta www ", true);
-		Respuesta resp10 = new Respuesta("Si, ya que es el primero que quieres que vean los visitantes al ingresar a tu pag", true);
-		Respuesta resp11 = new Respuesta("No, es indiferente ", false);
-		Respuesta resp12 = new Respuesta("Si, pero lo podes llamar como quieras igual ", true);
-		Respuesta resp13 = new Respuesta("Si, puede ser de cualquier tipo de valor", true);
-		Respuesta resp14 = new Respuesta("Si, solo puede almacer numeros enteros ", false);
-		Respuesta resp15 = new Respuesta("Si, puede almacenar tipos de datos como int, boolean, String y float", true);
-
-		
-		sesion.save(resp1);
-		sesion.save(resp2);
-		sesion.save(resp3);
-		sesion.save(resp4);
-		sesion.save(resp5);
-		sesion.save(resp6);
-		sesion.save(resp7);
-		sesion.save(resp8);
-		sesion.save(resp9);
-		sesion.save(resp10);
-		sesion.save(resp11);
-		sesion.save(resp12);
-		sesion.save(resp13);
-		sesion.save(resp14);
-		sesion.save(resp15);
-		
-		//Registro de examenes, la union de preguntas, respuestas 
-	     Examen examen1 = new Examen(preg1, resp1, resp2, resp3);
-	     Examen examen2 = new Examen(preg2, resp4, resp5, resp6);
-	     Examen examen3 = new Examen(preg3, resp7, resp8, resp9);
-	     Examen examen4 = new Examen(preg4, resp10, resp11, resp12);
-	     Examen examen5 = new Examen(preg5, resp13, resp14, resp15);
 	  
-	   
-	    sesion.save(examen1);
-	    sesion.save(examen2);
-	    sesion.save(examen3);
-	    sesion.save(examen4);
-	    sesion.save(examen5);
-	    
+		//Registro de examen
+	     Examen examen1 = new Examen(preg1,preg2,preg3,preg4,preg5);
+	     
+	     sesion.save(examen1);
 
 		//Registro de Curso con su examen correspondiente
-	    //Registro de PhpMySql y sus examenes
+	    //Registro de PhpMySql y su examen
 		sesion.save(new Curso_Examen(c1,examen1 ));
-	 	sesion.save(new Curso_Examen(c1,examen2 ));
-	 	sesion.save(new Curso_Examen(c1,examen3 ));
-	 	sesion.save(new Curso_Examen(c1,examen4 ));
-	 	sesion.save(new Curso_Examen(c1,examen5 ));
+
+		//Registro del usuario y su examen ??? 
+       //  Usuario_Examen usuario_examen1 = new Usuario_Examen(cliente1, examen1);
 		
+       //     sesion.save(usuario_examen1);
+		
+		
+		
+		
+	
+/*	 	
 	 	//Registro de preguntas Spring FrameWork 5
 	 	Pregunta preg6 = new Pregunta("ï¿½ Spring boot es un subproyecto de Spring Framework  ?");
 	 	Pregunta preg7 = new Pregunta("ï¿½ Con Spring boot una ya empieza con configuraciones por defecto ?");
@@ -731,6 +729,8 @@ public class ServicioPrincipalImpl implements ServicioPrincipal {
 	 	sesion.save(new Curso_Examen(c8,examen38 ));
 	 	sesion.save(new Curso_Examen(c8,examen39 ));
 	 	sesion.save(new Curso_Examen(c8,examen40 ));
+	 	
+	 	*/
 	 	
 	}
 
