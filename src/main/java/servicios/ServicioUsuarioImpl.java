@@ -293,5 +293,11 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
 		return puntajeFinal;
 	}
 
+	@Override
+	public List<Usuario_Examen> obtenerExamenesDelUsuario(Usuario usuario,Examen examen) {
+		
+		return repositorioUsuario.obtenerExamenesDelUsuario(usuario,examen);
+	}
+
 
 }

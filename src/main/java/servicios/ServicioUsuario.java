@@ -54,4 +54,6 @@ public interface ServicioUsuario {
 	boolean verificarSiHizoElExamenCuatroVecesOmas(Usuario usuario);
 
 	int sumarNota(List<Respuesta> listaRobtenida);
+
+	List<Usuario_Examen> obtenerExamenesDelUsuario(Usuario usuario,Examen examen);
 }

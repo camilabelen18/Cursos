@@ -263,42 +263,35 @@ public class ControladorCursos {
 			ModelMap model = new ModelMap();
 		  //Buscas el curso 	
 			Curso curso_obtenido = servicioCurso.buscarCursoPorId(curso_id); //Por ahora solo del primer curso el del php C1
-		
+			List<Unidad> unidades = servicioCurso.obtenerUnidades(curso_obtenido);
+			String view = "";
 			//Hacemos una lista de preguntas y respuestas que estan en examen
 			//Obtenemos el examen del curso 
 	    	Examen examen = servicioCurso.obtenerExamenPorCurso(curso_obtenido );
-	      //  System.out.println("ACA FIJATE SI ESTA EL EXAMEN  ASI MODIFICAS LAS VISTA " + examen);
 	        //Obtenemos una lista de preguntas del examen 
 	    	List<Pregunta> preguntas = servicioCurso.obtenerPreguntasDelExamen(examen);
-	    //	System.out.println("ACA ACA FIJATE QUE SALE" + preguntas);
 	    	//Y lo ponemos en una clase de datos 
-	    //	DatosExamen datosExamen = new DatosExamen();
-	    	//Transformar en un servicio 
-	    DatosExamen datosExamen = servicioCurso.guardarPreguntasEnDatosExamen(preguntas);
-	    /*
-	    	for (Pregunta pregunta : preguntas) {
-				DatosPregunta datosPregunta = new DatosPregunta();
-				datosPregunta.setDescripcion(pregunta.getDescripcion());
-				datosPregunta.setPregunta(pregunta);
-				datosPregunta.setRespuesta_1(pregunta.getRespuesta_1());
-				datosPregunta.setRespuesta_2(pregunta.getRespuesta_2());
-				datosPregunta.setRespuesta_3(pregunta.getRespuesta_3());
-				datosPregunta.setPreguntaId(pregunta.getId());
-				datosExamen.getDatosPregunta().add(datosPregunta); //Fijarse si no es set 
-			}
-			*/
-	    //	System.out.println("FIJARSE ACA SI SE COPIARON BIEN LOS DATOS " + datosExamen);
-	    	
-			model.put("curso", curso_obtenido);
-		//	model.put("examen", examen);
-		//	model.put("preguntas", preguntas);
-			model.put("datosExamen", datosExamen);
-		
+	        DatosExamen datosExamen = servicioCurso.guardarPreguntasEnDatosExamen(preguntas);
 
-			
-			
-		
-			return new ModelAndView("vistaExamen", model);
+	        //Valida si el curso esta terminado, si es asi uno puede proceder a hacer el examen 
+			if (curso_obtenido.getCursoTerminado() == false) {
+				
+				model.put("curso", curso_obtenido);
+				model.put("unidades", unidades);
+				model.put("unidad", unidades.get(0));
+				model.put("msj_progreso", "Para hacer el examen el curso tiene que estar completado ");
+				view = "vistaCurso";
+
+			}
+			  else {
+					model.put("curso", curso_obtenido);
+					model.put("datosExamen", datosExamen);
+					view = "vistaExamen";
+				
+			 }
+	  
+
+			return new ModelAndView(view, model);
 		}
 
 
@@ -326,10 +319,8 @@ public class ControladorCursos {
 		    //y se setearia la fecha y la hora en que hizo el examen y los puntos que saco de dicho examen 
 		     servicioUsuario.guardarExamenDeUsuario(usuario,examen,notaSacada);
 		     
-		    Usuario_Examen usuarioExamen = servicioUsuario.obtenerExamenUsuario(examen,usuario);
-		  //  System.out.println("FIJARSE ACA " + usuarioExamen);
-		     
-		    
+		     Usuario_Examen usuarioExamen = servicioUsuario.obtenerExamenUsuario(examen,usuario);
+
 		  // los intentos para hacer el examen son 3 y te da puntos  y si hiciste el examen por 4 ves no te da puntos 
 		 	//pero si te da el curso como completado o finalizado correctamente si lo aprobaste con mayor a 7 
 		    if (servicioUsuario.verificarSiHizoElExamenCuatroVecesOmas(usuario) == true) { //Ya no ganas puntos 
@@ -354,15 +345,13 @@ public class ControladorCursos {
 					//	System.out.println("FUNCIONA AAA" + a);
 						
 					
-						model.put("msj", "El examen se desaprobo y ya no vas a poder ganar puntos"); //Despues se cambia 
+						model.put("msj", "El examen se desaprobo y ya no vas a poder ganar puntos"); 
 			    		model.put("notaSacada", notaSacada);
 			    		model.put("curso", curso_obtenido);
 			    		view="vistaExamenFinalizado";
 			    	 
 			     }
-		    	
-		    	
-		    	
+
 		    }
 		    else {
 		    	System.out.println("ENTRASTE ACA CUANDO ES ENTRE UNA VES O LA TERCERA ");
@@ -372,6 +361,7 @@ public class ControladorCursos {
 			    
 			    	    model.put("msj", "El examen se aprobo y ganaste puntos");
 			    		model.put("notaSacada", notaSacada);
+			    		//puntos ganados 
 			    		model.put("curso", curso_obtenido);
 			    		view="vistaExamenFinalizado";
 			    	 
@@ -384,7 +374,7 @@ public class ControladorCursos {
 		    		    servicioUsuario.cancelarExamen(usuarioExamen);
 						
 					
-						model.put("msj", "El examen se desaprobo y no ganaste puntos"); //Despues se cambia 
+						model.put("msj", "El examen se desaprobo y no ganaste puntos"); 
 			    		model.put("notaSacada", notaSacada);
 			    		model.put("curso", curso_obtenido);
 			    		view="vistaExamenFinalizado";
@@ -394,14 +384,63 @@ public class ControladorCursos {
 		    }
 		    
 		    	
-	 	 
-
-			
-			
+	
 
 			return new ModelAndView(view, model);
 		
 		}
+		
+		
+		@RequestMapping(path = "/historialExamen", method = RequestMethod.POST)
+		public ModelAndView historialExamen(@RequestParam("curso_id") int curso_id, HttpSession session) {
+			
+			ModelMap model = new ModelMap();
+		    String view = "";
+		    
+		    //Busco al usuario que tiene la sesion iniciada 
+			int id_user = Integer.parseInt(session.getAttribute("idUsuario").toString());
+		    Usuario usuario = servicioUsuario.buscarUsuarioPorID(id_user);
+	
+			//Buscas el curso 	
+			Curso curso_obtenido = servicioCurso.buscarCursoPorId(curso_id); 
+			//Busco el examen que tiene el curso enlazado 
+		    Examen examen = servicioCurso.obtenerExamenPorCurso(curso_obtenido );
+			
+			// Si no se obtiene ningun examen del usuario entonces se lanza una excepcion
+		    List<Usuario_Examen> usuarioExamenes = servicioUsuario.obtenerExamenesDelUsuario(usuario,examen);
+		
+		    
+		 // Si comprueba si el usuario tiene iniciada la sesion
+		 	if (usuarioExamenes.size() > 0) {
+		 		
+				    model.put("curso", curso_obtenido);
+				    model.put("usuarioExamenes", usuarioExamenes);
+					view = "vistaHistorialExamen";
+						
+				
+		 	}
+		 	else {
+		 	// Si la lista usuario_examen se encuentra vacia entonces se guarda un mensaje informativo
+	 			model.put("msj", "No se hizo ningun examen todavia ");
+	 			view = "vistaHistorialExamen";
+		 	}
+			
+			return new ModelAndView(view, model);
+			
+			
+		
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		
 

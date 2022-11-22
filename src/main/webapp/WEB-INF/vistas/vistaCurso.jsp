@@ -62,7 +62,7 @@
 							</a>
 						</c:if>
 						
-						<c:if test="${itemUnidad.completado == true}">
+						<c:if test="${itemUnidad.completado == false}">
 							<a href="verUnidadCurso?unidad_id=${itemUnidad.id}&curso_id=${curso.id}">
 								<i class="fa-solid fa-circle-check" id="icon_check"></i> ${itemUnidad.descripcion}
 							</a>
@@ -83,11 +83,25 @@
 					</form>
 				</c:if>
 
-          
-       
+                <c:if test="${curso.cursoTerminado == false}">
+				<form action="examen?curso_id=${curso.id}" method="POST">
+					<input type="submit" name="examen" value="Examen" class="btn-tipo-2">
+				</form>
+				</c:if>
+				
+				<c:if test="${curso.cursoTerminado == true}">
 				<form action="examen?curso_id=${curso.id}" method="POST">
 					<input type="submit" name="examen" value="Examen" class="btn-tipo-1">
 				</form>
+				</c:if>
+				
+				<c:if test="${curso.cursoTerminado == true}">
+				<form action="historialExamen?curso_id=${curso.id}" method="POST">
+					<input type="submit" name="historialExamen" value="Historial Examen" class="btn-tipo-1">
+				</form>
+				</c:if>
+				
+				
 				
 				<form action="sumarPuntos" method="POST">
 					<input type="submit" name="puntos" value="Dame puntos" class="btn-tipo-1">

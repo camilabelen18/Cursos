@@ -55,12 +55,12 @@
                 <div id="cuadro-seccion-finalizado">
                   <input type="submit" name="finalizoExamen" value="Finalizar" id="finalizar">
                 
-                    <div id="cuadro-puntaje-total">
+                 <!--   <div id="cuadro-puntaje-total">
 				 	<h2 id="nota-examen">Nota de examen</h2>
 				 	<div id="total-examen">
 						<p>Nota: </p>
 						<p>${notaSacada }</p>
-				     </div>
+				     </div>  --> 
                 </div>  
                 
 

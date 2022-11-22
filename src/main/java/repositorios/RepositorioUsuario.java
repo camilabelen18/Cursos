@@ -40,4 +40,6 @@ public interface RepositorioUsuario {
 
 	boolean verificarSiHizoElExamenCuatroVecesOmas(Usuario usuario);
 
+	List<Usuario_Examen> obtenerExamenesDelUsuario(Usuario usuario,Examen examen);
+
 }

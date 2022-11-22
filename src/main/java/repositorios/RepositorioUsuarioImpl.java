@@ -236,7 +236,7 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario{
 			
 			Long minuto = ChronoUnit.MINUTES.between(usuarioExamen.getHora_finalizacion_examen(),LocalTime.now());
 			
-			if(minuto >= 2) { //Fijarse si el condicional esta bien 
+			if(minuto >= 2) {  
 				return true;
 			}
 		}
@@ -259,6 +259,27 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario{
 		}
 
 		return false;
+	}
+
+	@Override
+	public List<Usuario_Examen> obtenerExamenesDelUsuario(Usuario usuario,Examen examen) {
+		
+     Session sesion = sessionFactory.getCurrentSession();
+		
+
+		List<Usuario_Examen> usuario_examenes = sesion.createCriteria(Usuario_Examen.class)
+											 .add(Restrictions.eq("usuario", usuario))
+											 .add(Restrictions.eq("examen", examen))
+											 .list();
+		
+	/*	List<Usuario_Examen> listaUsuarioExamen = new ArrayList<Usuario_Examen>();
+		
+		for (Usuario_Examen usuario_Examen : usuario_examenes) {
+			listaUsuarioExamen.add(usuario_Examen);
+		} */
+
+		return usuario_examenes;
+
 	}
 
 }
