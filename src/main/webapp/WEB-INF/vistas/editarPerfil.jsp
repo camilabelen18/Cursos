@@ -33,7 +33,7 @@
 				<div class="textoEditar">
 					<label for="password">Contraseña anterior: </label> <input
 						id="passwordUsuario" type="password" name="passwordAnterior"
-						value="${usuario.password}">
+						value="">
 				</div>
 				<div class="textoEditar">
 					<label for="password">Nueva contraseña: </label> <input
@@ -60,19 +60,12 @@
 			
 		</article>
 	</section>
-	
-<%-- 	<div id="mensaje" class="error"></div>
-		
-		<c:if test="${not empty error}">
-			<div class="error">${error}</div>
-		</c:if> --%>
 		
 
 
 	<%@ include file="footer.jsp"%>
 	
 	
-	<!-- <script src="js/editarPerfil.js"></script> -->
 
 </body>
 </html>
