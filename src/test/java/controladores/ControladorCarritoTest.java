@@ -28,7 +28,7 @@ public class ControladorCarritoTest {
 	ServicioCurso servicioCurso = mock(ServicioCurso.class);
 	ServicioCarrito servicioCarrito = mock(ServicioCarrito.class);
 	ServicioUsuario servicioUsuario = mock(ServicioUsuario.class);
-	ControladorCarrito controladorCarrito = new ControladorCarrito(servicioCurso, servicioCarrito);
+	ControladorCarrito controladorCarrito = new ControladorCarrito(servicioCurso, servicioCarrito, servicioUsuario);
 	ControladorCompra controladorCompra = new ControladorCompra(servicioUsuario, servicioCurso, servicioCarrito);
 	HttpSession session = mock(HttpSession.class);
 

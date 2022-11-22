@@ -29,5 +29,7 @@ public interface ServicioCarrito {
 	void eliminarCursoDelCarrito(Carrito_Curso carritoCurso);
 
 	void vaciarCursosDelCarrito(List<Carrito_Curso> cursosCarrito);
+
+	boolean existeCursoEnListaCarrito(Curso curso_obtenido, Carrito carrito);
 	
 }
