@@ -11,6 +11,7 @@
 	<link rel="shortcut icon" href="imagenes/favicon.ico">
 	<link rel="stylesheet" href="css/styles.css">
 	<link rel="stylesheet" href="css/editarPerfil.css">
+	<link rel="stylesheet" href="css/darkmode.css">
 </head>
 <body>
 	<%@ include file="header.jsp"%>

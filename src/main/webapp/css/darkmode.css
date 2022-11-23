@@ -1,6 +1,7 @@
 
-.darkModeSwitch{
+.darkModeSwitch {
     background: #3494b1;
+    margin-left: 50px;
     display:flex;
     position: relative;
     cursor: pointer;
@@ -50,14 +51,22 @@
 	color: white;
 }
 
-.dark h1, .dark p, .dark #login a, .dark #contenido-curso a {
+.dark h1, .dark p, .dark #login a, .dark #contenido-curso a, .dark #logoCurso, .dark #notificacion, .dark #carrito {
 	color: white;
 }
 
-.dark #contMiGiftcard-2 {
-	background-color: #2e2e2e;
+#cont-header, #cont-contacto, #contMiGiftcard-2 {
+	background-color: transparent;
 }
 
-.dark #contMiGiftcard-2 .giftcardNum {
+body.dark .giftcardNum {
+	color: black;
+}
+
+body.dark .contenido-menu p {
+	color: black;
+}
+
+body.dark .contenido-menu h3 {
 	color: black;
 }

@@ -52,9 +52,10 @@ public class Usuario_Notificacion {
 	public void setNotificacion(Notificacion notificacion) {
 		this.notificacion = notificacion;
 	}
-	
-	
-	
-	
+
+	@Override
+	public String toString() {
+		return "Usuario_Notificacion [id=" + id + ", usuario=" + usuario + ", notificacion=" + notificacion + "]";
+	}
 	
 }

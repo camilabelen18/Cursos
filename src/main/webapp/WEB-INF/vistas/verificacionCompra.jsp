@@ -12,7 +12,7 @@
 	<link rel="shortcut icon" href="imagenes/favicon.ico">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/verificacionCompra.css">
-    
+    <link rel="stylesheet" href="css/darkmode.css">
 </head>
 <body>
 

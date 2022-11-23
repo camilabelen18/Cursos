@@ -57,6 +57,7 @@ public class ControladorCompra {
 			else {
 				model.addAttribute("cursoYaComprado", "El curso ya fue comprado, compre otro curso.");
 				viewName = "redirect:/verListaCursos";
+				//servicioNotificacion.enviar(usuario, "El curso ya fue comprado, compre otro curso.");
 			}
 		}
 		else {
@@ -90,10 +91,8 @@ public class ControladorCompra {
 				servicioUsuario.guardarCursoEnListaUsuario(curso_obtenido, usuario);
 			}
 			viewName = "compraRealizada";
-			List<Notificacion> notificaciones = (List<Notificacion>) session.getAttribute("notificaciones");
-			notificaciones.add(new Notificacion("Compra Realizada"));
-			session.setAttribute("notificaciones", notificaciones);
 			
+			//servicioUsuario.enviarNotificacion(usuario, "Compraste el curso " + curso_obtenido.getNombre(), session);
 		}
 		catch (Exception e) {
 			model.put("tarjetaIncorrecta", "El número de tarjeta ingresado es incorrecto.");

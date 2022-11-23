@@ -65,7 +65,9 @@ input[type="submit"]:hover {
 }
 
 #logoCurso {
-	width: 40px;
+	font-size: 35px;
+	padding-left: 10px;
+	color: #3281c7;
 }
 
 #barra_busqueda {
@@ -99,7 +101,8 @@ input[type="submit"]:hover {
 }
 
 #carrito {
-	width: 30px;
+	font-size: 25px;
+	color: black;
 }
 
 #fotoUsuario {
@@ -114,7 +117,7 @@ input[type="submit"]:hover {
 }
 
 #notificacion {
-	font-size: 20px;
+	font-size: 25px;
 	color: black;
 }
 
@@ -137,7 +140,6 @@ input[type="submit"]:hover {
 
 .menuNotificaciones .contenido-menu {
 	left: -90px;
-	
 }
 
 .menuCuentaUsuario:hover .contenido-menu {
@@ -158,6 +160,30 @@ input[type="submit"]:hover {
 }
 
 .contenido-menu a:hover {
+	background-color: #f2f2f2;
+}
+
+.contenido-menu h3 {
+	padding: 15px 20px;
+}
+
+.mensajes {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	padding: 15px 20px;
+}
+
+.mensajes a {
+	display: inline;
+	padding: 0px;
+}
+
+.mensajes i {
+	color: #3c3b37;
+}
+
+.mensajes:hover {
 	background-color: #f2f2f2;
 }
 

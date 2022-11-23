@@ -1,8 +1,5 @@
 package modelo;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.persistence.*;
 
 @Entity
@@ -38,6 +35,11 @@ public class Notificacion {
 
 	public void setMensaje(String mensaje) {
 		this.mensaje = mensaje;
+	}
+
+	@Override
+	public String toString() {
+		return "Notificacion [id=" + id + ", mensaje=" + mensaje + "]";
 	}
 	
 }
