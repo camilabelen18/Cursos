@@ -274,9 +274,9 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
 	}
 
 	@Override
-	public boolean verificarSiHizoElExamenCuatroVecesOmas(Usuario usuario) {
+	public boolean verificarSiHizoElExamenCuatroVecesOmas(Usuario usuario,Examen examen) {
 		
-		return repositorioUsuario.verificarSiHizoElExamenCuatroVecesOmas(usuario);
+		return repositorioUsuario.verificarSiHizoElExamenCuatroVecesOmas(usuario, examen);
 	}
 
 	@Override

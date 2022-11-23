@@ -272,13 +272,12 @@ public class ControladorCursos {
 			Curso curso_obtenido = servicioCurso.buscarCursoPorId(curso_id); //Por ahora solo del primer curso el del php C1
 			List<Unidad> unidades = servicioCurso.obtenerUnidades(curso_obtenido);
 			String view = "";
-			//Hacemos una lista de preguntas y respuestas que estan en examen
 			//Obtenemos el examen del curso 
 	    	Examen examen = servicioCurso.obtenerExamenPorCurso(curso_obtenido );
 	    	//Busco a el usuario que realizo el examen para despues agregarlo a la lista de usuario_examen y ponerle su puntaje y la hora en que lo realizo 
 			int id_user = Integer.parseInt(session.getAttribute("idUsuario").toString());
 		    Usuario usuario = servicioUsuario.buscarUsuarioPorID(id_user);
-		    
+		    //Obtengo el examen que hizo el usuario 
 		    Usuario_Examen usuarioExamen = servicioUsuario.obtenerExamenUsuario(examen,usuario);
 	        //Obtenemos una lista de preguntas del examen 
 	    	List<Pregunta> preguntas = servicioCurso.obtenerPreguntasDelExamen(examen);
@@ -286,13 +285,12 @@ public class ControladorCursos {
 	    	//Las hacemos "aleatorias" 
 	    	List<Pregunta> preguntasAlAzar = servicioCurso.PreguntasAzar(preguntas);
 
-	        //System.out.println("FIJARSE ACA" + preguntasAlAzar); 
-
 	      //Y lo ponemos en una clase de datos 
 	        DatosExamen datosExamen = servicioCurso.guardarPreguntasEnDatosExamen(preguntasAlAzar);
 	        
+	        //Verificamos fecha nuevamente para ver si el periodo de gracia paso y cambiarle el estado a examen que hizo el usuario 
 	        servicioUsuario.verificarFechaDeExamen(usuarioExamen);
-	        
+	        //Obtenemos el examen actual
 	        examen = servicioCurso.obtenerExamenPorCurso(curso_obtenido );
 
 	        //Valida si el curso esta terminado
@@ -360,9 +358,9 @@ public class ControladorCursos {
 		  // los intentos para hacer el examen son 3 y te da puntos  y si hiciste el examen por 4 ves no te da puntos 
 		 	//pero si te da el curso como completado o finalizado correctamente si lo aprobaste con mayor a 7 
 		     //Tambien usar el examen para no confundir 
-		    if (servicioUsuario.verificarSiHizoElExamenCuatroVecesOmas(usuario) == true) { //Ya no ganas puntos 
+		    if (servicioUsuario.verificarSiHizoElExamenCuatroVecesOmas(usuario,examen) == true) { //Ya no ganas puntos 
 		    	//Aprobado
-		    //	System.out.println("ENTRASTE ACA A LA PARTE CUANDO YA HICISTE CUATRO VECES O MAS A EL EXAMEN");
+		    	System.out.println("ENTRASTE ACA A LA PARTE CUANDO YA HICISTE CUATRO VECES O MAS A EL EXAMEN");
 		    	  if(servicioUsuario.aproboExamenUsuario(notaSacada) == true) {
 		
 			    	    model.put("msj", "El examen se aprobo, pero no ganas puntos");
@@ -391,7 +389,7 @@ public class ControladorCursos {
 
 		    }
 		    else {
-		    //	System.out.println("ENTRASTE ACA CUANDO ES ENTRE UNA VES O LA TERCERA ");
+		    	System.out.println("ENTRASTE ACA CUANDO ES ENTRE UNA VES O LA TERCERA ");
 		    	 if(servicioUsuario.aproboExamenUsuario(notaSacada) == true) {
 			    		//El camino verdadero
 						//Si aprobas entre la primera ves  y la tercera te dan los puntos dependiendo la  nota de aprobado 10 = 500, 9 =400, etc 

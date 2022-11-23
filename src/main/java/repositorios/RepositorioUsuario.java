@@ -38,7 +38,7 @@ public interface RepositorioUsuario {
 
 	boolean cancelarExamen(Usuario_Examen usuarioExamen,Examen examen);
 
-	boolean verificarSiHizoElExamenCuatroVecesOmas(Usuario usuario);
+	boolean verificarSiHizoElExamenCuatroVecesOmas(Usuario usuario, Examen examen);
 
 	List<Usuario_Examen> obtenerExamenesDelUsuario(Usuario usuario,Examen examen);
 

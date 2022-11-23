@@ -280,19 +280,23 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario{
 	
 	
 	@Override
-	public boolean verificarSiHizoElExamenCuatroVecesOmas(Usuario usuario) {
+	public boolean verificarSiHizoElExamenCuatroVecesOmas(Usuario usuario, Examen examen) {
 		Session sesion = sessionFactory.getCurrentSession();
 		
 
 		List<Usuario_Examen> usuario_examenes = sesion.createCriteria(Usuario_Examen.class)
 											 .add(Restrictions.eq("usuario", usuario)) 
+											 .add(Restrictions.eq("examen", examen)) 
 											 .list();
-		
-		for (int i = 0; i < usuario_examenes.size(); i++) {
-			if(i>=3) {
-				return true;
+		if(usuario_examenes != null) { 
+			for (int i = 0; i < usuario_examenes.size(); i++) {
+				if(i>=3) {
+					return true;
+				}
 			}
+			
 		}
+		
 
 		return false;
 	}

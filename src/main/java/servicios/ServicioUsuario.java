@@ -51,7 +51,7 @@ public interface ServicioUsuario {
 
 	boolean cancelarExamen(Usuario_Examen usuarioExamen,Examen examen);
 
-	boolean verificarSiHizoElExamenCuatroVecesOmas(Usuario usuario);
+	boolean verificarSiHizoElExamenCuatroVecesOmas(Usuario usuario, Examen examen);
 
 	int sumarNota(List<Respuesta> listaRobtenida);
 
