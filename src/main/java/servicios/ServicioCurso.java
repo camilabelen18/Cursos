@@ -53,6 +53,8 @@ public interface ServicioCurso {
 
 	DatosExamen guardarPreguntasEnDatosExamen(List<Pregunta> preguntas);
 
+	List<Pregunta> PreguntasAzar(List<Pregunta> preguntas);
+
 	
 
 

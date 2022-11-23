@@ -49,7 +49,7 @@ public interface ServicioUsuario {
 
 	boolean aproboExamenUsuario(int notaSacada);
 
-	boolean cancelarExamen(Usuario_Examen usuarioExamen);
+	boolean cancelarExamen(Usuario_Examen usuarioExamen,Examen examen);
 
 	boolean verificarSiHizoElExamenCuatroVecesOmas(Usuario usuario);
 

@@ -234,10 +234,324 @@ public class ServicioCursoImpl implements ServicioCurso {
 			datosPregunta.setRespuesta_2(pregunta.getRespuesta_2());
 			datosPregunta.setRespuesta_3(pregunta.getRespuesta_3());
 			datosPregunta.setPreguntaId(pregunta.getId());
-			datosExamen.getDatosPregunta().add(datosPregunta); //Fijarse si no es set 
+			datosExamen.getDatosPregunta().add(datosPregunta); 
 		}
 		
 		return datosExamen;
+	}
+
+
+	@Override
+	public List<Pregunta> PreguntasAzar(List<Pregunta> preguntas) {
+		
+  
+		List<Pregunta> listPreguntasAzar = new ArrayList<Pregunta>();
+		
+		
+		 int numero = (int) (Math.random()*3);
+		// int numero = 0;
+	     System.out.println("Como sale esto: " + numero);
+	     
+	     switch (numero) {
+		case 0:
+			for (int i = 0; i < 1; i++) {
+				
+				listPreguntasAzar.add(0, preguntas.get(4));
+				listPreguntasAzar.add(1, preguntas.get(3));
+				listPreguntasAzar.add(2, preguntas.get(2));
+				listPreguntasAzar.add(3, preguntas.get(1));
+				listPreguntasAzar.add(4, preguntas.get(0));
+				
+				
+			}
+			
+	         System.out.println(" MIRA ACA:  ");
+	         System.out.println(listPreguntasAzar);
+	         System.out.println(" ");
+
+			for (int j = 0; j < 1; j++) {
+				Pregunta pregunta1 = new Pregunta();
+				Pregunta pregunta2 = new Pregunta();
+				Pregunta pregunta3 = new Pregunta();
+				Pregunta pregunta4 = new Pregunta();
+				Pregunta pregunta5 = new Pregunta();
+				
+				pregunta1.setRespuesta_1(listPreguntasAzar.get(0).getRespuesta_3());
+				pregunta1.setRespuesta_2(listPreguntasAzar.get(0).getRespuesta_2());
+				pregunta1.setRespuesta_3(listPreguntasAzar.get(0).getRespuesta_1());
+				
+				pregunta2.setRespuesta_1(listPreguntasAzar.get(1).getRespuesta_3());
+				pregunta2.setRespuesta_2(listPreguntasAzar.get(1).getRespuesta_2());
+				pregunta2.setRespuesta_3(listPreguntasAzar.get(1).getRespuesta_1());
+				
+				pregunta3.setRespuesta_1(listPreguntasAzar.get(2).getRespuesta_3());
+				pregunta3.setRespuesta_2(listPreguntasAzar.get(2).getRespuesta_2());
+				pregunta3.setRespuesta_3(listPreguntasAzar.get(2).getRespuesta_1());
+				
+				pregunta4.setRespuesta_1(listPreguntasAzar.get(3).getRespuesta_3());
+				pregunta4.setRespuesta_2(listPreguntasAzar.get(3).getRespuesta_2());
+				pregunta4.setRespuesta_3(listPreguntasAzar.get(3).getRespuesta_1());
+				
+				pregunta5.setRespuesta_1(listPreguntasAzar.get(4).getRespuesta_3());
+				pregunta5.setRespuesta_2(listPreguntasAzar.get(4).getRespuesta_2());
+				pregunta5.setRespuesta_3(listPreguntasAzar.get(4).getRespuesta_1());
+				
+			
+				listPreguntasAzar.get(0).setRespuesta_1(pregunta1.getRespuesta_1());
+				listPreguntasAzar.get(0).setRespuesta_2(pregunta1.getRespuesta_2());
+				listPreguntasAzar.get(0).setRespuesta_3(pregunta1.getRespuesta_3());
+				
+				listPreguntasAzar.get(1).setRespuesta_1(pregunta2.getRespuesta_1());
+				listPreguntasAzar.get(1).setRespuesta_2(pregunta2.getRespuesta_2());
+				listPreguntasAzar.get(1).setRespuesta_3(pregunta2.getRespuesta_3());
+				
+				listPreguntasAzar.get(2).setRespuesta_1(pregunta3.getRespuesta_1());
+				listPreguntasAzar.get(2).setRespuesta_2(pregunta3.getRespuesta_2());
+				listPreguntasAzar.get(2).setRespuesta_3(pregunta3.getRespuesta_3());
+				
+				listPreguntasAzar.get(3).setRespuesta_1(pregunta4.getRespuesta_1());
+				listPreguntasAzar.get(3).setRespuesta_2(pregunta4.getRespuesta_2());
+				listPreguntasAzar.get(3).setRespuesta_3(pregunta4.getRespuesta_3());
+				
+				listPreguntasAzar.get(4).setRespuesta_1(pregunta5.getRespuesta_1());
+				listPreguntasAzar.get(4).setRespuesta_2(pregunta5.getRespuesta_2());
+				listPreguntasAzar.get(4).setRespuesta_3(pregunta5.getRespuesta_3());
+				
+			
+			}
+			 
+			 System.out.println(" MIRA ACA (se cambiaron de lugar las respuestas ):  ");
+	         System.out.println(listPreguntasAzar);    
+			     
+			
+			break;
+        case 1:
+        	
+            for (int i = 0; i < 1; i++) {
+				
+				listPreguntasAzar.add(0, preguntas.get(1));
+				listPreguntasAzar.add(1, preguntas.get(4));
+				listPreguntasAzar.add(2, preguntas.get(3));
+				listPreguntasAzar.add(3, preguntas.get(2));
+				listPreguntasAzar.add(4, preguntas.get(0));
+				
+				
+			}
+			
+	         System.out.println(" MIRA ACA:  ");
+	         System.out.println(listPreguntasAzar);
+	         System.out.println(" ");
+
+			for (int j = 0; j < 1; j++) {
+				Pregunta pregunta1 = new Pregunta();
+				Pregunta pregunta2 = new Pregunta();
+				Pregunta pregunta3 = new Pregunta();
+				Pregunta pregunta4 = new Pregunta();
+				Pregunta pregunta5 = new Pregunta();
+				
+				pregunta1.setRespuesta_1(listPreguntasAzar.get(0).getRespuesta_2());
+				pregunta1.setRespuesta_2(listPreguntasAzar.get(0).getRespuesta_3());
+				pregunta1.setRespuesta_3(listPreguntasAzar.get(0).getRespuesta_1());
+				
+				pregunta2.setRespuesta_1(listPreguntasAzar.get(1).getRespuesta_1());
+				pregunta2.setRespuesta_2(listPreguntasAzar.get(1).getRespuesta_3());
+				pregunta2.setRespuesta_3(listPreguntasAzar.get(1).getRespuesta_2());
+				
+				pregunta3.setRespuesta_1(listPreguntasAzar.get(2).getRespuesta_2());
+				pregunta3.setRespuesta_2(listPreguntasAzar.get(2).getRespuesta_1());
+				pregunta3.setRespuesta_3(listPreguntasAzar.get(2).getRespuesta_3());
+				
+				pregunta4.setRespuesta_1(listPreguntasAzar.get(3).getRespuesta_3());
+				pregunta4.setRespuesta_2(listPreguntasAzar.get(3).getRespuesta_2());
+				pregunta4.setRespuesta_3(listPreguntasAzar.get(3).getRespuesta_1());
+				
+				pregunta5.setRespuesta_1(listPreguntasAzar.get(4).getRespuesta_1());
+				pregunta5.setRespuesta_2(listPreguntasAzar.get(4).getRespuesta_2());
+				pregunta5.setRespuesta_3(listPreguntasAzar.get(4).getRespuesta_3());
+				
+			
+				listPreguntasAzar.get(0).setRespuesta_1(pregunta1.getRespuesta_1());
+				listPreguntasAzar.get(0).setRespuesta_2(pregunta1.getRespuesta_2());
+				listPreguntasAzar.get(0).setRespuesta_3(pregunta1.getRespuesta_3());
+				
+				listPreguntasAzar.get(1).setRespuesta_1(pregunta2.getRespuesta_1());
+				listPreguntasAzar.get(1).setRespuesta_2(pregunta2.getRespuesta_2());
+				listPreguntasAzar.get(1).setRespuesta_3(pregunta2.getRespuesta_3());
+				
+				listPreguntasAzar.get(2).setRespuesta_1(pregunta3.getRespuesta_1());
+				listPreguntasAzar.get(2).setRespuesta_2(pregunta3.getRespuesta_2());
+				listPreguntasAzar.get(2).setRespuesta_3(pregunta3.getRespuesta_3());
+				
+				listPreguntasAzar.get(3).setRespuesta_1(pregunta4.getRespuesta_1());
+				listPreguntasAzar.get(3).setRespuesta_2(pregunta4.getRespuesta_2());
+				listPreguntasAzar.get(3).setRespuesta_3(pregunta4.getRespuesta_3());
+				
+				listPreguntasAzar.get(4).setRespuesta_1(pregunta5.getRespuesta_1());
+				listPreguntasAzar.get(4).setRespuesta_2(pregunta5.getRespuesta_2());
+				listPreguntasAzar.get(4).setRespuesta_3(pregunta5.getRespuesta_3());
+				
+			
+			}
+			 
+			 System.out.println(" MIRA ACA (se cambiaron de lugar las respuestas ):  ");
+	         System.out.println(listPreguntasAzar);  
+			
+			break;
+        case 2:
+        	
+            for (int i = 0; i < 1; i++) {
+				
+				listPreguntasAzar.add(0, preguntas.get(0));
+				listPreguntasAzar.add(1, preguntas.get(4));
+				listPreguntasAzar.add(2, preguntas.get(3));
+				listPreguntasAzar.add(3, preguntas.get(2));
+				listPreguntasAzar.add(4, preguntas.get(1));
+				
+				
+			}
+			
+	         System.out.println(" MIRA ACA:  ");
+	         System.out.println(listPreguntasAzar);
+	         System.out.println(" ");
+
+			for (int j = 0; j < 1; j++) {
+				Pregunta pregunta1 = new Pregunta();
+				Pregunta pregunta2 = new Pregunta();
+				Pregunta pregunta3 = new Pregunta();
+				Pregunta pregunta4 = new Pregunta();
+				Pregunta pregunta5 = new Pregunta();
+				
+				pregunta1.setRespuesta_1(listPreguntasAzar.get(0).getRespuesta_3());
+				pregunta1.setRespuesta_2(listPreguntasAzar.get(0).getRespuesta_2());
+				pregunta1.setRespuesta_3(listPreguntasAzar.get(0).getRespuesta_1());
+				
+				pregunta2.setRespuesta_1(listPreguntasAzar.get(1).getRespuesta_2());
+				pregunta2.setRespuesta_2(listPreguntasAzar.get(1).getRespuesta_3());
+				pregunta2.setRespuesta_3(listPreguntasAzar.get(1).getRespuesta_1());
+				
+				pregunta3.setRespuesta_1(listPreguntasAzar.get(2).getRespuesta_1());
+				pregunta3.setRespuesta_2(listPreguntasAzar.get(2).getRespuesta_3());
+				pregunta3.setRespuesta_3(listPreguntasAzar.get(2).getRespuesta_2());
+				
+				pregunta4.setRespuesta_1(listPreguntasAzar.get(3).getRespuesta_2());
+				pregunta4.setRespuesta_2(listPreguntasAzar.get(3).getRespuesta_3());
+				pregunta4.setRespuesta_3(listPreguntasAzar.get(3).getRespuesta_1());
+				
+				pregunta5.setRespuesta_1(listPreguntasAzar.get(4).getRespuesta_3());
+				pregunta5.setRespuesta_2(listPreguntasAzar.get(4).getRespuesta_2());
+				pregunta5.setRespuesta_3(listPreguntasAzar.get(4).getRespuesta_1());
+				
+			
+				listPreguntasAzar.get(0).setRespuesta_1(pregunta1.getRespuesta_1());
+				listPreguntasAzar.get(0).setRespuesta_2(pregunta1.getRespuesta_2());
+				listPreguntasAzar.get(0).setRespuesta_3(pregunta1.getRespuesta_3());
+				
+				listPreguntasAzar.get(1).setRespuesta_1(pregunta2.getRespuesta_1());
+				listPreguntasAzar.get(1).setRespuesta_2(pregunta2.getRespuesta_2());
+				listPreguntasAzar.get(1).setRespuesta_3(pregunta2.getRespuesta_3());
+				
+				listPreguntasAzar.get(2).setRespuesta_1(pregunta3.getRespuesta_1());
+				listPreguntasAzar.get(2).setRespuesta_2(pregunta3.getRespuesta_2());
+				listPreguntasAzar.get(2).setRespuesta_3(pregunta3.getRespuesta_3());
+				
+				listPreguntasAzar.get(3).setRespuesta_1(pregunta4.getRespuesta_1());
+				listPreguntasAzar.get(3).setRespuesta_2(pregunta4.getRespuesta_2());
+				listPreguntasAzar.get(3).setRespuesta_3(pregunta4.getRespuesta_3());
+				
+				listPreguntasAzar.get(4).setRespuesta_1(pregunta5.getRespuesta_1());
+				listPreguntasAzar.get(4).setRespuesta_2(pregunta5.getRespuesta_2());
+				listPreguntasAzar.get(4).setRespuesta_3(pregunta5.getRespuesta_3());
+				
+			
+			}
+			 
+			 System.out.println(" MIRA ACA (se cambiaron de lugar las respuestas ):  ");
+	         System.out.println(listPreguntasAzar);  
+ 	
+	     break;
+           case 3:
+	
+        	   for (int i = 0; i < 1; i++) {
+   				
+   				listPreguntasAzar.add(0, preguntas.get(2));
+   				listPreguntasAzar.add(1, preguntas.get(4));
+   				listPreguntasAzar.add(2, preguntas.get(3));
+   				listPreguntasAzar.add(3, preguntas.get(0));
+   				listPreguntasAzar.add(4, preguntas.get(1));
+   				
+   				
+   			}
+   			
+   	         System.out.println(" MIRA ACA:  ");
+   	         System.out.println(listPreguntasAzar);
+   	         System.out.println(" ");
+
+   			for (int j = 0; j < 1; j++) {
+   				Pregunta pregunta1 = new Pregunta();
+   				Pregunta pregunta2 = new Pregunta();
+   				Pregunta pregunta3 = new Pregunta();
+   				Pregunta pregunta4 = new Pregunta();
+   				Pregunta pregunta5 = new Pregunta();
+   				
+   				pregunta1.setRespuesta_1(listPreguntasAzar.get(0).getRespuesta_1());
+   				pregunta1.setRespuesta_2(listPreguntasAzar.get(0).getRespuesta_2());
+   				pregunta1.setRespuesta_3(listPreguntasAzar.get(0).getRespuesta_3());
+   				
+   				pregunta2.setRespuesta_1(listPreguntasAzar.get(1).getRespuesta_3());
+   				pregunta2.setRespuesta_2(listPreguntasAzar.get(1).getRespuesta_2());
+   				pregunta2.setRespuesta_3(listPreguntasAzar.get(1).getRespuesta_1());
+   				
+   				pregunta3.setRespuesta_1(listPreguntasAzar.get(2).getRespuesta_2());
+   				pregunta3.setRespuesta_2(listPreguntasAzar.get(2).getRespuesta_3());
+   				pregunta3.setRespuesta_3(listPreguntasAzar.get(2).getRespuesta_1());
+   				
+   				pregunta4.setRespuesta_1(listPreguntasAzar.get(3).getRespuesta_1());
+   				pregunta4.setRespuesta_2(listPreguntasAzar.get(3).getRespuesta_3());
+   				pregunta4.setRespuesta_3(listPreguntasAzar.get(3).getRespuesta_2());
+   				
+   				pregunta5.setRespuesta_1(listPreguntasAzar.get(4).getRespuesta_1());
+   				pregunta5.setRespuesta_2(listPreguntasAzar.get(4).getRespuesta_2());
+   				pregunta5.setRespuesta_3(listPreguntasAzar.get(4).getRespuesta_3());
+   				
+   			
+   				listPreguntasAzar.get(0).setRespuesta_1(pregunta1.getRespuesta_1());
+   				listPreguntasAzar.get(0).setRespuesta_2(pregunta1.getRespuesta_2());
+   				listPreguntasAzar.get(0).setRespuesta_3(pregunta1.getRespuesta_3());
+   				
+   				listPreguntasAzar.get(1).setRespuesta_1(pregunta2.getRespuesta_1());
+   				listPreguntasAzar.get(1).setRespuesta_2(pregunta2.getRespuesta_2());
+   				listPreguntasAzar.get(1).setRespuesta_3(pregunta2.getRespuesta_3());
+   				
+   				listPreguntasAzar.get(2).setRespuesta_1(pregunta3.getRespuesta_1());
+   				listPreguntasAzar.get(2).setRespuesta_2(pregunta3.getRespuesta_2());
+   				listPreguntasAzar.get(2).setRespuesta_3(pregunta3.getRespuesta_3());
+   				
+   				listPreguntasAzar.get(3).setRespuesta_1(pregunta4.getRespuesta_1());
+   				listPreguntasAzar.get(3).setRespuesta_2(pregunta4.getRespuesta_2());
+   				listPreguntasAzar.get(3).setRespuesta_3(pregunta4.getRespuesta_3());
+   				
+   				listPreguntasAzar.get(4).setRespuesta_1(pregunta5.getRespuesta_1());
+   				listPreguntasAzar.get(4).setRespuesta_2(pregunta5.getRespuesta_2());
+   				listPreguntasAzar.get(4).setRespuesta_3(pregunta5.getRespuesta_3());
+   				
+   			
+   			}
+   			 
+   			 System.out.println(" MIRA ACA (se cambiaron de lugar las respuestas ):  ");
+   	         System.out.println(listPreguntasAzar);  
+   	         
+         	break;
+
+		default:
+			break;
+		}
+
+		
+		
+		     
+		     
+		    // return preguntas;
+		     return listPreguntasAzar;
 	}
 
 

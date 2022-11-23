@@ -268,9 +268,9 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
 	}
 
 	@Override
-	public boolean cancelarExamen(Usuario_Examen usuarioExamen) {
+	public boolean cancelarExamen(Usuario_Examen usuarioExamen,Examen examen) {
 		
-     return repositorioUsuario.cancelarExamen(usuarioExamen);
+     return repositorioUsuario.cancelarExamen(usuarioExamen,examen);
 	}
 
 	@Override
@@ -298,6 +298,7 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
 		
 		return repositorioUsuario.obtenerExamenesDelUsuario(usuario,examen);
 	}
+
 
 
 }

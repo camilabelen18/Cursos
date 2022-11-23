@@ -228,19 +228,33 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario{
 	}
 
 	@Override
-	public boolean cancelarExamen(Usuario_Examen usuarioExamen) {
-		
-        Long diferencia_dias = ChronoUnit.DAYS.between(usuarioExamen.getFecha_finalizacion_examen(), LocalDate.now());
-		
-		if (diferencia_dias == 1) {	
+	public boolean cancelarExamen(Usuario_Examen usuarioExamen,Examen examen) {
+        
+		if (restarFechasExamen(usuarioExamen) == true) {
 			
-			Long minuto = ChronoUnit.MINUTES.between(usuarioExamen.getHora_finalizacion_examen(),LocalTime.now());
+			examen.setEstadoHabilitado(true);
+			sessionFactory.getCurrentSession().update(examen);
 			
-			if(minuto >= 2) {  
-				return true;
-			}
+			return true;
 		}
+		
 		return false;
+     
+	}
+	
+	private Boolean restarFechasExamen(Usuario_Examen usuarioExamen) {
+		
+		   Long diferencia_dias = ChronoUnit.DAYS.between(usuarioExamen.getFecha_finalizacion_examen(), LocalDate.now());
+			
+			if (diferencia_dias == 1) {	
+				
+				Long minuto = ChronoUnit.MINUTES.between(usuarioExamen.getHora_finalizacion_examen(),LocalTime.now());
+				
+				if(minuto <= 2) {  
+					return true;
+				}
+			}
+			return false;
 	}
 
 	@Override
@@ -249,7 +263,7 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario{
 		
 
 		List<Usuario_Examen> usuario_examenes = sesion.createCriteria(Usuario_Examen.class)
-											 .add(Restrictions.eq("usuario", usuario))
+											 .add(Restrictions.eq("usuario", usuario)) 
 											 .list();
 		
 		for (int i = 0; i < usuario_examenes.size(); i++) {

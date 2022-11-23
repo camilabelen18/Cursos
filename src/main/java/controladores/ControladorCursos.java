@@ -1,5 +1,6 @@
 package controladores;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -181,9 +182,12 @@ public class ControladorCursos {
 		ModelMap model = new ModelMap();
 		Curso curso = servicioCurso.buscarCursoPorId(curso_id);
 		List<Unidad> unidades = servicioCurso.obtenerUnidades(curso);
+		//Obtenemos el examen del curso 
+    	Examen examen = servicioCurso.obtenerExamenPorCurso(curso );
 		
 		model.put("curso", curso);
 		model.put("unidades", unidades);
+		model.put("examen", examen);
 		model.put("unidad", unidades.get(0));
 				
 		return new ModelAndView("vistaCurso", model);
@@ -270,10 +274,17 @@ public class ControladorCursos {
 	    	Examen examen = servicioCurso.obtenerExamenPorCurso(curso_obtenido );
 	        //Obtenemos una lista de preguntas del examen 
 	    	List<Pregunta> preguntas = servicioCurso.obtenerPreguntasDelExamen(examen);
-	    	//Y lo ponemos en una clase de datos 
-	        DatosExamen datosExamen = servicioCurso.guardarPreguntasEnDatosExamen(preguntas);
 
-	        //Valida si el curso esta terminado, si es asi uno puede proceder a hacer el examen 
+	    	//Las hacemos "aleatorias" 
+	    	List<Pregunta> preguntasAlAzar = servicioCurso.PreguntasAzar(preguntas);
+
+	        //System.out.println("FIJARSE ACA" + preguntasAlAzar); 
+	      
+	       	        
+	      //Y lo ponemos en una clase de datos 
+	        DatosExamen datosExamen = servicioCurso.guardarPreguntasEnDatosExamen(preguntasAlAzar);
+
+	        //Valida si el curso esta terminado
 			if (curso_obtenido.getCursoTerminado() == false) {
 				
 				model.put("curso", curso_obtenido);
@@ -283,16 +294,27 @@ public class ControladorCursos {
 				view = "vistaCurso";
 
 			}
-			  else {
-					model.put("curso", curso_obtenido);
-					model.put("datosExamen", datosExamen);
-					view = "vistaExamen";
+			  else if(examen.estadoHabilitado == true) { //Si el examen esta habilitado lo podes hacer
+				     model.put("curso", curso_obtenido);
+					 model.put("unidades", unidades);
+					 model.put("unidad", unidades.get(0));
+					 model.put("msj_progreso", "El examen se habilitara en 2 dias ");
+					view = "vistaCurso";
+				
+			 } else {
+				   model.put("curso", curso_obtenido);
+				   model.put("datosExamen", datosExamen);
+				   view = "vistaExamen";
 				
 			 }
+			   
 	  
 
 			return new ModelAndView(view, model);
 		}
+
+
+	
 
 
 		// Finalizar el examen y que te sumen los puntos al usuario
@@ -323,6 +345,7 @@ public class ControladorCursos {
 
 		  // los intentos para hacer el examen son 3 y te da puntos  y si hiciste el examen por 4 ves no te da puntos 
 		 	//pero si te da el curso como completado o finalizado correctamente si lo aprobaste con mayor a 7 
+		     //Tambien usar el examen para no confundir 
 		    if (servicioUsuario.verificarSiHizoElExamenCuatroVecesOmas(usuario) == true) { //Ya no ganas puntos 
 		    	//Aprobado
 		    	System.out.println("ENTRASTE ACA A LA PARTE CUANDO YA HICISTE CUATRO VECES O MAS A EL EXAMEN");
@@ -340,7 +363,7 @@ public class ControladorCursos {
 			    	    //Si desaprobas 
 						//Te muestran la nota, no te dan puntos y se te desabilita el examen por 2 dias 48 hs (usamos min ) 
 			    	 
-		    		  servicioUsuario.cancelarExamen(usuarioExamen);
+		    		  servicioUsuario.cancelarExamen(usuarioExamen,examen);
 					//	Boolean a =servicioUsuario.cancelarExamen(usuarioExamen);
 					//	System.out.println("FUNCIONA AAA" + a);
 						
@@ -361,7 +384,7 @@ public class ControladorCursos {
 			    
 			    	    model.put("msj", "El examen se aprobo y ganaste puntos");
 			    		model.put("notaSacada", notaSacada);
-			    		//puntos ganados 
+			    		//puntos ganados FUNCIONALIDAD
 			    		model.put("curso", curso_obtenido);
 			    		view="vistaExamenFinalizado";
 			    	 
@@ -369,10 +392,11 @@ public class ControladorCursos {
 		    	//Desaprobado
 		    	  else {
 			    	    //Si desaprobas 
-						//Te muestran la nota, no te dan puntos y se te desabilita el examen por 2 dias 48 hs (usamos min ) 
-			    	 
-		    		    servicioUsuario.cancelarExamen(usuarioExamen);
-						
+						//Te muestran la nota, no te dan puntos 
+			    	    //Esto desahibilita a el examen por dos dias (usamos min)
+		    		   
+		    		    servicioUsuario.cancelarExamen(usuarioExamen,examen); 
+		    		   // System.out.println("ACA FIJARSE " + a);
 					
 						model.put("msj", "El examen se desaprobo y no ganaste puntos"); 
 			    		model.put("notaSacada", notaSacada);
@@ -410,7 +434,7 @@ public class ControladorCursos {
 		    List<Usuario_Examen> usuarioExamenes = servicioUsuario.obtenerExamenesDelUsuario(usuario,examen);
 		
 		    
-		 // Si comprueba si el usuario tiene iniciada la sesion
+		 // Si tiene muestra 
 		 	if (usuarioExamenes.size() > 0) {
 		 		
 				    model.put("curso", curso_obtenido);

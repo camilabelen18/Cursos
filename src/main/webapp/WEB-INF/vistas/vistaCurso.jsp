@@ -89,17 +89,35 @@
 				</form>
 				</c:if>
 				
+				   
+			<!--   	<c:if test="${curso.cursoTerminado == true}">
+				<form action="examen?curso_id=${curso.id}" method="POST">
+					<input type="submit" name="examen" value="Examen" class="btn-tipo-1">
+				</form>
+				</c:if> -->
+				
 				<c:if test="${curso.cursoTerminado == true}">
+				<c:if test="${examen.estadoHabilitado == false}">
 				<form action="examen?curso_id=${curso.id}" method="POST">
 					<input type="submit" name="examen" value="Examen" class="btn-tipo-1">
 				</form>
 				</c:if>
+				
+				<c:if test="${examen.estadoHabilitado == true}">
+				<form action="examen?curso_id=${curso.id}" method="POST">
+					<input type="submit" name="examen" value="Examen" class="btn-tipo-2">
+				</form>
+				</c:if>
+				</c:if>
+		
 				
 				<c:if test="${curso.cursoTerminado == true}">
 				<form action="historialExamen?curso_id=${curso.id}" method="POST">
 					<input type="submit" name="historialExamen" value="Historial Examen" class="btn-tipo-1">
 				</form>
 				</c:if>
+				
+				
 				
 				
 				

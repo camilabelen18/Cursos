@@ -32,6 +32,8 @@ public class Examen {
 	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name = "pregunta_id_5")
 	private Pregunta pregunta_5;
+
+	public boolean estadoHabilitado;
 	
 	public Examen () {
 		
@@ -94,12 +96,23 @@ public class Examen {
 		this.pregunta_5 = pregunta_5;
 	}
 
+	
+	
+	public boolean getEstadoHabilitado() {
+		return estadoHabilitado;
+	}
+
+	public void setEstadoHabilitado(boolean estadoHabilitado) {
+		this.estadoHabilitado = estadoHabilitado;
+	}
+
 	@Override
 	public String toString() {
 		return "Examen [id=" + id + ", pregunta_1=" + pregunta_1 + ", pregunta_2=" + pregunta_2 + ", pregunta_3="
-				+ pregunta_3 + ", pregunta_4=" + pregunta_4 + ", pregunta_5=" + pregunta_5 + "]";
+				+ pregunta_3 + ", pregunta_4=" + pregunta_4 + ", pregunta_5=" + pregunta_5 + ", estadoHabilitado="
+				+ estadoHabilitado + "]";
 	}
-	
+
 	
 
 	
