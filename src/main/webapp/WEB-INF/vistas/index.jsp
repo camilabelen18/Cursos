@@ -12,6 +12,7 @@
 	<link rel="shortcut icon" href="imagenes/favicon.ico">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/darkmode.css">
 </head>
 <body>
 
@@ -55,7 +56,7 @@
 	</div>
 
 	<!-- CONTACTO -->
-	<div class="cont-contacto">
+	<div class="cont-contacto" id="cont-contacto">
 		<div class="txt-contacto">
 			<p>Contacto</p>
 		</div>

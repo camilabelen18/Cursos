@@ -1,0 +1,72 @@
+
+.darkModeSwitch {
+    background: #3494b1;
+    margin-left: 50px;
+    display:flex;
+    position: relative;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    border-radius: 1rem;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+.darkModeSwitch span{
+    width:40px;
+    height:30px;
+    line-height:30px;
+    display:block;
+    color:#fff;
+    background: none;
+}
+
+.darkModeSwitch::after {
+    display:block;
+    background: #fffbf5;
+    width: 2.4rem;
+    height: 2.4rem;
+    position: absolute;
+    top:0;
+    left:0;
+    right:unset;
+    border-radius: 3rem;
+    transition: all .5s ease;
+    box-shadow: 0 0 2px 2px rgba(0, 0, 0, .5);
+    content: "";
+}
+
+.darkModeSwitch.active {
+	background: #fdd384;
+}
+
+.darkModeSwitch.active::after {
+	left:unset;
+	right:0;
+}
+
+.dark {
+	background-color: #2e2e2e;
+	color: white;
+}
+
+.dark h1, .dark p, .dark #login a, .dark #contenido-curso a, .dark #logoCurso, .dark #notificacion, .dark #carrito {
+	color: white;
+}
+
+#cont-header, #cont-contacto, #contMiGiftcard-2 {
+	background-color: transparent;
+}
+
+body.dark .giftcardNum {
+	color: black;
+}
+
+body.dark .contenido-menu p {
+	color: black;
+}
+
+body.dark .contenido-menu h3 {
+	color: black;
+}

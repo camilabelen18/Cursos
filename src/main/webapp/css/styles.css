@@ -65,7 +65,9 @@ input[type="submit"]:hover {
 }
 
 #logoCurso {
-	width: 40px;
+	font-size: 35px;
+	padding-left: 10px;
+	color: #3281c7;
 }
 
 #barra_busqueda {
@@ -99,7 +101,8 @@ input[type="submit"]:hover {
 }
 
 #carrito {
-	width: 50px;
+	font-size: 25px;
+	color: black;
 }
 
 #fotoUsuario {
@@ -113,7 +116,12 @@ input[type="submit"]:hover {
 	cursor: pointer;
 }
 
-.menuCuentaUsuario {
+#notificacion {
+	font-size: 25px;
+	color: black;
+}
+
+.menuCuentaUsuario, .menuNotificaciones {
 	display: inline-block;
 	position: relative;
 }
@@ -130,7 +138,16 @@ input[type="submit"]:hover {
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 }
 
+.menuNotificaciones .contenido-menu {
+	left: -90px;
+}
+
 .menuCuentaUsuario:hover .contenido-menu {
+	display: block;
+	cursor: pointer;
+}
+
+.menuNotificaciones:hover .contenido-menu {
 	display: block;
 	cursor: pointer;
 }
@@ -143,6 +160,30 @@ input[type="submit"]:hover {
 }
 
 .contenido-menu a:hover {
+	background-color: #f2f2f2;
+}
+
+.contenido-menu h3 {
+	padding: 15px 20px;
+}
+
+.mensajes {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	padding: 15px 20px;
+}
+
+.mensajes a {
+	display: inline;
+	padding: 0px;
+}
+
+.mensajes i {
+	color: #3c3b37;
+}
+
+.mensajes:hover {
 	background-color: #f2f2f2;
 }
 

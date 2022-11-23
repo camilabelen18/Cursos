@@ -42,4 +42,6 @@ public interface ServicioUsuario {
 	Integer verificarTarjetaUsuario(Usuario usuario, Integer nroTarjeta);
 
 	Usuario actualizarUsuarioPrueba(int idUsuario,String nombre, String email,String passwordAterior, String passwordNueva, String repeticionPasswordNueva, HttpSession session);
+
+	void enviarNotificacion(Usuario usuario, String msj, HttpSession session);
 }

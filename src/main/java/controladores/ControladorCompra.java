@@ -15,11 +15,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import modelo.Carrito;
-import modelo.Carrito_Curso;
-import modelo.Curso;
-import modelo.Estado;
-import modelo.Usuario;
 import servicios.ServicioCarrito;
 import modelo.*;
 import servicios.ServicioCurso;
@@ -63,6 +58,7 @@ public class ControladorCompra {
 			else {
 				model.addAttribute("cursoYaComprado", "El curso ya fue comprado, compre otro curso.");
 				viewName = "redirect:/verListaCursos";
+				//servicioNotificacion.enviar(usuario, "El curso ya fue comprado, compre otro curso.");
 			}
 		}
 		else {
@@ -97,6 +93,8 @@ public class ControladorCompra {
 				servicioUsuario.guardarCursoEnListaUsuario(curso_obtenido, usuario);
 			}
 			viewName = "compraRealizada";
+			
+			//servicioUsuario.enviarNotificacion(usuario, "Compraste el curso " + curso_obtenido.getNombre(), session);
 		}
 		catch (Exception e) {
 			model.put("tarjetaIncorrecta", "El número de tarjeta ingresado es incorrecto.");

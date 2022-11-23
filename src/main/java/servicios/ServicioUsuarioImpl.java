@@ -14,6 +14,7 @@ import modelo.Curso;
 import modelo.DatosRegistro;
 import modelo.Estado;
 import modelo.Giftcard;
+import modelo.Notificacion;
 import modelo.Unidad;
 import modelo.Usuario;
 import modelo.Usuario_Curso;
@@ -239,6 +240,14 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
 		repositorioUsuario.actualizarUsuario(usuario);
 
 		return usuarioPrueba;
+	}
+
+	@Override
+	public void enviarNotificacion(Usuario usuario, String msj, HttpSession session) {
+		
+		Notificacion noti = new Notificacion(msj);
+		//repositorioUsuario.guardarNotificacionDelUsuario(noti, usuario);
+		//session.setAttribute("notificaciones", servicioUsuario.obtenerNotificaciones(usuario));
 	}
 
 }

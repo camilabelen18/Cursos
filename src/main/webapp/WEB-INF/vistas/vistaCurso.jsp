@@ -11,6 +11,7 @@
 	<link rel="shortcut icon" href="imagenes/favicon.ico">
     <link rel="stylesheet" href="css/styles.css">
 	<link rel="stylesheet" href="css/vistaCurso.css">
+	<link rel="stylesheet" href="css/darkmode.css">
 </head>
 <body>
 	<%@ include file="header.jsp"%>
@@ -98,9 +99,5 @@
 	</div>
 
 	<%@ include file="footer.jsp"%>
-	
-	<!-- Se importan las librerias de fontawasome para poder usar iconos '<i>' -->
-	<script src="https://kit.fontawesome.com/83c17d370e.js" crossorigin="anonymous"></script>
-	
 </body>
 </html>
