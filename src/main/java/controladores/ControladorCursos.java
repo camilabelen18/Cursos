@@ -141,11 +141,16 @@ public class ControladorCursos {
 	}
 
 	@RequestMapping(path="/cursoAgregado", method = RequestMethod.POST)
-	public ModelAndView agregarCurso(@ModelAttribute ("datosCrearCurso") DatosCreacionCurso datosCrearCurso) {
+	public ModelAndView agregarCurso(@ModelAttribute ("datosCrearCurso") DatosCreacionCurso datosCrearCurso, HttpSession sesion) {
 		ModelMap modelo=new ModelMap();
 		
 		servicioCurso.agregarCurso(datosCrearCurso.getNombre(), datosCrearCurso.getCategoria(), datosCrearCurso.getDescripcion(), datosCrearCurso.getPrecio(), datosCrearCurso.getImagen());
 		modelo.put("datosCrearCurso", new DatosCreacionCurso());
+		
+		int id_user = (int) sesion.getAttribute("idUsuario");
+		Usuario usuario = servicioUsuario.buscarUsuarioPorID(id_user);
+		servicioUsuario.enviarNotificacion(usuario, "Se agrego el curso " + datosCrearCurso.getNombre(), sesion);
+		
 		
 		return new ModelAndView("cursoAgregado", modelo);
 	}

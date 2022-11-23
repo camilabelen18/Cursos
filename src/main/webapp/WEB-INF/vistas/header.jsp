@@ -62,10 +62,11 @@
 					<h3>Notificaciones</h3>
 					<hr>
 					<c:if test="${not empty notificaciones}">
+					
 						<c:forEach var="nota" items="${notificaciones}">
 							<div class="mensajes">
 								<p>${nota.mensaje}</p>
-								<a href="#">
+								<a href="eliminarNotificacion?idNotif=${nota.id}">
 									<i class="fa-solid fa-circle-xmark"></i>
 								</a>
 							</div>
@@ -73,7 +74,6 @@
 					</c:if>
 					
 					<c:if test="${empty notificaciones}">
-						<h3>Notificaciones</h3>
 						<div class="mensajes">
 							<p>No hay notificaciones.</p>
 						</div>

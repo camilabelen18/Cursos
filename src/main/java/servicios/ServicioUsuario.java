@@ -44,4 +44,11 @@ public interface ServicioUsuario {
 	Usuario actualizarUsuarioPrueba(int idUsuario,String nombre, String email,String passwordAterior, String passwordNueva, String repeticionPasswordNueva, HttpSession session);
 
 	void enviarNotificacion(Usuario usuario, String msj, HttpSession session);
+	
+	List<Notificacion> obtenerNotificaciones(Usuario usuario);
+
+	Notificacion obtenerNotificacionPorId(int idNotif);
+
+	void eliminarNotificacion(Notificacion notificacion, Usuario usuario, HttpSession session);
+	
 }

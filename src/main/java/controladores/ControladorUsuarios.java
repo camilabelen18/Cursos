@@ -102,11 +102,7 @@ public class ControladorUsuarios {
 			session.setAttribute("nombreUsuario", usuarioBuscado.getNombre());
 			session.setAttribute("ROL", usuarioBuscado.getRol());
 			session.setAttribute("imgUsuario", usuarioBuscado.getImagen());
-			//session.setAttribute("notificaciones", servicioUsuario.obtenerNotificaciones(usuarioBuscado));
-			List<Notificacion> notificaciones = new ArrayList<Notificacion>();
-			notificaciones.add(new Notificacion("Mensaje 1"));
-			notificaciones.add(new Notificacion("Mensaje 2"));
-			session.setAttribute("notificaciones", notificaciones);
+			session.setAttribute("notificaciones", servicioUsuario.obtenerNotificaciones(usuarioBuscado));
 
 			return new ModelAndView("redirect:/");
 		}
@@ -204,5 +200,17 @@ public class ControladorUsuarios {
 		
 		return new ModelAndView("redirect:/", model);
 	}
+	
+	@RequestMapping(path ="/eliminarNotificacion", method = RequestMethod.GET)
+    public ModelAndView eliminarNotificacion(@RequestParam("idNotif") int idNotif, HttpSession sesion) {
+	
+		int id_user = Integer.parseInt(sesion.getAttribute("idUsuario").toString());
+		Usuario usuario = servicioUsuario.buscarUsuarioPorID(id_user);
+		Notificacion notificacion = servicioUsuario.obtenerNotificacionPorId(idNotif);
+		
+		servicioUsuario.eliminarNotificacion(notificacion, usuario, sesion);
+		
+		return new ModelAndView("redirect:/");
+    }
 
 }

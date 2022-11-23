@@ -246,8 +246,27 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
 	public void enviarNotificacion(Usuario usuario, String msj, HttpSession session) {
 		
 		Notificacion noti = new Notificacion(msj);
-		//repositorioUsuario.guardarNotificacionDelUsuario(noti, usuario);
-		//session.setAttribute("notificaciones", servicioUsuario.obtenerNotificaciones(usuario));
+		repositorioUsuario.guardarNotificacionDelUsuario(noti, usuario);
+		session.setAttribute("notificaciones", repositorioUsuario.obtenerNotificaciones(usuario));
+	}
+
+	@Override
+	public List<Notificacion> obtenerNotificaciones(Usuario usuario) {
+
+		return repositorioUsuario.obtenerNotificaciones(usuario);
+	}
+
+	@Override
+	public Notificacion obtenerNotificacionPorId(int idNotif) {
+
+		return repositorioUsuario.obtenerNotificacionPorId(idNotif);
+	}
+
+	@Override
+	public void eliminarNotificacion(Notificacion notificacion, Usuario usuario, HttpSession session) {
+		
+		repositorioUsuario.eliminarNotificacion(notificacion);
+		session.setAttribute("notificaciones", repositorioUsuario.obtenerNotificaciones(usuario));
 	}
 
 }

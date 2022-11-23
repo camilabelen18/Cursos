@@ -45,7 +45,7 @@ public class ControladorCursosTest {
 		"Programacion","Curso de programacion php", 1000.0,"cursophp.png");
 		
 		//Ejecucion
-		ModelAndView mav = controladorCursos.agregarCurso(datos);
+		ModelAndView mav = controladorCursos.agregarCurso(datos, session);
 		
 		//Comprobacion
 		assertThat(mav.getViewName()).isEqualTo("cursoAgregado");

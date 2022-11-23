@@ -3,6 +3,7 @@ package repositorios;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -21,8 +22,10 @@ import modelo.Curso;
 import modelo.Curso_Unidad;
 import modelo.Estado;
 import modelo.Giftcard;
+import modelo.Notificacion;
 import modelo.Usuario;
 import modelo.Usuario_Curso;
+import modelo.Usuario_Notificacion;
 
 @Repository
 @Transactional
@@ -188,6 +191,56 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario{
 	@Override
 	public void actualizarCursoDelUsuario(Usuario_Curso usuarioCurso) {
 		sessionFactory.getCurrentSession().update(usuarioCurso);
+	}
+
+	@Override
+	public List<Notificacion> obtenerNotificaciones(Usuario usuario) {
+		
+		Session sesion  = sessionFactory.getCurrentSession();
+		
+		List<Usuario_Notificacion> usuarioNotificaciones = sesion.createCriteria(Usuario_Notificacion.class)
+														   .add(Restrictions.eq("usuario", usuario))
+													       .list();
+
+		List<Notificacion> notificaciones = new ArrayList<Notificacion>();
+		
+		for (Usuario_Notificacion usuarioNotificacion : usuarioNotificaciones) {
+			
+			notificaciones.add(usuarioNotificacion.getNotificacion());
+		}
+		
+		return notificaciones;
+	}
+
+	@Override
+	public void guardarNotificacionDelUsuario(Notificacion notif, Usuario usuario) {
+		
+		Session sesion  = sessionFactory.getCurrentSession();
+		
+		sesion.save(notif);
+		sesion.save(new Usuario_Notificacion(usuario, notif));
+	}
+
+	@Override
+	public Notificacion obtenerNotificacionPorId(int idNotif) {
+		
+		Session sesion = sessionFactory.getCurrentSession();
+		
+		Notificacion notificacion = sesion.get(Notificacion.class, idNotif);
+		
+		return notificacion;
+	}
+
+	@Override
+	public void eliminarNotificacion(Notificacion notificacion) {
+		
+		Session sesion = sessionFactory.getCurrentSession();
+		
+		Usuario_Notificacion usuarioNotif = (Usuario_Notificacion)sesion.createCriteria(Usuario_Notificacion.class)
+										    .add(Restrictions.eq("notificacion", notificacion))
+										    .uniqueResult();
+		
+		sesion.delete(usuarioNotif);
 	}
 
 }

@@ -34,4 +34,12 @@ public interface RepositorioUsuario {
 
 	void actualizarCursoDelUsuario(Usuario_Curso usuarioCurso);
 
+	List<Notificacion> obtenerNotificaciones(Usuario usuario);
+
+	void guardarNotificacionDelUsuario(Notificacion noti, Usuario usuario);
+
+	Notificacion obtenerNotificacionPorId(int idNotif);
+
+	void eliminarNotificacion(Notificacion notificacion);
+
 }

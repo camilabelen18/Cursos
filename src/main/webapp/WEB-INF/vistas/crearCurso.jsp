@@ -43,6 +43,8 @@
 	</form:form>
 </div>
 
+<%@ include file="footer.jsp" %>
+
 <script src="js/crearCurso.js"></script>
 
 </body>

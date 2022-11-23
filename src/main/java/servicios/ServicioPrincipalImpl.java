@@ -54,7 +54,7 @@ public class ServicioPrincipalImpl implements ServicioPrincipal {
 		Giftcard gift2 = new Giftcard(555, 0, 0.0);
 		Giftcard gift3 = new Giftcard(555, 0, 0.0);
 		
-		Usuario admin = new Usuario("Juan", "hola@hola.com","1234", "admin");
+		Usuario admin = new Usuario("Juan", "admin@gmail.com","123", "admin");
 		admin.setNroTarjeta(555);
 		admin.setGiftcard(gift1);
 		admin.setImagen("default-user.png");

@@ -17,7 +17,7 @@ public class Usuario_Notificacion {
 	private Usuario usuario;
 	
 	// Almacena el id de notificacion
-	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
+	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH, CascadeType.REMOVE})
 	@JoinColumn(name = "notificacion_id")
 	private Notificacion notificacion;
 

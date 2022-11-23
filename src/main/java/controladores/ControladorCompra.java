@@ -94,7 +94,7 @@ public class ControladorCompra {
 			}
 			viewName = "compraRealizada";
 			
-			//servicioUsuario.enviarNotificacion(usuario, "Compraste el curso " + curso_obtenido.getNombre(), session);
+			servicioUsuario.enviarNotificacion(usuario, "Compraste el curso " + curso_obtenido.getNombre(), session);
 		}
 		catch (Exception e) {
 			model.put("tarjetaIncorrecta", "El número de tarjeta ingresado es incorrecto.");
