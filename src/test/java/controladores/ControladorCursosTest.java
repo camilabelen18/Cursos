@@ -25,6 +25,7 @@ import modelo.Unidad;
 import modelo.Usuario;
 import servicios.CursoInexistenteException;
 import servicios.ServicioCurso;
+import servicios.ServicioGiftcard;
 import servicios.ServicioUsuario;
 
 public class ControladorCursosTest {
@@ -32,7 +33,8 @@ public class ControladorCursosTest {
 	
 	ServicioCurso servicioCurso = mock(ServicioCurso.class);
 	ServicioUsuario servicioUsuario = mock(ServicioUsuario.class);
-	ControladorCursos controladorCursos = new ControladorCursos(servicioCurso, servicioUsuario);
+	ServicioGiftcard servicioGiftcard = mock(ServicioGiftcard.class);
+	ControladorCursos controladorCursos = new ControladorCursos(servicioCurso, servicioUsuario,servicioGiftcard);
 	HttpSession session = mock(HttpSession.class);
 	
 	

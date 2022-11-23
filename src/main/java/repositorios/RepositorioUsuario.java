@@ -42,4 +42,6 @@ public interface RepositorioUsuario {
 
 	List<Usuario_Examen> obtenerExamenesDelUsuario(Usuario usuario,Examen examen);
 
+	void verificarFechaDeExamen(Usuario_Examen usuarioExamen);
+
 }

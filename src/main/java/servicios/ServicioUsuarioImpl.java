@@ -299,6 +299,13 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
 		return repositorioUsuario.obtenerExamenesDelUsuario(usuario,examen);
 	}
 
+	@Override
+	public void verificarFechaDeExamen(Usuario_Examen usuarioExamen) {
+		
+		 repositorioUsuario.verificarFechaDeExamen(usuarioExamen);
+		
+	}
+
 
 
 }

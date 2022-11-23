@@ -122,17 +122,5 @@ public class ControladorGiftcard {
 	}
 	
 	
-	@RequestMapping(path = "/sumarPuntos", method = RequestMethod.POST)
-	public ModelAndView sumarPuntos(HttpSession session) {
-		
-		ModelMap model = new ModelMap();
-		
-		int id_user = Integer.parseInt(session.getAttribute("idUsuario").toString());
-		Usuario usuario = servicioUsuario.buscarUsuarioPorID(id_user);
-		Giftcard giftcard = usuario.getGiftcard();
-		
-		servicioGiftcard.sumarPuntos(giftcard);
-		
-		return new ModelAndView("redirect:/misCursos", model);
-	}
+
 }

@@ -56,4 +56,6 @@ public interface ServicioUsuario {
 	int sumarNota(List<Respuesta> listaRobtenida);
 
 	List<Usuario_Examen> obtenerExamenesDelUsuario(Usuario usuario,Examen examen);
+
+	void verificarFechaDeExamen(Usuario_Examen usuarioExamen);
 }

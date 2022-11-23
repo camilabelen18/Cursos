@@ -121,9 +121,7 @@
 				
 				
 				
-				<form action="sumarPuntos" method="POST">
-					<input type="submit" name="puntos" value="Dame puntos" class="btn-tipo-1">
-				</form>
+		
 			</div>
 		</div>
 		

@@ -17,18 +17,21 @@ import org.springframework.web.servlet.ModelAndView;
 
 import modelo.*;
 import servicios.ServicioCurso;
+import servicios.ServicioGiftcard;
 import servicios.ServicioUsuario;
 
 @Controller
 public class ControladorCursos {
 	
+	private ServicioGiftcard servicioGiftcard;
 	private ServicioCurso servicioCurso;
 	private ServicioUsuario servicioUsuario;
 	
 	@Autowired
-	public ControladorCursos(ServicioCurso servicioCurso, ServicioUsuario servicioUsuario) {
+	public ControladorCursos(ServicioCurso servicioCurso, ServicioUsuario servicioUsuario,ServicioGiftcard servicioGiftcard) {
 		this.servicioCurso = servicioCurso;
 		this.servicioUsuario = servicioUsuario;
+		this.servicioGiftcard = servicioGiftcard;
 	}
 	
 
@@ -262,7 +265,7 @@ public class ControladorCursos {
 	
 	// Para hacer el controlador de examen
 		@RequestMapping(path = "/examen", method = RequestMethod.POST)
-		public ModelAndView examen(@RequestParam("curso_id") int curso_id) {
+		public ModelAndView examen(@RequestParam("curso_id") int curso_id, HttpSession session ) {
 			
 			ModelMap model = new ModelMap();
 		  //Buscas el curso 	
@@ -272,6 +275,11 @@ public class ControladorCursos {
 			//Hacemos una lista de preguntas y respuestas que estan en examen
 			//Obtenemos el examen del curso 
 	    	Examen examen = servicioCurso.obtenerExamenPorCurso(curso_obtenido );
+	    	//Busco a el usuario que realizo el examen para despues agregarlo a la lista de usuario_examen y ponerle su puntaje y la hora en que lo realizo 
+			int id_user = Integer.parseInt(session.getAttribute("idUsuario").toString());
+		    Usuario usuario = servicioUsuario.buscarUsuarioPorID(id_user);
+		    
+		    Usuario_Examen usuarioExamen = servicioUsuario.obtenerExamenUsuario(examen,usuario);
 	        //Obtenemos una lista de preguntas del examen 
 	    	List<Pregunta> preguntas = servicioCurso.obtenerPreguntasDelExamen(examen);
 
@@ -279,10 +287,13 @@ public class ControladorCursos {
 	    	List<Pregunta> preguntasAlAzar = servicioCurso.PreguntasAzar(preguntas);
 
 	        //System.out.println("FIJARSE ACA" + preguntasAlAzar); 
-	      
-	       	        
+
 	      //Y lo ponemos en una clase de datos 
 	        DatosExamen datosExamen = servicioCurso.guardarPreguntasEnDatosExamen(preguntasAlAzar);
+	        
+	        servicioUsuario.verificarFechaDeExamen(usuarioExamen);
+	        
+	        examen = servicioCurso.obtenerExamenPorCurso(curso_obtenido );
 
 	        //Valida si el curso esta terminado
 			if (curso_obtenido.getCursoTerminado() == false) {
@@ -298,7 +309,8 @@ public class ControladorCursos {
 				     model.put("curso", curso_obtenido);
 					 model.put("unidades", unidades);
 					 model.put("unidad", unidades.get(0));
-					 model.put("msj_progreso", "El examen se habilitara en 2 dias ");
+					 model.put("msj_progreso", "El examen se habilitara en 3 minutos ");
+					 model.put("examen", examen );
 					view = "vistaCurso";
 				
 			 } else {
@@ -328,6 +340,8 @@ public class ControladorCursos {
 			//Busco a el usuario que realizo el examen para despues agregarlo a la lista de usuario_examen y ponerle su puntaje y la hora en que lo realizo 
 			int id_user = Integer.parseInt(session.getAttribute("idUsuario").toString());
 		    Usuario usuario = servicioUsuario.buscarUsuarioPorID(id_user);
+		    //Obtengo la giftCard del usuario y le sumo los puntos cuando apruebo
+		    Giftcard giftcard = usuario.getGiftcard();
 		    //Busco el examen que tiene el curso enlazado 
 		    Examen examen = servicioCurso.obtenerExamenPorCurso(curso_obtenido );
 			//sacamos la lista de preguntas con sus respuestas seleccionadas de datosExamen
@@ -348,7 +362,7 @@ public class ControladorCursos {
 		     //Tambien usar el examen para no confundir 
 		    if (servicioUsuario.verificarSiHizoElExamenCuatroVecesOmas(usuario) == true) { //Ya no ganas puntos 
 		    	//Aprobado
-		    	System.out.println("ENTRASTE ACA A LA PARTE CUANDO YA HICISTE CUATRO VECES O MAS A EL EXAMEN");
+		    //	System.out.println("ENTRASTE ACA A LA PARTE CUANDO YA HICISTE CUATRO VECES O MAS A EL EXAMEN");
 		    	  if(servicioUsuario.aproboExamenUsuario(notaSacada) == true) {
 		
 			    	    model.put("msj", "El examen se aprobo, pero no ganas puntos");
@@ -377,14 +391,20 @@ public class ControladorCursos {
 
 		    }
 		    else {
-		    	System.out.println("ENTRASTE ACA CUANDO ES ENTRE UNA VES O LA TERCERA ");
+		    //	System.out.println("ENTRASTE ACA CUANDO ES ENTRE UNA VES O LA TERCERA ");
 		    	 if(servicioUsuario.aproboExamenUsuario(notaSacada) == true) {
 			    		//El camino verdadero
 						//Si aprobas entre la primera ves  y la tercera te dan los puntos dependiendo la  nota de aprobado 10 = 500, 9 =400, etc 
+		    		 
+		    		     servicioGiftcard.sumarPuntos(giftcard);
+		    		     
+		    		     usuario = servicioUsuario.buscarUsuarioPorID(id_user);
+		    		     giftcard = usuario.getGiftcard();
+		    			
 			    
 			    	    model.put("msj", "El examen se aprobo y ganaste puntos");
 			    		model.put("notaSacada", notaSacada);
-			    		//puntos ganados FUNCIONALIDAD
+			    		model.put("puntos", giftcard.getMisPuntos());
 			    		model.put("curso", curso_obtenido);
 			    		view="vistaExamenFinalizado";
 			    	 
@@ -394,9 +414,9 @@ public class ControladorCursos {
 			    	    //Si desaprobas 
 						//Te muestran la nota, no te dan puntos 
 			    	    //Esto desahibilita a el examen por dos dias (usamos min)
-		    		   
+		    		  
 		    		    servicioUsuario.cancelarExamen(usuarioExamen,examen); 
-		    		   // System.out.println("ACA FIJARSE " + a);
+		    		  
 					
 						model.put("msj", "El examen se desaprobo y no ganaste puntos"); 
 			    		model.put("notaSacada", notaSacada);

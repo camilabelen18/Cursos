@@ -35,6 +35,7 @@
 					<div id="total-examen">
 						<p>Nota: </p>
 						<p>${notaSacada }</p>
+						<p>Puntos : ${puntos } </p>
 						<p>${msj } </p>
 				     </div>
                 </div>  

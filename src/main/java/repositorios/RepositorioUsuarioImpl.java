@@ -258,6 +258,28 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario{
 	}
 
 	@Override
+	public void verificarFechaDeExamen(Usuario_Examen usuarioExamen) {
+		
+		if (usuarioExamen != null) {
+			  if (restarFechasExamen(usuarioExamen) == false) {
+					
+					usuarioExamen.getExamen().setEstadoHabilitado(false);
+					sessionFactory.getCurrentSession().update(usuarioExamen.getExamen());
+					
+					
+				}
+		}
+       
+		
+		
+	}
+	
+	
+	
+
+	
+	
+	@Override
 	public boolean verificarSiHizoElExamenCuatroVecesOmas(Usuario usuario) {
 		Session sesion = sessionFactory.getCurrentSession();
 		
@@ -295,5 +317,7 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario{
 		return usuario_examenes;
 
 	}
+
+
 
 }
