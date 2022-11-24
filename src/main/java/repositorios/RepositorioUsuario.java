@@ -18,18 +18,28 @@ public interface RepositorioUsuario {
 
 	Usuario buscarUsuarioPorID(int id_user);
 
-	Boolean cancelarCurso(Curso curso_obtenido, Usuario_Curso usuarioCurso);
+	Boolean cancelarCurso(Usuario_Curso usuarioCurso);
 	
 	Usuario_Curso obtenerUsuarioCurso(Curso curso_obtenido, Usuario usuario);
 
 	void eliminarCurso(Curso curso_obtenido, Usuario usuario);
 	
-	void cambiarEstadoCurso(Curso curso_obtenido, Estado estado);
+	void cambiarEstadoCurso(Usuario_Curso usuarioCurso, Estado estado);
 
-	List<Curso> obtenerCursosDelUsuario(Usuario usuario);
+	List<Usuario_Curso> obtenerCursosDelUsuario(Usuario usuario);
 
 	void actualizarUsuario(Usuario usuario);
 
 	void guardarGiftcardDeUsuario(Giftcard gift);
+
+	void actualizarCursoDelUsuario(Usuario_Curso usuarioCurso);
+
+	List<Notificacion> obtenerNotificaciones(Usuario usuario);
+
+	void guardarNotificacionDelUsuario(Notificacion noti, Usuario usuario);
+
+	Notificacion obtenerNotificacionPorId(int idNotif);
+
+	void eliminarNotificacion(Notificacion notificacion);
 
 }

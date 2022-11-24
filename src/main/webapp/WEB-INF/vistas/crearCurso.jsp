@@ -12,6 +12,7 @@
 	<link rel="shortcut icon" href="imagenes/favicon.ico">
     <link rel="stylesheet" href="css/styles.css">
 	<link rel="stylesheet" href="css/crearCurso.css">
+	<link rel="stylesheet" href="css/darkmode.css">
 </head>
 <body>
 
@@ -41,6 +42,8 @@
 		<input id="añadir"type="submit" value="Añadir">	
 	</form:form>
 </div>
+
+<%@ include file="footer.jsp" %>
 
 <script src="js/crearCurso.js"></script>
 

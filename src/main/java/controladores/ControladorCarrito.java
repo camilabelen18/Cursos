@@ -24,11 +24,13 @@ public class ControladorCarrito {
 	
 	private ServicioCurso servicioCurso;
 	private ServicioCarrito servicioCarrito;
+	private ServicioUsuario servicioUsuario;
 	
 	@Autowired
-	public ControladorCarrito(ServicioCurso servicioCurso, ServicioCarrito servicioCarrito) {
+	public ControladorCarrito(ServicioCurso servicioCurso, ServicioCarrito servicioCarrito, ServicioUsuario servicioUsuario) {
 		this.servicioCurso = servicioCurso;
 		this.servicioCarrito = servicioCarrito;
+		this.servicioUsuario = servicioUsuario;
 	}
 
 
@@ -70,16 +72,30 @@ public class ControladorCarrito {
 	
 	//Cambiar a post si es necesario 
 	@RequestMapping(path ="/agregarCursoAlCarrito", method = RequestMethod.GET)
-    public ModelAndView agregarCursoAlCarrito(@RequestParam("id_curso") int id, HttpSession sesion) {
+    public ModelAndView agregarCursoAlCarrito(@RequestParam("id_curso") int idCurso, HttpSession sesion) {
 	
+	    ModelMap model = new ModelMap();
 		int id_user = (int) sesion.getAttribute("idUsuario");
-		Curso curso_obtenido = servicioCurso.buscarCursoPorId(id);
+		Usuario usuario = servicioUsuario.buscarUsuarioPorID(id_user);
+		Curso curso_obtenido = servicioCurso.buscarCursoPorId(idCurso);
 		Carrito carrito = servicioCarrito.obtenerCarritoPorIdUsuario(id_user);
 		
-		servicioCarrito.agregarCursoAlCarrito(curso_obtenido, carrito);
+		if (!servicioCarrito.existeCursoEnListaCarrito(curso_obtenido, carrito)) {
+			
+			if (!servicioUsuario.existeCursoEnListaUsuario(idCurso, usuario)) {
+				
+				servicioCarrito.agregarCursoAlCarrito(curso_obtenido, carrito);
+				model.put("cursoYaComprado", "Se agrego el curso al carrito con exito!");
+			}
+			else {
+				model.put("cursoYaComprado", "El curso " + curso_obtenido.getNombre() + " ya fue comprado.");
+			}
+		}
+		else {
+			model.put("cursoYaComprado", "El curso " + curso_obtenido.getNombre() + " ya se encuentra en el carrito.");
+		}
 		
-	    //Mostrar un cartel que diga agregaste al carrito con exito 	
-		return new ModelAndView("redirect:/verListaCursos");
+		return new ModelAndView("redirect:/verListaCursos", model);
     }
 	
 	

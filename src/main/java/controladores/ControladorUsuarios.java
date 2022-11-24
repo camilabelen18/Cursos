@@ -1,6 +1,8 @@
 package controladores;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -100,8 +102,8 @@ public class ControladorUsuarios {
 			session.setAttribute("nombreUsuario", usuarioBuscado.getNombre());
 			session.setAttribute("ROL", usuarioBuscado.getRol());
 			session.setAttribute("imgUsuario", usuarioBuscado.getImagen());
+			session.setAttribute("notificaciones", servicioUsuario.obtenerNotificaciones(usuarioBuscado));
 
-			// Redirije al home
 			return new ModelAndView("redirect:/");
 		}
 		catch (Exception e) {
@@ -198,5 +200,17 @@ public class ControladorUsuarios {
 		
 		return new ModelAndView("redirect:/", model);
 	}
+	
+	@RequestMapping(path ="/eliminarNotificacion", method = RequestMethod.GET)
+    public ModelAndView eliminarNotificacion(@RequestParam("idNotif") int idNotif, HttpSession sesion) {
+	
+		int id_user = Integer.parseInt(sesion.getAttribute("idUsuario").toString());
+		Usuario usuario = servicioUsuario.buscarUsuarioPorID(id_user);
+		Notificacion notificacion = servicioUsuario.obtenerNotificacionPorId(idNotif);
+		
+		servicioUsuario.eliminarNotificacion(notificacion, usuario, sesion);
+		
+		return new ModelAndView("redirect:/");
+    }
 
 }

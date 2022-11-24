@@ -14,6 +14,7 @@ import modelo.Curso;
 import modelo.DatosRegistro;
 import modelo.Estado;
 import modelo.Giftcard;
+import modelo.Notificacion;
 import modelo.Unidad;
 import modelo.Usuario;
 import modelo.Usuario_Curso;
@@ -56,11 +57,14 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
 
 	@Override
 	public Usuario consultarUsuario(String email, String password) {
+		
+		Usuario usuarioObtenido = repositorioUsuario.buscarUsuario(email, password);
 
-		if (repositorioUsuario.buscarUsuario(email, password) != null) {
+		if (usuarioObtenido != null) {
 
-			return repositorioUsuario.buscarUsuario(email, password);
-		} else {
+			return usuarioObtenido;
+		}
+		else {
 			throw new UsuarioInexistenteException();
 		}
 	}
@@ -104,14 +108,14 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
 	public boolean existeCursoEnListaUsuario(int idCurso, Usuario usuario) {
 
 		boolean yaExisteElCurso = false;
-		List<Curso> cursos = repositorioUsuario.obtenerCursosDelUsuario(usuario);
+		List<Usuario_Curso> cursosUsuario = repositorioUsuario.obtenerCursosDelUsuario(usuario);
 
 		// Se recorre la lista de los cursos del usuario y se verifica si ya existe un
 		// curso
 		// con el id del curso seleccionado
-		for (Curso curso : cursos) {
+		for (Usuario_Curso cursoUsuario : cursosUsuario) {
 
-			if (curso.getId() == idCurso) {
+			if (cursoUsuario.getCurso().getId() == idCurso) {
 
 				yaExisteElCurso = true;
 				break;
@@ -124,7 +128,7 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
 	@Override
 	public Boolean cancelarCurso(Curso curso_obtenido, Usuario_Curso usuarioCurso) {
 
-		if (repositorioUsuario.cancelarCurso(curso_obtenido, usuarioCurso) == true) {
+		if (repositorioUsuario.cancelarCurso(usuarioCurso) == true) {
 			
 			Usuario user = usuarioCurso.getUsuario();
 			Giftcard giftcard = user.getGiftcard();
@@ -154,25 +158,24 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
 	}
 
 	@Override
-	public void finalizarCurso(Curso curso_obtenido) {
+	public void finalizarCurso(Usuario_Curso usuarioCurso) {
 
-		curso_obtenido.setEstado(Estado.FINALIZADO);
-		curso_obtenido.setCursoTerminado(true);
-		curso_obtenido.setProgreso(100.0);
-		repositorioCurso.actualizarCurso(curso_obtenido);
+		usuarioCurso.setEstado(Estado.FINALIZADO);
+		usuarioCurso.setCursoTerminado(true);
+		usuarioCurso.setProgreso(100.0);
+		repositorioUsuario.actualizarCursoDelUsuario(usuarioCurso);
 
-		List<Unidad> unidades = repositorioCurso.obtenerUnidadesDelCurso(curso_obtenido);
+		List<Unidad> unidades = repositorioCurso.obtenerUnidadesDelCurso(usuarioCurso.getCurso());
 
 		for (Unidad unidad : unidades) {
 
 			unidad.setCompletado(true);
 			repositorioCurso.actualizarUnidad(unidad);
 		}
-
 	}
 
 	@Override
-	public List<Curso> obtenerCursosDelUsuario(Usuario usuario) {
+	public List<Usuario_Curso> obtenerCursosDelUsuario(Usuario usuario) {
 		return repositorioUsuario.obtenerCursosDelUsuario(usuario);
 	}
 
@@ -237,6 +240,33 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
 		repositorioUsuario.actualizarUsuario(usuario);
 
 		return usuarioPrueba;
+	}
+
+	@Override
+	public void enviarNotificacion(Usuario usuario, String msj, HttpSession session) {
+		
+		Notificacion noti = new Notificacion(msj);
+		repositorioUsuario.guardarNotificacionDelUsuario(noti, usuario);
+		session.setAttribute("notificaciones", repositorioUsuario.obtenerNotificaciones(usuario));
+	}
+
+	@Override
+	public List<Notificacion> obtenerNotificaciones(Usuario usuario) {
+
+		return repositorioUsuario.obtenerNotificaciones(usuario);
+	}
+
+	@Override
+	public Notificacion obtenerNotificacionPorId(int idNotif) {
+
+		return repositorioUsuario.obtenerNotificacionPorId(idNotif);
+	}
+
+	@Override
+	public void eliminarNotificacion(Notificacion notificacion, Usuario usuario, HttpSession session) {
+		
+		repositorioUsuario.eliminarNotificacion(notificacion);
+		session.setAttribute("notificaciones", repositorioUsuario.obtenerNotificaciones(usuario));
 	}
 
 }

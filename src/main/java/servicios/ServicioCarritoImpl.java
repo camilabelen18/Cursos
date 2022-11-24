@@ -116,4 +116,23 @@ public class ServicioCarritoImpl implements ServicioCarrito {
 		}
 	}
 
+
+	@Override
+	public boolean existeCursoEnListaCarrito(Curso curso_obtenido, Carrito carrito) {
+		
+		boolean yaExisteElCurso = false;
+		List<Curso> cursos = repositorioCarrito.obtenerCursosDelCarrito(carrito);
+
+		for (Curso curso : cursos) {
+
+			if (curso.getId() == curso_obtenido.getId()) {
+
+				yaExisteElCurso = true;
+				break;
+			}
+		}
+
+		return yaExisteElCurso;
+	}
+
 }

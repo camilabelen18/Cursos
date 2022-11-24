@@ -24,16 +24,32 @@ public class Usuario_Curso {
 	@JoinColumn(name = "curso_id")
 	private Curso curso;
 	
-
+	@Column(name = "progreso")
+	private Double progreso;
+	
+	@Column(name = "curso_completado")
+	private Boolean cursoTerminado;
+	
+	@Column(name = "Estado")
+	private Estado estado;
+	
+	@Column(name = "fecha_compra")
 	private LocalDate fecha_incio_compra;
+	
+	@Column(name = "hora_compra")
 	private LocalTime hora;
 	
 	
-	public Usuario_Curso() {}
+	public Usuario_Curso() {
+		this.progreso = 0.0;
+		this.cursoTerminado = false;
+	}
 
 	public Usuario_Curso(Usuario usuario, Curso curso) {
 		this.usuario = usuario;
 		this.curso = curso;
+		this.progreso = 0.0;
+		this.cursoTerminado = false;
 	}
 
 
@@ -78,9 +94,35 @@ public class Usuario_Curso {
 		this.hora = hora;
 	}
 
+	public Double getProgreso() {
+		return progreso;
+	}
+
+	public void setProgreso(Double progreso) {
+		this.progreso = progreso;
+	}
+
+	public Boolean getCursoTerminado() {
+		return cursoTerminado;
+	}
+
+	public void setCursoTerminado(Boolean cursoTerminado) {
+		this.cursoTerminado = cursoTerminado;
+	}
+
+	public Estado getEstado() {
+		return estado;
+	}
+
+	public void setEstado(Estado estado) {
+		this.estado = estado;
+	}
+
 	@Override
 	public String toString() {
-		return "UsuarioCurso [id=" + id + ", usuario=" + usuario + ", curso=" + curso + "]";
+		return "Usuario_Curso [id=" + id + ", usuario=" + usuario + ", curso=" + curso + ", progreso=" + progreso
+				+ ", cursoTerminado=" + cursoTerminado + ", estado=" + estado + ", fecha_incio_compra="
+				+ fecha_incio_compra + ", hora=" + hora + "]";
 	}
 
 }

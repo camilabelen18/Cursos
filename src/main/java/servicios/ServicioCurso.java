@@ -7,6 +7,7 @@ import modelo.Estado;
 import modelo.Examen;
 import modelo.Unidad;
 import modelo.Usuario;
+import modelo.Usuario_Curso;
 
 public interface ServicioCurso {
 
@@ -20,17 +21,17 @@ public interface ServicioCurso {
 
 	void agregarCurso(String nombre, String Categoria, String descripcion, Double precio, String imagen);
 
-	List<Curso> getCursosPorEstado(Estado estado);
+	List<Usuario_Curso> getCursosPorEstado(Estado estado, Usuario usuario);
 
 	void agregarCurso(Curso curso);
 
-	void cambiarEstadoCurso(Curso curso_obtenido, Estado estado);
+	void cambiarEstadoCurso(Usuario_Curso usuarioCurso, Estado estado);
 
 	List<Unidad> obtenerUnidades(Curso curso);
 
 	Unidad obtenerUnidadPorID(Integer unidad_id);
 
-	void completarUnidad(Unidad unidad, Curso curso, List<Unidad> unidades);
+	void completarUnidad(Unidad unidad, Usuario_Curso usuarioCurso, List<Unidad> unidades);
 	
 	void actualizarCurso(int idCurso, String nombre, String categoria, String descripcion, Double precio);
 

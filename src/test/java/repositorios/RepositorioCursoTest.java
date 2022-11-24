@@ -30,8 +30,7 @@ public class RepositorioCursoTest extends SpringTest{
 	@Rollback
 	public void testQueObtieneListaCursosPorNombre(){
 		//Preparacion
-		Curso curso = new Curso("Curso php", "Programacion", "Curso de programacion php", 1000.0, Estado.EN_VENTA,
-				"cursophp.png");
+		Curso curso = new Curso("Curso php", "Programacion", "Curso de programacion php", 1000.0, "cursophp.png");
 		//Ejecucion
 		repositorioCurso.agregarCurso(curso);
 		List<Curso> lista_cursos = repositorioCurso.obtenerListaCursosPorNombre(curso.getNombre());
@@ -77,7 +76,7 @@ public class RepositorioCursoTest extends SpringTest{
 	public void testQueObtieneExamenesDelCurso() {
 	
 		// Preparacion
-		Curso curso = new Curso("Curso php", "Programacion", "Curso de programacion php", 1000.0, Estado.EN_VENTA,"cursophp.png");
+		Curso curso = new Curso("Curso php", "Programacion", "Curso de programacion php", 1000.0, "cursophp.png");
 		
 		Pregunta pregunta_1 = new Pregunta("�Esto es una prueba ?");
 		Pregunta pregunta_2 = new Pregunta("�Esto es una prueba_1 ?");
@@ -122,8 +121,7 @@ public class RepositorioCursoTest extends SpringTest{
 	@Rollback
 	public void testQueObtieneListaCursosPorId(){
 		//Preparacion
-		Curso curso = new Curso("Curso php", "Programacion", "Curso de programacion php", 1000.0, Estado.EN_VENTA,
-				"cursophp.png");
+		Curso curso = new Curso("Curso php", "Programacion", "Curso de programacion php", 1000.0, "cursophp.png");
 		//Ejecucion
 		repositorioCurso.agregarCurso(curso);
 		Curso curso_obtenido = repositorioCurso.obtenerCursoPorID(1);

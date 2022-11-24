@@ -118,7 +118,7 @@ public class ServicioUsuarioTest {
 
 	}
 	@Test(expected = UsuarioInexistenteException.class)
-	public void queSeQuieraConsultarUnUsuarioQueNoExiste() {
+	public void queSeQuieraConsultarUnUsuarioQueNoExiste() {//cambiar y revisar servicio
 		Usuario usuario = new Usuario("juan", "hola@hola.com", "123", "Cliente");
 		String email = usuario.getEmail();
 		String password = usuario.getPassword();

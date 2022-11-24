@@ -47,7 +47,6 @@ public class ControladorGiftcard {
 	public ModelAndView verificarCompraConGiftcard(HttpSession session, @RequestParam("precioTotal") Double total, @RequestParam("idCurso") int idCurso) {
 		
 		ModelMap model = new ModelMap();
-		Curso curso_obtenido = servicioCurso.buscarCursoPorId(idCurso);
 		String viewName = "";
 		
 		// Si comprueba si el usuario tiene iniciada la sesión
@@ -55,8 +54,10 @@ public class ControladorGiftcard {
 
 			int id_user = (int) session.getAttribute("idUsuario");
 			Usuario usuario = servicioUsuario.buscarUsuarioPorID(id_user);
+			Curso curso_obtenido = servicioCurso.buscarCursoPorId(idCurso);
+			Usuario_Curso usuarioCurso = servicioUsuario.obtenerUsuarioCurso(curso_obtenido, usuario);
 
-			if (!servicioUsuario.existeCursoEnListaUsuario(idCurso, usuario) || curso_obtenido.getEstado() == Estado.CANCELADO) {
+			if (!servicioUsuario.existeCursoEnListaUsuario(idCurso, usuario) || usuarioCurso.getEstado() == Estado.CANCELADO) {
 				model.put("idCurso", idCurso);
 				model.put("precioTotal", total);
 				model.put("curso", curso_obtenido);
@@ -83,20 +84,21 @@ public class ControladorGiftcard {
 		int id_user = Integer.parseInt(session.getAttribute("idUsuario").toString());
 		Usuario usuario = servicioUsuario.buscarUsuarioPorID(id_user);
 		Curso curso_obtenido = servicioCurso.buscarCursoPorId(idCurso);
+		Usuario_Curso usuarioCurso = servicioUsuario.obtenerUsuarioCurso(curso_obtenido, usuario);
 		Giftcard giftcard = usuario.getGiftcard();
 		String viewName = "";
-		
+
 		try {
 			// Se verifica si el numero de tarjeta del usuario es igual al numero de tarjeta ingresado.
 			// Si no son iguales, lanza una excepcion.
 			servicioGiftcard.verificarTarjetaDeGiftcard(giftcard, nroTarjeta);
-			
+
 			// Se verifica que el saldo de la giftcard sea suficiente
 			servicioGiftcard.verificarSaldoDeGiftcard(giftcard, curso_obtenido);
-			
-			if(curso_obtenido.getEstado() == Estado.CANCELADO) {
-				
-				servicioCurso.cambiarEstadoCurso(curso_obtenido, Estado.EN_CURSO);
+
+			if (servicioUsuario.existeCursoEnListaUsuario(idCurso, usuario) && usuarioCurso.getEstado() == Estado.CANCELADO) {
+
+				servicioCurso.cambiarEstadoCurso(usuarioCurso, Estado.EN_CURSO);
 			}
 			else {
 				servicioUsuario.guardarCursoEnListaUsuario(curso_obtenido, usuario);

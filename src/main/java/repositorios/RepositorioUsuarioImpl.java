@@ -3,6 +3,7 @@ package repositorios;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -21,8 +22,10 @@ import modelo.Curso;
 import modelo.Curso_Unidad;
 import modelo.Estado;
 import modelo.Giftcard;
+import modelo.Notificacion;
 import modelo.Usuario;
 import modelo.Usuario_Curso;
+import modelo.Usuario_Notificacion;
 
 @Repository
 @Transactional
@@ -60,16 +63,13 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario{
 
 	@Override
 	public void guardarCursoDelUsuario(Curso curso_obtenido, Usuario usuario) {
-			
-		actualizarEstado(curso_obtenido,Estado.EN_CURSO);
 		
 		Session sesion = sessionFactory.getCurrentSession();
 		
-		Usuario_Curso usuarioCurso = new Usuario_Curso();
+		Usuario_Curso usuarioCurso = new Usuario_Curso(usuario, curso_obtenido);
+		usuarioCurso.setEstado(Estado.EN_CURSO);
 		usuarioCurso.setFecha_incio_compra(LocalDate.now());
 		usuarioCurso.setHora(LocalTime.now());
-		usuarioCurso.setCurso(curso_obtenido);
-		usuarioCurso.setUsuario(usuario);
 		
 		sesion.save(usuarioCurso);
 	}
@@ -104,11 +104,11 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario{
 	}
 	
 	@Override
-	public Boolean cancelarCurso(Curso curso_obtenido, Usuario_Curso usuarioCurso) {
+	public Boolean cancelarCurso(Usuario_Curso usuarioCurso) {
 		
 		if (restarFechas(usuarioCurso) == true) {
 			
-			actualizarEstado(curso_obtenido,Estado.CANCELADO);
+			actualizarEstado(usuarioCurso, Estado.CANCELADO);
 			return true;
 		}
 		
@@ -144,13 +144,13 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario{
 	}
 	
 	@Override
-	public void cambiarEstadoCurso(Curso curso_obtenido, Estado estado) {
-		actualizarEstado(curso_obtenido, estado);
+	public void cambiarEstadoCurso(Usuario_Curso usuarioCurso, Estado estado) {
+		actualizarEstado(usuarioCurso, estado);
 	}
 
-	private void actualizarEstado(Curso curso_obtenido, Estado estado) {
-		curso_obtenido.setEstado(estado);
-		sessionFactory.getCurrentSession().update(curso_obtenido);
+	private void actualizarEstado(Usuario_Curso usuarioCurso, Estado estado) {
+		usuarioCurso.setEstado(estado);
+		sessionFactory.getCurrentSession().update(usuarioCurso);
 	}
 
 	@Override
@@ -167,22 +167,15 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario{
 	}
 	
 	@Override
-	public List<Curso> obtenerCursosDelUsuario(Usuario usuario) {
+	public List<Usuario_Curso> obtenerCursosDelUsuario(Usuario usuario) {
 		
 		Session sesion = sessionFactory.getCurrentSession();
 
 		List<Usuario_Curso> usuario_cursos = sesion.createCriteria(Usuario_Curso.class)
 											 .add(Restrictions.eq("usuario", usuario))
 											 .list();
-		
-		List<Curso> lista_curso = new ArrayList<Curso>();
-		
-		for (Usuario_Curso usuarioCurso : usuario_cursos) {
-			
-			lista_curso.add(usuarioCurso.getCurso());
-		}
 
-		return lista_curso;
+		return usuario_cursos;
 	}
 
 	@Override
@@ -193,6 +186,61 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario{
 	@Override
 	public void guardarGiftcardDeUsuario(Giftcard gift) {
 		sessionFactory.getCurrentSession().save(gift);
+	}
+
+	@Override
+	public void actualizarCursoDelUsuario(Usuario_Curso usuarioCurso) {
+		sessionFactory.getCurrentSession().update(usuarioCurso);
+	}
+
+	@Override
+	public List<Notificacion> obtenerNotificaciones(Usuario usuario) {
+		
+		Session sesion  = sessionFactory.getCurrentSession();
+		
+		List<Usuario_Notificacion> usuarioNotificaciones = sesion.createCriteria(Usuario_Notificacion.class)
+														   .add(Restrictions.eq("usuario", usuario))
+													       .list();
+
+		List<Notificacion> notificaciones = new ArrayList<Notificacion>();
+		
+		for (Usuario_Notificacion usuarioNotificacion : usuarioNotificaciones) {
+			
+			notificaciones.add(usuarioNotificacion.getNotificacion());
+		}
+		
+		return notificaciones;
+	}
+
+	@Override
+	public void guardarNotificacionDelUsuario(Notificacion notif, Usuario usuario) {
+		
+		Session sesion  = sessionFactory.getCurrentSession();
+		
+		sesion.save(notif);
+		sesion.save(new Usuario_Notificacion(usuario, notif));
+	}
+
+	@Override
+	public Notificacion obtenerNotificacionPorId(int idNotif) {
+		
+		Session sesion = sessionFactory.getCurrentSession();
+		
+		Notificacion notificacion = sesion.get(Notificacion.class, idNotif);
+		
+		return notificacion;
+	}
+
+	@Override
+	public void eliminarNotificacion(Notificacion notificacion) {
+		
+		Session sesion = sessionFactory.getCurrentSession();
+		
+		Usuario_Notificacion usuarioNotif = (Usuario_Notificacion)sesion.createCriteria(Usuario_Notificacion.class)
+										    .add(Restrictions.eq("notificacion", notificacion))
+										    .uniqueResult();
+		
+		sesion.delete(usuarioNotif);
 	}
 
 }

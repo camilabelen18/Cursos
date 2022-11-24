@@ -37,13 +37,20 @@ public class ServicioGiftcardImpl implements ServicioGiftcard {
 	@Override
 	public void verificarSaldoDeGiftcard(Giftcard giftcard, Curso curso) {
 		
+		Integer puntos = giftcard.getMisPuntos();
 		Double saldoActual = giftcard.getSaldoActual();
+		Double precioCurso = curso.getPrecio();
 		
 		// Se valida que el saldo actual de la gitcard sea mayor al precio del curso
-		if (saldoActual >= curso.getPrecio()) {
+		if (saldoActual >= precioCurso) {
 			
-			saldoActual = saldoActual - curso.getPrecio();
+			puntos -= precioCurso.intValue() * 10;
+			
+			saldoActual = saldoActual - precioCurso;
+			
+			giftcard.setMisPuntos(puntos);
 			giftcard.setSaldoActual(saldoActual);
+			
 			repositorioGiftcard.actualizarGiftcard(giftcard);
 		}
 		else {
