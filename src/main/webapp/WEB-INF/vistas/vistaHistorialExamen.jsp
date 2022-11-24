@@ -14,7 +14,7 @@
 <link rel="shortcut icon" href="imagenes/favicon.ico">
 <link rel="stylesheet" href="css/styles.css">
  <link rel="stylesheet" href="css/vistaHistorialExamen.css"> 
-
+<link rel="stylesheet" href="css/darkmode.css">
 </head>
 <body>
 
