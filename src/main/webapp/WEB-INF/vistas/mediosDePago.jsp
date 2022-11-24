@@ -32,7 +32,7 @@
 			</a>
 		</div>
 		<div class="botonPago">
-			<a href="#">
+			<a href="pagoMP?idCurso=${curso.id}&precioTotal=${precioTotal}">
 				Pagar con mercado pago
 			</a>
 		</div>

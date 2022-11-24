@@ -15,17 +15,20 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.mercadopago.resources.Preference;
+
 import servicios.ServicioCarrito;
 import modelo.*;
 import servicios.ServicioCurso;
 import servicios.ServicioUsuario;
-
+import servicios.ServicioMercadoPago;
 @Controller
 public class ControladorCompra {
 	
 	private ServicioUsuario servicioUsuario;
 	private ServicioCurso servicioCurso;
 	private ServicioCarrito servicioCarrito;
+	private ServicioMercadoPago servicioMercadoPago = new ServicioMercadoPago();
 	
 	@Autowired
 	public ControladorCompra(ServicioUsuario servicioUsuario, ServicioCurso servicioCurso, ServicioCarrito servicioCarrito) {
@@ -53,6 +56,7 @@ public class ControladorCompra {
 				model.put("idCurso", idCurso);
 				model.put("precioCurso", precioCurso);
 				model.put("curso", curso_obtenido);
+				
 				viewName = "verificacionCompra";
 			}
 			else {
@@ -191,5 +195,16 @@ public class ControladorCompra {
 		
 		return new ModelAndView("mediosDePago", model);
 	}
+	@RequestMapping(path = "/pagoMP", method = RequestMethod.GET)
+	public ModelAndView pagoMP(@RequestParam("idCurso") int idCurso, @RequestParam("precioTotal") Double precioTotal, HttpSession session) {
+		ModelMap model = new ModelMap();
+		int id_user = (int) session.getAttribute("idUsuario");
+		Usuario usuario = servicioUsuario.buscarUsuarioPorID(id_user);
+		
+		Preference preference = servicioMercadoPago.checkout(usuario, precioTotal);
+		model.put("preference", preference);
+		return new ModelAndView("pagoMP", model);
+	}
+	
 	
 }
