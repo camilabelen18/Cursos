@@ -6,6 +6,7 @@ import javax.persistence.*;
 @Table(name = "Respuesta")
 public class Respuesta {
 	
+	//El modelo de respuesta tiene un valor de id, una descripcion de la respuesta y si quieren un booleano para indicar que la respuesta es la correcta.
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")

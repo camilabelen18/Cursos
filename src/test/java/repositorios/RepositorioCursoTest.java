@@ -45,6 +45,7 @@ public class RepositorioCursoTest extends SpringTest{
 		
 	}
 	
+	/*
 	@Test
 	@Transactional
 	@Rollback
@@ -114,7 +115,7 @@ public class RepositorioCursoTest extends SpringTest{
 		assertThat(listaExamenes).isEqualTo(examenes);
 	
 	}
-	
+	*/
 	
 	@Test
 	@Transactional

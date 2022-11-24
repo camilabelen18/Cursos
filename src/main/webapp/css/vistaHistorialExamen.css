@@ -1,0 +1,130 @@
+
+
+#cont-seccion-principal {
+	
+	padding: 50px;
+    margin: 50px;
+	
+}
+
+/* Titulo */
+#titulo {
+	align-items: center;
+	text-align: center;
+    margin: 100px 0px;
+}
+
+#titulo a {
+	color: #3c3b37;
+	font-size: 14px;
+}
+
+/* LISTA DE USUARIO EXAMEN */
+.cuadro-seccion-usuarioExamen {
+	display: flex;
+	padding: 40px;
+	margin: 40px;
+	margin-left: 50px;
+	text-align: center;
+	border-bottom: 2px solid #c7c7c7;
+}
+
+#nombre-puntaje-fecha {
+	display: flex;
+	justify-content: space-between;
+	padding: 25px;
+	margin: 20px;
+	margin-right: 60px;
+	margin-left: 90px;
+	border-bottom: 2px solid #c7c7c7;
+	font-size: 18px;
+	font-weight: bold;
+}
+
+#nombre{
+	width: 25%
+	
+}
+
+#puntaje{
+	width: 25%;
+}
+
+#fecha{
+	width: 25%;
+}
+
+#hora{
+	width: 25%;
+}
+
+
+
+.nombre-usuario {
+	width: 18%;
+	display: flex;
+	align-items: center;
+	
+}
+
+.nombre-usuario p {
+	font-size: 18px;
+	font-weight: bold;
+	padding-left: 10px;
+}
+
+.puntaje {
+	width: 25%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.puntaje p {
+	font-size: 16px;
+	font-weight: bold;
+}
+
+.fecha {
+	width: 25%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.fecha p {
+	font-size: 16px;
+	font-weight: bold;
+}
+
+.hora {
+	width: 25%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.hora p {
+	font-size: 16px;
+	font-weight: bold;
+}
+
+
+
+/* MENSAJES */
+#msj_error {
+	text-align : center;
+	margin-top: 100px;
+	margin-bottom: 200px;
+	font-size: 20px;
+	font-weight:bold; 
+}
+
+/*------------------------------------------RESPONSIVE----------------------------------*/
+
+@media (max-width: 1250px) {
+	
+	.cont-seccion-miscursos {
+		width: 80%;
+	}
+}

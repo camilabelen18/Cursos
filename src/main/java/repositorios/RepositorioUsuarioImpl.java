@@ -21,11 +21,13 @@ import modelo.Carrito;
 import modelo.Curso;
 import modelo.Curso_Unidad;
 import modelo.Estado;
+import modelo.Examen;
 import modelo.Giftcard;
 import modelo.Notificacion;
 import modelo.Usuario;
 import modelo.Usuario_Curso;
 import modelo.Usuario_Notificacion;
+import modelo.Usuario_Examen;
 
 @Repository
 @Transactional
@@ -242,5 +244,132 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario{
 		
 		sesion.delete(usuarioNotif);
 	}
+
+	@Override
+	public void guardarExamenDeUsuario(Examen examen, Usuario usuario, int notaSacada) {
+		
+		Session sesion = sessionFactory.getCurrentSession();
+		
+		Usuario_Examen usuarioExamen = new Usuario_Examen();
+		usuarioExamen.setFecha_finalizacion_examen(LocalDate.now());
+		usuarioExamen.setHora_finalizacion_examen(LocalTime.now());
+	    usuarioExamen.setExamen(examen);
+	    usuarioExamen.setPuntaje_final(notaSacada);
+        usuarioExamen.setUsuario(usuario);
+
+		
+		sesion.save(usuarioExamen);
+		
+	}
+
+	@Override
+	public Usuario_Examen obtenerExamenUsuario(Examen examen, Usuario usuario) {
+	
+        Session sesion = sessionFactory.getCurrentSession();
+		
+		Usuario_Examen usuarioExamen = (Usuario_Examen) sesion.createCriteria(Usuario_Examen.class)
+									 .add(Restrictions.eq("usuario", usuario))
+									 .add(Restrictions.eq("examen", examen))
+									 .setMaxResults(1).uniqueResult();
+		
+		return usuarioExamen;
+	}
+
+	@Override
+	public boolean cancelarExamen(Usuario_Examen usuarioExamen,Examen examen) {
+        
+		if (restarFechasExamen(usuarioExamen) == true) {
+			
+			examen.setEstadoHabilitado(true);
+			sessionFactory.getCurrentSession().update(examen);
+			
+			return true;
+		}
+		
+		return false;
+     
+	}
+	
+	private Boolean restarFechasExamen(Usuario_Examen usuarioExamen) {
+		
+		   Long diferencia_dias = ChronoUnit.DAYS.between(usuarioExamen.getFecha_finalizacion_examen(), LocalDate.now());
+			
+			if (diferencia_dias == 1) {	
+				
+				Long minuto = ChronoUnit.MINUTES.between(usuarioExamen.getHora_finalizacion_examen(),LocalTime.now());
+				
+				if(minuto <= 2) {  
+					return true;
+				}
+			}
+			return false;
+	}
+
+	@Override
+	public void verificarFechaDeExamen(Usuario_Examen usuarioExamen) {
+		
+		if (usuarioExamen != null) {
+			  if (restarFechasExamen(usuarioExamen) == false) {
+					
+					usuarioExamen.getExamen().setEstadoHabilitado(false);
+					sessionFactory.getCurrentSession().update(usuarioExamen.getExamen());
+					
+					
+				}
+		}
+       
+		
+		
+	}
+	
+	
+	
+
+	
+	
+	@Override
+	public boolean verificarSiHizoElExamenCuatroVecesOmas(Usuario usuario, Examen examen) {
+		Session sesion = sessionFactory.getCurrentSession();
+		
+
+		List<Usuario_Examen> usuario_examenes = sesion.createCriteria(Usuario_Examen.class)
+											 .add(Restrictions.eq("usuario", usuario)) 
+											 .add(Restrictions.eq("examen", examen)) 
+											 .list();
+		if(usuario_examenes != null) { 
+			for (int i = 0; i < usuario_examenes.size(); i++) {
+				if(i>=3) {
+					return true;
+				}
+			}
+			
+		}
+		
+
+		return false;
+	}
+
+	@Override
+	public List<Usuario_Examen> obtenerExamenesDelUsuario(Usuario usuario,Examen examen) {
+		
+     Session sesion = sessionFactory.getCurrentSession();
+		
+
+		List<Usuario_Examen> usuario_examenes = sesion.createCriteria(Usuario_Examen.class)
+											 .add(Restrictions.eq("usuario", usuario))
+											 .add(Restrictions.eq("examen", examen))
+											 .list();
+		
+	/*	List<Usuario_Examen> listaUsuarioExamen = new ArrayList<Usuario_Examen>();
+		
+		for (Usuario_Examen usuario_Examen : usuario_examenes) {
+			listaUsuarioExamen.add(usuario_Examen);
+		} */
+
+		return usuario_examenes;
+
+	}
+
+
 
 }

@@ -133,31 +133,67 @@ public class RepositorioCursoImpl implements RepositorioCurso{
 	}
 
 	@Override
-	public Examen obtenerExamenPorID(Integer examen_id) {
+	public Examen obtenerExamenPorCurso(Curso curso_obtenido) {
 		
         Session sesion = sessionFactory.getCurrentSession();
         
-		Examen examen = sesion.get(Examen.class, examen_id);
+		Curso_Examen curso_examen1 = (Curso_Examen) sesion.createCriteria(Curso_Examen.class)
+				                    .add(Restrictions.eq("curso", curso_obtenido))
+				                    .uniqueResult();
 		
-		return examen;
+		Examen examen_conseguido = curso_examen1.getExamen();
+		
+		
+		return examen_conseguido;
 	}
 
 	@Override
-	public List<Examen> obtenerExamenesDelCurso(Curso curso_obtenido) {
+	public List<Pregunta> obtenerPreguntasDelExamen(Examen examen) {
+		
 		Session sesion = sessionFactory.getCurrentSession();
 
 		List<Curso_Examen> curso_examenes = sesion.createCriteria(Curso_Examen.class)
-											.add(Restrictions.eq("curso", curso_obtenido))
+											.add(Restrictions.eq("examen", examen))
 											.list();
 
-		List<Examen> examenes = new ArrayList<Examen>();
+		List<Pregunta> preguntas = new ArrayList<Pregunta>();
 		
 		for (Curso_Examen cursoExamen : curso_examenes) {
 			
-			examenes.add(cursoExamen.getExamen());
+			preguntas.add(cursoExamen.getExamen().getPregunta_1());
+			preguntas.add(cursoExamen.getExamen().getPregunta_2());
+			preguntas.add(cursoExamen.getExamen().getPregunta_3());
+			preguntas.add(cursoExamen.getExamen().getPregunta_4());
+			preguntas.add(cursoExamen.getExamen().getPregunta_5());
 		}
 		
-		return examenes;
+		return preguntas;
 	}
+
+	@Override
+	public Pregunta buscarPreguntaPorId(int pregunta_id) {
+        Session sesion = sessionFactory.getCurrentSession();
+		
+		Pregunta pregunta = sesion.get(Pregunta.class, pregunta_id);
+		
+		return pregunta;
+	}
+
+	@Override
+	public Respuesta buscarRespuestaPorId(int respuesta_id) {
+        Session sesion = sessionFactory.getCurrentSession();
+		
+         Respuesta respuesta = sesion.get(Respuesta.class, respuesta_id);
+		
+		return respuesta;
+	}
+
+	
+
+	
+
+
+
+
 
 }

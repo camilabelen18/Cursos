@@ -4,8 +4,12 @@ import java.util.List;
 
 import modelo.Curso;
 import modelo.Curso_Unidad;
+import modelo.DatosExamen;
+import modelo.DatosPregunta;
 import modelo.Estado;
 import modelo.Examen;
+import modelo.Pregunta;
+import modelo.Respuesta;
 import modelo.Unidad;
 import modelo.Usuario;
 import modelo.Usuario_Curso;
@@ -32,8 +36,22 @@ public interface RepositorioCurso {
 
 	void actualizarCurso(Curso curso_obtenido);
 
-	Examen obtenerExamenPorID(Integer examen_id);
+	Examen obtenerExamenPorCurso(Curso curso_obtenido);
 
-	List<Examen> obtenerExamenesDelCurso(Curso curso_obtenido);
+	List<Pregunta> obtenerPreguntasDelExamen(Examen examen);
+
+	Pregunta buscarPreguntaPorId(int pregunta_id);
+
+	Respuesta buscarRespuestaPorId(int respuesta_id);
+
+
+
+
+
+
+
+	
+
+
 	
 }

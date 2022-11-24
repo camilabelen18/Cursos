@@ -51,4 +51,19 @@ public interface ServicioUsuario {
 
 	void eliminarNotificacion(Notificacion notificacion, Usuario usuario, HttpSession session);
 	
+	void guardarExamenDeUsuario(Usuario usuario, Examen examen, int notaSacada);
+
+	Usuario_Examen obtenerExamenUsuario(Examen examen,Usuario usuario);
+
+	boolean aproboExamenUsuario(int notaSacada);
+
+	boolean cancelarExamen(Usuario_Examen usuarioExamen,Examen examen);
+
+	boolean verificarSiHizoElExamenCuatroVecesOmas(Usuario usuario, Examen examen);
+
+	int sumarNota(List<Respuesta> listaRobtenida);
+
+	List<Usuario_Examen> obtenerExamenesDelUsuario(Usuario usuario,Examen examen);
+
+	void verificarFechaDeExamen(Usuario_Examen usuarioExamen);
 }

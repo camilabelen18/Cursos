@@ -33,45 +33,41 @@
           
           <div class="cuadro-seccion-preguntas">  
             
-          <form action="finalizarExamen?curso_id=${curso.id}" method="POST"> 
+ 
+          <form:form action="finalizarExamen?curso_id=${curso.id}" method="POST" modelAttribute="datosExamen">
+          <!-- Elementos de entrada de datos, el elemento path debe indicar en que atributo 
+			del objeto 'datosExamen/datosPregunta' se guardan los datos ingresados -->
           
-          <c:forEach var="itemExamen" items="${examenes}">
+          <c:forEach var="itemPregunta" items="${datosExamen.datosPregunta}" varStatus="vs">
           
-                 <p id="cuadro-pregunta">${itemExamen.pregunta.descripcion}</p>
+                 <p id="cuadro-pregunta">${itemPregunta.descripcion}</p>
                  
                        <div class="cuadro-respuestas">
-
-                      <input id="respuesta_1" type="radio" name="respuesta${itemExamen.id}" value="${itemExamen.respuesta.id} "  >${itemExamen.respuesta.descripcion} 
-                       <input id="respuesta_2" type="radio" name="respuesta${itemExamen.id}" value="${itemExamen.respuesta_2.id}"> ${itemExamen.respuesta_2.descripcion}
-                       <input id="respuesta_3" type="radio" name="respuesta${itemExamen.id}" value="${itemExamen.respuesta_3.id}"> ${itemExamen.respuesta_3.descripcion}
-                        
+                        <form:hidden path="datosPregunta[${vs.index}].preguntaId" value="${itemPregunta.pregunta.id}" />
+                        <form:radiobutton  path="datosPregunta[${vs.index}].respuestaElegida" value="${itemPregunta.respuesta_1.id}" />${itemPregunta.respuesta_1.descripcion}
+                        <form:radiobutton  path="datosPregunta[${vs.index}].respuestaElegida" value="${itemPregunta.respuesta_2.id}"/>${itemPregunta.respuesta_2.descripcion}
+                        <form:radiobutton  path="datosPregunta[${vs.index}].respuestaElegida" value="${itemPregunta.respuesta_3.id}"/>${itemPregunta.respuesta_3.descripcion}
                        </div>  
 
-                 
            </c:forEach>
-
-                       <div class="cuadro-respuestas">
-
-                       </div>  
-
 
                 <div id="cuadro-seccion-finalizado">
                   <input type="submit" name="finalizoExamen" value="Finalizar" id="finalizar">
                 
-                    <div id="cuadro-puntaje-total">
+                 <!--   <div id="cuadro-puntaje-total">
 				 	<h2 id="nota-examen">Nota de examen</h2>
 				 	<div id="total-examen">
 						<p>Nota: </p>
-						<p>${nota_final }</p>
-				     </div>
+						<p>${notaSacada }</p>
+				     </div>  --> 
                 </div>  
                 
-                <input id="prueba" type="radio" name="ashe" value="prueba"> tocalo
+
                 
                 
               </div>
               
-          </form>
+           </form:form>
 
                      </div>
             
@@ -81,15 +77,7 @@
           
             
              
-             
-               
-              
-              
-              
-           
 
-         
-         
 
 
     <%@ include file="/WEB-INF/vistas/footer.jsp" %>
@@ -109,5 +97,11 @@
               <div class="contenido" id="contenido" style="display: none;">
                
               </div>
+              
+               <%--              <input path="respuestaElegida" type="radio" value="${examenes[0].respuesta_2.id}"/>${examenes[0].respuesta_2.descripcion}--%>
+ <%--              <input path="respuestaElegida" type="radio" value="${examenes[0].respuesta_3.id}"/>${examenes[0].respuesta_3.descripcion}
+                      <input id="respuesta_1" type="radio" name="respuesta${itemPregunta.id}" value="${itemPregunta.respuesta_1.id} " >${itemPregunta.respuesta_1.descripcion} 
+                       <input id="respuesta_2" type="radio" name="respuesta${itemPregunta.id}" value="${itemPregunta.respuesta_2.id}"> ${itemPregunta.respuesta_2.descripcion}
+                       <input id="respuesta_3" type="radio" name="respuesta${itemPregunta.id}" value="${itemPregunta.respuesta_3.id}"> ${itemPregunta.respuesta_3.descripcion}--%>
               
               </div> -->

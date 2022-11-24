@@ -1,5 +1,6 @@
 package controladores;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -16,18 +17,21 @@ import org.springframework.web.servlet.ModelAndView;
 
 import modelo.*;
 import servicios.ServicioCurso;
+import servicios.ServicioGiftcard;
 import servicios.ServicioUsuario;
 
 @Controller
 public class ControladorCursos {
 	
+	private ServicioGiftcard servicioGiftcard;
 	private ServicioCurso servicioCurso;
 	private ServicioUsuario servicioUsuario;
 	
 	@Autowired
-	public ControladorCursos(ServicioCurso servicioCurso, ServicioUsuario servicioUsuario) {
+	public ControladorCursos(ServicioCurso servicioCurso, ServicioUsuario servicioUsuario,ServicioGiftcard servicioGiftcard) {
 		this.servicioCurso = servicioCurso;
 		this.servicioUsuario = servicioUsuario;
+		this.servicioGiftcard = servicioGiftcard;
 	}
 	
 
@@ -191,11 +195,12 @@ public class ControladorCursos {
 		Usuario usuario = servicioUsuario.buscarUsuarioPorID(id_user);
 		Curso curso_obtenido = servicioCurso.buscarCursoPorId(curso_id);
 		Usuario_Curso usuarioCurso = servicioUsuario.obtenerUsuarioCurso(curso_obtenido, usuario);
-
 		List<Unidad> unidades = servicioCurso.obtenerUnidades(curso_obtenido);
+    	Examen examen = servicioCurso.obtenerExamenPorCurso(curso_obtenido);
 		
 		model.put("cursoUsuario", usuarioCurso);
 		model.put("unidades", unidades);
+		model.put("examen", examen);
 		model.put("unidad", unidades.get(0));
 				
 		return new ModelAndView("vistaCurso", model);
@@ -275,73 +280,230 @@ public class ControladorCursos {
 		return new ModelAndView(view, model);
 	}
 
-
+	
+	
 	// Para hacer el controlador de examen
-	@RequestMapping(path = "/examen", method = RequestMethod.POST)
-	public ModelAndView examen(@RequestParam("curso_id") int curso_id) {
-		
-		ModelMap model = new ModelMap();
-	//Buscas el curso 	
-		Curso curso_obtenido = servicioCurso.buscarCursoPorId(curso_id); //Por ahora solo del primer curso el del php C1
-		
-		//Hacemos una lista de preguntas y respuestas que estan en examenes 
-		List<Examen> examenes = servicioCurso.obtenerExamenes(curso_obtenido);
-		
-		
-	//	Examen examen = servicioCurso.obtenerExamenPorId(examen_id);
+		@RequestMapping(path = "/examen", method = RequestMethod.POST)
+		public ModelAndView examen(@RequestParam("curso_id") int curso_id, HttpSession session ) {
+			
+			ModelMap model = new ModelMap();
+		  //Buscas el curso 	
+			Curso curso_obtenido = servicioCurso.buscarCursoPorId(curso_id); //Por ahora solo del primer curso el del php C1
+			List<Unidad> unidades = servicioCurso.obtenerUnidades(curso_obtenido);
+			String view = "";
+			//Obtenemos el examen del curso 
+	    	Examen examen = servicioCurso.obtenerExamenPorCurso(curso_obtenido );
+	    	//Busco a el usuario que realizo el examen para despues agregarlo a la lista de usuario_examen y ponerle su puntaje y la hora en que lo realizo 
+			int id_user = Integer.parseInt(session.getAttribute("idUsuario").toString());
+		    Usuario usuario = servicioUsuario.buscarUsuarioPorID(id_user);
+		    //Obtengo el examen que hizo el usuario 
+		    Usuario_Examen usuarioExamen = servicioUsuario.obtenerExamenUsuario(examen,usuario);
+	        //Obtenemos una lista de preguntas del examen 
+	    	List<Pregunta> preguntas = servicioCurso.obtenerPreguntasDelExamen(examen);
+
+	    	//Las hacemos "aleatorias" 
+	    	List<Pregunta> preguntasAlAzar = servicioCurso.PreguntasAzar(preguntas);
+
+	      //Y lo ponemos en una clase de datos 
+	        DatosExamen datosExamen = servicioCurso.guardarPreguntasEnDatosExamen(preguntasAlAzar);
+	        
+	        //Verificamos fecha nuevamente para ver si el periodo de gracia paso y cambiarle el estado a examen que hizo el usuario 
+	        servicioUsuario.verificarFechaDeExamen(usuarioExamen);
+	        //Obtenemos el examen actual
+	        examen = servicioCurso.obtenerExamenPorCurso(curso_obtenido );
+
+	        //Valida si el curso esta terminado
+			if (curso_obtenido.getCursoTerminado() == false) {
+				
+				model.put("curso", curso_obtenido);
+				model.put("unidades", unidades);
+				model.put("unidad", unidades.get(0));
+				model.put("msj_progreso", "Para hacer el examen el curso tiene que estar completado ");
+				view = "vistaCurso";
+
+			}
+			  else if(examen.estadoHabilitado == true) { //Si el examen esta habilitado lo podes hacer
+				     model.put("curso", curso_obtenido);
+					 model.put("unidades", unidades);
+					 model.put("unidad", unidades.get(0));
+					 model.put("msj_progreso", "El examen se habilitara en 3 minutos ");
+					 model.put("examen", examen );
+					view = "vistaCurso";
+				
+			 } else {
+				   model.put("curso", curso_obtenido);
+				   model.put("datosExamen", datosExamen);
+				   view = "vistaExamen";
+				
+			 }
+			   
+	  
+
+			return new ModelAndView(view, model);
+		}
+
 
 	
-	//	boolean nota_examen =servicioCurso.sumarPuntajeExamen(examenes);
+
+
+		// Finalizar el examen y que te sumen los puntos al usuario
+		@RequestMapping(path = "/finalizarExamen", method = RequestMethod.POST)
+		public ModelAndView finalizarExamen(@RequestParam("curso_id") int curso_id,@ModelAttribute("datosExamen") DatosExamen datosExamen, HttpSession session) {
+
+			ModelMap model = new ModelMap();
+		    String view = "";
+			//Buscas el curso 	
+			Curso curso_obtenido = servicioCurso.buscarCursoPorId(curso_id); 
+			//Busco a el usuario que realizo el examen para despues agregarlo a la lista de usuario_examen y ponerle su puntaje y la hora en que lo realizo 
+			int id_user = Integer.parseInt(session.getAttribute("idUsuario").toString());
+		    Usuario usuario = servicioUsuario.buscarUsuarioPorID(id_user);
+		    //Obtengo la giftCard del usuario y le sumo los puntos cuando apruebo
+		    Giftcard giftcard = usuario.getGiftcard();
+		    //Busco el examen que tiene el curso enlazado 
+		    Examen examen = servicioCurso.obtenerExamenPorCurso(curso_obtenido );
+			//sacamos la lista de preguntas con sus respuestas seleccionadas de datosExamen
+			List<DatosPregunta> listaDp = datosExamen.getDatosPregunta();
+			//Obtengo las respuestas en bruto 
+			List<Respuesta> listaRobtenida = servicioCurso.obtenerRespuestas(listaDp);
+			//El puntaje o la nota que saco el usuario al hacer el examen 
+			int notaSacada = servicioUsuario.sumarNota(listaRobtenida);
+			
+			//Se guardaria a Usuario_Examen el usuario que tiene la sesion y el examen que tiene el curso 
+		    //y se setearia la fecha y la hora en que hizo el examen y los puntos que saco de dicho examen 
+		     servicioUsuario.guardarExamenDeUsuario(usuario,examen,notaSacada);
+		     
+		     Usuario_Examen usuarioExamen = servicioUsuario.obtenerExamenUsuario(examen,usuario);
+
+		  // los intentos para hacer el examen son 3 y te da puntos  y si hiciste el examen por 4 ves no te da puntos 
+		 	//pero si te da el curso como completado o finalizado correctamente si lo aprobaste con mayor a 7 
+		     //Tambien usar el examen para no confundir 
+		    if (servicioUsuario.verificarSiHizoElExamenCuatroVecesOmas(usuario,examen) == true) { //Ya no ganas puntos 
+		    	//Aprobado
+		    	System.out.println("ENTRASTE ACA A LA PARTE CUANDO YA HICISTE CUATRO VECES O MAS A EL EXAMEN");
+		    	  if(servicioUsuario.aproboExamenUsuario(notaSacada) == true) {
+		
+			    	    model.put("msj", "El examen se aprobo, pero no ganas puntos");
+			    		model.put("notaSacada", notaSacada);
+			    		model.put("curso", curso_obtenido);
+			    		view="vistaExamenFinalizado";
+			    	 
+			    	 
+			     }
+		    	//Desaprobado
+		    	  else {
+			    	    //Si desaprobas 
+						//Te muestran la nota, no te dan puntos y se te desabilita el examen por 2 dias 48 hs (usamos min ) 
+			    	 
+		    		  servicioUsuario.cancelarExamen(usuarioExamen,examen);
+					//	Boolean a =servicioUsuario.cancelarExamen(usuarioExamen);
+					//	System.out.println("FUNCIONA AAA" + a);
+						
+					
+						model.put("msj", "El examen se desaprobo y ya no vas a poder ganar puntos"); 
+			    		model.put("notaSacada", notaSacada);
+			    		model.put("curso", curso_obtenido);
+			    		view="vistaExamenFinalizado";
+			    	 
+			     }
+
+		    }
+		    else {
+		    	System.out.println("ENTRASTE ACA CUANDO ES ENTRE UNA VES O LA TERCERA ");
+		    	 if(servicioUsuario.aproboExamenUsuario(notaSacada) == true) {
+			    		//El camino verdadero
+						//Si aprobas entre la primera ves  y la tercera te dan los puntos dependiendo la  nota de aprobado 10 = 500, 9 =400, etc 
+		    		 
+		    		     servicioGiftcard.sumarPuntos(giftcard);
+		    		     
+		    		     usuario = servicioUsuario.buscarUsuarioPorID(id_user);
+		    		     giftcard = usuario.getGiftcard();
+		    			
+			    
+			    	    model.put("msj", "El examen se aprobo y ganaste puntos");
+			    		model.put("notaSacada", notaSacada);
+			    		model.put("puntos", giftcard.getMisPuntos());
+			    		model.put("curso", curso_obtenido);
+			    		view="vistaExamenFinalizado";
+			    	 
+			     }
+		    	//Desaprobado
+		    	  else {
+			    	    //Si desaprobas 
+						//Te muestran la nota, no te dan puntos 
+			    	    //Esto desahibilita a el examen por dos dias (usamos min)
+		    		  
+		    		    servicioUsuario.cancelarExamen(usuarioExamen,examen); 
+		    		  
+					
+						model.put("msj", "El examen se desaprobo y no ganaste puntos"); 
+			    		model.put("notaSacada", notaSacada);
+			    		model.put("curso", curso_obtenido);
+			    		view="vistaExamenFinalizado";
+			    	 
+			     }
+		    	
+		    }
+		    
+		    	
 	
-		//Obtengo el puntaje total sumando el puntaje individual de cada examen 
-    //	int puntajeFinal = servicioCurso.getTotalDePuntajesExamen(examenes);	
 
-		model.put("curso", curso_obtenido);
-		model.put("examenes", examenes);
-	//	model.put("nota_final", puntajeFinal);
-	//	model.put("nota_examen", nota_examen );
-	//	System.out.println(examenes);
-
+			return new ModelAndView(view, model);
+		
+		}
 		
 		
+		@RequestMapping(path = "/historialExamen", method = RequestMethod.POST)
+		public ModelAndView historialExamen(@RequestParam("curso_id") int curso_id, HttpSession session) {
+			
+			ModelMap model = new ModelMap();
+		    String view = "";
+		    
+		    //Busco al usuario que tiene la sesion iniciada 
+			int id_user = Integer.parseInt(session.getAttribute("idUsuario").toString());
+		    Usuario usuario = servicioUsuario.buscarUsuarioPorID(id_user);
 	
-		return new ModelAndView("vistaExamen", model);
-	}
-
-
-	// Finalizar el examen y que te sumen los puntos al usuario
-	@RequestMapping(path = "/finalizarExamen", method = RequestMethod.POST)
-	public ModelAndView finalizarExamen(@RequestParam("curso_id") int curso_id) {
-
-		ModelMap model = new ModelMap();
-		//Buscas el curso 	
-		Curso curso_obtenido = servicioCurso.buscarCursoPorId(curso_id); //Por ahora solo del primer curso el del php C1
+			//Buscas el curso 	
+			Curso curso_obtenido = servicioCurso.buscarCursoPorId(curso_id); 
+			//Busco el examen que tiene el curso enlazado 
+		    Examen examen = servicioCurso.obtenerExamenPorCurso(curso_obtenido );
+			
+			// Si no se obtiene ningun examen del usuario entonces se lanza una excepcion
+		    List<Usuario_Examen> usuarioExamenes = servicioUsuario.obtenerExamenesDelUsuario(usuario,examen);
 		
-		//Obtenemos la respuesta del input seleccionado
-	//	Examen examen = servicioCurso.obtenerExamenPorId(examen_id); //  java.awt.event.ActionEvent evento (esto en teoria sacaria el evento click usando java)
+		    
+		 // Si tiene muestra 
+		 	if (usuarioExamenes.size() > 0) {
+		 		
+				    model.put("curso", curso_obtenido);
+				    model.put("usuarioExamenes", usuarioExamenes);
+					view = "vistaHistorialExamen";
+						
+				
+		 	}
+		 	else {
+		 	// Si la lista usuario_examen se encuentra vacia entonces se guarda un mensaje informativo
+	 			model.put("msj", "No se hizo ningun examen todavia ");
+	 			view = "vistaHistorialExamen";
+		 	}
+			
+			return new ModelAndView(view, model);
+			
+			
 		
-		//Hacemos una lista de preguntas y respuestas que estan en examenes 
-		List<Examen> examenes = servicioCurso.obtenerExamenes(curso_obtenido);
+		}
 		
-		boolean nota_examen =servicioCurso.sumarPuntajeExamen(examenes);
-	
-		//Obtengo el puntaje total sumando el puntaje individual de cada examen 
-		int puntajeFinal = servicioCurso.getTotalDePuntajesExamen(examenes);
-
-		model.put("curso", curso_obtenido);
-		model.put("examenes", examenes);
-		model.put("nota_final", puntajeFinal);
-		model.put("nota_examen", nota_examen );
-	//	model.put("examen", examen);
-	//	System.out.println(examenes);
-
-        
 		
-	
-		return new ModelAndView("vistaExamen", model);
-	//	return new ModelAndView("vistaExamenFinalizado", model);
-	}
-	
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 
 
 }
