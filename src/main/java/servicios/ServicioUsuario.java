@@ -70,4 +70,6 @@ public interface ServicioUsuario {
 	void enviarPuntos(Usuario usuario1, Usuario usuario2, Integer puntos);
 
 	void verificarUsuario(Usuario usuario);
+
+	void enviarNotificacion(Usuario usuario, String msj);
 }
