@@ -198,6 +198,8 @@ public class ControladorCursos {
 		List<Unidad> unidades = servicioCurso.obtenerUnidades(curso_obtenido);
     	Examen examen = servicioCurso.obtenerExamenPorCurso(curso_obtenido);
 		
+    	
+    	
 		model.put("cursoUsuario", usuarioCurso);
 		model.put("unidades", unidades);
 		model.put("examen", examen);
@@ -382,6 +384,8 @@ public class ControladorCursos {
 		    	//Aprobado
 		    	System.out.println("ENTRASTE ACA A LA PARTE CUANDO YA HICISTE CUATRO VECES O MAS A EL EXAMEN");
 		    	  if(servicioUsuario.aproboExamenUsuario(notaSacada) == true) {
+		    		  
+		    		    servicioCurso.actualizarExamenAaprobado(examen);
 		
 			    	    model.put("msj", "El examen se aprobo, pero no ganas puntos");
 			    		model.put("notaSacada", notaSacada);
@@ -414,7 +418,9 @@ public class ControladorCursos {
 			    		//El camino verdadero
 						//Si aprobas entre la primera ves  y la tercera te dan los puntos dependiendo la  nota de aprobado 10 = 500, 9 =400, etc 
 		    		 
-		    		     servicioGiftcard.sumarPuntos(giftcard);
+		    		    int puntosObtenidos = servicioGiftcard.sumarPuntos(giftcard,notaSacada); //Modificar 
+		    		     
+		    		     servicioCurso.actualizarExamenAaprobado(examen);
 		    		     
 		    		     usuario = servicioUsuario.buscarUsuarioPorID(id_user);
 		    		     giftcard = usuario.getGiftcard();
@@ -422,7 +428,7 @@ public class ControladorCursos {
 			    
 			    	    model.put("msj", "El examen se aprobo y ganaste puntos");
 			    		model.put("notaSacada", notaSacada);
-			    		model.put("puntos", giftcard.getMisPuntos());
+			    		model.put("puntos", puntosObtenidos);
 			    		model.put("curso", curso_obtenido);
 			    		view="vistaExamenFinalizado";
 			    	 

@@ -57,21 +57,61 @@ public class ServicioGiftcardImpl implements ServicioGiftcard {
 	}
 
 	@Override
-	public void sumarPuntos(Giftcard giftcard) {
+	public int sumarPuntos(Giftcard giftcard,int notaSacada) {
 
-		Integer puntos = giftcard.getMisPuntos();
+		Integer puntosDeLaGiftCard = giftcard.getMisPuntos();
 		Double saldoActual = giftcard.getSaldoActual();
+		Integer puntos = 0;
+		Double saldo = 0.0;
+		System.out.println("ACA MIRA EL SALDO QUE TENIAS: ");
+		System.out.println(saldoActual);
 
-		puntos += 1250;
-
-		Double saldo = (double) (puntos / 10);
-
-		saldoActual = saldo;
-
-		giftcard.setMisPuntos(puntos);
+		if(notaSacada >= 7 && notaSacada <= 8) {
+			
+			puntos += 1100;
+			
+			puntosDeLaGiftCard += puntos;
+			
+			 saldo = (double) (puntos / 10);
+			
+			System.out.println("ACA MIRA lo que conseguiste de saldo ");
+			System.out.println(saldo);
+			
+			saldoActual += saldo;
+		}  
+		if (notaSacada == 9 ) {
+			
+	        puntos += 1200;
+			
+	        puntosDeLaGiftCard += puntos;
+	        
+		    saldo = (double) (puntos / 10);
+			
+			saldoActual += saldo;
+		} 
+		else if(notaSacada == 10) {
+			
+			puntos += 1300;
+			
+			puntosDeLaGiftCard += puntos;
+				
+			 saldo = (double) (puntos / 10);
+			
+			System.out.println("ACA MIRA lo que conseguiste de saldo ");
+			System.out.println(saldo);
+				
+			saldoActual += saldo;
+		}
+		
+		System.out.println("ACA MIRA EL SALDO ACTUAL: ");
+		System.out.println(saldoActual);
+		
+		giftcard.setMisPuntos(puntosDeLaGiftCard);
 		giftcard.setSaldoActual(saldoActual);
 
 		repositorioGiftcard.actualizarGiftcard(giftcard);
+		
+		return puntos;
 	}
 
 	@Override

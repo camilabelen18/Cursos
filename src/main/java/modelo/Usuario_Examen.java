@@ -37,7 +37,6 @@ public class Usuario_Examen {
 	private LocalDate fecha_finalizacion_examen;
 	private LocalTime hora_finalizacion_examen;
 	
-	
 	public Usuario_Examen() {
 		
 	}
@@ -101,7 +100,12 @@ public class Usuario_Examen {
 				+ puntaje_final + ", fecha_finalizacion_examen=" + fecha_finalizacion_examen
 				+ ", hora_finalizacion_examen=" + hora_finalizacion_examen + "]";
 	}
+	
+	
 
+
+	
+	
 	
 	
 	

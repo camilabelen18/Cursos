@@ -272,7 +272,9 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario{
 									 .add(Restrictions.eq("examen", examen))
 									 .setMaxResults(1).uniqueResult();
 		
+		
 		return usuarioExamen;
+		
 	}
 
 	@Override
@@ -337,10 +339,8 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario{
 											 .add(Restrictions.eq("examen", examen)) 
 											 .list();
 		if(usuario_examenes != null) { 
-			for (int i = 0; i < usuario_examenes.size(); i++) {
-				if(i>=3) {
-					return true;
-				}
+			if(usuario_examenes.size() > 3) { 
+				return true;
 			}
 			
 		}
@@ -369,6 +369,7 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario{
 		return usuario_examenes;
 
 	}
+
 
 
 

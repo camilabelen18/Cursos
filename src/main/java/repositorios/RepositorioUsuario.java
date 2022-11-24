@@ -54,4 +54,6 @@ public interface RepositorioUsuario {
 
 	void verificarFechaDeExamen(Usuario_Examen usuarioExamen);
 
+	
+
 }
