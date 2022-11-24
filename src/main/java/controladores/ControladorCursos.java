@@ -296,6 +296,7 @@ public class ControladorCursos {
 	    	//Busco a el usuario que realizo el examen para despues agregarlo a la lista de usuario_examen y ponerle su puntaje y la hora en que lo realizo 
 			int id_user = Integer.parseInt(session.getAttribute("idUsuario").toString());
 		    Usuario usuario = servicioUsuario.buscarUsuarioPorID(id_user);
+		    Usuario_Curso usuarioCurso = servicioUsuario.obtenerUsuarioCurso(curso_obtenido, usuario);
 		    //Obtengo el examen que hizo el usuario 
 		    Usuario_Examen usuarioExamen = servicioUsuario.obtenerExamenUsuario(examen,usuario);
 	        //Obtenemos una lista de preguntas del examen 
@@ -313,7 +314,7 @@ public class ControladorCursos {
 	        examen = servicioCurso.obtenerExamenPorCurso(curso_obtenido );
 
 	        //Valida si el curso esta terminado
-			if (curso_obtenido.getCursoTerminado() == false) {
+			if (usuarioCurso.getCursoTerminado() == false) {
 				
 				model.put("curso", curso_obtenido);
 				model.put("unidades", unidades);
