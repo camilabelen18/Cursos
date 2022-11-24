@@ -45,7 +45,7 @@
 			</div>
 		</div>
 		<div class="envioPuntosForm">
-			<form:form action="puntosEnviados" method="POST">
+			<form:form action="puntosEnviados" method="POST" onsubmit = "return validar()">
 				<label for="email">Direccion de correo electronico del
 					usuario a enviar puntos</label>
 				<input path="email" type="email" id="email" name="email" />
