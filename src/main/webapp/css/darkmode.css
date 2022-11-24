@@ -55,12 +55,20 @@
 	color: white;
 }
 
-#cont-header, #cont-contacto, #contMiGiftcard-2 {
+#cont-header, #cont-contacto, #contMiGiftcard-2, #contenedor2 {
 	background-color: transparent;
 }
 
 body.dark .giftcardNum {
 	color: black;
+}
+
+body.dark #titulo a {
+	color: white;
+}
+
+body.dark #marcarUnidad a {
+	color: white;
 }
 
 body.dark .contenido-menu p {

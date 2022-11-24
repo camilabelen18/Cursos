@@ -32,7 +32,7 @@
 		</div>
 
 		<%--Caja contenedora principal --%>
-		<div class="contenedor2">
+		<div class="contenedor2" id="contenedor2">
 
 			<form action="verificarCompra" method="post">
 
