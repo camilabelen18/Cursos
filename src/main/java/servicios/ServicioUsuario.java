@@ -66,4 +66,8 @@ public interface ServicioUsuario {
 	List<Usuario_Examen> obtenerExamenesDelUsuario(Usuario usuario,Examen examen);
 
 	void verificarFechaDeExamen(Usuario_Examen usuarioExamen);
+
+	void enviarPuntos(Usuario usuario1, Usuario usuario2, Integer puntos);
+
+	void verificarUsuario(Usuario usuario);
 }

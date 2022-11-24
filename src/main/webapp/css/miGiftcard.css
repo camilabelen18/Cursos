@@ -1,5 +1,36 @@
 
 /* MI GIFTCARD */
+.envioPuntosForm{
+	width: 30%;
+	margin: auto;
+	margin-top: 60px;
+	margin-bottom: 150px;
+}
+
+input[type="email"], input[type="number"] {
+    width: 100%;
+    padding: 6px;
+    display: block;
+    box-sizing: border-box;
+    border: 2px solid #cecece;
+    border-radius: 5px;
+    color: #404040;
+    font-size: 16px;
+    font-weight: normal;
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+
+input[type="submit"] {
+    display: block;
+    float: right;
+}
+
+.msjerror {
+    color: crimson;
+    margin-top: 20px;
+}
+
 .tituloGiftcard {
 	width: 800px;
 	margin: auto;
@@ -80,3 +111,5 @@
 	background-color: #63c654;
     color: white;
 }
+
+
