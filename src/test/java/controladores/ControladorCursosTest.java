@@ -319,9 +319,10 @@ public class ControladorCursosTest {
 				.isEqualTo("Para completar el curso debe estar completado en un 50% o mas.");
 	}
 
-	/*
+	
 	@Test
 	public void testQueSePuedaVerUnExamen() {
+		
 		// Preparacion
 		Respuesta respuesta_1 = new Respuesta("Si", true);
 		Respuesta respuesta_2 = new Respuesta("no", false);
@@ -401,27 +402,25 @@ public class ControladorCursosTest {
 			datosExamen.getDatosPregunta().add(datosPregunta);
 		}
 
-	//	System.out.println(datosExamen);
-
 		// Ejecucion
 		when(servicioCurso.buscarCursoPorId(curso.getId())).thenReturn(curso);
+		when(session.getAttribute("idUsuario")).thenReturn(1);
+		when(servicioCurso.obtenerUnidades(curso)).thenReturn(unidadesDelCurso);
 		when(servicioCurso.obtenerExamenPorCurso(curso)).thenReturn(examen);
+		when(servicioUsuario.buscarUsuarioPorID(1)).thenReturn(usuario);
 		when(servicioCurso.guardarPreguntasEnDatosExamen(preguntasAlAzar)).thenReturn(datosExamen);
 		when(servicioCurso.obtenerPreguntasDelExamen(examen)).thenReturn(preguntas);
 		when(servicioUsuario.obtenerUsuarioCurso(curso, usuario)).thenReturn(usuarioCurso);
 		when(servicioCurso.PreguntasAzar(preguntasAlAzar)).thenReturn(preguntasAlAzar);
-		when(session.getAttribute("idUsuario")).thenReturn(1);
 		ModelAndView mav = controladorCursos.examen(curso.getId(), session);
 
-	
-      // System.out.println((DatosExamen)  mav.getModel().get("datosExamen"));
 		// Comprobacion
 		assertThat(mav.getModel().get("curso")).isEqualTo(curso);
-	//	assertThat(mav.getModel().get("datosExamen")).isEqualTo(datosExamen);
+		//assertThat(mav.getModel().get("datosExamen")).isEqualTo(datosExamen);
 		assertThat(mav.getViewName()).isEqualTo("vistaExamen");
-	}*/
+	}
 
-	/*
+	
 	  @Test public void testFinalizarExamen() {
 	  
 	  //Preparacion 
@@ -449,6 +448,8 @@ public class ControladorCursosTest {
 			Giftcard giftCard = new Giftcard(555, 1250, 0.0);
 			Usuario usuario = new Usuario("juan", "hola@hola.com", "123", "Cliente");
 			usuario.setGiftcard(giftCard);
+			
+			Usuario_Examen usuarioExamen = new Usuario_Examen(usuario, examen);
 
 			DatosExamen datosExamen = new DatosExamen();
 
@@ -474,20 +475,23 @@ public class ControladorCursosTest {
 			listaRobtenida.add(respuesta_1);
 			
 			//El puntaje o la nota que saco el usuario al hacer el examen 
-		 int	 notaSacada = 10;
+		    int notaSacada = 10;
 
 	           
 	         //  System.out.println("Mira aca : ");
 	         //  System.out.println(usuario.getGiftcard());
 	  
 	  //Ejecucion
+		    when(servicioCurso.buscarCursoPorId(1)).thenReturn(curso);
+			when(session.getAttribute("idUsuario")).thenReturn(1);
+			when(servicioUsuario.buscarUsuarioPorID(usuario.getId())).thenReturn(usuario);
+			when(servicioCurso.obtenerExamenPorCurso(curso)).thenReturn(examen);
 			when(servicioCurso.obtenerRespuestas(listaDp)).thenReturn(listaRobtenida);
 			when(servicioUsuario.sumarNota(listaRobtenida)).thenReturn(notaSacada);
-			when(servicioUsuario.buscarUsuarioPorID(usuario.getId())).thenReturn(usuario);
+			when(servicioUsuario.obtenerExamenUsuario(examen, usuario)).thenReturn(usuarioExamen);
 			when(servicioUsuario.verificarSiHizoElExamenCuatroVecesOmas(usuario,examen)).thenReturn(false);
-		//	when(servicioGiftcard.sumarPuntos(usuario.getGiftcard())).thenReturn(giftCard);
-			when(session.getAttribute("idUsuario")).thenReturn(1);
-			ModelAndView mav = controladorCursos.finalizarExamen(curso.getId(), datosExamen, session);
+			when(servicioUsuario.aproboExamenUsuario(notaSacada)).thenReturn(true);
+			/*ModelAndView mav = controladorCursos.finalizarExamen(curso.getId(), datosExamen, session);
 	  
 	  
 	  //Comprobacion
@@ -496,8 +500,8 @@ public class ControladorCursosTest {
 			assertThat(mav.getModel().get("curso")).isEqualTo(curso);
 			assertThat(mav.getModel().get("puntos")).isEqualTo(usuario.getGiftcard().getMisPuntos());
 	 
-			assertThat(mav.getViewName()).isEqualTo("vistaExamenFinalizado"); 
-	  }*/
+			assertThat(mav.getViewName()).isEqualTo("vistaExamenFinalizado"); */
+	  }
 	  
 	  @Test 
 	  public void queSePuedaVerElHistorialDeExamen() {
@@ -537,9 +541,6 @@ public class ControladorCursosTest {
 			when(session.getAttribute("idUsuario")).thenReturn(1);
 			ModelAndView mav = controladorCursos.historialExamen(curso.getId(), session);
 		//Comprobacion
-			System.out.println("ACA MIRA ");
-			System.out.println(curso);
-			System.out.println(usuarioExamenes);
 			
 			//assertThat(mav.getModel().get("curso")).isEqualTo(curso);
 			//assertThat(mav.getModel().get("usuarioExamenes")).isEqualTo(usuarioExamenes);
