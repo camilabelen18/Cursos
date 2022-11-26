@@ -6,14 +6,6 @@
 	margin-bottom: 100px;
 }
 
-#msj_error_curso {
-	text-align : center;
-	margin-top: 100px;
-	margin-bottom: 200px;
-	font-size: 20px;
-	font-weight:bold; 
-}
-
 /* FILTRO */
 #contenedorFiltros{
 	display: flex;
@@ -69,15 +61,6 @@
 	background-color: #f2f2f2;
 }
 
-/* MENSAJES DE ERROR */
-.msj_error {
-	background-color: #fff0c9;
-	padding: 20px;
-	font-size: 16px;
-	color: #444444;
-	border: 2px solid #fed054;
-	border-radius: 5px;
-}
 
 /* AGREGAR CURSO (SOLO ADMIN */
 #contAgregarCurso{
@@ -140,6 +123,15 @@
 	text-align: right;
 	font-size: 20px;
 	color: #3c3b37;
+}
+
+/* MENSAJES */
+#sin_curso {
+	text-align : center;
+	margin-top: 100px;
+	margin-bottom: 200px;
+	font-size: 20px;
+	font-weight:bold; 
 }
 
 /*------------------------------------------RESPONSIVE----------------------------------*/

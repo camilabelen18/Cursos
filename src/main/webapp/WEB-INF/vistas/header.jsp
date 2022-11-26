@@ -40,7 +40,7 @@
 
 			<div class="menuCuentaUsuario">
 				<img id="fotoUsuario" src='uploads/<%=session.getAttribute("imgUsuario")%>'>
-				<div class="contenido-menu">
+				<div class="contenido-menu" id="contenidoMenuUsuario">
 					<div class="fotoNombreUsuario">
 						<img id="fotoGrandeUsuario" src='uploads/<%=session.getAttribute("imgUsuario")%>'>
 						<p><%=session.getAttribute("nombreUsuario")%></p>
@@ -53,7 +53,10 @@
 			</div>
 
 			<div class="menuNotificaciones">
+
 				<i class="fa-solid fa-bell" id="notificacion"></i>
+				<i class="fa-solid fa-circle" id="circulo"></i>
+				
 				<div class="contenido-menu">
 					<!-- No hay notificaciones nuevas -->
 					<!-- Mostrar una lista de notificaciones primero las nuevas abajo las leidas -->
@@ -63,21 +66,53 @@
 					<hr>
 					<c:if test="${not empty notificaciones}">
 					
-						<c:forEach var="nota" items="${notificaciones}">
-							<div class="mensajes">
-								<p>${nota.mensaje}</p>
-								<a href="eliminarNotificacion?idNotif=${nota.id}">
-									<i class="fa-solid fa-circle-xmark"></i>
-								</a>
-							</div>
+						<c:forEach var="usuarioNotificacion" items="${notificaciones}">
+						
+							<c:if test="${usuarioNotificacion.notificacionQuitada == false}">
+							
+								<!-- Si la notificacion esta leida -->
+								<c:if test="${usuarioNotificacion.notificacionLeida == true}">
+									<div class="mensajes">
+										<p>${usuarioNotificacion.notificacion.mensaje}</p>
+										<a href="quitarNotificacion?idNotif=${usuarioNotificacion.notificacion.id}">
+											<i class="fa-solid fa-circle-xmark" title="Eliminar" id="eliminar"></i>
+										</a>
+									</div>
+								</c:if>
+								
+								<!-- Si la notificacion no esta leida -->
+								<c:if test="${usuarioNotificacion.notificacionLeida == false}">
+									<div class="mensajesNoLeidos">
+										<p>${usuarioNotificacion.notificacion.mensaje}</p>
+										<a href="marcarNotificacionLeida?idNotif=${usuarioNotificacion.notificacion.id}">
+											<i class="fa-solid fa-circle-check" title="Marcar como leída" id="marcarComoLeida"></i>
+										</a>
+										<a href="quitarNotificacion?idNotif=${usuarioNotificacion.notificacion.id}">
+											<i class="fa-solid fa-circle-xmark" title="Eliminar" id="eliminar"></i>
+										</a>
+									</div>
+								</c:if>
+							</c:if>
 						</c:forEach>
-					</c:if>
+						
+						<c:forEach var="usuarioNotificacion" items="${notificaciones}">
+							<c:if test="${usuarioNotificacion.notificacionQuitada == false}">
+							</c:if>
+						</c:forEach>
+						
+					</c:if>					
 					
 					<c:if test="${empty notificaciones}">
 						<div class="mensajes">
 							<p>No hay notificaciones.</p>
 						</div>
 					</c:if>
+					
+					<hr>
+					
+					<a href="verNotificaciones" id="verNotificaciones">
+						Ver más notificaciones
+					</a>
 				</div>
 			</div>
 		</c:if>

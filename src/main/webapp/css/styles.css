@@ -7,6 +7,8 @@ Colores clave:
 gris oscuro: #3c3b37
 
 celeste: #37B9CB
+
+azul oscuro: #0D1721
 */
 
 /* GENERAL */
@@ -121,6 +123,14 @@ input[type="submit"]:hover {
 	color: black;
 }
 
+#circulo {
+	position: relative;
+	color: red;
+	font-size: 10px;
+	bottom: 14px;
+	right: 14px;
+}
+
 .menuCuentaUsuario, .menuNotificaciones {
 	display: inline-block;
 	position: relative;
@@ -147,6 +157,7 @@ input[type="submit"]:hover {
 	cursor: pointer;
 }
 
+
 .menuNotificaciones:hover .contenido-menu {
 	display: block;
 	cursor: pointer;
@@ -159,32 +170,32 @@ input[type="submit"]:hover {
     text-decoration: none;
 }
 
-.contenido-menu a:hover {
-	background-color: #f2f2f2;
+#contenidoMenuUsuario a:hover {
+	background-color: #e0e0e0;
 }
 
 .contenido-menu h3 {
 	padding: 15px 20px;
 }
 
-.mensajes {
+.mensajes, .mensajesNoLeidos {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
 	padding: 15px 20px;
 }
 
-.mensajes a {
+.mensajes a, .mensajesNoLeidos a {
 	display: inline;
 	padding: 0px;
 }
 
-.mensajes i {
+.mensajes i, .mensajesNoLeidos i {
 	color: #3c3b37;
 }
 
-.mensajes:hover {
-	background-color: #f2f2f2;
+.mensajesNoLeidos {
+	background-color: #dbdbdb;
 }
 
 .fotoNombreUsuario {
@@ -205,6 +216,21 @@ input[type="submit"]:hover {
 	width: 80px;
 	height: 80px;
 	border-radius: 50%;
+}
+
+#eliminar {
+	padding-left: 10px;
+	color: #de1f1f;
+}
+
+#marcarComoLeida {
+	padding-left: 10px;
+	color: #1F85DE;
+}
+
+#verNotificaciones {
+	color: #37B9CB;
+	font-weight: bold;
 }
 
 /* NAVBAR */
@@ -281,4 +307,21 @@ nav a:hover {
     align-items: center;
     justify-content: center;
     color: lightgray;
+}
+
+/* MENSAJES */
+.msj_exito {
+	background-color: #52b375;
+	padding: 20px;
+	font-size: 16px;
+	color: white;
+	border-radius: 0.375rem;
+}
+
+.msj_error {
+	background-color: #e53d4c;
+	padding: 20px;
+	font-size: 16px;
+	color: white;
+	border-radius: 0.375rem;
 }

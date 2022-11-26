@@ -1,0 +1,28 @@
+
+/* SECCION HISTORIAL NOTIFICACIONES */
+.cont-seccion-notificaciones {
+	width: 60%;
+	margin: auto;
+	margin-bottom: 100px;
+}
+
+/* Titulo */
+#titulo {
+    margin: 100px 0px;
+    border-bottom: 2px solid #c7c7c7;
+}
+
+/* LISTA DE NOTIFICACIONES */
+.cuadro-notificacion {
+	display: flex;
+	padding: 20px;
+	justify-content: space-between;
+	border-bottom: 2px solid #c7c7c7;
+}
+
+/* MENSAJES */
+#sin_notificaciones {
+	margin-bottom: 150px;
+	font-size: 20px;
+	font-weight:bold; 
+}
