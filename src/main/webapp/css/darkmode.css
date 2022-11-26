@@ -51,6 +51,10 @@
 	color: white;
 }
 
+/* .dark div .cuadro-notificacion:hover{
+	color: black;
+} */
+
 .dark h1, .dark p, .dark #login a, .dark #contenido-curso a, .dark #logoCurso, .dark #notificacion, .dark #carrito {
 	color: white;
 }

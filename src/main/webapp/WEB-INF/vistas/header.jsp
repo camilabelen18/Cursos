@@ -1,9 +1,21 @@
+<%@ page import="modelo.*" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.util.*" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!-- Se obtiene la lista de notificaciones de la sesion -->
-<% pageContext.setAttribute("notificaciones", session.getAttribute("notificaciones")); %>
+<% pageContext.setAttribute("notificaciones", session.getAttribute("notificaciones"));
+/* pageContext.setAttribute("notificacionesLeidas", 2);
+
+List<Usuario_Notificacion> lista = (List<Usuario_Notificacion>)session.getAttribute("notificaciones");
+int notificacionesLeidas = 0;
+for(int i = 0; i< lista.size(); i++){
+	if(lista.get(i).getNotificacionLeida()==false){
+		notificacionesLeidas = 1;
+		break;
+	}
+} */
+%>
 
 <header>
 	<div class="cont-1-header" id="cont-header">
@@ -18,7 +30,8 @@
 		<%--Buscador --%>
 		<div id="barra_busqueda">
 			<form action="buscar">
-				<input type="search" placeholder="Buscar curso" aria-label="Search" id="nombreCurso" name="nombreCurso">
+				<input type="search" placeholder="Buscar curso..." aria-label="Search" id="nombreCurso" name="nombreCurso">
+				<i class="fa-solid fa-magnifying-glass" id="lupa"></i>
 			</form>
 		</div>
 
@@ -53,9 +66,10 @@
 			</div>
 
 			<div class="menuNotificaciones">
+			
 
-				<i class="fa-solid fa-bell" id="notificacion"></i>
-				<i class="fa-solid fa-circle" id="circulo"></i>
+			<i class="fa-solid fa-bell" id="notificacion"></i>	
+			<i class="fa-solid fa-circle" id="circulo"></i>
 				
 				<div class="contenido-menu">
 					<!-- No hay notificaciones nuevas -->
@@ -78,18 +92,22 @@
 											<i class="fa-solid fa-circle-xmark" title="Eliminar" id="eliminar"></i>
 										</a>
 									</div>
+									<i class="fa-solid fa-bell" id="notificacion"></i>
 								</c:if>
 								
 								<!-- Si la notificacion no esta leida -->
 								<c:if test="${usuarioNotificacion.notificacionLeida == false}">
 									<div class="mensajesNoLeidos">
 										<p>${usuarioNotificacion.notificacion.mensaje}</p>
-										<a href="marcarNotificacionLeida?idNotif=${usuarioNotificacion.notificacion.id}">
-											<i class="fa-solid fa-circle-check" title="Marcar como leída" id="marcarComoLeida"></i>
-										</a>
+										<div class="iconosNotificacion">
 										<a href="quitarNotificacion?idNotif=${usuarioNotificacion.notificacion.id}">
 											<i class="fa-solid fa-circle-xmark" title="Eliminar" id="eliminar"></i>
 										</a>
+										<a href="marcarNotificacionLeida?idNotif=${usuarioNotificacion.notificacion.id}">
+											<i class="fa-solid fa-circle-check" title="Marcar como leída" id="marcarComoLeida"></i>
+										</a>
+										</div>
+										
 									</div>
 								</c:if>
 							</c:if>

@@ -35,7 +35,7 @@
 					<div class="eliminar-notificacion">
 						<div>
 							<a href="eliminarNotificacion?idNotif=${usuarioNotificacion.notificacion.id}">
-								<i class="fa-solid fa-xmark"></i>
+								<i class="fa-solid fa-trash" id="trash" title="Eliminar definitivamente"></i>
 							</a>
 						</div>
 					</div>
