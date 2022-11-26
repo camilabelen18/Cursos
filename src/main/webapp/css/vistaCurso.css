@@ -148,14 +148,8 @@ input[type="submit"].btn-tipo-2:hover {
 }
 
 /* MENSAJES */
-.msj_progreso {
+.msj_error {
 	width: 80%;
 	margin: auto;
 	margin-bottom: 20px;
-	background-color: #fff0c9;
-	padding: 20px;
-	font-size: 16px;
-	color: #444444;
-	border: 2px solid #fed054;
-	border-radius: 5px;
 }

@@ -13,7 +13,7 @@ public class Notificacion {
 	
 	@Column(name = "Mensaje")
 	private String mensaje;
-
+	
 	public Notificacion(String mensaje) {
 		this.mensaje = mensaje;
 	}

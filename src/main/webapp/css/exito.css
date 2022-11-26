@@ -6,7 +6,7 @@
 	margin-left:300px;
 	margin-right: 300px;
 	margin-top: 150px;
-	margin-bottom: 150px;
+	margin-bottom: 56px;
 }
 
 h2{
@@ -15,4 +15,12 @@ h2{
 
 h4{
 	color: white;
+}
+
+#botonesCurso {
+	width: 400px;
+	margin: auto;
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 100px;
 }

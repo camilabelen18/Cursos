@@ -212,5 +212,39 @@ public class ControladorUsuarios {
 		
 		return new ModelAndView("redirect:/");
     }
+	
+	@RequestMapping(path ="/quitarNotificacion", method = RequestMethod.GET)
+    public ModelAndView quitarNotificacion(@RequestParam("idNotif") int idNotif, HttpSession sesion) {
+	
+		int id_user = Integer.parseInt(sesion.getAttribute("idUsuario").toString());
+		Usuario usuario = servicioUsuario.buscarUsuarioPorID(id_user);
+		Notificacion notificacion = servicioUsuario.obtenerNotificacionPorId(idNotif);
+		
+		Usuario_Notificacion usuarioNotificacion = servicioUsuario.obtenerNotificacionUsuario(usuario, notificacion);
+		
+		servicioUsuario.quitarNotificacion(usuarioNotificacion, usuario, sesion);
+		
+		return new ModelAndView("redirect:/");
+    }
+    
+	@RequestMapping(path ="/marcarNotificacionLeida", method = RequestMethod.GET)
+    public ModelAndView marcarNotificacionLeida(@RequestParam("idNotif") int idNotif, HttpSession sesion) {
+	
+		int id_user = Integer.parseInt(sesion.getAttribute("idUsuario").toString());
+		Usuario usuario = servicioUsuario.buscarUsuarioPorID(id_user);
+		Notificacion notificacion = servicioUsuario.obtenerNotificacionPorId(idNotif);
+		
+		Usuario_Notificacion usuarioNotificacion = servicioUsuario.obtenerNotificacionUsuario(usuario, notificacion);
+		
+		servicioUsuario.marcarNotificacionLeida(usuarioNotificacion, usuario, sesion);
+		
+		return new ModelAndView("redirect:/");
+    }
+    
+	@RequestMapping(path ="/verNotificaciones", method = RequestMethod.GET)
+    public ModelAndView verNotificaciones() {
+		
+		return new ModelAndView("historialNotificaciones");
+    }
 
 }

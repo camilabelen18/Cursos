@@ -60,13 +60,11 @@ public class ControladorCompra {
 				viewName = "verificacionCompra";
 			}
 			else {
-				model.addAttribute("cursoYaComprado", "El curso ya fue comprado, compre otro curso.");
-				viewName = "redirect:/verListaCursos";
-				//servicioNotificacion.enviar(usuario, "El curso ya fue comprado, compre otro curso.");
-			}
+				model.addAttribute("msj_error", "El curso ya fue comprado, compre otro curso.");
+				viewName = "redirect:/verListaCursos";			}
 		}
 		else {
-			model.addAttribute("error_sesion", "Para comprar necesitas ingresar a tu cuenta.");
+			model.addAttribute("msj_error", "Para comprar necesitas ingresar a tu cuenta.");
 			viewName = "redirect:/verListaCursos";
 		}
 		
@@ -127,14 +125,14 @@ public class ControladorCompra {
 				// Si no se puedo cancelar el curso, se lanza una excepcion
 				servicioUsuario.cancelarCurso(curso_obtenido, usuarioCurso);
 				
-				model.put("msj", "La compra fue cancelada con exito!");
+				model.put("msj_exito", "La compra fue cancelada con exito!");
 			}
 			catch (Exception e) {
-				model.put("msj", "La compra no puede ser cancelada luego de 48 horas");
+				model.put("msj_error", "La compra no puede ser cancelada luego de 48 horas");
 			}
 		}
 		else {
-			model.put("msj", "Curso no encontrado...");
+			model.put("msj_error", "Curso no encontrado...");
 			
 		}
 		
@@ -153,10 +151,10 @@ public class ControladorCompra {
 		if(servicioUsuario.existeCursoEnListaUsuario(idCurso, usuario)) {
 			
 			servicioUsuario.eliminarCurso(curso_obtenido, usuario);
-			model.put("msj", "El curso '" + curso_obtenido.getNombre() + "' fue eliminado con exito!");
+			model.put("msj_exito", "El curso '" + curso_obtenido.getNombre() + "' fue eliminado con exito!");
 		}
 		else {
-			model.put("msj", "Curso no encontrado...");
+			model.put("msj_error", "Curso no encontrado...");
 		}
 		
 		return new ModelAndView("redirect:/misCursos", model);

@@ -34,7 +34,7 @@ public interface RepositorioUsuario {
 
 	void actualizarCursoDelUsuario(Usuario_Curso usuarioCurso);
 
-	List<Notificacion> obtenerNotificaciones(Usuario usuario);
+	List<Usuario_Notificacion> obtenerNotificaciones(Usuario usuario);
 
 	void guardarNotificacionDelUsuario(Notificacion noti, Usuario usuario);
 
@@ -53,5 +53,11 @@ public interface RepositorioUsuario {
 	List<Usuario_Examen> obtenerExamenesDelUsuario(Usuario usuario,Examen examen);
 
 	void verificarFechaDeExamen(Usuario_Examen usuarioExamen);
+
+	void quitarNotificacion(Usuario_Notificacion usuarioNotificacion);
+
+	Usuario_Notificacion obtenerNotificacionUsuario(Usuario usuario, Notificacion notificacion);
+
+	void marcarNotificacionLeida(Usuario_Notificacion usuarioNotificacion);
 
 }

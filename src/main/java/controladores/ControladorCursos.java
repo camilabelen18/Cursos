@@ -46,7 +46,7 @@ public class ControladorCursos {
 		
 		// Si la lista se encuantra vacia entonces se guarda un mensaje iformativo
 		if(busqueda_cursos.isEmpty()) {
-			model.put("sincurso", "No existen cursos, vuelva a ingresar el nombre en la barra de busqueda");
+			model.put("sin_curso", "No existen cursos, vuelva a ingresar el nombre en la barra de busqueda");
 		}
 		
 		model.put("lista_cursos", busqueda_cursos);
@@ -55,7 +55,7 @@ public class ControladorCursos {
 	}
 	
 	@RequestMapping(path="/misCursos", method= RequestMethod.GET)
-	public ModelAndView misCursos(HttpSession session, @ModelAttribute("msj") String msj) {
+	public ModelAndView misCursos(@ModelAttribute("msj_exito") String msj_exito, @ModelAttribute("msj_error") String msj_error, HttpSession session) {
 		
 		ModelMap model = new ModelMap();
 		
@@ -66,22 +66,23 @@ public class ControladorCursos {
 		List<Usuario_Curso> cursos = servicioUsuario.obtenerCursosDelUsuario(usuario);
 		
 		model.put("lista_cursos", cursos);
-		model.put("msj", msj);
+		model.put("msj_exito", msj_exito);
+		model.put("msj_error", msj_error);
 		
 		return new ModelAndView("miscursos", model);
 	}
 	
 	// Se obtienen todos los registros de la tabla 'curso' de la bd
 	@RequestMapping(path= "/verListaCursos", method= RequestMethod.GET)
-	public ModelAndView verListaCursos(@ModelAttribute("error_sesion") String msj_sesion, @ModelAttribute("cursoYaComprado") String msj_curso, HttpSession session) {
+	public ModelAndView verListaCursos(@ModelAttribute("msj_exito") String msj_exito, @ModelAttribute("msj_error") String msj_error, HttpSession session) {
 		
 		ModelMap model = new ModelMap();
 		List<Curso> cursos = servicioCurso.getCursos();
 		String view= "seccionCursos";
 		
 		model.put("lista_cursos", cursos);
-		model.put("msj_error_sesion", msj_sesion);
-		model.put("msj_error_curso", msj_curso);
+		model.put("msj_exito", msj_exito);
+		model.put("msj_error", msj_error);
 		
 		//Si el usuario no es nulo, y su rol es "admin", entonces se mostrara la seccion de cursos de administrador
 		if(session.getAttribute("idUsuario") != null) {
@@ -265,14 +266,14 @@ public class ControladorCursos {
 			if (usuarioCurso.getProgreso() >= 50.0) {
 				
 				servicioUsuario.finalizarCurso(usuarioCurso);
-				model.put("msj", "Felicidades! Completaste el curso: " + curso.getNombre());
+				model.put("msj_exito", "Felicidades! Completaste el curso: " + curso.getNombre());
 				view = "redirect:/misCursos";
 			}
 			else {
 				model.put("cursoUsuario", usuarioCurso);
 				model.put("unidades", unidades);
 				model.put("unidad", unidades.get(0));
-				model.put("msj_progreso", "Para completar el curso debe estar completado en un 50% o mas.");
+				model.put("msj_error", "Para completar el curso debe estar completado en un 50% o mas.");
 				view = "vistaCurso";
 			}
 		}
@@ -319,7 +320,7 @@ public class ControladorCursos {
 				model.put("curso", curso_obtenido);
 				model.put("unidades", unidades);
 				model.put("unidad", unidades.get(0));
-				model.put("msj_progreso", "Para hacer el examen el curso tiene que estar completado ");
+				model.put("msj_error", "Para hacer el examen el curso tiene que estar completado ");
 				view = "vistaCurso";
 
 			}
@@ -327,7 +328,7 @@ public class ControladorCursos {
 				     model.put("curso", curso_obtenido);
 					 model.put("unidades", unidades);
 					 model.put("unidad", unidades.get(0));
-					 model.put("msj_progreso", "El examen se habilitara en 3 minutos ");
+					 model.put("msj_error", "El examen se habilitara en 3 minutos ");
 					 model.put("examen", examen );
 					view = "vistaCurso";
 				

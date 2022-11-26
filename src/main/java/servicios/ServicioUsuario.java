@@ -45,7 +45,7 @@ public interface ServicioUsuario {
 
 	void enviarNotificacion(Usuario usuario, String msj, HttpSession session);
 	
-	List<Notificacion> obtenerNotificaciones(Usuario usuario);
+	List<Usuario_Notificacion> obtenerNotificaciones(Usuario usuario);
 
 	Notificacion obtenerNotificacionPorId(int idNotif);
 
@@ -72,4 +72,10 @@ public interface ServicioUsuario {
 	void verificarUsuario(Usuario usuario);
 
 	void enviarNotificacion(Usuario usuario, String msj);
+
+	void quitarNotificacion(Usuario_Notificacion usuarioNotificacion, Usuario usuario, HttpSession sesion);
+
+	Usuario_Notificacion obtenerNotificacionUsuario(Usuario usuario, Notificacion notificacion);
+
+	void marcarNotificacionLeida(Usuario_Notificacion usuarioNotificacion, Usuario usuario, HttpSession sesion);
 }

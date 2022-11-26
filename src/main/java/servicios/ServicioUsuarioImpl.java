@@ -21,6 +21,7 @@ import modelo.Unidad;
 import modelo.Usuario;
 import modelo.Usuario_Curso;
 import modelo.Usuario_Examen;
+import modelo.Usuario_Notificacion;
 import repositorios.RepositorioCarrito;
 import repositorios.RepositorioCurso;
 import repositorios.RepositorioGiftcard;
@@ -254,7 +255,7 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
 	}
 
 	@Override
-	public List<Notificacion> obtenerNotificaciones(Usuario usuario) {
+	public List<Usuario_Notificacion> obtenerNotificaciones(Usuario usuario) {
 
 		return repositorioUsuario.obtenerNotificaciones(usuario);
 	}
@@ -364,6 +365,24 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
 		Notificacion noti = new Notificacion(msj);
 		repositorioUsuario.guardarNotificacionDelUsuario(noti, usuario);
 		
+	}
+
+	@Override
+	public void quitarNotificacion(Usuario_Notificacion usuarioNotificacion, Usuario usuario, HttpSession sesion) {
+		
+		repositorioUsuario.quitarNotificacion(usuarioNotificacion);
+		sesion.setAttribute("notificaciones", repositorioUsuario.obtenerNotificaciones(usuario));
+	}
+
+	@Override
+	public Usuario_Notificacion obtenerNotificacionUsuario(Usuario usuario, Notificacion notificacion) {
+		return repositorioUsuario.obtenerNotificacionUsuario(usuario, notificacion);
+	}
+
+	@Override
+	public void marcarNotificacionLeida(Usuario_Notificacion usuarioNotificacion, Usuario usuario, HttpSession sesion) {
+		repositorioUsuario.marcarNotificacionLeida(usuarioNotificacion);
+		sesion.setAttribute("notificaciones", repositorioUsuario.obtenerNotificaciones(usuario));
 	}
 
 }

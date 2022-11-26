@@ -32,14 +32,12 @@
 			</div>
 		</div>
 		
-		<!-- Si se hace click en el boton comprar sin haber iniciado sesión, se muestra un mensaje de error -->
-		<c:if test="${not empty msj_error_sesion}">
-			<p class="msj_error">${msj_error_sesion}</p>
+		<c:if test="${not empty msj_error}">
+			<p class="msj_error">${msj_error}</p>
 		</c:if>
 		
-		<!-- Si el usuario quiere comprar un curso que ya compro entonces se muestra un mensaje de error -->
-		<c:if test="${not empty msj_error_curso}">
-			<p class="msj_error">${msj_error_curso}</p>
+		<c:if test="${not empty msj_exito}">
+			<p class="msj_exito">${msj_exito}</p>
 		</c:if>
 
 		<div class="listaSeccionCursos">
@@ -63,12 +61,6 @@
 		
 							<div class="cotenido-2-curso">
 								<p class="precioCurso">$ ${curso.precio}</p>
-								<!--  
-								<form action="comprar" method="get">
-									<input type="hidden" name="id_curso" value="${curso.id}">
-									<input type="hidden" name="precio" value="${curso.precio}">
-									<input type="submit" name="comprarAhora" value="Comprar">
-								</form>-->
 								<form action="verMediosDePago" method="POST">
 									<input type="hidden" name="id_curso" value="${curso.id}">
 									<input type="hidden" name="precio" value="${curso.precio}">
@@ -76,7 +68,6 @@
 								</form>
 							</div>
 						</div>
-						
 					</a>
 				</div>
 
@@ -84,8 +75,8 @@
 		</div>
 
 		<!-- Si al realizar la busqueda no se encontro ningun curso se muestra un mensaje de error -->
-		<c:if test="${not empty sincurso}">
-			<p id="msj_error_curso">${sincurso}</p>
+		<c:if test="${not empty sin_curso}">
+			<p id="sin_curso">${sin_curso}</p>
 		</c:if>
 		
 	</div>
