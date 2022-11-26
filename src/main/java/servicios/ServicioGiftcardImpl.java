@@ -13,7 +13,7 @@ import repositorios.*;
 @Service("servicioGiftcard")
 @Transactional
 public class ServicioGiftcardImpl implements ServicioGiftcard {
-	
+
 	private RepositorioGiftcard repositorioGiftcard;
 
 	@Autowired
@@ -23,64 +23,113 @@ public class ServicioGiftcardImpl implements ServicioGiftcard {
 
 	@Override
 	public Integer verificarTarjetaDeGiftcard(Giftcard giftcard, Integer nroTarjeta) {
-		
+
 		// Se valida el numero de tarjeta de la giftcard
 		if (nroTarjeta.equals(giftcard.getNumTarjeta())) {
-			
+
 			return nroTarjeta;
-		}
-		else {
+		} else {
 			throw new TarjetaInvalidaException();
 		}
 	}
 
 	@Override
 	public void verificarSaldoDeGiftcard(Giftcard giftcard, Curso curso) {
-		
+
 		Integer puntos = giftcard.getMisPuntos();
 		Double saldoActual = giftcard.getSaldoActual();
 		Double precioCurso = curso.getPrecio();
-		
+
 		// Se valida que el saldo actual de la gitcard sea mayor al precio del curso
 		if (saldoActual >= precioCurso) {
-			
+
 			puntos -= precioCurso.intValue() * 10;
-			
+
 			saldoActual = saldoActual - precioCurso;
-			
+
 			giftcard.setMisPuntos(puntos);
 			giftcard.setSaldoActual(saldoActual);
-			
+
 			repositorioGiftcard.actualizarGiftcard(giftcard);
-		}
-		else {
+		} else {
 			throw new SaldoInsuficienteException();
 		}
 	}
 
 	@Override
 	public void sumarPuntos(Giftcard giftcard) {
-		
+
 		Integer puntos = giftcard.getMisPuntos();
 		Double saldoActual = giftcard.getSaldoActual();
-		
+
 		puntos += 1250;
-		
+
 		Double saldo = (double) (puntos / 10);
-		
+
 		saldoActual = saldo;
-		
+
 		giftcard.setMisPuntos(puntos);
 		giftcard.setSaldoActual(saldoActual);
-		
+
 		repositorioGiftcard.actualizarGiftcard(giftcard);
 	}
 
-	/*
 	@Override
-	public Giftcard obtenerGiftcard(Usuario usuario) {
-		return repositorioGiftcard.obtenerGiftcard(usuario);
-	}*/
+	public void agregarPuntos(Giftcard giftcard, Integer puntos) {
+
+		Integer pv = giftcard.getMisPuntos();
+		Double saldoActual = giftcard.getSaldoActual();
+		pv += puntos;
+		
+		Double saldo = (double) (pv / 10);
+
+		saldoActual = saldo;
+
+		giftcard.setMisPuntos(pv);
+		giftcard.setSaldoActual(saldoActual);
+	}
+
+	@Override
+	public void descontarPuntos(Giftcard giftcard, Integer puntos) {
+
+		Integer pv = giftcard.getMisPuntos();
+		Double saldoActual = giftcard.getSaldoActual();
+		pv -= puntos;
+
+		Double saldo = (double) (pv / 10);
+
+		saldoActual = saldo;
+		giftcard.setMisPuntos(pv);
+		giftcard.setSaldoActual(saldoActual);
+	}
 	
+	@Override
+	public void enviarPuntos(Giftcard gc1, Giftcard gc2, Integer puntos) {
+		descontarPuntos(gc1, puntos);
+		agregarPuntos(gc2, puntos);
+		
+		repositorioGiftcard.actualizarGiftcard(gc1);
+		repositorioGiftcard.actualizarGiftcard(gc2);
+
+	}
+	@Override
+	public void verificarSaldoDeGiftcard(Giftcard giftcard, Integer puntos) {
+
+		Integer puntosActuales = giftcard.getMisPuntos();
+
+
+		// Se valida que el saldo actual de la gitcard sea mayor al precio del curso
+		if (puntosActuales >= puntos) {
+
+			
+		} else {
+			throw new PuntosInsuficientesException();
+		}
+	}
+
+	/*
+	 * @Override public Giftcard obtenerGiftcard(Usuario usuario) { return
+	 * repositorioGiftcard.obtenerGiftcard(usuario); }
+	 */
 
 }

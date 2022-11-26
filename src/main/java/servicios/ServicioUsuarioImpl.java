@@ -34,9 +34,10 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
 	private RepositorioCarrito repositorioCarrito;
 	private RepositorioCurso repositorioCurso;
 	private RepositorioGiftcard repositorioGiftcard;
-	
+
 	@Autowired
-	public ServicioUsuarioImpl(RepositorioUsuario repositorioUsuario, RepositorioCarrito repositorioCarrito, RepositorioCurso repositorioCurso, RepositorioGiftcard repositorioGiftcard) {
+	public ServicioUsuarioImpl(RepositorioUsuario repositorioUsuario, RepositorioCarrito repositorioCarrito,
+			RepositorioCurso repositorioCurso, RepositorioGiftcard repositorioGiftcard) {
 		this.repositorioUsuario = repositorioUsuario;
 		this.repositorioCarrito = repositorioCarrito;
 		this.repositorioCurso = repositorioCurso;
@@ -60,14 +61,13 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
 
 	@Override
 	public Usuario consultarUsuario(String email, String password) {
-		
+
 		Usuario usuarioObtenido = repositorioUsuario.buscarUsuario(email, password);
 
 		if (usuarioObtenido != null) {
 
 			return usuarioObtenido;
-		}
-		else {
+		} else {
 			throw new UsuarioInexistenteException();
 		}
 	}
@@ -78,7 +78,7 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
 		Usuario nuevoUsuario = new Usuario();
 		Carrito carrito = new Carrito();
 		Giftcard gift = new Giftcard(222, 0, 0.0);
-		
+
 		// Se comprueba si las contraseñas ingresadas son iguales
 		if (datosRegistro.getContrasenia().equals(datosRegistro.getRepetirContrasenia())) {
 
@@ -132,23 +132,23 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
 	public Boolean cancelarCurso(Curso curso_obtenido, Usuario_Curso usuarioCurso) {
 
 		if (repositorioUsuario.cancelarCurso(usuarioCurso) == true) {
-			
+
 			Usuario user = usuarioCurso.getUsuario();
 			Giftcard giftcard = user.getGiftcard();
-			
+
 			Double saldoActual = giftcard.getSaldoActual();
 			Integer puntosActuales = giftcard.getMisPuntos();
-			
+
 			saldoActual = saldoActual + curso_obtenido.getPrecio();
-			
+
 			Double puntos = curso_obtenido.getPrecio() * 10;
 			puntosActuales += puntos.intValue();
-	
+
 			giftcard.setSaldoActual(saldoActual);
 			giftcard.setMisPuntos(puntosActuales);
-			
+
 			repositorioGiftcard.actualizarGiftcard(giftcard);
-			
+
 			return true;
 		} else {
 			throw new CancelacionCursoException();
@@ -247,7 +247,7 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
 
 	@Override
 	public void enviarNotificacion(Usuario usuario, String msj, HttpSession session) {
-		
+
 		Notificacion noti = new Notificacion(msj);
 		repositorioUsuario.guardarNotificacionDelUsuario(noti, usuario);
 		session.setAttribute("notificaciones", repositorioUsuario.obtenerNotificaciones(usuario));
@@ -267,15 +267,15 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
 
 	@Override
 	public void eliminarNotificacion(Notificacion notificacion, Usuario usuario, HttpSession session) {
-		
+
 		repositorioUsuario.eliminarNotificacion(notificacion);
 		session.setAttribute("notificaciones", repositorioUsuario.obtenerNotificaciones(usuario));
 	}
 
 	@Override
 	public void guardarExamenDeUsuario(Usuario usuario, Examen examen, int notaSacada) {
-		repositorioUsuario.guardarExamenDeUsuario(examen, usuario,notaSacada);
-		
+		repositorioUsuario.guardarExamenDeUsuario(examen, usuario, notaSacada);
+
 	}
 
 	@Override
@@ -287,55 +287,83 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
 	public boolean aproboExamenUsuario(int notaSacada) {
 
 		boolean resultado = false;
-		
-		if(notaSacada > 6) {
-			resultado=true;
+
+		if (notaSacada > 6) {
+			resultado = true;
 		}
-		
 
 		return resultado;
 
 	}
 
 	@Override
-	public boolean cancelarExamen(Usuario_Examen usuarioExamen,Examen examen) {
-		
-     return repositorioUsuario.cancelarExamen(usuarioExamen,examen);
+	public boolean cancelarExamen(Usuario_Examen usuarioExamen, Examen examen) {
+
+		return repositorioUsuario.cancelarExamen(usuarioExamen, examen);
 	}
 
 	@Override
-	public boolean verificarSiHizoElExamenCuatroVecesOmas(Usuario usuario,Examen examen) {
-		
+	public boolean verificarSiHizoElExamenCuatroVecesOmas(Usuario usuario, Examen examen) {
+
 		return repositorioUsuario.verificarSiHizoElExamenCuatroVecesOmas(usuario, examen);
 	}
 
 	@Override
 	public int sumarNota(List<Respuesta> listaRobtenida) {
-       int puntajeFinal = 0;
-		
+		int puntajeFinal = 0;
+
 		for (Respuesta respuesta : listaRobtenida) {
-			if(respuesta.getRespuesta_correcta() == true) {
-				puntajeFinal +=2;
+			if (respuesta.getRespuesta_correcta() == true) {
+				puntajeFinal += 2;
 			}
 		}
-		
-		
+
 		return puntajeFinal;
 	}
 
 	@Override
-	public List<Usuario_Examen> obtenerExamenesDelUsuario(Usuario usuario,Examen examen) {
-		
-		return repositorioUsuario.obtenerExamenesDelUsuario(usuario,examen);
+	public List<Usuario_Examen> obtenerExamenesDelUsuario(Usuario usuario, Examen examen) {
+
+		return repositorioUsuario.obtenerExamenesDelUsuario(usuario, examen);
 	}
 
 	@Override
 	public void verificarFechaDeExamen(Usuario_Examen usuarioExamen) {
-		
-		 repositorioUsuario.verificarFechaDeExamen(usuarioExamen);
-		
+
+		repositorioUsuario.verificarFechaDeExamen(usuarioExamen);
+
 	}
 
+	@Override
+	public void enviarPuntos(Usuario usuario1, Usuario usuario2, Integer puntos) {
+		Giftcard gc1 = usuario1.getGiftcard();
+		Giftcard gc2 = usuario1.getGiftcard();
 
+		gc1.setMisPuntos(gc1.getMisPuntos() - puntos);
+		gc1.setMisPuntos(gc2.getMisPuntos() + puntos);
+
+		repositorioGiftcard.actualizarGiftcard(gc2);
+		repositorioGiftcard.actualizarGiftcard(gc1);
+		repositorioUsuario.actualizarUsuario(usuario1);
+		repositorioUsuario.actualizarUsuario(usuario2);
+	}
+
+	@Override
+	public void verificarUsuario(Usuario usuario) {
+		if (usuario != null) {
+
+		} else {
+			throw new UsuarioInexistenteException();
+		}
+
+	}
+	
+	@Override
+	public void enviarNotificacion(Usuario usuario, String msj) {
+
+		Notificacion noti = new Notificacion(msj);
+		repositorioUsuario.guardarNotificacionDelUsuario(noti, usuario);
+		
+	}
 
 }

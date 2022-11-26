@@ -1,5 +1,5 @@
 package servicios;
 
-public class UsuarioInexistenteException extends RuntimeException {
+public class UsuarioInexistenteException extends NullPointerException {
 
 }
