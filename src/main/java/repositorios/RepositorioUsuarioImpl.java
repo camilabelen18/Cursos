@@ -367,6 +367,7 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario{
 	public void quitarNotificacion(Usuario_Notificacion usuarioNotificacion) {
 
 		usuarioNotificacion.setNotificacionQuitada(true);
+		usuarioNotificacion.setNotificacionLeida(true);
 		sessionFactory.getCurrentSession().update(usuarioNotificacion);
 	}
 

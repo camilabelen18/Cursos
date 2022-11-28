@@ -27,7 +27,7 @@ a {
 }
 
 ::placeholder {
-	color: black;
+	color: #3c3b37;
 	font-size: 16px;
 	font-weight: normal;
 }
@@ -165,7 +165,7 @@ input[type="submit"]:hover {
 	width: 200px;
 	overflow: auto;
 	background-color: #f2f2f2;
-	border-radius: 20px;
+	border-radius: 10px;
 }
 
 .menuNotificaciones .contenido-menu {
