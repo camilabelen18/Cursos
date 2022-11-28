@@ -13,7 +13,8 @@
 	content="width=device-width, initial-scale=1, maximum-scale=1">
 <link rel="shortcut icon" href="imagenes/favicon.ico">
 <link rel="stylesheet" href="css/styles.css">
-<link rel="stylesheet" href="css/vistaExamen.css">
+<!-- <link rel="stylesheet" href="css/vistaExamen.css"> -->
+<link rel="stylesheet" href="css/vistaExamenFinalizado.css">
 <link rel="stylesheet" href="css/darkmode.css">
 </head>
 <body>
@@ -35,11 +36,16 @@
 					<h2 id="nota-examen">Nota de examen</h2>
 					<div id="total-examen">
 						<p>Nota: </p>
-						<p>${notaSacada }</p>
-						<p>Puntos : ${puntos } </p>
+						<p class="NotaNumero">${notaSacada }</p>
+						<p>Puntos obtenidos:</p>
+						<p class="NotaNumero"> ${puntos } </p>
 						<p>${msj } </p>
 				     </div>
-                </div>  
+				      <a href="misCursos">
+                <input type="submit" name="volverAtras" value="Volver" id="volverAtras"> 
+                </a> 
+                </div>
+               
                 </div>
       
 </div>
