@@ -63,10 +63,10 @@ public class ServicioGiftcardImpl implements ServicioGiftcard {
 		Double saldoActual = giftcard.getSaldoActual();
 		Integer puntos = 0;
 		Double saldo = 0.0;
-		System.out.println("ACA MIRA EL SALDO QUE TENIAS: ");
-		System.out.println(saldoActual);
+	//	System.out.println("ACA MIRA EL SALDO QUE TENIAS: ");
+	//	System.out.println(saldoActual);
 
-		if(notaSacada >= 7 && notaSacada <= 8) {
+		if(notaSacada >= 6 && notaSacada <= 7) {
 			
 			puntos += 1100;
 			
@@ -74,12 +74,12 @@ public class ServicioGiftcardImpl implements ServicioGiftcard {
 			
 			 saldo = (double) (puntos / 10);
 			
-			System.out.println("ACA MIRA lo que conseguiste de saldo ");
-			System.out.println(saldo);
+		//	System.out.println("ACA MIRA lo que conseguiste de saldo ");
+		//	System.out.println(saldo);
 			
 			saldoActual += saldo;
 		}  
-		if (notaSacada == 9 ) {
+		if (notaSacada == 8 ) {
 			
 	        puntos += 1200;
 			
@@ -89,7 +89,7 @@ public class ServicioGiftcardImpl implements ServicioGiftcard {
 			
 			saldoActual += saldo;
 		} 
-		else if(notaSacada == 10) {
+		else if(notaSacada >= 9 && notaSacada <= 10) {
 			
 			puntos += 1300;
 			
@@ -97,14 +97,14 @@ public class ServicioGiftcardImpl implements ServicioGiftcard {
 				
 			 saldo = (double) (puntos / 10);
 			
-			System.out.println("ACA MIRA lo que conseguiste de saldo ");
-			System.out.println(saldo);
+		//	System.out.println("ACA MIRA lo que conseguiste de saldo ");
+		//	System.out.println(saldo);
 				
 			saldoActual += saldo;
 		}
 		
-		System.out.println("ACA MIRA EL SALDO ACTUAL: ");
-		System.out.println(saldoActual);
+	//	System.out.println("ACA MIRA EL SALDO ACTUAL: ");
+	//	System.out.println(saldoActual);
 		
 		giftcard.setMisPuntos(puntosDeLaGiftCard);
 		giftcard.setSaldoActual(saldoActual);

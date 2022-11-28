@@ -28,8 +28,7 @@
  <!--   Contenido -->
 <div class="Contenido">
 
-      
-      
+
       <div id="cuadro-seccion-finalizado">
                   <div id="cuadro-puntaje-total">
 					<h2 id="nota-examen">Nota de examen</h2>

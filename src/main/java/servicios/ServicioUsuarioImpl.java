@@ -288,7 +288,7 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
 
 		boolean resultado = false;
 
-		if (notaSacada > 6) {
+		if (notaSacada >= 6) {
 			resultado = true;
 		}
 
