@@ -71,5 +71,9 @@ public interface ServicioUsuario {
 
 	void verificarUsuario(Usuario usuario);
 
+<<<<<<< HEAD
 	
+=======
+	void enviarNotificacion(Usuario usuario, String msj);
+>>>>>>> Eliana
 }

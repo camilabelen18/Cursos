@@ -132,17 +132,17 @@ public class RepositorioCursoTest extends SpringTest{
 	}
 	
 	
-//	@Test
-//	@Transactional
-//	@Rollback
-//	public void testQueAgregaCurso() {
-//		// Preparacion
-//		Curso curso = new Curso("Curso php", "Programacion", "Curso de programacion php", 1000.0, Estado.EN_VENTA,
-//				"cursophp.png");
-//		// Ejecucion
-//		repositorioCurso.agregarCurso(curso);
-//		// Comprobacion
-//		assertThat(curso.getId()).isNotNull();
-//	}
+	@Test
+	@Transactional
+	@Rollback
+	public void testQueAgregaCurso() {
+		// Preparacion
+		Curso curso = new Curso("Curso php", "Programacion", "Curso de programacion php", 1000.0,
+				"cursophp.png");
+		// Ejecucion
+		repositorioCurso.agregarCurso(curso);
+		// Comprobacion
+		assertThat(curso.getId()).isNotNull();
+	}
 
 }

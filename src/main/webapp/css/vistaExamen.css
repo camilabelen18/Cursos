@@ -35,9 +35,10 @@ body{
     margin: 30px;
     text-align: center;
 
-
 	border-bottom: 2px solid #c7c7c7;
 	border-top: 2px solid #c7c7c7;
+	border-left: 2px solid #c7c7c7;
+	border-right: 2px solid #c7c7c7;
 }
 
 /* PREGUNTA */
@@ -64,7 +65,7 @@ input[type="radio"]{
 
 
 /*El resultado Total */
-#cuadro-seccion-finalizado {
+/*#cuadro-seccion-finalizado {
 	padding: 30px;
     margin: 30px;
     text-align: center;
@@ -90,7 +91,7 @@ input[type="radio"]{
 #nota-examen {
 	padding-bottom: 15px;
 	font-size: 22px;
-}
+}*/
 /*
 p{
 	padding: 6px;

@@ -17,7 +17,7 @@ function validar() {
 	var puntos=document.getElementById("puntos").value;
 	if(puntos.length == 0) {
 		error++;
-		mensajesError+="<p>El campo o es obligatorio</p>";
+		mensajesError+="<p>El campo puntos es obligatorio</p>";
 	}
 	// Validación de errores encontrados
 	if(error == 0) {

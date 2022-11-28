@@ -139,8 +139,8 @@ public class ControladorGiftcard {
 		
 			Giftcard gc2 = usuario2.getGiftcard();
 			servicioGiftcard.enviarPuntos(gc1, gc2, puntos);
-			servicioUsuario.enviarNotificacion(usuario1, "Se enviaron " + puntos + " puntos a " + usuario2.getNombre(),
-					session);
+			servicioUsuario.enviarNotificacion(usuario1, "Se enviaron " + puntos + " puntos a " + usuario2.getNombre(), session);
+			servicioUsuario.enviarNotificacion(usuario2, usuario1.getNombre() + " te envió " + puntos + " puntos");
 			viewName = "puntosEnviados";
 
 		} catch (UsuarioInexistenteException e) {

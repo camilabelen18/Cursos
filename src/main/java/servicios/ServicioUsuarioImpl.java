@@ -357,6 +357,14 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
 		}
 
 	}
+	
+	@Override
+	public void enviarNotificacion(Usuario usuario, String msj) {
+
+		Notificacion noti = new Notificacion(msj);
+		repositorioUsuario.guardarNotificacionDelUsuario(noti, usuario);
+		
+	}
 
 
 
