@@ -198,13 +198,57 @@ public class ControladorCompra {
 	@RequestMapping(path = "/pagoMP", method = RequestMethod.GET)
 	public ModelAndView pagoMP(@RequestParam("idCurso") int idCurso, @RequestParam("precioTotal") Double precioTotal, HttpSession session) {
 		ModelMap model = new ModelMap();
-		int id_user = (int) session.getAttribute("idUsuario");
-		Usuario usuario = servicioUsuario.buscarUsuarioPorID(id_user);
 		
-		Preference preference = servicioMercadoPago.checkout(usuario, precioTotal);
-		model.put("preference", preference);
-		return new ModelAndView("pagoMP", model);
+		String viewName = "";
+		if (session.getAttribute("idUsuario") != null) {
+			int id_user = (int) session.getAttribute("idUsuario");
+			Usuario usuario = servicioUsuario.buscarUsuarioPorID(id_user);
+			Curso curso_obtenido = servicioCurso.buscarCursoPorId(idCurso);
+			Usuario_Curso usuarioCurso = servicioUsuario.obtenerUsuarioCurso(curso_obtenido, usuario);
+		if(!servicioUsuario.existeCursoEnListaUsuario(idCurso, usuario) || usuarioCurso.getEstado() == Estado.CANCELADO) {
+			Preference preference = servicioMercadoPago.checkout(usuario, precioTotal);
+			model.put("preference", preference);
+			model.put("precioTotal", precioTotal);
+			model.put("idCurso", idCurso);
+			viewName = "pagoMP";
+			
+		}
+		else {
+			model.addAttribute("cursoYaComprado", "El curso ya fue comprado, compre otro curso.");
+			viewName = "redirect:/verListaCursos";
+			//servicioNotificacion.enviar(usuario, "El curso ya fue comprado, compre otro curso.");
+		}
+		}else{
+		model.addAttribute("error_sesion", "Para comprar necesitas ingresar a tu cuenta.");
+		viewName = "redirect:/verListaCursos";
+		}
+		
+		
+		return new ModelAndView(viewName, model);
 	}
 	
+	@RequestMapping(path = "/pagoRealizadoMP", method = RequestMethod.GET)
+	public ModelAndView pagoRealizadoMP(@RequestParam("idCurso") int idCurso,  HttpSession session) {
+		ModelMap model = new ModelMap();
+		
+		int id_user = Integer.parseInt(session.getAttribute("idUsuario").toString());
+		Usuario usuario = servicioUsuario.buscarUsuarioPorID(id_user);
+		Curso curso_obtenido = servicioCurso.buscarCursoPorId(idCurso);
+		Usuario_Curso usuarioCurso = servicioUsuario.obtenerUsuarioCurso(curso_obtenido, usuario);
+		String viewName = "";
+		
+		if (servicioUsuario.existeCursoEnListaUsuario(idCurso, usuario) && usuarioCurso.getEstado() == Estado.CANCELADO) {
+			
+			servicioCurso.cambiarEstadoCurso(usuarioCurso, Estado.EN_CURSO);
+		}
+		else {
+			servicioUsuario.guardarCursoEnListaUsuario(curso_obtenido, usuario);
+		}
+		viewName = "compraRealizada";
+		
+		servicioUsuario.enviarNotificacion(usuario, "Compraste el curso " + curso_obtenido.getNombre(), session);
+	
+		return new ModelAndView(viewName, model);
+	}
 	
 }
