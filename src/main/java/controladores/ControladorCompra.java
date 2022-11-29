@@ -212,12 +212,12 @@ public class ControladorCompra {
 			
 		}
 		else {
-			model.addAttribute("cursoYaComprado", "El curso ya fue comprado, compre otro curso.");
+			model.addAttribute("msj_error", "El curso ya fue comprado, compre otro curso.");
 			viewName = "redirect:/verListaCursos";
 			//servicioNotificacion.enviar(usuario, "El curso ya fue comprado, compre otro curso.");
 		}
 		}else{
-		model.addAttribute("error_sesion", "Para comprar necesitas ingresar a tu cuenta.");
+		model.addAttribute("msj_error", "Para comprar necesitas ingresar a tu cuenta.");
 		viewName = "redirect:/verListaCursos";
 		}
 		
