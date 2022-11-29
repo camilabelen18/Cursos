@@ -85,14 +85,14 @@ public class ControladorCarrito {
 			if (!servicioUsuario.existeCursoEnListaUsuario(idCurso, usuario)) {
 				
 				servicioCarrito.agregarCursoAlCarrito(curso_obtenido, carrito);
-				model.put("cursoYaComprado", "Se agrego el curso al carrito con exito!");
+				model.put("msj_exito", "Se agrego el curso al carrito con exito!");
 			}
 			else {
-				model.put("cursoYaComprado", "El curso " + curso_obtenido.getNombre() + " ya fue comprado.");
+				model.put("msj_error", "El curso " + curso_obtenido.getNombre() + " ya fue comprado.");
 			}
 		}
 		else {
-			model.put("cursoYaComprado", "El curso " + curso_obtenido.getNombre() + " ya se encuentra en el carrito.");
+			model.put("msj_error", "El curso " + curso_obtenido.getNombre() + " ya se encuentra en el carrito.");
 		}
 		
 		return new ModelAndView("redirect:/verListaCursos", model);

@@ -1,0 +1,40 @@
+
+/* SECCION HISTORIAL NOTIFICACIONES */
+.cont-seccion-notificaciones {
+	width: 60%;
+	margin: auto;
+	margin-bottom: 100px;
+}
+
+/* Titulo */
+#titulo {
+    margin: 50px 0px;
+}
+
+/* LISTA DE NOTIFICACIONES */
+.cuadro-notificacion {
+	display: flex;
+	padding: 20px;
+	justify-content: space-between;
+	border: 2px solid #c8c8c8;
+	border-radius: 10px; 
+	margin-bottom: 20px;
+}
+
+.cont-seccion-notificaciones .cuadro-notificacion:hover {
+	border:2px #37B9CB solid;
+}
+
+
+
+/* MENSAJES */
+#sin_notificaciones {
+	margin-bottom: 150px;
+	font-size: 20px;
+	font-weight:bold; 
+}
+
+#trash{
+	color: #ff5e5e;
+	font-size: 20px;
+}

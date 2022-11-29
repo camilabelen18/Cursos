@@ -20,8 +20,8 @@
 		<h1>${cursoUsuario.curso.nombre}</h1>
 	</div>
 	
-	<c:if test="${not empty msj_progreso}">
-		<p class="msj_progreso">${msj_progreso}</p>
+	<c:if test="${not empty msj_error}">
+		<p class="msj_error">${msj_error}</p>
 	</c:if>
 
 	<div class="contenedor-vistaCurso">

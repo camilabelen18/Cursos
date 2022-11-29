@@ -76,7 +76,7 @@
 		</c:if>
 		
 		<c:if test="${not empty msj}">
-			<p id="msj_error">${msj}</p>
+			<p id="msj_error_carrito">${msj}</p>
 		</c:if>
 
 	</div>

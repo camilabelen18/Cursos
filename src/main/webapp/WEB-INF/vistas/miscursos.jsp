@@ -32,8 +32,12 @@
 			</div>
 		</div>
 		
-		<c:if test="${not empty msj}">
-			<p class="msj_info">${msj}</p>
+		<c:if test="${not empty msj_exito}">
+			<p class="msj_exito ">${msj_exito}</p>
+		</c:if>
+		
+		<c:if test="${not empty msj_error}">
+			<p class="msj_error ">${msj_error}</p>
 		</c:if>
 
 		<div class="listaSeccionCursos">

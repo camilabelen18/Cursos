@@ -1,7 +1,6 @@
 
 .darkModeSwitch {
     background: #3494b1;
-    margin-left: 50px;
     display:flex;
     position: relative;
     cursor: pointer;
@@ -13,10 +12,11 @@
 }
 
 
+
 .darkModeSwitch span{
-    width:40px;
-    height:30px;
-    line-height:30px;
+    width:25px;
+    height:25px;
+    line-height:25px;
     display:block;
     color:#fff;
     background: none;
@@ -25,8 +25,8 @@
 .darkModeSwitch::after {
     display:block;
     background: #fffbf5;
-    width: 2.4rem;
-    height: 2.4rem;
+    width: 1.5rem;
+    height: 1.5rem;
     position: absolute;
     top:0;
     left:0;
@@ -50,6 +50,10 @@
 	background-color: #2e2e2e;
 	color: white;
 }
+
+/* .dark div .cuadro-notificacion:hover{
+	color: black;
+} */
 
 .dark h1, .dark p, .dark #login a, .dark #contenido-curso a, .dark #logoCurso, .dark #notificacion, .dark #carrito {
 	color: white;

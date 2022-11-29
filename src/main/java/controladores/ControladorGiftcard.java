@@ -57,18 +57,17 @@ public class ControladorGiftcard {
 			Curso curso_obtenido = servicioCurso.buscarCursoPorId(idCurso);
 			Usuario_Curso usuarioCurso = servicioUsuario.obtenerUsuarioCurso(curso_obtenido, usuario);
 
-			if (!servicioUsuario.existeCursoEnListaUsuario(idCurso, usuario)
-					|| usuarioCurso.getEstado() == Estado.CANCELADO) {
+			if (!servicioUsuario.existeCursoEnListaUsuario(idCurso, usuario) || usuarioCurso.getEstado() == Estado.CANCELADO) {
 				model.put("idCurso", idCurso);
 				model.put("precioTotal", total);
 				model.put("curso", curso_obtenido);
 				viewName = "verificacionGiftcard";
 			} else {
-				model.addAttribute("cursoYaComprado", "El curso ya fue comprado, compre otro curso.");
+				model.addAttribute("msj_error", "El curso ya fue comprado, compre otro curso.");
 				viewName = "redirect:/verListaCursos";
 			}
 		} else {
-			model.addAttribute("error_sesion", "Para comprar necesitas ingresar a tu cuenta.");
+			model.addAttribute("msj_error", "Para comprar necesitas ingresar a tu cuenta.");
 			viewName = "redirect:/verListaCursos";
 		}
 
@@ -96,8 +95,7 @@ public class ControladorGiftcard {
 			// Se verifica que el saldo de la giftcard sea suficiente
 			servicioGiftcard.verificarSaldoDeGiftcard(giftcard, curso_obtenido);
 
-			if (servicioUsuario.existeCursoEnListaUsuario(idCurso, usuario)
-					&& usuarioCurso.getEstado() == Estado.CANCELADO) {
+			if (servicioUsuario.existeCursoEnListaUsuario(idCurso, usuario) && usuarioCurso.getEstado() == Estado.CANCELADO) {
 
 				servicioCurso.cambiarEstadoCurso(usuarioCurso, Estado.EN_CURSO);
 			} else {
@@ -140,7 +138,7 @@ public class ControladorGiftcard {
 			Giftcard gc2 = usuario2.getGiftcard();
 			servicioGiftcard.enviarPuntos(gc1, gc2, puntos);
 			servicioUsuario.enviarNotificacion(usuario1, "Se enviaron " + puntos + " puntos a " + usuario2.getNombre(), session);
-			servicioUsuario.enviarNotificacion(usuario2, usuario1.getNombre() + " te envió " + puntos + " puntos");
+			servicioUsuario.enviarNotificacion(usuario2, usuario1.getNombre() + " te enviï¿½ " + puntos + " puntos");
 			viewName = "puntosEnviados";
 
 		} catch (UsuarioInexistenteException e) {

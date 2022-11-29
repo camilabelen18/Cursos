@@ -287,7 +287,7 @@ public class ControladorCursosTest {
 		
 		// Comprobacion
 		assertThat(mav.getViewName()).isEqualTo("redirect:/misCursos");
-		assertThat(mav.getModel().get("msj")).isEqualTo("Felicidades! Completaste el curso: " + curso.getNombre());
+		assertThat(mav.getModel().get("msj_exito")).isEqualTo("Felicidades! Completaste el curso: " + curso.getNombre());
 	}
 
 	@Test
@@ -315,7 +315,7 @@ public class ControladorCursosTest {
 		
 		// Comprobacion
 		assertThat(mav.getViewName()).isEqualTo("vistaCurso");
-		assertThat(mav.getModel().get("msj_progreso"))
+		assertThat(mav.getModel().get("msj_error"))
 				.isEqualTo("Para completar el curso debe estar completado en un 50% o mas.");
 	}
 
@@ -567,7 +567,7 @@ public class ControladorCursosTest {
 
 		when(session.getAttribute("idUsuario")).thenReturn(1);
 
-		ModelAndView mav = controladorCursos.misCursos(session, mensaje);
+		ModelAndView mav = controladorCursos.misCursos(mensaje, "", session);
 		// comprobacion
 		assertThat(mav.getViewName()).isEqualTo("miscursos");
 	}

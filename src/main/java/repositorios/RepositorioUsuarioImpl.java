@@ -196,22 +196,15 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario{
 	}
 
 	@Override
-	public List<Notificacion> obtenerNotificaciones(Usuario usuario) {
+	public List<Usuario_Notificacion> obtenerNotificaciones(Usuario usuario) {
 		
 		Session sesion  = sessionFactory.getCurrentSession();
 		
 		List<Usuario_Notificacion> usuarioNotificaciones = sesion.createCriteria(Usuario_Notificacion.class)
 														   .add(Restrictions.eq("usuario", usuario))
 													       .list();
-
-		List<Notificacion> notificaciones = new ArrayList<Notificacion>();
 		
-		for (Usuario_Notificacion usuarioNotificacion : usuarioNotificaciones) {
-			
-			notificaciones.add(usuarioNotificacion.getNotificacion());
-		}
-		
-		return notificaciones;
+		return usuarioNotificaciones;
 	}
 
 	@Override
@@ -368,6 +361,34 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario{
 
 		return usuario_examenes;
 
+	}
+
+	@Override
+	public void quitarNotificacion(Usuario_Notificacion usuarioNotificacion) {
+
+		usuarioNotificacion.setNotificacionQuitada(true);
+		usuarioNotificacion.setNotificacionLeida(true);
+		sessionFactory.getCurrentSession().update(usuarioNotificacion);
+	}
+
+	@Override
+	public Usuario_Notificacion obtenerNotificacionUsuario(Usuario usuario, Notificacion notificacion) {
+		
+		Session sesion = sessionFactory.getCurrentSession();
+		
+		Usuario_Notificacion usuarioNotificacion = (Usuario_Notificacion) sesion.createCriteria(Usuario_Notificacion.class)
+												   .add(Restrictions.eq("usuario", usuario))
+												   .add(Restrictions.eq("notificacion", notificacion))
+												   .uniqueResult();
+		
+		return usuarioNotificacion;
+	}
+
+	@Override
+	public void marcarNotificacionLeida(Usuario_Notificacion usuarioNotificacion) {
+		
+		usuarioNotificacion.setNotificacionLeida(true);
+		sessionFactory.getCurrentSession().update(usuarioNotificacion);
 	}
 
 
