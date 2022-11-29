@@ -211,19 +211,20 @@ public class ServicioCursoTest {
 		assertThat(curso_obtenido.getId()).isEqualTo(curso.getId());
 	}
 	
-//	@Test
-//	public void testQueAgregaCurso(){
-//		//Preparacion
-//		 Usuario usuario = new Usuario("Camila", "camilabelen906@gmail.com", "1234", "admin");
-//		 Curso curso = new Curso("Curso php","Programacion",
-//				 				 "Curso de programacion php", 
-//				 				 1000.0,Estado.EN_VENTA,"cursophp.png");
-//		//Ejecucion
-//		when(session.getAttribute("idUsuario")).thenReturn(usuario.getId());
-//		repositorioCurso.agregarCurso(curso);
-//		servicioCurso.agregarCurso(curso);
-//		//Comprobacion
-//	}
+	@Test
+	public void testQueAgregaCurso(){
+		
+		//Preparacion
+		Usuario usuario = new Usuario("Camila", "camilabelen906@gmail.com", "1234", "admin");
+		Curso curso = new Curso("Curso php","Programacion","Curso de programacion php", 1000.0, "cursophp.png");
+		
+		//Ejecucion
+		when(session.getAttribute("idUsuario")).thenReturn(usuario.getId());
+		repositorioCurso.agregarCurso(curso);
+		servicioCurso.agregarCurso(curso);
+		
+		//Comprobacion
+	}
 }
 
 
