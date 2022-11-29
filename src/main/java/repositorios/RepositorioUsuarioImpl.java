@@ -300,7 +300,7 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario{
 				
 				Long minuto = ChronoUnit.MINUTES.between(usuarioExamen.getHora_finalizacion_examen(),LocalTime.now());
 				
-				if(minuto <= 2) {  
+				if(minuto <= 1) {  
 					return true;
 				}
 			}

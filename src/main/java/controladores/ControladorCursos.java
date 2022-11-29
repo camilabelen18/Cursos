@@ -329,7 +329,7 @@ public class ControladorCursos {
 				     model.put("curso", curso_obtenido);
 					 model.put("unidades", unidades);
 					 model.put("unidad", unidades.get(0));
-					 model.put("msj_progreso", "El examen se habilitara en 3 minutos ");
+					 model.put("msj_progreso", "El examen se habilitara en 2 minutos ");
 					 model.put("examen", examen );
 					view = "vistaCurso";
 				
