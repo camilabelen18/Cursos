@@ -4,6 +4,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import modelo.*;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -52,7 +54,7 @@ public class ServicioPrincipalImpl implements ServicioPrincipal {
 		
 		Giftcard gift1 = new Giftcard(555, 0, 0.0);
 		Giftcard gift2 = new Giftcard(555, 0, 0.0);
-		Giftcard gift3 = new Giftcard(555, 0, 0.0);
+		Giftcard gift3 = new Giftcard(555, 10000, 1000.0);
 		
 		Usuario admin = new Usuario("Juan", "admin@gmail.com","123", "admin");
 		admin.setNroTarjeta(555);
@@ -103,10 +105,16 @@ public class ServicioPrincipalImpl implements ServicioPrincipal {
 		Unidad un11 = new Unidad("Unidad 1: Introducción", "https://www.youtube.com/embed/4-VMuLs99Ss");
 		Unidad un12 = new Unidad("Unidad 2: Tapon de Clonar y Parche", "https://www.youtube.com/embed/Y9yKFzACEHg");
 		Unidad un13 = new Unidad("Unidad 3: Lazos y Tono/Saturación", "https://www.youtube.com/embed/HVBg6Fn2Rc0");
+		un11.setCompletado(true);
+		un12.setCompletado(true);
+		un13.setCompletado(true);
 		
 		Unidad un14 = new Unidad("Unidad 1: Introducción", "https://www.youtube.com/embed/OAWTixdQjqM");
 		Unidad un15 = new Unidad("Unidad 2: Instalación en windows", "https://www.youtube.com/embed/BbRYgUiAsEQ");
 		Unidad un16 = new Unidad("Unidad 3: Párrafos", "https://www.youtube.com/embed/48aCNffCJTU");
+		un14.setCompletado(true);
+		un15.setCompletado(true);
+		un16.setCompletado(true);
 		
 		Unidad un17 = new Unidad("Unidad 1: Introducción", "https://www.youtube.com/embed/Vf9PyoXPkjI");
 		Unidad un18 = new Unidad("Unidad 2: Ejercicios", "https://www.youtube.com/embed/hdcCtgeKHqI");
@@ -115,6 +123,9 @@ public class ServicioPrincipalImpl implements ServicioPrincipal {
 		Unidad un20 = new Unidad("Unidad 1: Las partes de la guitarra", "https://www.youtube.com/embed/L3_EGxOLcv0");
 		Unidad un21 = new Unidad("Unidad 2: La postura correcta", "https://www.youtube.com/embed/QqB1vaicNxU");
 		Unidad un22 = new Unidad("Unidad 3: Como tocar", "https://www.youtube.com/embed/yJ1Q_FK6pwY");
+		un20.setCompletado(true);
+		un21.setCompletado(true);
+		un22.setCompletado(true);
 		
 		Unidad un23 = new Unidad("Unidad 1: Introducción", "https://www.youtube.com/embed/kAALQ4JEY6c");
 		Unidad un24 = new Unidad("Unidad 2: Leccion 2", "https://www.youtube.com/embed/LYuZIZ_LDKk");
@@ -226,11 +237,11 @@ public class ServicioPrincipalImpl implements ServicioPrincipal {
 				
 		
 		//Registro de preguntas PhP MySql
-		Pregunta preg1 = new Pregunta("� Php es un lenguaje que se ejecuta en un servidor ?",resp1,resp2,resp3);
-		Pregunta preg2 = new Pregunta("� JavaScript se ejecuta en el lado del cliente ?",resp4,resp5,resp6);
-		Pregunta preg3 = new Pregunta("� Las paginas php se guardan en una carpeta especifica ?",resp7,resp8,resp9);
-		Pregunta preg4 = new Pregunta("� El nombre de index se lo da a una archivo cuando se lo considera pagina principal ?",resp10,resp11,resp12);
-		Pregunta preg5 = new Pregunta("� La variable es un espacio  en la memoria del ordenador donde se almacena un valor ?",resp13,resp14,resp15);
+		Pregunta preg1 = new Pregunta("Php es un lenguaje que se ejecuta en un servidor ?",resp1,resp2,resp3);
+		Pregunta preg2 = new Pregunta("JavaScript se ejecuta en el lado del cliente ?",resp4,resp5,resp6);
+		Pregunta preg3 = new Pregunta("Las paginas php se guardan en una carpeta especifica ?",resp7,resp8,resp9);
+		Pregunta preg4 = new Pregunta("El nombre de index se lo da a una archivo cuando se lo considera pagina principal ?",resp10,resp11,resp12);
+		Pregunta preg5 = new Pregunta("La variable es un espacio  en la memoria del ordenador donde se almacena un valor ?",resp13,resp14,resp15);
 		
 		sesion.save(preg1);
 		sesion.save(preg2);
@@ -290,11 +301,11 @@ public class ServicioPrincipalImpl implements ServicioPrincipal {
 	
 	 	
 	 	//Registro de preguntas Spring FrameWork 5
-	 	Pregunta preg6 = new Pregunta("� Spring boot es un subproyecto de Spring Framework  ?",resp16,resp17,resp18);
-	 	Pregunta preg7 = new Pregunta("� Con Spring boot una ya empieza con configuraciones por defecto ?",resp19,resp20,resp21);
-	 	Pregunta preg8 = new Pregunta("� Podes crear aplicaciones independientes sin usar servidor web ?",resp22,resp23,resp24);
-	 	Pregunta preg9 = new Pregunta("� Spring boot provee un modelo de programaci�n parecido a las aplicaciones java ?",resp25,resp26,resp27);
-	 	Pregunta preg10 = new Pregunta("� Spring tool es un ide basado en eclipse ?",resp28,resp29,resp30);
+	 	Pregunta preg6 = new Pregunta("Spring boot es un subproyecto de Spring Framework  ?",resp16,resp17,resp18);
+	 	Pregunta preg7 = new Pregunta("Con Spring boot una ya empieza con configuraciones por defecto ?",resp19,resp20,resp21);
+	 	Pregunta preg8 = new Pregunta("Podes crear aplicaciones independientes sin usar servidor web ?",resp22,resp23,resp24);
+	 	Pregunta preg9 = new Pregunta("Spring boot provee un modelo de programaci�n parecido a las aplicaciones java ?",resp25,resp26,resp27);
+	 	Pregunta preg10 = new Pregunta("Spring tool es un ide basado en eclipse ?",resp28,resp29,resp30);
 		
 	 	sesion.save(preg6);
 		sesion.save(preg7);
@@ -348,11 +359,11 @@ public class ServicioPrincipalImpl implements ServicioPrincipal {
 				sesion.save(resp45);
 		
 		//Registro de preguntas Python 22
-	 	Pregunta preg11 = new Pregunta("� Python es interpretado  ?",resp31,resp32,resp33);
-	 	Pregunta preg12 = new Pregunta("� Que es un compilador ?",resp34,resp35,resp36);
-	 	Pregunta preg13 = new Pregunta("� Es correcto poner la extensi�n de python al archivo guardado ?",resp37,resp38,resp39);
-	 	Pregunta preg14 = new Pregunta("� Que es una variable ?",resp40,resp41,resp42);
-	 	Pregunta preg15 = new Pregunta("� Python puede diferenciar may�sculas de min�sculas  ?",resp43,resp44,resp45);
+	 	Pregunta preg11 = new Pregunta("Python es interpretado  ?",resp31,resp32,resp33);
+	 	Pregunta preg12 = new Pregunta("Que es un compilador ?",resp34,resp35,resp36);
+	 	Pregunta preg13 = new Pregunta("Es correcto poner la extension de python al archivo guardado ?",resp37,resp38,resp39);
+	 	Pregunta preg14 = new Pregunta("Que es una variable ?",resp40,resp41,resp42);
+	 	Pregunta preg15 = new Pregunta("Python puede diferenciar mayusculas de minusculas  ?",resp43,resp44,resp45);
 		
 	 	sesion.save(preg11);
 		sesion.save(preg12);
@@ -377,8 +388,8 @@ public class ServicioPrincipalImpl implements ServicioPrincipal {
 		
 		
 		//Registro de respuestas de adobe photoshop	
-		Respuesta resp46 = new Respuesta("Si, est�n por defecto en la izquierda",true );
-		Respuesta resp47 = new Respuesta("No, est�n abajo  ",false );
+		Respuesta resp46 = new Respuesta("Si, estan por defecto en la izquierda",true );
+		Respuesta resp47 = new Respuesta("No, estan abajo  ",false );
 		Respuesta resp48 = new Respuesta("Aparecen en la derecha ", true);
 		Respuesta resp49 = new Respuesta("Si, es agregarle una nueva pagina",true );
 		Respuesta resp50 = new Respuesta("No, las capas no funcionan as� ",false  );
@@ -410,11 +421,11 @@ public class ServicioPrincipalImpl implements ServicioPrincipal {
 		sesion.save(resp60);
 		
 		//Registro de preguntas Adobe Photoshop
-	 	Pregunta preg16 = new Pregunta("�En la parte izquierda de photoshop tenes las herramientas  ?",resp46,resp47,resp48);
-	 	Pregunta preg17 = new Pregunta("�Generar capas es como generar una nueva hoja en un libro?",resp46,resp47,resp48);
-	 	Pregunta preg18 = new Pregunta("� Usar el navegador es para hacer zoom  ?",resp46,resp47,resp48);
-	 	Pregunta preg19 = new Pregunta("�  La herramienta tampon de clonar sirve para copiar colores ?",resp46,resp47,resp48);
-	 	Pregunta preg20 = new Pregunta("� Con la herramienta lazo se puede usar zoom  ?",resp46,resp47,resp48);
+	 	Pregunta preg16 = new Pregunta("En la parte izquierda de photoshop tenes las herramientas  ?",resp46,resp47,resp48);
+	 	Pregunta preg17 = new Pregunta("Generar capas es como generar una nueva hoja en un libro?",resp46,resp47,resp48);
+	 	Pregunta preg18 = new Pregunta("Usar el navegador es para hacer zoom  ?",resp46,resp47,resp48);
+	 	Pregunta preg19 = new Pregunta("La herramienta tampon de clonar sirve para copiar colores ?",resp46,resp47,resp48);
+	 	Pregunta preg20 = new Pregunta("Con la herramienta lazo se puede usar zoom  ?",resp46,resp47,resp48);
 		
 	 	sesion.save(preg16);
 		sesion.save(preg17);
@@ -468,11 +479,11 @@ public class ServicioPrincipalImpl implements ServicioPrincipal {
 				sesion.save(resp75);
 		
 	 	//Registro de preguntas Wordpress
-	 	Pregunta preg21 = new Pregunta("�En que a�o se lanzo Wordpress ?",resp61,resp62,resp63);
-	 	Pregunta preg22 = new Pregunta("�Cual es el lenguaje de programacion ?",resp64,resp65,resp66);
-	 	Pregunta preg23 = new Pregunta("�Es una aplicacion de Open Source(libre de uso y desarrollo)  ?",resp67,resp68,resp69);
-	 	Pregunta preg24 = new Pregunta("�Cual de estos es un Page Builder ?",resp70,resp71,resp72);
-	 	Pregunta preg25 = new Pregunta("�Que es un pluggin  ?",resp73,resp74,resp75);
+	 	Pregunta preg21 = new Pregunta("En que ano se lanzo Wordpress ?",resp61,resp62,resp63);
+	 	Pregunta preg22 = new Pregunta("Cual es el lenguaje de programacion ?",resp64,resp65,resp66);
+	 	Pregunta preg23 = new Pregunta("Es una aplicacion de Open Source(libre de uso y desarrollo)  ?",resp67,resp68,resp69);
+	 	Pregunta preg24 = new Pregunta("Cual de estos es un Page Builder ?",resp70,resp71,resp72);
+	 	Pregunta preg25 = new Pregunta("Que es un pluggin  ?",resp73,resp74,resp75);
 		
 	 	sesion.save(preg21);
 		sesion.save(preg22);
@@ -491,6 +502,118 @@ public class ServicioPrincipalImpl implements ServicioPrincipal {
 	  //Registro de Curso con su examen correspondiente
 	    //Registro de Wordpress y sus examenes
 		sesion.save(new Curso_Examen(c5,examen21 ));
+		
+		
+		// Respuestas de diseño de videojuegos
+		Respuesta resp201 = new Respuesta("-8", false);
+		Respuesta resp202 = new Respuesta("-4 ", false);
+		Respuesta resp203 = new Respuesta("-6", true);
+		Respuesta resp204 = new Respuesta("-", false);
+		Respuesta resp205 = new Respuesta("-No ", false);
+		Respuesta resp206 = new Respuesta("-Si", true);
+		Respuesta resp207 = new Respuesta("-Talvez ", false);
+		Respuesta resp208 = new Respuesta("-No ", false);
+		Respuesta resp209 = new Respuesta("-Si", true);
+		Respuesta resp210 = new Respuesta("-No", false);
+		Respuesta resp211 = new Respuesta("-Talvez", false);
+		Respuesta resp212 = new Respuesta("-Si", true);
+		Respuesta resp213 = new Respuesta("-No", false);
+		Respuesta resp214 = new Respuesta("-Talvez", false);
+		Respuesta resp215 = new Respuesta("-Si", true);
+
+		sesion.save(resp201);
+		sesion.save(resp202);
+		sesion.save(resp203);
+		sesion.save(resp204);
+		sesion.save(resp205);
+		sesion.save(resp206);
+		sesion.save(resp207);
+		sesion.save(resp208);
+		sesion.save(resp209);
+		sesion.save(resp210);
+		sesion.save(resp211);
+		sesion.save(resp212);
+		sesion.save(resp213);
+		sesion.save(resp214);
+		sesion.save(resp215);
+
+		// Registro de preguntas diseño de videojuegos
+		Pregunta preg41 = new Pregunta("Un personaje puede ser ficticio ?", resp201, resp202, resp203);
+		Pregunta preg42 = new Pregunta("Se necesita saber diseño grafico  ?", resp204, resp205, resp206);
+		Pregunta preg43 = new Pregunta("Tenes que saber dibujar para el diseño de videojuegos ?", resp207, resp208, resp209);
+		Pregunta preg44 = new Pregunta("Es actual ?", resp210, resp211, resp212);
+		Pregunta preg45 = new Pregunta("Es necesario saber usar Blender ?", resp213, resp214, resp215);
+
+		sesion.save(preg41);
+		sesion.save(preg42);
+		sesion.save(preg43);
+		sesion.save(preg44);
+		sesion.save(preg45);
+
+		// Registro de examenes, la union de preguntas, respuestas
+		Examen examen39 = new Examen(preg41, preg42, preg43, preg44, preg45);
+
+		sesion.save(examen39);
+		
+		sesion.save(new Curso_Examen(c6,examen39));
+		
+		
+		// Respuestas de guitarra
+		Respuesta resp91 = new Respuesta("-8",false );
+		Respuesta resp92 = new Respuesta("-4 ",false );
+		Respuesta resp93 = new Respuesta("-6", true);
+		Respuesta resp94 = new Respuesta("-Caja de resonancia",false );
+		Respuesta resp95 = new Respuesta("-Puente ",false  );
+		Respuesta resp96 = new Respuesta("-Clavijero", true);
+		Respuesta resp97 = new Respuesta("-Plastico ",false );
+		Respuesta resp98 = new Respuesta("-Metal ",false  );
+		Respuesta resp99 = new Respuesta("-Madera",true );
+		Respuesta resp100 = new Respuesta("-Guitarra rusa", false);
+		Respuesta resp101 = new Respuesta("-Guitarra italiana", false );
+		Respuesta resp102 = new Respuesta("-Guitarra francesa",true );
+		Respuesta resp103 = new Respuesta("-Silbato", false);
+		Respuesta resp104 = new Respuesta("-Rejilla", false );
+		Respuesta resp105 = new Respuesta("-Cejilla",true );
+		
+		sesion.save(resp91);
+		sesion.save(resp92);
+		sesion.save(resp93);
+		sesion.save(resp94);
+		sesion.save(resp95);
+		sesion.save(resp96);
+		sesion.save(resp97);
+		sesion.save(resp98);
+		sesion.save(resp99);
+		sesion.save(resp100);
+		sesion.save(resp101);
+		sesion.save(resp102);
+		sesion.save(resp103);
+		sesion.save(resp104);
+		sesion.save(resp105);
+	 	
+		//Registro de preguntas Guitarra
+	 	Pregunta preg31 = new Pregunta("Cuantas cuerdas tiene la guitarra  ?",resp91,resp92,resp93);
+	 	Pregunta preg32 = new Pregunta("Porque parte se afina la guitarra  ?",resp94,resp95,resp96);
+	 	Pregunta preg33 = new Pregunta("De que material estan compuestas las guitarras criollas ?",resp97,resp98,resp99);
+	 	Pregunta preg34 = new Pregunta("Cual de estos NO es un tipo de guitarra ?",resp100,resp101,resp102);
+	 	Pregunta preg35 = new Pregunta("Que elemento se le coloca a la guitarra para formar un acorde ?",resp103,resp104,resp105);
+		
+	 	sesion.save(preg31);
+		sesion.save(preg32);
+		sesion.save(preg33);   
+		sesion.save(preg34);  
+		sesion.save(preg35);  
+		
+	
+		//Registro de examenes, la union de preguntas, respuestas 
+	     Examen examen31 = new Examen(preg31,preg32,preg33,preg34,preg35);
+	  
+	    sesion.save(examen31);
+	
+		
+	  //Registro de Curso con su examen correspondiente
+	    //Registro de Guitarra y sus examenes
+		sesion.save(new Curso_Examen(c7,examen31 ));
 
 		
 		//Registro de respuestas de piano
@@ -527,11 +650,11 @@ public class ServicioPrincipalImpl implements ServicioPrincipal {
 		sesion.save(resp90);
 		
 	 	//Registro de preguntas Piano
-	 	Pregunta preg26 = new Pregunta("� El piano es un instrumento de cuerda percutida ?",resp76,resp77,resp78);
-	 	Pregunta preg27 = new Pregunta("�Cuantas teclas tiene un piano estandar ?",resp79,resp80,resp81);
-	 	Pregunta preg28 = new Pregunta("� Cuantas octavas tiene un piano estandar ?",resp82,resp83,resp84);
-	 	Pregunta preg29 = new Pregunta("�Los pianos cunetan con 4 pedales ?",resp84,resp85,resp86);
-	 	Pregunta preg30 = new Pregunta("�Es verdad que los pianos se afinan ?",resp87,resp88,resp89);
+	 	Pregunta preg26 = new Pregunta("El piano es un instrumento de cuerda percutida ?",resp76,resp77,resp78);
+	 	Pregunta preg27 = new Pregunta("Cuantas teclas tiene un piano estandar ?",resp79,resp80,resp81);
+	 	Pregunta preg28 = new Pregunta("Cuantas octavas tiene un piano estandar ?",resp82,resp83,resp84);
+	 	Pregunta preg29 = new Pregunta("Los pianos cunetan con 4 pedales ?",resp84,resp85,resp86);
+	 	Pregunta preg30 = new Pregunta("Es verdad que los pianos se afinan ?",resp87,resp88,resp89);
 		
 	 	sesion.save(preg26);
 		sesion.save(preg27);
@@ -550,66 +673,8 @@ public class ServicioPrincipalImpl implements ServicioPrincipal {
 		
 	  //Registro de Curso con su examen correspondiente
 	    //Registro de Piano y sus examenes
-		sesion.save(new Curso_Examen(c6,examen26 ));
+		sesion.save(new Curso_Examen(c8,examen26 ));
 	
-		
-		//Registro de respuestas de guitarra
-		Respuesta resp91 = new Respuesta("-8",false );
-		Respuesta resp92 = new Respuesta("-4 ",false );
-		Respuesta resp93 = new Respuesta("-6", true);
-		Respuesta resp94 = new Respuesta("-Caja de resonancia",false );
-		Respuesta resp95 = new Respuesta("-Puente ",false  );
-		Respuesta resp96 = new Respuesta("-Clavijero", true);
-		Respuesta resp97 = new Respuesta("-Plastico ",false );
-		Respuesta resp98 = new Respuesta("-Metal ",false  );
-		Respuesta resp99 = new Respuesta("-Madera",true );
-		Respuesta resp100 = new Respuesta("-Guitarra rusa", false);
-		Respuesta resp101 = new Respuesta("-Guitarra italiana", false );
-		Respuesta resp102 = new Respuesta("-Guitarra francesa",true );
-		Respuesta resp103 = new Respuesta("-Silbato", false);
-		Respuesta resp104 = new Respuesta("-Rejilla", false );
-		Respuesta resp105 = new Respuesta("-Cejilla",true );
-		
-		sesion.save(resp91);
-		sesion.save(resp92);
-		sesion.save(resp93);
-		sesion.save(resp94);
-		sesion.save(resp95);
-		sesion.save(resp96);
-		sesion.save(resp97);
-		sesion.save(resp98);
-		sesion.save(resp99);
-		sesion.save(resp100);
-		sesion.save(resp101);
-		sesion.save(resp102);
-		sesion.save(resp103);
-		sesion.save(resp104);
-		sesion.save(resp105);
-	 	
-		//Registro de preguntas Guitarra
-	 	Pregunta preg31 = new Pregunta("� Cuantas cuerdas tiene la guitarra  ?",resp91,resp92,resp93);
-	 	Pregunta preg32 = new Pregunta("�Porque parte se afina la guitarra  ?",resp94,resp95,resp96);
-	 	Pregunta preg33 = new Pregunta("�De que material estan compuestas las guitarras criollas ?",resp97,resp98,resp99);
-	 	Pregunta preg34 = new Pregunta("� Cual de estos NO es un tipo de guitarra ?",resp100,resp101,resp102);
-	 	Pregunta preg35 = new Pregunta("� Que elemento se le coloca a la guitarra para formar un acorde ?",resp103,resp104,resp105);
-		
-	 	sesion.save(preg31);
-		sesion.save(preg32);
-		sesion.save(preg33);   
-		sesion.save(preg34);  
-		sesion.save(preg35);  
-		
-	
-		//Registro de examenes, la union de preguntas, respuestas 
-	     Examen examen31 = new Examen(preg31,preg32,preg33,preg34,preg35);
-	  
-	    sesion.save(examen31);
-	
-		
-	  //Registro de Curso con su examen correspondiente
-	    //Registro de Guitarra y sus examenes
-		sesion.save(new Curso_Examen(c7,examen31 ));
-	 	
 		
 		//Registro de respuestas de canto	
 				Respuesta resp106 = new Respuesta("-La distancia entre la boca y la laringe no tiene nada que ver",false );
@@ -646,11 +711,11 @@ public class ServicioPrincipalImpl implements ServicioPrincipal {
 	 	
 	 	
 		//Registro de preguntas Canto
-	 	Pregunta preg36 = new Pregunta("� Es verdad que a los hombres se les vuelve mas grave la voz durante su adolecencia porque La distancia entre la laringe y la boca se hace m�s larga  ?",resp106,resp107,resp108);
-	 	Pregunta preg37 = new Pregunta("� Cual de estos elementos es esencial para cantar ?",resp109,resp110,resp111);
-	 	Pregunta preg38 = new Pregunta("�Que es el vibrato  ?",resp112,resp113,resp114);
-	 	Pregunta preg39 = new Pregunta("�El soplado consiste en dejar pasar aire por las cuerdas vocales mientras se va produciendo sonido ?",resp115,resp116,resp117);
-	 	Pregunta preg40 = new Pregunta("�Para que sirven los resonadores?",resp118,resp119,resp120);
+	 	Pregunta preg36 = new Pregunta("Es verdad que a los hombres se les vuelve mas grave la voz durante su adolecencia porque La distancia entre la laringe y la boca se hace m�s larga  ?",resp106,resp107,resp108);
+	 	Pregunta preg37 = new Pregunta("Cual de estos elementos es esencial para cantar ?",resp109,resp110,resp111);
+	 	Pregunta preg38 = new Pregunta("Que es el vibrato  ?",resp112,resp113,resp114);
+	 	Pregunta preg39 = new Pregunta("El soplado consiste en dejar pasar aire por las cuerdas vocales mientras se va produciendo sonido ?",resp115,resp116,resp117);
+	 	Pregunta preg40 = new Pregunta("Para que sirven los resonadores?",resp118,resp119,resp120);
 		
 	 	sesion.save(preg36);
 		sesion.save(preg37);
@@ -668,10 +733,75 @@ public class ServicioPrincipalImpl implements ServicioPrincipal {
 		
 	  //Registro de Curso con su examen correspondiente
 	    //Registro de Canto y sus examenes
-		sesion.save(new Curso_Examen(c8,examen36 ));
+		sesion.save(new Curso_Examen(c9,examen36 ));
 	
 	 	
-	 	
+	 	// CASOS
+		
+		/* ANA (EXAMEN) */
+		// Caso de examen aprobado (primera vez)
+		Usuario_Curso us1 = new Usuario_Curso(cliente1, c8);
+		us1.setEstado(Estado.EN_CURSO);
+		us1.setFecha_incio_compra(LocalDate.now());
+		us1.setHora(LocalTime.now());
+		
+		// Caso de examen desaprobado (primera vez)
+		Usuario_Curso us2 = new Usuario_Curso(cliente1, c5);
+		us2.setEstado(Estado.FINALIZADO);
+		us2.setFecha_incio_compra(LocalDate.now());
+		us2.setHora(LocalTime.now());
+		us2.setCursoTerminado(true);
+		us2.setProgreso(100.0);
+		
+		// Caso de examen aprobado pero no ganas puntos
+		Usuario_Curso us3 = new Usuario_Curso(cliente1, c4);
+		us3.setEstado(Estado.FINALIZADO);
+		us3.setFecha_incio_compra(LocalDate.now());
+		us3.setHora(LocalTime.now());
+		us3.setCursoTerminado(true);
+		us3.setProgreso(100.0);
+		
+		Usuario_Examen exs1 = new Usuario_Examen(cliente1, examen16);
+		exs1.setPuntaje_final(0);
+		exs1.setFecha_finalizacion_examen(LocalDate.now());
+		exs1.setHora_finalizacion_examen(LocalTime.now());
+		
+		Usuario_Examen exs2 = new Usuario_Examen(cliente1, examen16);
+		exs2.setPuntaje_final(2);
+		exs2.setFecha_finalizacion_examen(LocalDate.now());
+		exs2.setHora_finalizacion_examen(LocalTime.now());
+		
+		Usuario_Examen exs3 = new Usuario_Examen(cliente1, examen16);
+		exs3.setPuntaje_final(4);
+		exs3.setFecha_finalizacion_examen(LocalDate.now());
+		exs3.setHora_finalizacion_examen(LocalTime.now());
+		sesion.save(exs1);
+		sesion.save(exs2);
+		sesion.save(exs3);
+		
+		
+		/* ALE (CURSOS) */
+		Usuario_Curso us4 = new Usuario_Curso(cliente2, c6);
+		us4.setEstado(Estado.EN_CURSO);
+		us4.setFecha_incio_compra(LocalDate.now());
+		us4.setHora(LocalTime.now());
+		
+		Usuario_Curso us5 = new Usuario_Curso(cliente2, c7);
+		us5.setEstado(Estado.FINALIZADO);
+		us5.setFecha_incio_compra(LocalDate.now());
+		us5.setHora(LocalTime.now());
+		us5.setCursoTerminado(true);
+		us5.setProgreso(100.0);
+		
+		Usuario_Curso us6 = new Usuario_Curso(cliente2, c9);
+		us6.setEstado(Estado.CANCELADO);
+		
+		sesion.save(us1);
+		sesion.save(us2);
+		sesion.save(us3);
+		sesion.save(us4);
+		sesion.save(us5);
+		sesion.save(us6);
 	 	
 	}
 

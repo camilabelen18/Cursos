@@ -33,7 +33,10 @@
 	pageContext.setAttribute("notificacionesQuitadas", notificacionesQuitadas);
 %>
 
-<head><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Rouge Script"></head>
+<head>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Rouge Script">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+</head>
 
 <header>
 	<div class="cont-1-header" id="cont-header">
@@ -116,7 +119,7 @@
 										<p>${usuarioNotificacion.notificacion.mensaje}</p>
 										<div class="iconosNotificacion">
 											<a href="quitarNotificacion?idNotif=${usuarioNotificacion.notificacion.id}">
-												<i class="fa-solid fa-circle-xmark" title="Eliminar" id="eliminar"></i>
+												<i class="fa-solid fa-circle-xmark" title="Quitar" id="eliminar"></i>
 											</a>
 											<a href="marcarNotificacionLeida?idNotif=${usuarioNotificacion.notificacion.id}">
 												<i class="fa-solid fa-circle-check" title="Marcar como leída" id="marcarComoLeida"></i>

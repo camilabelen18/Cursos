@@ -19,12 +19,73 @@
 }
 
 .cont-index-2 {
+	width: 80%;
+	margin: auto;
+	margin-top: 60px;
+    margin-bottom: 60px;
+}
+
+.cont-index-2 h2 {
+	text-align: center;
+    padding: 60px 0px 40px 0px;
+    font-size: 34px;
+    font-weight: 500;
+}
+
+.cursos-mas-calificados {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.cursos-mas-calificados img {
+    width: 230px;
+    height: 138.88px;
+}
+
+.curso-calificado {
+	border: 2px solid #c7c7c7;
+	border-radius: 5px;
+    padding: 10.5px;
+    padding-bottom: 20px;
+}
+
+.precio-curso-cal {
+    text-align: end;
+    position: relative;
+    bottom: 40px;
+    left: 5px;
+}
+
+.precio-curso-cal p {
+    display: inline;
+    background: #fe4c13;
+    padding: 5px 10px;
+    color: white;
+}
+
+.descripcion-curso-cal {
+	width: 220px;
+}
+
+.descripcion-curso-cal p {
+    font-size: 16px;
+    font-weight: bold;
+    padding-bottom: 15px;
+}
+
+#compraCursoCalificado {
+	display: flex;
+    justify-content: flex-end;
+}
+
+.cont-index-3 {
 	width: 60%;
 	margin: auto;
     margin-bottom: 60px;
 }
 
-.cont-index-2 h2 {
+.cont-index-3 h2 {
 	text-align: center;
     padding: 60px 0px 40px 0px;
     font-size: 34px;
