@@ -1,4 +1,3 @@
-
 /* SECCIÓN CURSOS */
 .cont-seccion-cursos {
 	width: 60%;
@@ -7,7 +6,7 @@
 }
 
 /* FILTRO */
-#contenedorFiltros{
+#contenedorFiltros {
 	display: flex;
 	flex-direction: row;
 	justify-content: flex-end;
@@ -33,12 +32,12 @@
 }
 
 .dropdown-content {
-    display: none;
-    position: absolute;
-    width: 100%;
-    overflow: auto;
-    background-color: white;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+	display: none;
+	position: absolute;
+	width: 100%;
+	overflow: auto;
+	background-color: white;
+	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 }
 
 .dropdown:hover .dropdown-content {
@@ -51,19 +50,18 @@
 }
 
 .dropdown-content a {
-    display: block;
-    color: #000000;
-    padding: 5px 10px;
-    text-decoration: none;
+	display: block;
+	color: #000000;
+	padding: 5px 10px;
+	text-decoration: none;
 }
 
 .dropdown-content a:hover {
 	background-color: #f2f2f2;
 }
 
-
 /* AGREGAR CURSO (SOLO ADMIN */
-#contAgregarCurso{
+#contAgregarCurso {
 	display: flex;
 	flex-direction: row;
 	justify-content: flex-end;
@@ -83,7 +81,7 @@
 }
 
 /* LISTA DE CURSOS */
-.listaSeccionCursos{
+.listaSeccionCursos {
 	display: flex;
 	flex-direction: column;
 }
@@ -91,6 +89,10 @@
 .cuadro-seccion-cursos {
 	border: 1px solid #c7c7c7;
 	margin: 30px 0px;
+}
+
+.cuadro-seccion-cursos:hover{
+	border:2px #37B9CB solid;
 }
 
 .cuadro-seccion-cursos-flex {
@@ -118,7 +120,7 @@
 	padding-bottom: 10px;
 }
 
-.precioCurso{
+.precioCurso {
 	font-weight: bold;
 	text-align: right;
 	font-size: 20px;
@@ -127,19 +129,39 @@
 
 /* MENSAJES */
 #sin_curso {
-	text-align : center;
-	margin-top: 100px;
-	margin-bottom: 200px;
+	text-align: center;
 	font-size: 20px;
-	font-weight:bold; 
+	font-weight: bold;
+}
+
+#no-encontrado {
+	font-size: 50px;
+	background: -webkit-linear-gradient(left, #e2e17c, #c2240c);
+	background: -o-linear-gradient(right, #e2e17c, #c2240c);
+	background: -moz-linear-gradient(right, #e2e17c, #c2240c);
+	background: linear-gradient(to right, #e2e17c, #c2240c);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	margin-bottom: 40px;
+	margin-left: 350px;
+	margin-top: 50px;
+}
+
+.msj-sincurso{
+	border: 2px solid white;
+	padding-bottom: 50px;
+	margin-bottom: 100px;
+	margin-top: 60px;
+	
+}
+
+.msj-sincurso:hover{
+	border:2px #37B9CB solid;
 }
 
 /*------------------------------------------RESPONSIVE----------------------------------*/
-
-@media (max-width: 1250px) {
-	
+@media ( max-width : 1250px) {
 	.cont-seccion-cursos {
 		width: 80%;
 	}
-    
 }

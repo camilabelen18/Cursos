@@ -35,7 +35,6 @@
 	
 	if(session.getAttribute("user") != null){
 		Usuario usuario = (Usuario) session.getAttribute("user");
-		System.out.println(usuario);
 		pageContext.setAttribute("puntosGiftcard", usuario.getGiftcard().getMisPuntos());
 	}
 	

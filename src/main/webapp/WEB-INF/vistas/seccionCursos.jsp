@@ -76,7 +76,10 @@
 
 		<!-- Si al realizar la busqueda no se encontro ningun curso se muestra un mensaje de error -->
 		<c:if test="${not empty sin_curso}">
+			<div class="msj-sincurso">
+			<i class="animate__animated animate__heartBeat fa-brands fa-searchengin" id="no-encontrado"></i>
 			<p id="sin_curso">${sin_curso}</p>
+			</div>
 		</c:if>
 		
 	</div>

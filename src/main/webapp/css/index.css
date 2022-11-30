@@ -29,7 +29,7 @@
 }
 
 .cont-index-2 {
-	width: 80%;
+	width: 90%;
 	margin: auto;
 	margin-top: 60px;
     margin-bottom: 60px;
@@ -58,6 +58,10 @@
 	border-radius: 5px;
     padding: 10.5px;
     padding-bottom: 20px;
+}
+
+.curso-calificado:hover{
+	border:2px #37B9CB solid;
 }
 
 .precio-curso-cal {
