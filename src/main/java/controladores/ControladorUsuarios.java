@@ -103,6 +103,7 @@ public class ControladorUsuarios {
 			session.setAttribute("ROL", usuarioBuscado.getRol());
 			session.setAttribute("imgUsuario", usuarioBuscado.getImagen());
 			session.setAttribute("notificaciones", servicioUsuario.obtenerNotificaciones(usuarioBuscado));
+			session.setAttribute("user", usuarioBuscado);
 
 			return new ModelAndView("redirect:/");
 		}

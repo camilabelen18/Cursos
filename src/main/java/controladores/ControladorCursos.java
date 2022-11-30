@@ -453,7 +453,8 @@ public class ControladorCursos {
 		    }
 		    
 		    	
-	
+
+		    session.setAttribute("user", servicioUsuario.buscarUsuarioPorID(id_user));
 
 			return new ModelAndView(view, model);
 		
@@ -499,19 +500,4 @@ public class ControladorCursos {
 			
 		
 		}
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-
-
 }

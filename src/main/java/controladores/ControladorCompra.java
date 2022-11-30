@@ -136,6 +136,8 @@ public class ControladorCompra {
 			
 		}
 		
+	    session.setAttribute("user", servicioUsuario.buscarUsuarioPorID(id_user));
+		
 		return new ModelAndView("redirect:/misCursos", model);
 	}
 	

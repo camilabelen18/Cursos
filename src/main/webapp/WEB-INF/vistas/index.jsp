@@ -20,9 +20,13 @@
 	<%@ include file="header.jsp"%>
 
 	<!-- PRESENTACIÓN -->
-	<div class="cont-index-1" style="background-image: linear-gradient(rgba(0, 0, 0, 0.0), rgba(0, 0, 0, 0.4)), url('imagenes/slaider.jpg');">
-		<h1 class="animate__animated animate__backInLeft">CURSOS ONLINE</h1>
-    </div>
+	<div class="cont-index-1">
+
+		<div class="titulo-subtitulo">
+			<h1>Amplía tus oportunidades profesionales</h1>
+			<p>Elige entre nuestros cursos con contenido nuevo cada mes</p>
+
+		</div>
     
     <!-- CURSOS MAS CALIFICADOS -->
 	<div class="cont-index-2">

@@ -1,21 +1,31 @@
 /* MAIN */
 .cont-index-1 {
 	height: 550px;
-	width: 90%;
+	width: 100%;
 	margin: auto;
-    background: no-repeat center center;
-    background-size: cover;
-    display: flex;
-    align-items: flex-end;
+	background: no-repeat center center;
+	background-size: cover;
 }
 
 .cont-index-1 h1 {
-	width: 80%;
-	margin: auto;
-	margin-bottom: 80px;
+	width: 70%;
 	color: white;
-	font-size: 50px;
-	font-weight: lighter;
+	font-size: 35px;
+	font-family: "Montserrat";
+}
+
+.cont-index-1 p {
+	width: 70%;
+	padding-top: 20px;
+	color: white;
+	font-size: 25px;
+	font-family: "Montserrat";
+}
+
+.titulo-subtitulo{
+	margin-left: 150px;
+	padding-top: 120px; 
+	
 }
 
 .cont-index-2 {
@@ -82,31 +92,35 @@
 .cont-index-3 {
 	width: 60%;
 	margin: auto;
-    margin-bottom: 60px;
+	margin-bottom: 60px;
 }
 
 .cont-index-3 h2 {
 	text-align: center;
-    padding: 60px 0px 40px 0px;
-    font-size: 34px;
-    font-weight: 500;
+	padding: 60px 0px 40px 0px;
+	font-size: 34px;
+	font-weight: 500;
+}
+
+.cat-index:hover{
+	border:2px #37B9CB solid;
 }
 
 .categorias-index {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
 }
 
 .categorias-index img {
-    width: 200px;
+	width: 200px;
 }
 
 .cat-index {
 	border: 2px solid #c7c7c7;
 	border-radius: 5px;
-    padding: 10.5px;
-    padding-bottom: 20px;
+	padding: 10.5px;
+	padding-bottom: 20px;
 }
 
 .cat-index p {
@@ -117,68 +131,68 @@
 
 /* CONTACTO */
 .cont-contacto {
-    background-color: white;
+	background-color: white;
 }
 
 .txt-contacto {
-    width: 50%;
-    margin: auto;
-    padding: 60px 0px 40px 0px;
-    font-size: 34px;
-    font-weight: 500;
-    text-align: center;
+	width: 50%;
+	margin: auto;
+	padding: 60px 0px 40px 0px;
+	font-size: 34px;
+	font-weight: 500;
+	text-align: center;
 }
 
 .formulario {
-    width: 35%;
-    margin: auto;
-    margin-bottom: 60px;
+	width: 35%;
+	margin: auto;
+	margin-bottom: 60px;
 }
 
 .nom-cor {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 20px;
 }
 
 .nom-cor input {
-    width: 42%;
-    padding: 12px;
-    border: 2px solid #cecece;
-    border-radius: 5px;
-    color: #404040;
-    font-size: 18px;
-    font-weight: normal;
+	width: 42%;
+	padding: 12px;
+	border: 2px solid #cecece;
+	border-radius: 5px;
+	color: #404040;
+	font-size: 18px;
+	font-weight: normal;
 }
 
 .mensaje {
-    display: flex;
+	display: flex;
 }
 
 .mensaje textarea {
-    width: 100%;
-    padding: 12px;
-    border: 2px solid #cecece;
-    border-radius: 5px;
-    min-height: 100px;
-    max-height: 120px;
-    color: #404040;
-    font-size: 18px;
-    font-weight: normal;
+	width: 100%;
+	padding: 12px;
+	border: 2px solid #cecece;
+	border-radius: 5px;
+	min-height: 100px;
+	max-height: 120px;
+	color: #404040;
+	font-size: 18px;
+	font-weight: normal;
 }
 
 input[type="text"]:focus, textarea:focus {
 	outline: none;
-    border: 2px solid rgb(54, 129, 226);
+	border: 2px solid rgb(54, 129, 226);
 }
 
 .txt-btn {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
+	display: flex;
+	justify-content: space-between;
+	margin-top: 20px;
 }
 
 .txt-btn p {
-    color: #5e5e5e;
-    font-weight: 500;
+	color: #5e5e5e;
+	font-weight: 500;
 }
