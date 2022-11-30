@@ -35,7 +35,7 @@
 				<p id="puntaje">Puntaje</p>
 				<p id="fecha">Fecha </p>
 				<p id="hora">Hora</p>
-			<!--  	<p id="hora">Estado</p> -->
+		
 				
 			</div>
 			
@@ -60,21 +60,15 @@
 						<p>${itemUsuarioExamen.hora_finalizacion_examen}</p>
 					</div>
 					
-				<!--   	<div class="hora">
-					<c:if test="${itemUsuarioExamen.getExamen().aprobado == true }"> 
-						<p>Aprobado</p>
-						 </c:if>
-						 <c:if test="${itemUsuarioExamen.getExamen().aprobado == false }"> 
-						 <p>Desaprobado</p>
-						 </c:if>
-					</div>
-					-->
+			
 				</div>
 				
 				
 			</c:forEach>
 			
-			
+			<a href="misCursos" >
+                <input type="submit" name="volverAtras" value="Volver" id="volverAtras" > 
+                </a> 
 			
 		</c:if>
 		
