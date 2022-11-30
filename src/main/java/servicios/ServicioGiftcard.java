@@ -8,7 +8,7 @@ public interface ServicioGiftcard {
 
 	void verificarSaldoDeGiftcard(Giftcard giftcard, Curso curso_obtenido);
 
-	void sumarPuntos(Giftcard giftcard);
+    int sumarPuntos(Giftcard giftcard,int notaSacada);
 		
 	void agregarPuntos(Giftcard giftcard, Integer puntos);
 

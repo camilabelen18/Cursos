@@ -71,6 +71,7 @@ public interface ServicioUsuario {
 
 	void verificarUsuario(Usuario usuario);
 
+
 	void enviarNotificacion(Usuario usuario, String msj);
 
 	void quitarNotificacion(Usuario_Notificacion usuarioNotificacion, Usuario usuario, HttpSession sesion);

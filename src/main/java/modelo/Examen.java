@@ -35,6 +35,8 @@ public class Examen {
 
 	public boolean estadoHabilitado;
 	
+	public boolean aprobado;
+	
 	public Examen () {
 		
 	}
@@ -105,13 +107,23 @@ public class Examen {
 	public void setEstadoHabilitado(boolean estadoHabilitado) {
 		this.estadoHabilitado = estadoHabilitado;
 	}
+	
+	
+	public boolean getAprobado() {
+		return aprobado;
+	}
+
+	public void setAprobado(boolean aprobado) {
+		this.aprobado = aprobado;
+	}
 
 	@Override
 	public String toString() {
 		return "Examen [id=" + id + ", pregunta_1=" + pregunta_1 + ", pregunta_2=" + pregunta_2 + ", pregunta_3="
 				+ pregunta_3 + ", pregunta_4=" + pregunta_4 + ", pregunta_5=" + pregunta_5 + ", estadoHabilitado="
-				+ estadoHabilitado + "]";
+				+ estadoHabilitado + ", aprobado=" + aprobado + "]";
 	}
+
 
 	
 
