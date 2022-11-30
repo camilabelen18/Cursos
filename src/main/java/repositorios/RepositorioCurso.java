@@ -44,6 +44,8 @@ public interface RepositorioCurso {
 
 	Respuesta buscarRespuestaPorId(int respuesta_id);
 
+	void actualizarExamenAaprobado(Examen examen);
+
 
 
 

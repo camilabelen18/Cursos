@@ -56,6 +56,8 @@ public interface ServicioCurso {
 
 	List<Pregunta> PreguntasAzar(List<Pregunta> preguntas);
 
+	void actualizarExamenAaprobado(Examen examen);
+
 	
 
 

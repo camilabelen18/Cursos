@@ -188,6 +188,17 @@ public class RepositorioCursoImpl implements RepositorioCurso{
 		return respuesta;
 	}
 
+	@Override
+	public void actualizarExamenAaprobado(Examen examen) {
+		Session sesion = sessionFactory.getCurrentSession();
+		
+		examen.setAprobado(true);
+		
+		sesion.update(examen);
+		
+		
+	}
+
 	
 
 	

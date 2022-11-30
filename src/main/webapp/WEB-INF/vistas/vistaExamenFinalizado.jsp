@@ -29,13 +29,14 @@
  <!--   Contenido -->
 <div class="Contenido">
 
-      
-      
+
       <div id="cuadro-seccion-finalizado">
                   <div id="cuadro-puntaje-total">
 					<h2 id="nota-examen">Nota de examen</h2>
 					<div id="total-examen">
 						<p>Nota: </p>
+						<p>${notaSacada }</p>
+						<p>Puntos ganados : ${ puntos } </p>
 						<p class="NotaNumero">${notaSacada }</p>
 						<p>Puntos obtenidos:</p>
 						<p class="NotaNumero"> ${puntos } </p>

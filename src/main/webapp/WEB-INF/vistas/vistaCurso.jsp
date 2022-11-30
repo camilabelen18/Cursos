@@ -93,16 +93,22 @@
 				</c:if>
 				
 				<c:if test="${cursoUsuario.cursoTerminado == true}">
+				
+				<c:if test="${examen.aprobado == false }">
+				
 					<c:if test="${examen.estadoHabilitado == false}">
 					<form action="examen?curso_id=${cursoUsuario.curso.id}" method="POST">
 						<input type="submit" name="examen" value="Examen" class="btn-tipo-1">
 					</form>
 					</c:if>
 					
-					<c:if test="${examen.estadoHabilitado == true}">
+				  <c:if test="${examen.estadoHabilitado == true}">
 					<form action="examen?curso_id=${cursoUsuario.curso.id}" method="POST">
 						<input type="submit" name="examen" value="Examen" class="btn-tipo-2">
 					</form>
+					</c:if>
+						
+					
 					</c:if>
 				</c:if>
 		

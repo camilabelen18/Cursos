@@ -554,6 +554,13 @@ public class ServicioCursoImpl implements ServicioCurso {
 	}
 
 
+	@Override
+	public void actualizarExamenAaprobado(Examen examen) {
+		repositorioCurso.actualizarExamenAaprobado(examen);
+		
+	}
+
+
 	
 
 
