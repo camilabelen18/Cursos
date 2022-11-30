@@ -46,6 +46,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 <header>
 	<div class="cont-1-header" id="cont-header">
 
@@ -127,7 +128,7 @@
 										<p>${usuarioNotificacion.notificacion.mensaje}</p>
 										<div class="iconosNotificacion">
 											<a href="quitarNotificacion?idNotif=${usuarioNotificacion.notificacion.id}">
-												<i class="fa-solid fa-circle-xmark" title="Eliminar" id="eliminar"></i>
+												<i class="fa-solid fa-circle-xmark" title="Quitar" id="eliminar"></i>
 											</a>
 											<a href="marcarNotificacionLeida?idNotif=${usuarioNotificacion.notificacion.id}">
 												<i class="fa-solid fa-circle-check" title="Marcar como leída" id="marcarComoLeida"></i>

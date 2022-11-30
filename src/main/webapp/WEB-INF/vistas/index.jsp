@@ -20,18 +20,92 @@
 	<%@ include file="header.jsp"%>
 
 	<!-- PRESENTACIÓN -->
-	<div class="cont-index-1" style="background-image: url('imagenes/banner.jpg');">
+	<div class="cont-index-1">
 
 		<div class="titulo-subtitulo">
 			<h1>Amplía tus oportunidades profesionales</h1>
 			<p>Elige entre nuestros cursos con contenido nuevo cada mes</p>
 
 		</div>
+    
+    <!-- CURSOS MAS CALIFICADOS -->
+	<div class="cont-index-2">
 
+		<h2>Cursos más calificados</h2>
+
+		<div class="cursos-mas-calificados">
+			<div class="curso-calificado">
+				<div>
+					<img src="imagenes/cursos/curso-spring.jpg" alt="Spring framework">
+				</div>
+				<div class="precio-curso-cal">
+					<p>$ 2500.0</p>
+				</div>
+				<div class="descripcion-curso-cal">
+					<p>Spring Framework 5</p>
+				</div>
+				<form action="verMediosDePago" method="POST" id="compraCursoCalificado">
+					<input type="hidden" name="id_curso" value="2">
+					<input type="hidden" name="precio" value="2500.0">
+					<input type="submit" name="pagar" value="Comprar">
+				</form>
+			</div>
+
+			<div class="curso-calificado">
+				<div>
+					<img src="imagenes/cursos/adobe-photoshop.jpg" alt="Adobe Photoshop">
+				</div>
+				<div class="precio-curso-cal">
+					<p>$ 1000.0</p>
+				</div>
+				<div class="descripcion-curso-cal">
+					<p>Adobe Photoshop</p>
+				</div>
+				<form action="verMediosDePago" method="POST" id="compraCursoCalificado">
+					<input type="hidden" name="id_curso" value="4">
+					<input type="hidden" name="precio" value="1000.0">
+					<input type="submit" name="pagar" value="Comprar">
+				</form>
+			</div>
+			
+			<div class="curso-calificado">
+				<div>
+					<img src="imagenes/cursos/diseño-videojuegos.jpg" alt="Videojuegos">
+				</div>
+				<div class="precio-curso-cal">
+					<p>$ 3200.0</p>
+				</div>
+				<div class="descripcion-curso-cal">
+					<p>Modelado para videojuegos</p>
+				</div>
+				<form action="verMediosDePago" method="POST" id="compraCursoCalificado">
+					<input type="hidden" name="id_curso" value="6">
+					<input type="hidden" name="precio" value="3200.0">
+					<input type="submit" name="pagar" value="Comprar">
+				</form>
+			</div>
+			
+			<div class="curso-calificado">
+				<div>
+					<img src="imagenes/cursos/curso-piano.jpg" alt="Curso piano">
+				</div>
+				<div class="precio-curso-cal">
+					<p>$ 2000.0</p>
+				</div>
+				<div class="descripcion-curso-cal">
+					<p>Curso de piano completo</p>
+				</div>
+				<form action="verMediosDePago" method="POST" id="compraCursoCalificado">
+					<input type="hidden" name="id_curso" value="8">
+					<input type="hidden" name="precio" value="2000.0">
+					<input type="submit" name="pagar" value="Comprar">
+				</form>
+			</div>
+		</div>
 	</div>
 
 	<!-- CATEGORÍAS -->
-	<div class="cont-index-2">
+	<div class="cont-index-3">
 
 		<h2>Categorías</h2>
 
