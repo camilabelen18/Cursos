@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+body{
+    font-family: 'Roboto', sans-serif;
+}
+
+#titulo {
+    padding: 20px;
+    margin: 20px;
+    text-align: center;
+    color: #3c3b37;
+	font-size: 16px;
+}
+.cuadro-seccion-preguntas {
+	padding: 30px;
+    margin: 30px;
+    text-align: center;
+
+}
+#cuadro-seccion-finalizado {
+	padding: 30px;
+    margin: 30px;
+    text-align: center;
+	color: #3c3b37;
+	font-size: 14px;
+	padding-left: 200px;
+	padding-right: 200px;
+}
+
+#cuadro-puntaje-total {
+	padding: 25px;
+	border-bottom: 2px solid #c7c7c7;
+	border-top: 2px solid #c7c7c7;
+	border-left: 2px solid #c7c7c7;
+	border-right: 2px solid #c7c7c7;
+	background-color: #37b9cb52;
+}
+
+#total-examen {
+	padding: 15px;
+    color: #3c3b37;
+	font-size: 20px;
+}
+.dark h2{
+	color: white;
+}
+#nota-examen {
+	padding-bottom: 15px;
+	font-size: 22px;
+}
+.NotaNumero{
+	font-weight: 900;
+}
