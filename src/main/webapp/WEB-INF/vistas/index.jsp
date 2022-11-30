@@ -20,7 +20,7 @@
 	<%@ include file="header.jsp"%>
 
 	<!-- PRESENTACIÓN -->
-	<div class="cont-index-1">
+	<div class="cont-index-1" style="background-image: url('imagenes/banner.jpg');">
 
 		<div class="titulo-subtitulo">
 			<h1>Amplía tus oportunidades profesionales</h1>
