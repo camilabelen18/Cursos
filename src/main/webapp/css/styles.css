@@ -289,7 +289,7 @@ nav {
 
 nav ul {
 	display: flex;
-	justify-content: center;
+	margin-left: 450px;
 }
 
 nav li {

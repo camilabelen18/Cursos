@@ -20,11 +20,15 @@
 	<%@ include file="header.jsp"%>
 
 	<!-- PRESENTACIÓN -->
-	<div class="cont-index-1" style="background-image: linear-gradient(rgba(0, 0, 0, 0.0), rgba(0, 0, 0, 0.4)), url('imagenes/slaider.jpg');">
-		
-		<h1>CURSOS ONLINE</h1>
-		
-    </div>
+	<div class="cont-index-1" style="background-image: url('imagenes/banner.jpg');">
+
+		<div class="titulo-subtitulo">
+			<h1>Amplía tus oportunidades profesionales</h1>
+			<p>Elige entre nuestros cursos con contenido nuevo cada mes</p>
+
+		</div>
+
+	</div>
 
 	<!-- CATEGORÍAS -->
 	<div class="cont-index-2">

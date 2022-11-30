@@ -31,10 +31,21 @@
 	pageContext.setAttribute("notificaciones", notificaciones);
 	pageContext.setAttribute("notificacionesLeidas", notificacionesLeidas);
 	pageContext.setAttribute("notificacionesQuitadas", notificacionesQuitadas);
+	
+	
+	if(session.getAttribute("user") != null){
+		Usuario usuario = (Usuario) session.getAttribute("user");
+		System.out.println(usuario);
+		pageContext.setAttribute("puntosGiftcard", usuario.getGiftcard().getMisPuntos());
+	}
+	
+	
 %>
 
 <head><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Rouge Script"></head>
-
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600&display=swap" rel="stylesheet">
 <header>
 	<div class="cont-1-header" id="cont-header">
 
@@ -148,10 +159,11 @@
 			</a>
 		</div>
 
+	<%--Puntos Giftcard --%>
 		<c:if test='<%=session.getAttribute("idUsuario") != null%>'>
 			<div>
 				<p id="texto-puntos">Mis puntos</p>
-				<p id="mis-puntos">1200</p>
+				<p id="mis-puntos">${puntosGiftcard}</p>
 			</div>
 		</c:if>
 	</div>
@@ -161,7 +173,7 @@
 		<ul>
 			<li><a href="index.jsp">Inicio</a></li>
 			<li><a href="verListaCursos">Cursos</a></li>
-			<li><a href="index.jsp">Contacto</a></li>
+			<li><a href="index.jsp#cont-contacto">Contacto</a></li>
 			<button class="darkModeSwitch" id="switch">
 				<span><i class="fa-solid fa-sun"></i></span>
 				<span><i class="fa-solid fa-moon"></i></span>
