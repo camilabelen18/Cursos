@@ -48,8 +48,10 @@
 
 
 			</form>
-			<form action="pagoMP" method="get" class="d-inline">
-                <input type="hidden" name="precioTotal" value="${precioTotal}">
+			<form action="pagoRealizadoMP" method="get" class="d-inline">
+              
+                <input type="hidden" name="idCurso" value="${idCurso}">
+                
                 <script
                         src="https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js"
                         data-preference-id="${preference.id}">
