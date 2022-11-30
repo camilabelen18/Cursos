@@ -653,8 +653,8 @@ public class ServicioPrincipalImpl implements ServicioPrincipal {
 	 	Pregunta preg26 = new Pregunta("El piano es un instrumento de cuerda percutida ?",resp76,resp77,resp78);
 	 	Pregunta preg27 = new Pregunta("Cuantas teclas tiene un piano estandar ?",resp79,resp80,resp81);
 	 	Pregunta preg28 = new Pregunta("Cuantas octavas tiene un piano estandar ?",resp82,resp83,resp84);
-	 	Pregunta preg29 = new Pregunta("Los pianos cunetan con 4 pedales ?",resp84,resp85,resp86);
-	 	Pregunta preg30 = new Pregunta("Es verdad que los pianos se afinan ?",resp87,resp88,resp89);
+	 	Pregunta preg29 = new Pregunta("Los pianos cunetan con 4 pedales ?",resp85,resp86,resp87);
+	 	Pregunta preg30 = new Pregunta("Es verdad que los pianos se afinan ?",resp88,resp89,resp90);
 		
 	 	sesion.save(preg26);
 		sesion.save(preg27);
