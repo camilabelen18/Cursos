@@ -6,13 +6,14 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-	<meta charset="UTF-8">
-	<title>CompraRealizada</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-	<link rel="shortcut icon" href="imagenes/favicon.ico">
-	<link rel="stylesheet" href="css/styles.css">
-	<link rel="stylesheet" href="css/exito.css">
-	<link rel="stylesheet" href="css/darkmode.css">
+<meta charset="UTF-8">
+<title>CompraRealizada</title>
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1">
+<link rel="shortcut icon" href="imagenes/favicon.ico">
+<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="css/exito.css">
+<link rel="stylesheet" href="css/darkmode.css">
 </head>
 <body>
 
@@ -23,21 +24,19 @@
 	<main>
 
 
-	<div id="tituloCompra">
-		<h2>LA COMPRA FUE REALIZADA DE MANERA EXITOSA!!!</h2>
-		<h4>Muchas gracias por comprar el curso.</h4>
-	</div>
-	
-	<div id="botonesCurso">
-		<form action="verListaCursos">
-			<input type="submit" name="verListaCursos" value="Ir a cursos">
-		</form>
-		
-		<form action="misCursos">
-			<input type="submit" name="misCursos" value="Ir a mis cursos">
-		</form>
-	</div>
-	
+		<div id="tituloCompra">
+			<!-- 		<i class="animate_animated animate__fadeInDown fa-regular fa-face-smile" id="emoji"></i>-->
+			<h2>LA COMPRA FUE REALIZADA DE MANERA EXITOSA!!!</h2>
+			<h4>Muchas gracias por comprar el curso.</h4>
+		</div>
+		<div>
+			<form action="misCursos">
+				<input type="submit" name="misCursos" value="Ir a mis cursos">
+			</form>
+		</div>
+
+
+
 	</main>
 
 

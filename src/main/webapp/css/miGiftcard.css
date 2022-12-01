@@ -5,6 +5,9 @@
 	margin: auto;
 	margin-top: 60px;
 	margin-bottom: 150px;
+	border-radius: 20px;
+	border: 2px solid #bbbab5;
+	padding: 20px 40px;
 }
 
 input[type="email"], input[type="number"] {
@@ -26,9 +29,14 @@ input[type="submit"] {
     float: right;
 }
 
+.envioPuntosForm input:focus {
+	outline: none;
+	border: 2px solid #37B9CB;
+}
+
 .msjerror {
     color: crimson;
-    margin-top: 20px;
+    margin-top: 40px;
 }
 
 .tituloGiftcard {
@@ -108,7 +116,7 @@ input[type="submit"] {
 }
 
 .giftcardNum:hover {
-	background-color: #63c654;
+	background-color: #37B9CB;
     color: white;
 }
 

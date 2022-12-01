@@ -105,7 +105,7 @@ public class ControladorGiftcard {
 		}
 
 		catch (TarjetaInvalidaException e) {
-			model.put("tarjetaIncorrecta", "El número de tarjeta ingresado es incorrecto.");
+			model.put("tarjetaIncorrecta", "El numero de tarjeta ingresado es incorrecto.");
 			model.put("idCurso", curso_obtenido.getId());
 			model.put("precioTotal", curso_obtenido.getPrecio());
 			viewName = "verificacionGiftcard";

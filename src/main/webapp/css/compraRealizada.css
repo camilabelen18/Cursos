@@ -42,9 +42,7 @@ h2{
 }
 /*formulario */
 form{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+	margin: auto;
 }
 
 /*titulo del contenedor*/
@@ -81,7 +79,6 @@ label{
     font-weight: normal;
     background-color: #37B9CB;
 }
-
 
 
 

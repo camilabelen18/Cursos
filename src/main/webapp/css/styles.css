@@ -103,7 +103,7 @@ input[type="submit"]:hover {
 
 #barra_busqueda input:focus {
 	outline: none;
-	border: 2px solid rgb(54, 129, 226);
+	border: 2px solid #37B9CB;
 }
 
 #lupa {
