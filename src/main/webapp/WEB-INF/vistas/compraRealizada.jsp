@@ -23,19 +23,17 @@
 
 	<main>
 
-
 		<div id="tituloCompra">
 			<!-- 		<i class="animate_animated animate__fadeInDown fa-regular fa-face-smile" id="emoji"></i>-->
 			<h2>LA COMPRA FUE REALIZADA DE MANERA EXITOSA!!!</h2>
 			<h4>Muchas gracias por comprar el curso.</h4>
+			
+			<div id="botonesCurso">
+				<form action="misCursos">
+					<input type="submit" name="misCursos" value="Ir a mis cursos">
+				</form>
+			</div>
 		</div>
-		<div>
-			<form action="misCursos">
-				<input type="submit" name="misCursos" value="Ir a mis cursos">
-			</form>
-		</div>
-
-
 
 	</main>
 

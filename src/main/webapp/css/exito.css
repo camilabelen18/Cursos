@@ -6,7 +6,7 @@
 	margin-left:300px;
 	margin-right: 300px;
 	margin-top: 150px;
-	margin-bottom: 56px;
+	margin-bottom: 150px;
 }
 
 h2{
@@ -18,9 +18,8 @@ h4{
 }
 
 #botonesCurso {
-	width: 400px;
-	margin: auto;
-	display: flex;
-	justify-content: space-between;
-	margin-bottom: 100px;
+	width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 20px 0px;
 }

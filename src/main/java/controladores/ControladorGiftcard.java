@@ -70,6 +70,7 @@ public class ControladorGiftcard {
 			model.addAttribute("msj_error", "Para comprar necesitas ingresar a tu cuenta.");
 			viewName = "redirect:/verListaCursos";
 		}
+		
 
 		return new ModelAndView(viewName, model);
 	}
@@ -117,6 +118,9 @@ public class ControladorGiftcard {
 			model.put("precioTotal", curso_obtenido.getPrecio());
 			viewName = "verificacionGiftcard";
 		}
+		
+	    session.setAttribute("user", servicioUsuario.buscarUsuarioPorID(id_user));
+
 
 		return new ModelAndView(viewName, model);
 	}

@@ -168,6 +168,9 @@ input[type="submit"]:hover {
 
 .menuCuentaUsuario i{
 	color: #069aa1;
+	width: 10px;
+	padding-right: 15px;
+	text-align: center;
 }
 
 .contenido-menu {
