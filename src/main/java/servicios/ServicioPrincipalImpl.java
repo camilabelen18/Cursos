@@ -422,10 +422,10 @@ public class ServicioPrincipalImpl implements ServicioPrincipal {
 		
 		//Registro de preguntas Adobe Photoshop
 	 	Pregunta preg16 = new Pregunta("En la parte izquierda de photoshop tenes las herramientas  ?",resp46,resp47,resp48);
-	 	Pregunta preg17 = new Pregunta("Generar capas es como generar una nueva hoja en un libro?",resp46,resp47,resp48);
-	 	Pregunta preg18 = new Pregunta("Usar el navegador es para hacer zoom  ?",resp46,resp47,resp48);
-	 	Pregunta preg19 = new Pregunta("La herramienta tampon de clonar sirve para copiar colores ?",resp46,resp47,resp48);
-	 	Pregunta preg20 = new Pregunta("Con la herramienta lazo se puede usar zoom  ?",resp46,resp47,resp48);
+	 	Pregunta preg17 = new Pregunta("Generar capas es como generar una nueva hoja en un libro?",resp49,resp50,resp51);
+	 	Pregunta preg18 = new Pregunta("Usar el navegador es para hacer zoom  ?",resp52,resp53,resp54);
+	 	Pregunta preg19 = new Pregunta("La herramienta tampon de clonar sirve para copiar colores ?",resp55,resp56,resp57);
+	 	Pregunta preg20 = new Pregunta("Con la herramienta lazo se puede usar zoom  ?",resp58,resp59,resp60);
 		
 	 	sesion.save(preg16);
 		sesion.save(preg17);
@@ -653,7 +653,7 @@ public class ServicioPrincipalImpl implements ServicioPrincipal {
 	 	Pregunta preg26 = new Pregunta("El piano es un instrumento de cuerda percutida ?",resp76,resp77,resp78);
 	 	Pregunta preg27 = new Pregunta("Cuantas teclas tiene un piano estandar ?",resp79,resp80,resp81);
 	 	Pregunta preg28 = new Pregunta("Cuantas octavas tiene un piano estandar ?",resp82,resp83,resp84);
-	 	Pregunta preg29 = new Pregunta("Los pianos cunetan con 4 pedales ?",resp85,resp86,resp87);
+	 	Pregunta preg29 = new Pregunta("Los pianos cuentan con 4 pedales ?",resp85,resp86,resp87);
 	 	Pregunta preg30 = new Pregunta("Es verdad que los pianos se afinan ?",resp88,resp89,resp90);
 		
 	 	sesion.save(preg26);
