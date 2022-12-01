@@ -53,7 +53,8 @@
 	color: black;
 } */
 .dark h1, .dark p, .dark #login a, .dark #contenido-curso a, .dark #logoCurso,
-	.dark #notificacion, .dark #carrito {
+	.dark #notificacion, .dark #carrito, .dark #resumen, .dark #pagarTarjeta, 
+	.dark #busqueda {
 	color: white;
 }
 
@@ -80,3 +81,4 @@ body.dark .contenido-menu p {
 body.dark .contenido-menu h3 {
 	color: black;
 }
+

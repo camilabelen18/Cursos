@@ -63,10 +63,9 @@ input[type="submit"]:hover {
 	padding-right: 50px;
 	position: relative;
 	bottom: 10px;
-	
 }
 
-.cursosLogo h1   {
+.cursosLogo h1 {
 	background: -webkit-linear-gradient(left, #176c98, #25d9f1);
 	background: -o-linear-gradient(right, #176c98, #25d9f1);
 	background: -moz-linear-gradient(right, #176c98, #25d9f1);
@@ -121,6 +120,16 @@ input[type="submit"]:hover {
 
 #login a {
 	color: #3c3b37;
+	padding: 4px 2px;
+	border: 1px solid #5a5854;
+    border-radius: 10px;
+    margin-left: 5px;
+}
+
+#login a:hover{
+	background-color: #CB37B9;
+	color: white;
+	border: 1px solid #CB37B9;
 }
 
 #carrito {
@@ -155,6 +164,10 @@ input[type="submit"]:hover {
 .menuCuentaUsuario, .menuNotificaciones {
 	display: inline-block;
 	position: relative;
+}
+
+.menuCuentaUsuario i{
+	color: #069aa1;
 }
 
 .contenido-menu {
@@ -210,6 +223,7 @@ input[type="submit"]:hover {
 	flex-direction: row;
 	justify-content: space-between;
 	padding: 15px 20px;
+	border: 1px solid #525252;
 }
 
 .mensajes a, .mensajesNoLeidos a {
@@ -222,9 +236,10 @@ input[type="submit"]:hover {
 }
 
 .mensajesNoLeidos {
-	background: rgb(195, 203, 244);
-	background: linear-gradient(90deg, rgba(195, 203, 244, 1) 13%,
-		rgba(194, 213, 238, 1) 52%, rgba(222, 239, 249, 1) 85%);
+	color: #2b2926;
+	background: rgb(185, 128, 255);
+	background: linear-gradient(90deg, rgba(185, 128, 255, 1) 0%,
+		rgba(147, 172, 251, 1) 50%, rgba(153, 255, 245, 1) 100%);
 }
 
 .iconosNotificacion {
@@ -272,7 +287,8 @@ input[type="submit"]:hover {
 
 #mis-puntos {
 	color: white;
-	font-weight: bold; background-color : #37B9CB;
+	font-weight: bold;
+	background-color: #37B9CB;
 	border-radius: 20px;
 	text-align: center;
 	background-color: #37B9CB;
@@ -312,7 +328,7 @@ nav a:hover {
 /* FOOTER */
 .cont-foot {
 	height: 230px;
-	background-color: #2C2E41;
+	background-color: #0d8191;
 	color: white;
 }
 

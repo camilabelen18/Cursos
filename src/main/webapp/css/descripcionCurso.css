@@ -1,8 +1,12 @@
 #contenedor {
-	margin: 0 auto;
-	height: 246;
-	width: 662px;
-
+	width: 60%;
+    margin: auto;
+    border: 2px solid #bbbab5;
+    border-radius: 20px;
+    padding: 0px 100px;
+    padding-right: 40px;
+    margin-top: 100px;
+    margin-bottom: 100px;
 }
 
 #cont1 {
@@ -37,19 +41,29 @@
 }
 
 #comprarAhora {
-	background-color: #37B9CB;;
+	background-color: #37B9CB;
 	color: white;
 	border: 0;
 	width: 200px;
 	height: 35px;
 }
 
+#comprarAhora:hover{
+	background-color: #5dcede;
+	color: white;
+}
+
 #agregarCarrito {
-	background-color: #858f91;
+	background-color: #37B9CB;
 	color: white;
 	border: 0; width : 200px;
 	height: 35px;
 	width: 200px
+}
+
+#agregarCarrito:hover{
+	background-color: #5dcede;
+	color: white;
 }
 
 #cont2, #cont3, #cont4 {

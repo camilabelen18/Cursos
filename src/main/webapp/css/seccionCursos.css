@@ -9,7 +9,7 @@
 #contenedorFiltros {
 	display: flex;
 	flex-direction: row;
-	justify-content: flex-end;
+	justify-content: space-between;
 	margin-top: 50px;
 	margin-bottom: 20px;
 	padding: 10px;
@@ -37,7 +37,6 @@
 	width: 100%;
 	overflow: auto;
 	background-color: white;
-	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 }
 
 .dropdown:hover .dropdown-content {
@@ -148,7 +147,7 @@
 }
 
 .msj-sincurso{
-	border: 2px solid white;
+	border: 2px solid #bbbab5;
 	padding-bottom: 50px;
 	margin-bottom: 100px;
 	margin-top: 60px;

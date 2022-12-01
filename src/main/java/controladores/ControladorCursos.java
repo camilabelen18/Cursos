@@ -50,6 +50,7 @@ public class ControladorCursos {
 		}
 		
 		model.put("lista_cursos", busqueda_cursos);
+		model.put("busqueda", nombreCurso);
 		
 		return new ModelAndView("seccionCursos", model);
 	}
@@ -83,6 +84,7 @@ public class ControladorCursos {
 		model.put("lista_cursos", cursos);
 		model.put("msj_exito", msj_exito);
 		model.put("msj_error", msj_error);
+		model.put("categoria","Todos los cursos");
 		
 		//Si el usuario no es nulo, y su rol es "admin", entonces se mostrara la seccion de cursos de administrador
 		if(session.getAttribute("idUsuario") != null) {
@@ -119,6 +121,7 @@ public class ControladorCursos {
 		List<Curso> cursos = servicioCurso.getCursosPorCategoria(categoria);
 		
 		model.put("lista_cursos", cursos);
+		model.put("categoria", categoria);
 		
 		return new ModelAndView("seccionCursos", model);
 	}

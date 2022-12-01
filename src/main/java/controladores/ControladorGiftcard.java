@@ -138,7 +138,7 @@ public class ControladorGiftcard {
 			Giftcard gc2 = usuario2.getGiftcard();
 			servicioGiftcard.enviarPuntos(gc1, gc2, puntos);
 			servicioUsuario.enviarNotificacion(usuario1, "Se enviaron " + puntos + " puntos a " + usuario2.getNombre(), session);
-			servicioUsuario.enviarNotificacion(usuario2, usuario1.getNombre() + " te envi� " + puntos + " puntos");
+			servicioUsuario.enviarNotificacion(usuario2, usuario1.getNombre() + " te envio " + puntos + " puntos");
 			viewName = "puntosEnviados";
 
 		} catch (UsuarioInexistenteException e) {
@@ -153,6 +153,8 @@ public class ControladorGiftcard {
 			viewName = "miGiftcard";
 		}
 
+		session.setAttribute("user", servicioUsuario.buscarUsuarioPorID(id_user));
+		
 		return new ModelAndView(viewName, model);
 	}
 }

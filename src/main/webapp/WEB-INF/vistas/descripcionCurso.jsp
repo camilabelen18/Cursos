@@ -6,21 +6,22 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-	<meta charset="UTF-8">
-	<title>Descripción Curso</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-	<link rel="shortcut icon" href="imagenes/favicon.ico">
-    <link rel="stylesheet" href="css/styles.css">
-	<link rel="stylesheet" href="css/descripcionCurso.css">
-	<link rel="stylesheet" href="css/darkmode.css">
+<meta charset="UTF-8">
+<title>Descripción Curso</title>
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1">
+<link rel="shortcut icon" href="imagenes/favicon.ico">
+<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="css/descripcionCurso.css">
+<link rel="stylesheet" href="css/darkmode.css">
 </head>
 <body>
 	<%@ include file="header.jsp"%>
 
-	<%--incluir el header aca arriba --%>
-	<h1 id="tit">Descripción del Curso</h1>
+
 
 	<div id="contenedor">
+		<h1 id="tit">Descripción del Curso</h1>
 		<div id="cont1">
 			<img id="img1" src="imagenes/cursos/${curso.imagen}">
 		</div>
@@ -32,7 +33,7 @@
 
 		<div id="cont3">
 			<form action="agregarCursoAlCarrito" method="get">
-			<input type="hidden" name="id_curso" value="${curso.id}">
+				<input type="hidden" name="id_curso" value="${curso.id}">
 				<%-- cambiar por vista de carrito --%>
 				<input id="agregarCarrito" type="submit" value="Agregar al carrito">
 			</form>
@@ -40,17 +41,19 @@
 
 		<div id="cont4">
 			<form action="comprar" method="get">
-				<input type="hidden" name="id_curso" value="${curso.id}">
-				<input type="hidden" name="precio" value="${curso.precio}">
-				<input id="comprarAhora" name = "comprarAhora" type="submit" value="Comprar Ahora">
+				<input type="hidden" name="id_curso" value="${curso.id}"> <input
+					type="hidden" name="precio" value="${curso.precio}"> <input
+					id="comprarAhora" name="comprarAhora" type="submit"
+					value="Comprar Ahora">
 			</form>
+		</div>
+		<div id="descripcion">
+			<p id="descTit">Descripción</p>
+			<p id="descCuerpo">${curso.descripcion}</p>
 		</div>
 	</div>
 
-	<div id="descripcion">
-		<p id="descTit">Descripción</p>
-		<p id="descCuerpo">${curso.descripcion}</p>
-	</div>
+
 
 	<%@ include file="footer.jsp"%>
 </body>

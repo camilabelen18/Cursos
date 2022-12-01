@@ -67,8 +67,8 @@
 		<!-- Aca se valida si el usuario no inicio sesión -->
 		<c:if test='<%=session.getAttribute("idUsuario") == null%>'>
 			<div id="login">
-				<a href="registro">Creá tu cuenta</a>
-				<a href="login">Ingresá</a>
+				<a href="registro">Registrarse</a>
+				<a href="login">Iniciar sesión</a>
 			</div>
 		</c:if>
 
@@ -84,10 +84,11 @@
 						<img id="fotoGrandeUsuario" src='uploads/<%=session.getAttribute("imgUsuario")%>'>
 						<p><%=session.getAttribute("nombreUsuario")%></p>
 					</div>
-					<a href="verPerfil">Ver perfil</a>
-					<a href="misCursos">Mis cursos</a>
-					<a href="verGiftcard">Mi giftcard</a>
-					<a href="cerrarSesion">Cerrar sesión</a>
+					
+					<a href="verPerfil"><i class="fa-regular fa-address-card"></i> Ver perfil</a>
+					<a href="misCursos"><i class="fa-regular fa-bookmark"></i> Mis cursos</a>
+					<a href="verGiftcard"><i class="fa-regular fa-credit-card"></i> Mi giftcard</a>
+					<a href="cerrarSesion"><i class="fa-solid fa-power-off"></i> Cerrar sesión</a>
 				</div>
 			</div>
 
@@ -104,7 +105,6 @@
 				
 				<div class="contenido-menu" id="contenido-menu-notificaciones">
 					<h3>Notificaciones</h3>
-					<hr>
 					<c:if test="${not empty notificaciones}">
 
 						<c:forEach var="usuarioNotificacion" items="${notificaciones}">
@@ -116,7 +116,7 @@
 									<div class="mensajes">
 										<p>${usuarioNotificacion.notificacion.mensaje}</p>
 										<a href="quitarNotificacion?idNotif=${usuarioNotificacion.notificacion.id}">
-											<i class="fa-solid fa-circle-xmark" title="Eliminar" id="eliminar"></i>
+											<i class="fa-solid fa-circle-xmark" title="Ocultar" id="eliminar"></i>
 										</a>
 									</div>
 								</c:if>
@@ -127,7 +127,7 @@
 										<p>${usuarioNotificacion.notificacion.mensaje}</p>
 										<div class="iconosNotificacion">
 											<a href="quitarNotificacion?idNotif=${usuarioNotificacion.notificacion.id}">
-												<i class="fa-solid fa-circle-xmark" title="Quitar" id="eliminar"></i>
+												<i class="fa-solid fa-circle-xmark" title="Ocultar" id="eliminar"></i>
 											</a>
 											<a href="marcarNotificacionLeida?idNotif=${usuarioNotificacion.notificacion.id}">
 												<i class="fa-solid fa-circle-check" title="Marcar como leída" id="marcarComoLeida"></i>

@@ -38,7 +38,7 @@
 		
 		<p>
 			<span>¿No tenes cuenta? </span>
-			<a href="registro">Registrate</a>
+			<a href="registro" id="registrate">Registrate</a>
 		</p>
 		
 		<div id="mensaje" class="error"></div>

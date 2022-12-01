@@ -34,6 +34,7 @@
 		<%--Caja contenedora principal --%>
 		<div class="contenedor2" id="contenedor2">
 
+			<div>
 			<form action="verificarCompra" method="post">
 
 				<input type="hidden" name="curso_id" value="${idCurso}">

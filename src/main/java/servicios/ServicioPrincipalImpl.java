@@ -31,13 +31,13 @@ public class ServicioPrincipalImpl implements ServicioPrincipal {
 		
 		Curso c1 = new Curso("Curso PHP/MySql desde 0", "programacion", "En este curso se vera como crear aplicaciones y sitios web desde cero con PHP y MYSQL.", 3000.0, "php-desde-cero.jpg");
 		Curso c2 = new Curso("Spring Framework 5", "programacion", "Construye aplicaciones web con Spring Framework 5 & Spring Boot: Thymeleaf, JPA, Security, REST, MySQL, Angular, WebFlux.", 2500.0, "curso-spring.jpg");
-		Curso c3 = new Curso("Python 2022", "programacion", "En este curso aprenderas desde las bases de Python hacia temas más avanzados del lenguaje.", 2600.0, "curso-phyton.jpg");
-		Curso c4 = new Curso("Adobe Photoshop: Curso completo", "diseno", "Aprende las herramientas esenciales de Adobe Photoshop para comenzar a diseñar hermosos graficos y fotos en Photoshop.", 1000.0, "adobe-photoshop.jpg");
-		Curso c5 = new Curso("Curso completo de WordPress", "diseno", "El Mejor Curso de WordPress para aprender desde cero... ¡Mas de 5.000 alumnos satisfechos!", 800.0, "wordpress.jpg");
-		Curso c6 = new Curso("Modelado y diseño para videojuegos", "diseno", "Aprende DESDE CERO a Modelar, Texturizar, Iluminacion y Render de modelos 2D 3D Assets Videojuegos MagicaVoxel y Unity", 3200.0, "diseño-videojuegos.jpg");
-		Curso c7 = new Curso("Curso de guitarra practico para principiantes", "musica", "Aprende paso a paso a tocar la guitarra con este curso practico. Aprende tocando y olvídate de ejercicios aburridos.", 1650.0, "curso-guitarra.jpg");
-		Curso c8 = new Curso("Curso de piano completo", "musica", "Aprendelo Todo: Armonia , Composicion, Improvisacion , Acompañar con acordes, Lectura & Solfeo, Tecnica y Relajacion.", 2000.0, "curso-piano.jpg");
-		Curso c9 = new Curso("Curso de canto para principiantes", "musica", "¡Encuentra tu voz de canto de forma natural y diviértete haciéndolo! Un enfoque moderno para las clases de canto.", 2000.0, "curso-canto.jpg");
+		Curso c3 = new Curso("Python 2022", "programacion", "En este curso aprenderas desde las bases de Python hacia temas mas avanzados del lenguaje.", 2600.0, "curso-phyton.jpg");
+		Curso c4 = new Curso("Adobe Photoshop: Curso completo", "diseno", "Aprende las herramientas esenciales de Adobe Photoshop para comenzar a disenar hermosos graficos y fotos en Photoshop.", 1000.0, "adobe-photoshop.jpg");
+		Curso c5 = new Curso("Curso completo de WordPress", "diseno", "El Mejor Curso de WordPress para aprender desde cero... Mas de 5.000 alumnos satisfechos!", 800.0, "wordpress.jpg");
+		Curso c6 = new Curso("Modelado y diseno para videojuegos", "diseno", "Aprende DESDE CERO a Modelar, Texturizar, Iluminacion y Render de modelos 2D 3D Assets Videojuegos MagicaVoxel y Unity", 3200.0, "diseno-videojuegos.jpg");
+		Curso c7 = new Curso("Curso de guitarra practico para principiantes", "musica", "Aprende paso a paso a tocar la guitarra con este curso practico. Aprende tocando y olvidate de ejercicios aburridos.", 1650.0, "curso-guitarra.jpg");
+		Curso c8 = new Curso("Curso de piano completo", "musica", "Aprendelo Todo: Armonia , Composicion, Improvisacion , Acompanar con acordes, Lectura & Solfeo, Tecnica y Relajacion.", 2000.0, "curso-piano.jpg");
+		Curso c9 = new Curso("Curso de canto para principiantes", "musica", "Encuentra tu voz de canto de forma natural y diviertete haciendolo! Un enfoque moderno para las clases de canto.", 2000.0, "curso-canto.jpg");
 		
 		sesion.save(c1);
 		sesion.save(c2);
@@ -54,7 +54,7 @@ public class ServicioPrincipalImpl implements ServicioPrincipal {
 		
 		Giftcard gift1 = new Giftcard(555, 0, 0.0);
 		Giftcard gift2 = new Giftcard(555, 0, 0.0);
-		Giftcard gift3 = new Giftcard(555, 10000, 1000.0);
+		Giftcard gift3 = new Giftcard(555, 80000, 8000.0);
 		
 		Usuario admin = new Usuario("Juan", "admin@gmail.com","123", "admin");
 		admin.setNroTarjeta(555);
@@ -89,36 +89,36 @@ public class ServicioPrincipalImpl implements ServicioPrincipal {
 		
 		/* SE INSERTAN LOS REGISTROS DE TODAS LAS UNIDADES DE LOS CURSOS */
 		
-		Unidad un1 = new Unidad("Unidad 1: Presentación", "https://www.youtube.com/embed/I75CUdSJifw");
-		Unidad un2 = new Unidad("Unidad 2: Instalación software del curso", "https://www.youtube.com/embed/tXxOAXP-gkg");
-		Unidad un3 = new Unidad("Unidad 3: Primera página PHP", "https://www.youtube.com/embed/Ja9UVEgAzEw");
+		Unidad un1 = new Unidad("Unidad 1: Presentacion", "https://www.youtube.com/embed/I75CUdSJifw");
+		Unidad un2 = new Unidad("Unidad 2: Instalacion software del curso", "https://www.youtube.com/embed/tXxOAXP-gkg");
+		Unidad un3 = new Unidad("Unidad 3: Primera pagina PHP", "https://www.youtube.com/embed/Ja9UVEgAzEw");
 		Unidad un4 = new Unidad("Unidad 4: Variables y comentarios", "https://www.youtube.com/embed/IOdmCo_7U6s");
 		
-		Unidad un5 = new Unidad("Unidad 1: Introducción", "https://www.youtube.com/embed/eyWmkbReWLI");
-		Unidad un6 = new Unidad("Unidad 2: ¿Qué es Spring Boot?", "https://www.youtube.com/embed/UvXktTs2bx0");
-		Unidad un7 = new Unidad("Unidad 3: Instalación del Spring Tools IDE", "https://www.youtube.com/embed/9yAt3hAJ-vg");
+		Unidad un5 = new Unidad("Unidad 1: Introduccion", "https://www.youtube.com/embed/eyWmkbReWLI");
+		Unidad un6 = new Unidad("Unidad 2: Que es Spring Boot?", "https://www.youtube.com/embed/UvXktTs2bx0");
+		Unidad un7 = new Unidad("Unidad 3: Instalacion del Spring Tools IDE", "https://www.youtube.com/embed/9yAt3hAJ-vg");
 		
-		Unidad un8 = new Unidad("Unidad 1: Introducción", "https://www.youtube.com/embed/DAdRO6ByBoU");
-		Unidad un9 = new Unidad("Unidad 2: Ejecución de un programa", "https://www.youtube.com/embed/UzHFkEdnRuc");
+		Unidad un8 = new Unidad("Unidad 1: Introduccion", "https://www.youtube.com/embed/DAdRO6ByBoU");
+		Unidad un9 = new Unidad("Unidad 2: Ejecucion de un programa", "https://www.youtube.com/embed/UzHFkEdnRuc");
 		Unidad un10 = new Unidad("Unidad 3: Variables en Python", "https://www.youtube.com/embed/w8VZxo1TlnU");
 		
-		Unidad un11 = new Unidad("Unidad 1: Introducción", "https://www.youtube.com/embed/4-VMuLs99Ss");
+		Unidad un11 = new Unidad("Unidad 1: Introduccion", "https://www.youtube.com/embed/4-VMuLs99Ss");
 		Unidad un12 = new Unidad("Unidad 2: Tapon de Clonar y Parche", "https://www.youtube.com/embed/Y9yKFzACEHg");
-		Unidad un13 = new Unidad("Unidad 3: Lazos y Tono/Saturación", "https://www.youtube.com/embed/HVBg6Fn2Rc0");
+		Unidad un13 = new Unidad("Unidad 3: Lazos y Tono/Saturacion", "https://www.youtube.com/embed/HVBg6Fn2Rc0");
 		un11.setCompletado(true);
 		un12.setCompletado(true);
 		un13.setCompletado(true);
 		
-		Unidad un14 = new Unidad("Unidad 1: Introducción", "https://www.youtube.com/embed/OAWTixdQjqM");
-		Unidad un15 = new Unidad("Unidad 2: Instalación en windows", "https://www.youtube.com/embed/BbRYgUiAsEQ");
-		Unidad un16 = new Unidad("Unidad 3: Párrafos", "https://www.youtube.com/embed/48aCNffCJTU");
+		Unidad un14 = new Unidad("Unidad 1: Introduccion", "https://www.youtube.com/embed/OAWTixdQjqM");
+		Unidad un15 = new Unidad("Unidad 2: Instalacion en windows", "https://www.youtube.com/embed/BbRYgUiAsEQ");
+		Unidad un16 = new Unidad("Unidad 3: Parrafos", "https://www.youtube.com/embed/48aCNffCJTU");
 		un14.setCompletado(true);
 		un15.setCompletado(true);
 		un16.setCompletado(true);
 		
-		Unidad un17 = new Unidad("Unidad 1: Introducción", "https://www.youtube.com/embed/Vf9PyoXPkjI");
+		Unidad un17 = new Unidad("Unidad 1: Introduccion", "https://www.youtube.com/embed/Vf9PyoXPkjI");
 		Unidad un18 = new Unidad("Unidad 2: Ejercicios", "https://www.youtube.com/embed/hdcCtgeKHqI");
-		Unidad un19 = new Unidad("Unidad 3: Navegación Básica", "https://www.youtube.com/embed/HE_OXqM2ks8");
+		Unidad un19 = new Unidad("Unidad 3: Navegacion Basica", "https://www.youtube.com/embed/HE_OXqM2ks8");
 		
 		Unidad un20 = new Unidad("Unidad 1: Las partes de la guitarra", "https://www.youtube.com/embed/L3_EGxOLcv0");
 		Unidad un21 = new Unidad("Unidad 2: La postura correcta", "https://www.youtube.com/embed/QqB1vaicNxU");
@@ -127,12 +127,12 @@ public class ServicioPrincipalImpl implements ServicioPrincipal {
 		un21.setCompletado(true);
 		un22.setCompletado(true);
 		
-		Unidad un23 = new Unidad("Unidad 1: Introducción", "https://www.youtube.com/embed/kAALQ4JEY6c");
+		Unidad un23 = new Unidad("Unidad 1: Introduccion", "https://www.youtube.com/embed/kAALQ4JEY6c");
 		Unidad un24 = new Unidad("Unidad 2: Leccion 2", "https://www.youtube.com/embed/LYuZIZ_LDKk");
 		Unidad un25 = new Unidad("Unidad 3: Leccion 3", "https://www.youtube.com/embed/rkP-S0U7O1w");
 		
-		Unidad un26 = new Unidad("Unidad 1: Introducción", "https://www.youtube.com/embed/ciHP0DGppX4");
-		Unidad un27 = new Unidad("Unidad 2: Respiración", "https://www.youtube.com/embed/utAoguWXYTc");
+		Unidad un26 = new Unidad("Unidad 1: Introduccion", "https://www.youtube.com/embed/ciHP0DGppX4");
+		Unidad un27 = new Unidad("Unidad 2: Respiracion", "https://www.youtube.com/embed/utAoguWXYTc");
 		Unidad un28 = new Unidad("Unidad 3: Ejercicios", "https://www.youtube.com/embed/hU89zIsQ9UE");
 		
 		sesion.save(un1);
@@ -267,10 +267,10 @@ public class ServicioPrincipalImpl implements ServicioPrincipal {
 		
 		
 		//Registro de respuestas de spring framework 5	
-		Respuesta resp16 = new Respuesta("Si, y busca facilitarnos la creaci�n de proyectos",true );
+		Respuesta resp16 = new Respuesta("Si, y busca facilitarnos la creacion de proyectos",true );
 		Respuesta resp17 = new Respuesta("No, son diferentes ",false );
 		Respuesta resp18 = new Respuesta("Si, podes crear proyectos que funcionen fuera de Spring Framework", true);
-		Respuesta resp19 = new Respuesta("Si, ya que Spring boot provee configuraci�n para las tecnolog�as mas usadas",true );
+		Respuesta resp19 = new Respuesta("Si, ya que Spring boot provee configuracion para las tecnologias mas usadas",true );
 		Respuesta resp20 = new Respuesta("No, uno tiene que configurar todo ",false  );
 		Respuesta resp21 = new Respuesta("Si, puede que tenga para algunas cosas pero no para las mas importantes", true);
 		Respuesta resp22 = new Respuesta("Si, utiliza Stand Alone ",true );
@@ -304,7 +304,7 @@ public class ServicioPrincipalImpl implements ServicioPrincipal {
 	 	Pregunta preg6 = new Pregunta("Spring boot es un subproyecto de Spring Framework  ?",resp16,resp17,resp18);
 	 	Pregunta preg7 = new Pregunta("Con Spring boot una ya empieza con configuraciones por defecto ?",resp19,resp20,resp21);
 	 	Pregunta preg8 = new Pregunta("Podes crear aplicaciones independientes sin usar servidor web ?",resp22,resp23,resp24);
-	 	Pregunta preg9 = new Pregunta("Spring boot provee un modelo de programaci�n parecido a las aplicaciones java ?",resp25,resp26,resp27);
+	 	Pregunta preg9 = new Pregunta("Spring boot provee un modelo de programacion parecido a las aplicaciones java ?",resp25,resp26,resp27);
 	 	Pregunta preg10 = new Pregunta("Spring tool es un ide basado en eclipse ?",resp28,resp29,resp30);
 		
 	 	sesion.save(preg6);
@@ -333,14 +333,14 @@ public class ServicioPrincipalImpl implements ServicioPrincipal {
 				Respuesta resp35 = new Respuesta(" Es un programa que pasa el lenguaje maquina a codigo fuente  ",false  );
 				Respuesta resp36 = new Respuesta(" Es algo que permite ejecutar el codigo fuente ", true);
 				Respuesta resp37 = new Respuesta("Si, es aconsejable ponerla aunque ya sea de ese tipo ",true );
-				Respuesta resp38 = new Respuesta("No, sin la extensi�n esta bien ",false  );
+				Respuesta resp38 = new Respuesta("No, sin la extension esta bien ",false  );
 				Respuesta resp39 = new Respuesta("No es necesario ya que es de tipo python ",true );
 				Respuesta resp40 = new Respuesta("Es un espacio en memoria donde se guardan y recuperan los datos que se utiliza", true);
 				Respuesta resp41 = new Respuesta(" Es una ejecucion dentro de un programa", false );
 				Respuesta resp42 = new Respuesta("Es algo que es necesario este en la memoria de un programa ",true );
 				Respuesta resp43 = new Respuesta("Si", true);
 				Respuesta resp44 = new Respuesta("No", false );
-				Respuesta resp45 = new Respuesta("Tal vez si las separa un car�cter diferente",true );
+				Respuesta resp45 = new Respuesta("Tal vez si las separa un caracter diferente",true );
 				
 				sesion.save(resp31);
 				sesion.save(resp32);
@@ -392,7 +392,7 @@ public class ServicioPrincipalImpl implements ServicioPrincipal {
 		Respuesta resp47 = new Respuesta("No, estan abajo  ",false );
 		Respuesta resp48 = new Respuesta("Aparecen en la derecha ", true);
 		Respuesta resp49 = new Respuesta("Si, es agregarle una nueva pagina",true );
-		Respuesta resp50 = new Respuesta("No, las capas no funcionan as� ",false  );
+		Respuesta resp50 = new Respuesta("No, las capas no funcionan asi ",false  );
 		Respuesta resp51 = new Respuesta("Puede que las capas sean temporales ", true);
 		Respuesta resp52 = new Respuesta("Si, sirve como una lupa  ",true );
 		Respuesta resp53 = new Respuesta("No, es solo para tener la imagen quieta ",false  );
@@ -539,8 +539,8 @@ public class ServicioPrincipalImpl implements ServicioPrincipal {
 
 		// Registro de preguntas diseño de videojuegos
 		Pregunta preg41 = new Pregunta("Un personaje puede ser ficticio ?", resp201, resp202, resp203);
-		Pregunta preg42 = new Pregunta("Se necesita saber diseño grafico  ?", resp204, resp205, resp206);
-		Pregunta preg43 = new Pregunta("Tenes que saber dibujar para el diseño de videojuegos ?", resp207, resp208, resp209);
+		Pregunta preg42 = new Pregunta("Se necesita saber diseno grafico  ?", resp204, resp205, resp206);
+		Pregunta preg43 = new Pregunta("Tenes que saber dibujar para el diseno de videojuegos ?", resp207, resp208, resp209);
 		Pregunta preg44 = new Pregunta("Es actual ?", resp210, resp211, resp212);
 		Pregunta preg45 = new Pregunta("Es necesario saber usar Blender ?", resp213, resp214, resp215);
 
@@ -683,7 +683,7 @@ public class ServicioPrincipalImpl implements ServicioPrincipal {
 				Respuesta resp109 = new Respuesta("-Elongacion",false );
 				Respuesta resp110 = new Respuesta("-Articulacion ",false  );
 				Respuesta resp111 = new Respuesta("-Respiracion", true);
-				Respuesta resp112 = new Respuesta("-Una oscilaci�n regular de la voz ",false );
+				Respuesta resp112 = new Respuesta("-Una oscilacion regular de la voz ",false );
 				Respuesta resp113 = new Respuesta("-Subir y bajar en una misma nota ",false  );
 				Respuesta resp114 = new Respuesta("-Ambas son correctas",true );
 				Respuesta resp115 = new Respuesta("-El soplado no produce sonido", false);
@@ -711,7 +711,7 @@ public class ServicioPrincipalImpl implements ServicioPrincipal {
 	 	
 	 	
 		//Registro de preguntas Canto
-	 	Pregunta preg36 = new Pregunta("Es verdad que a los hombres se les vuelve mas grave la voz durante su adolecencia porque La distancia entre la laringe y la boca se hace m�s larga  ?",resp106,resp107,resp108);
+	 	Pregunta preg36 = new Pregunta("Es verdad que a los hombres se les vuelve mas grave la voz durante su adolecencia porque La distancia entre la laringe y la boca se hace mas larga  ?",resp106,resp107,resp108);
 	 	Pregunta preg37 = new Pregunta("Cual de estos elementos es esencial para cantar ?",resp109,resp110,resp111);
 	 	Pregunta preg38 = new Pregunta("Que es el vibrato  ?",resp112,resp113,resp114);
 	 	Pregunta preg39 = new Pregunta("El soplado consiste en dejar pasar aire por las cuerdas vocales mientras se va produciendo sonido ?",resp115,resp116,resp117);

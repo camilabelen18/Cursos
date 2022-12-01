@@ -32,7 +32,7 @@
     <!-- CURSOS MAS CALIFICADOS -->
 	<div class="cont-index-2">
 
-		<h2>Cursos más calificados</h2>
+		<h2>Ultimos cursos agregados</h2>
 
 		<div class="cursos-mas-calificados">
 			<div class="curso-calificado">
@@ -71,7 +71,7 @@
 			
 			<div class="curso-calificado">
 				<div>
-					<img src="imagenes/cursos/diseño-videojuegos.jpg" alt="Videojuegos">
+					<img src="imagenes/cursos/diseno-videojuegos.jpg" alt="Videojuegos">
 				</div>
 				<div class="precio-curso-cal">
 					<p>$ 3200.0</p>
