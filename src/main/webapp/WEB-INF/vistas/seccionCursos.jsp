@@ -6,14 +6,13 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<title>Cursos</title>
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, maximum-scale=1">
-<link rel="shortcut icon" href="imagenes/favicon.ico">
-<link rel="stylesheet" href="css/styles.css">
-<link rel="stylesheet" href="css/seccionCursos.css">
-<link rel="stylesheet" href="css/darkmode.css">
+	<meta charset="UTF-8">
+	<title>Cursos</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<link rel="shortcut icon" href="imagenes/favicon.ico">
+	<link rel="stylesheet" href="css/styles.css">
+	<link rel="stylesheet" href="css/seccionCursos.css">
+	<link rel="stylesheet" href="css/darkmode.css">
 </head>
 <body>
 
@@ -23,19 +22,19 @@
 		<div id="contenedorFiltros">
 
 			<c:if test="${categoria =='diseno'}">
-				<h1>Diseño</h1>
+				<h1>Cursos de diseño</h1>
 			</c:if>
 			<c:if test="${categoria =='programacion'}">
-				<h1>Programación</h1>
+				<h1>Cursos de programación</h1>
 			</c:if>
 			<c:if test="${categoria =='musica'}">
-				<h1>Música</h1>
+				<h1>Cursos de  música</h1>
 			</c:if>
 			<c:if test="${categoria == 'Todos los cursos'}">
 				<h1>Todos los cursos</h1>
 			</c:if>
 			<c:if test="${busqueda != null}">
-				<h3 id="busqueda">Los resultados de la busqueda para el curso "${busqueda}" son: </h3>
+				<h3 id="busqueda">Los resultados de la busqueda para el curso '${busqueda}' son: </h3>
 			</c:if>
 
 			<div class="dropdown">

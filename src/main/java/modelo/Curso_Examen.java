@@ -1,15 +1,6 @@
 package modelo;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-
+import javax.persistence.*;
 
 @Entity
 @Table(name = "curso_examen")
@@ -27,25 +18,13 @@ public class Curso_Examen {
 	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
 	@JoinColumn(name = "examen_id")
 	private Examen examen;
-	
-	
-	public Curso_Examen() {
-	}
+
+	public Curso_Examen() { }
 
 	public Curso_Examen(Curso curso, Examen examen) {
 		this.curso = curso;
 		this.examen = examen;
 	}
-	
- /*
-	public int getPuntaje_final() {
-		return puntaje_final;
-	}
-
-	public void setPuntaje_final(int puntaje_final) {
-		this.puntaje_final = puntaje_final;
-	}
-	*/
 
 	public int getId() {
 		return id;
@@ -75,9 +54,5 @@ public class Curso_Examen {
 	public String toString() {
 		return "Curso_Examen [id=" + id + ", curso=" + curso + ", examen=" + examen + "]";
 	}
-	
-	
-	
-	
 	
 }

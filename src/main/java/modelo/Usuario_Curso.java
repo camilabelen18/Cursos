@@ -4,7 +4,6 @@ import java.time.*;
 
 import javax.persistence.*;
 
-
 @Entity
 @Table(name="usuario_curso")
 public class Usuario_Curso {
@@ -13,13 +12,11 @@ public class Usuario_Curso {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id")
 	private int id;
-	
-	// Almacena el id del usuario
+
 	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
 	@JoinColumn(name = "usuario_id")
 	private Usuario usuario;
-	
-	// Almacena el id del curso
+
 	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
 	@JoinColumn(name = "curso_id")
 	private Curso curso;
@@ -39,7 +36,6 @@ public class Usuario_Curso {
 	@Column(name = "hora_compra")
 	private LocalTime hora;
 	
-	
 	public Usuario_Curso() {
 		this.progreso = 0.0;
 		this.cursoTerminado = false;
@@ -51,7 +47,6 @@ public class Usuario_Curso {
 		this.progreso = 0.0;
 		this.cursoTerminado = false;
 	}
-
 
 	public int getId() {
 		return id;
@@ -76,7 +71,6 @@ public class Usuario_Curso {
 	public void setCurso(Curso curso) {
 		this.curso = curso;
 	}
-		
 
 	public LocalDate getFecha_incio_compra() {
 		return fecha_incio_compra;

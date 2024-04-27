@@ -19,8 +19,7 @@ public class Giftcard {
 	
 	@Column(name ="saldo")
 	private Double saldoActual;
-	
-	
+
 	public Giftcard() {}
 
 	public Giftcard(Integer numTarjeta, Integer misPuntos, Double saldoActual) {

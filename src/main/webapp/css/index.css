@@ -60,10 +60,6 @@
     padding-bottom: 20px;
 }
 
-.curso-calificado:hover{
-	border:2px #37B9CB solid;
-}
-
 .precio-curso-cal {
     text-align: end;
     position: relative;
@@ -104,10 +100,6 @@
 	padding: 60px 0px 40px 0px;
 	font-size: 34px;
 	font-weight: 500;
-}
-
-.cat-index:hover{
-	border:2px #37B9CB solid;
 }
 
 .categorias-index {

@@ -1,7 +1,5 @@
 package modelo;
 
-/* Esta clase se va a utilizar para enviar datos de una vista a un controlador mediante un objeto */
-
 public class DatosLogin {
 	
     private String email;

@@ -2,17 +2,7 @@ package servicios;
 
 import java.util.List;
 
-import modelo.Curso;
-import modelo.DatosExamen;
-import modelo.DatosPregunta;
-import modelo.Estado;
-import modelo.Examen;
-import modelo.Pregunta;
-import modelo.Respuesta;
-import modelo.Unidad;
-import modelo.Usuario;
-import modelo.Usuario_Curso;
-import modelo.Usuario_Examen;
+import modelo.*;
 
 public interface ServicioCurso {
 
@@ -57,16 +47,5 @@ public interface ServicioCurso {
 	List<Pregunta> PreguntasAzar(List<Pregunta> preguntas);
 
 	void actualizarExamenAaprobado(Examen examen);
-
-	
-
-
-
-
-
-	
-
-
-	
 
 }

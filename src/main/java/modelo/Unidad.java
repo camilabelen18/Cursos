@@ -19,8 +19,7 @@ public class Unidad {
 	
 	@Column(name = "unidad_completada")
 	private Boolean completado;
-	
-	
+
 	public Unidad() {}
 
 	public Unidad(String descripcion, String video_url) {

@@ -12,21 +12,16 @@ import java.util.List;
 import org.junit.Test;
 import modelo.Carrito;
 import modelo.Curso;
-import modelo.DatosRegistro;
-import modelo.Estado;
-import modelo.Usuario;
 import repositorios.RepositorioCarrito;
 import repositorios.RepositorioUsuario;
 import repositorios.RepositorioCurso;
-import repositorios.RepositorioGiftcard;
 
 public class ServicioCarritoTest {
 	RepositorioUsuario repositorioUsuario = mock(RepositorioUsuario.class);
 	RepositorioCarrito repositorioCarrito = mock(RepositorioCarrito.class);
 	RepositorioCurso repositorioCurso = mock(RepositorioCurso.class);
-	RepositorioGiftcard repositorioGiftcard = mock(RepositorioGiftcard.class);
-	ServicioCurso servicioCurso=new ServicioCursoImpl(repositorioCurso, repositorioUsuario);
-	ServicioUsuario servicioUsuario = new ServicioUsuarioImpl(repositorioUsuario, repositorioCarrito, repositorioCurso, repositorioGiftcard);
+	ServicioCurso servicioCurso = new ServicioCursoImpl(repositorioCurso, repositorioUsuario);
+	ServicioUsuario servicioUsuario = new ServicioUsuarioImpl(repositorioUsuario, repositorioCarrito, repositorioCurso);
 	ServicioCarrito servicioCarrito = new ServicioCarritoImpl(repositorioCarrito, repositorioUsuario, servicioUsuario);
 
 	@Test

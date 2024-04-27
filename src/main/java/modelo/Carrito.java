@@ -6,7 +6,6 @@ import javax.persistence.*;
 @Table(name="Carritos")
 public class Carrito {
 
-	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id")
@@ -18,7 +17,6 @@ public class Carrito {
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "usuario_id")
 	private Usuario usuario;
-	
 
 	public Carrito() { 
 		this.cantidad = 0;

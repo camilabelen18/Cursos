@@ -18,7 +18,4 @@ public interface ServicioGiftcard {
 
 	void verificarSaldoDeGiftcard(Giftcard giftcard, Integer puntos);
 
-
-	//Giftcard obtenerGiftcard(Usuario usuario);
-
 }

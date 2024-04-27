@@ -32,7 +32,7 @@
     <!-- CURSOS MAS CALIFICADOS -->
 	<div class="cont-index-2">
 
-		<h2>Ultimos cursos agregados</h2>
+		<h2>Últimos cursos agregados</h2>
 
 		<div class="cursos-mas-calificados">
 			<div class="curso-calificado">

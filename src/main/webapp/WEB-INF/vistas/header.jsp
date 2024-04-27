@@ -51,15 +51,17 @@
 
 		<%--Logo cursos --%>
 		<div class="cursosLogo">
-			<i class="fa-solid fa-graduation-cap" id="logoCurso"></i>
-			<h1>Cursos</h1>
+			<a href="home">
+				<i class="fa-solid fa-graduation-cap" id="logoCurso"></i>
+				<h1>Cursos</h1>
+			</a>
 		</div>
 		
 		<%--Buscador --%>
 		<div id="barra_busqueda">
 			<form action="buscar">
-				<input type="search" placeholder="Buscar curso..." aria-label="Search" id="nombreCurso" name="nombreCurso">
 				<i class="fa-solid fa-magnifying-glass" id="lupa"></i>
+				<input type="search" placeholder="Buscar un curso" aria-label="Search" id="nombreCurso" name="nombreCurso" value="${busqueda}">
 			</form>
 		</div>
 
@@ -73,24 +75,15 @@
 		</c:if>
 
 
-		<%-- Usuario --%>
+			<%-- Carrito --%>
+			<div>
+				<a href="vistaCarrito">
+					<i class="fa-sharp fa-solid fa-cart-shopping" id="carrito"></i>
+				</a>
+			</div>
+
 		<!-- Aca se valida si el usuario inicio sesión -->
 		<c:if test='<%=session.getAttribute("idUsuario") != null%>'>
-
-			<div class="menuCuentaUsuario">
-				<img id="fotoUsuario" src='uploads/<%=session.getAttribute("imgUsuario")%>'>
-				<div class="contenido-menu" id="contenidoMenuUsuario">
-					<div class="fotoNombreUsuario">
-						<img id="fotoGrandeUsuario" src='uploads/<%=session.getAttribute("imgUsuario")%>'>
-						<p><%=session.getAttribute("nombreUsuario")%></p>
-					</div>
-					
-					<a href="verPerfil"><i class="fa-regular fa-address-card"></i> Ver perfil</a>
-					<a href="misCursos"><i class="fa-regular fa-bookmark"></i> Mis cursos</a>
-					<a href="verGiftcard"><i class="fa-regular fa-credit-card"></i> Mi giftcard</a>
-					<a href="cerrarSesion"><i class="fa-solid fa-power-off"></i> Cerrar sesión</a>
-				</div>
-			</div>
 
 			<div class="menuNotificaciones">
 			
@@ -150,35 +143,59 @@
 					<a href="verNotificaciones" id="verNotificaciones">Ver más notificaciones</a>
 				</div>
 			</div>
-		</c:if>
 
-		<%-- Carrito --%>
-		<div>
-			<a href="vistaCarrito">
-				<i class="fa-sharp fa-solid fa-cart-shopping" id="carrito"></i>
-			</a>
-		</div>
-
-	<%--Puntos Giftcard --%>
-		<c:if test='<%=session.getAttribute("idUsuario") != null%>'>
-			<div>
-				<p id="texto-puntos">Mis puntos</p>
-				<p id="mis-puntos">${puntosGiftcard}</p>
+			<div class="menuCuentaUsuario">
+				<img id="fotoUsuario" src='uploads/<%=session.getAttribute("imgUsuario")%>'>
+				<div class="contenido-menu" id="contenidoMenuUsuario">
+					<div class="fotoNombreUsuario">
+						<div>
+							<img id="fotoGrandeUsuario" src='uploads/<%=session.getAttribute("imgUsuario")%>'>
+						</div>
+						<div>
+							<p><%=session.getAttribute("nombreUsuario")%></p>
+							<!-- Puntos Giftcard -->
+							<c:if test='<%=session.getAttribute("idUsuario") != null%>'>
+								<div>
+									<p id="texto-puntos">Mis puntos</p>
+									<p id="mis-puntos">${puntosGiftcard}</p>
+								</div>
+							</c:if>
+						</div>
+					</div>
+					<a href="verPerfil">
+						<div class="iconoMenuUsuario"><i class="fa-regular fa-address-card"></i></div>
+						<p>Ver perfil</p>
+					</a>
+					<a href="misCursos">
+						<div class="iconoMenuUsuario"><i class="fa-regular fa-bookmark"></i></div>
+						<p>Mis cursos</p>
+					</a>
+					<a href="verGiftcard">
+						<div class="iconoMenuUsuario"><i class="fa-regular fa-credit-card"></i></div>
+						<p>Mi giftcard</p>
+					</a>
+					<a href="cerrarSesion">
+						<div class="iconoMenuUsuario"><i class="fa-solid fa-power-off"></i></div>
+						<p>Cerrar sesión</p>
+					</a>
+				</div>
 			</div>
 		</c:if>
 	</div>
 	
 	<%--Menu --%>
 	<nav>
-		<ul>
-			<li><a href="index.jsp">Inicio</a></li>
-			<li><a href="verListaCursos">Cursos</a></li>
-			<li><a href="index.jsp#cont-contacto">Contacto</a></li>
+		<div id="secciones-boton">
+			<ul>
+				<li><a href="home">Inicio</a></li>
+				<li><a href="verListaCursos">Cursos</a></li>
+				<li><a href="home#cont-contacto">Contacto</a></li>
+			</ul>
 			<button class="darkModeSwitch" id="switch">
 				<span><i class="fa-solid fa-sun"></i></span>
 				<span><i class="fa-solid fa-moon"></i></span>
 			</button>
-		</ul>
+		</div>
 	</nav>
 </header>
 

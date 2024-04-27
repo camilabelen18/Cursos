@@ -1,65 +1,61 @@
 package modelo;
 
-import javax.persistence.Column;
-
 public class DatosCreacionCurso {
 
-	private String nombre;
-	private String categoria;
-	private String descripcion;
-	private Double precio;
-	private String imagen;
-	
-	
-	public DatosCreacionCurso() {
-		super();
-	}
+    private String nombre;
+    private String categoria;
+    private String descripcion;
+    private Double precio;
+    private String imagen;
 
-	public DatosCreacionCurso(String nombre, String categoria, String descripcion, Double precio, String imagen) {
-		this.nombre = nombre;
-		this.categoria = categoria;
-		this.descripcion = descripcion;
-		this.precio = precio;
-		this.imagen = imagen;
-	}
+    public DatosCreacionCurso() { }
 
-	public String getNombre() {
-		return nombre;
-	}
+    public DatosCreacionCurso(String nombre, String categoria, String descripcion, Double precio, String imagen) {
+        this.nombre = nombre;
+        this.categoria = categoria;
+        this.descripcion = descripcion;
+        this.precio = precio;
+        this.imagen = imagen;
+    }
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
+    public String getNombre() {
+        return nombre;
+    }
 
-	public String getCategoria() {
-		return categoria;
-	}
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
 
-	public void setCategoria(String categoria) {
-		this.categoria = categoria;
-	}
+    public String getCategoria() {
+        return categoria;
+    }
 
-	public String getDescripcion() {
-		return descripcion;
-	}
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
+    }
 
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
-	}
+    public String getDescripcion() {
+        return descripcion;
+    }
 
-	public Double getPrecio() {
-		return precio;
-	}
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
 
-	public void setPrecio(Double precio) {
-		this.precio = precio;
-	}
+    public Double getPrecio() {
+        return precio;
+    }
 
-	public String getImagen() {
-		return imagen;
-	}
+    public void setPrecio(Double precio) {
+        this.precio = precio;
+    }
 
-	public void setImagen(String imagen) {
-		this.imagen = imagen;
-	}
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
+    }
+
 }

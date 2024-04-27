@@ -1,101 +1,92 @@
 package modelo;
 
-/* Esta clase se va a utilizar para enviar datos de una vista a un controlador mediante un objeto */
-
 public class DatosPregunta {
-	
-	private String descripcion;
-	private Pregunta pregunta;
-	private Respuesta respuesta_1;
+
+    private String descripcion;
+    private Pregunta pregunta;
+    private Respuesta respuesta_1;
     private Respuesta respuesta_2;
-	private Respuesta respuesta_3;
-	private int preguntaId;
-	private int respuestaElegida; //id de la respuesta
-	
-	public DatosPregunta() { 
-		
-	}
-	
-	public DatosPregunta(String descripcion, Respuesta respuesta_1, Respuesta respuesta_2, Respuesta respuesta_3) {
-		this.descripcion = descripcion;
-		this.respuesta_1 = respuesta_1;
-		this.respuesta_2 = respuesta_2;
-		this.respuesta_3 = respuesta_3;
-	}
+    private Respuesta respuesta_3;
+    private int preguntaId;
+    private int respuestaElegida; //id de la respuesta
 
-	public DatosPregunta(Pregunta pregunta, Respuesta respuesta_1, Respuesta respuesta_2, Respuesta respuesta_3) {
-		this.pregunta = pregunta;
-		this.respuesta_1 = respuesta_1;
-		this.respuesta_2 = respuesta_2;
-		this.respuesta_3 = respuesta_3;
-	}
+    public DatosPregunta() {}
 
-	public Pregunta getPregunta() {
-		return pregunta;
-	}
+    public DatosPregunta(String descripcion, Respuesta respuesta_1, Respuesta respuesta_2, Respuesta respuesta_3) {
+        this.descripcion = descripcion;
+        this.respuesta_1 = respuesta_1;
+        this.respuesta_2 = respuesta_2;
+        this.respuesta_3 = respuesta_3;
+    }
 
-	public void setPregunta(Pregunta pregunta) {
-		this.pregunta = pregunta;
-	}
+    public DatosPregunta(Pregunta pregunta, Respuesta respuesta_1, Respuesta respuesta_2, Respuesta respuesta_3) {
+        this.pregunta = pregunta;
+        this.respuesta_1 = respuesta_1;
+        this.respuesta_2 = respuesta_2;
+        this.respuesta_3 = respuesta_3;
+    }
 
-	public String getDescripcion() {
-		return descripcion;
-	}
+    public Pregunta getPregunta() {
+        return pregunta;
+    }
 
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
-	}
+    public void setPregunta(Pregunta pregunta) {
+        this.pregunta = pregunta;
+    }
 
-	public Respuesta getRespuesta_1() {
-		return respuesta_1;
-	}
+    public String getDescripcion() {
+        return descripcion;
+    }
 
-	public void setRespuesta_1(Respuesta respuesta_1) {
-		this.respuesta_1 = respuesta_1;
-	}
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
 
-	public Respuesta getRespuesta_2() {
-		return respuesta_2;
-	}
+    public Respuesta getRespuesta_1() {
+        return respuesta_1;
+    }
 
-	public void setRespuesta_2(Respuesta respuesta_2) {
-		this.respuesta_2 = respuesta_2;
-	}
+    public void setRespuesta_1(Respuesta respuesta_1) {
+        this.respuesta_1 = respuesta_1;
+    }
 
-	public Respuesta getRespuesta_3() {
-		return respuesta_3;
-	}
+    public Respuesta getRespuesta_2() {
+        return respuesta_2;
+    }
 
-	public void setRespuesta_3(Respuesta respuesta_3) {
-		this.respuesta_3 = respuesta_3;
-	}
+    public void setRespuesta_2(Respuesta respuesta_2) {
+        this.respuesta_2 = respuesta_2;
+    }
 
-	public int getPreguntaId() {
-		return preguntaId;
-	}
+    public Respuesta getRespuesta_3() {
+        return respuesta_3;
+    }
 
-	public void setPreguntaId(int preguntaId) {
-		this.preguntaId = preguntaId;
-	}
+    public void setRespuesta_3(Respuesta respuesta_3) {
+        this.respuesta_3 = respuesta_3;
+    }
 
-	public int getRespuestaElegida() {
-		return respuestaElegida;
-	}
+    public int getPreguntaId() {
+        return preguntaId;
+    }
 
-	public void setRespuestaElegida(int respuestaElegida) {
-		this.respuestaElegida = respuestaElegida;
-	}
+    public void setPreguntaId(int preguntaId) {
+        this.preguntaId = preguntaId;
+    }
 
-	@Override
-	public String toString() {
-		return "DatosPregunta [descripcion=" + descripcion + ", respuesta_1=" + respuesta_1 + ", respuesta_2="
-				+ respuesta_2 + ", respuesta_3=" + respuesta_3 + ", preguntaId=" + preguntaId + ", respuestaElegida="
-				+ respuestaElegida + "]";
-	}
+    public int getRespuestaElegida() {
+        return respuestaElegida;
+    }
 
-	
+    public void setRespuestaElegida(int respuestaElegida) {
+        this.respuestaElegida = respuestaElegida;
+    }
 
-	
-	
-	
+    @Override
+    public String toString() {
+        return "DatosPregunta [descripcion=" + descripcion + ", respuesta_1=" + respuesta_1 + ", respuesta_2="
+                + respuesta_2 + ", respuesta_3=" + respuesta_3 + ", preguntaId=" + preguntaId + ", respuestaElegida="
+                + respuestaElegida + "]";
+    }
+
 }

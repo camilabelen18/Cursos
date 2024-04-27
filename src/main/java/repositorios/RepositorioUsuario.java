@@ -60,4 +60,6 @@ public interface RepositorioUsuario {
 
 	void marcarNotificacionLeida(Usuario_Notificacion usuarioNotificacion);
 
+    void actualizarGiftcard(Giftcard giftcard);
+
 }

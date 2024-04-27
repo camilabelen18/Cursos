@@ -127,12 +127,3 @@
 	font-size: 20px;
 	font-weight:bold; 
 }
-
-/*------------------------------------------RESPONSIVE----------------------------------*/
-
-@media (max-width: 1250px) {
-	
-	.cont-seccion-miscursos {
-		width: 80%;
-	}
-}

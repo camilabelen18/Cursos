@@ -1,11 +1,8 @@
 package servicios;
 
 import java.util.List;
-import java.util.Set;
 
 import javax.servlet.http.HttpSession;
-
-import org.springframework.web.multipart.MultipartFile;
 
 import modelo.*;
 
@@ -71,7 +68,6 @@ public interface ServicioUsuario {
 
 	void verificarUsuario(Usuario usuario);
 
-
 	void enviarNotificacion(Usuario usuario, String msj);
 
 	void quitarNotificacion(Usuario_Notificacion usuarioNotificacion, Usuario usuario, HttpSession sesion);
@@ -79,4 +75,5 @@ public interface ServicioUsuario {
 	Usuario_Notificacion obtenerNotificacionUsuario(Usuario usuario, Notificacion notificacion);
 
 	void marcarNotificacionLeida(Usuario_Notificacion usuarioNotificacion, Usuario usuario, HttpSession sesion);
+
 }

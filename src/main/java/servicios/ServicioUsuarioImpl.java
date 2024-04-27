@@ -1,31 +1,14 @@
 package servicios;
 
 import java.util.List;
-import java.util.Set;
 
 import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
-import modelo.Carrito;
-import modelo.Curso;
-import modelo.DatosRegistro;
-import modelo.Estado;
-import modelo.Examen;
-import modelo.Giftcard;
-import modelo.Notificacion;
-import modelo.Respuesta;
-import modelo.Unidad;
-import modelo.Usuario;
-import modelo.Usuario_Curso;
-import modelo.Usuario_Examen;
-import modelo.Usuario_Notificacion;
-import repositorios.RepositorioCarrito;
-import repositorios.RepositorioCurso;
-import repositorios.RepositorioGiftcard;
-import repositorios.RepositorioUsuario;
+import modelo.*;
+import repositorios.*;
 
 @Service
 @Transactional
@@ -34,15 +17,12 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
 	private RepositorioUsuario repositorioUsuario;
 	private RepositorioCarrito repositorioCarrito;
 	private RepositorioCurso repositorioCurso;
-	private RepositorioGiftcard repositorioGiftcard;
 
 	@Autowired
-	public ServicioUsuarioImpl(RepositorioUsuario repositorioUsuario, RepositorioCarrito repositorioCarrito,
-			RepositorioCurso repositorioCurso, RepositorioGiftcard repositorioGiftcard) {
+	public ServicioUsuarioImpl(RepositorioUsuario repositorioUsuario, RepositorioCarrito repositorioCarrito, RepositorioCurso repositorioCurso) {
 		this.repositorioUsuario = repositorioUsuario;
 		this.repositorioCarrito = repositorioCarrito;
 		this.repositorioCurso = repositorioCurso;
-		this.repositorioGiftcard = repositorioGiftcard;
 	}
 
 	@Override
@@ -66,9 +46,9 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
 		Usuario usuarioObtenido = repositorioUsuario.buscarUsuario(email, password);
 
 		if (usuarioObtenido != null) {
-
 			return usuarioObtenido;
-		} else {
+		}
+		else {
 			throw new UsuarioInexistenteException();
 		}
 	}
@@ -97,10 +77,10 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
 			repositorioCarrito.guardarCarrito(carrito);
 
 			return nuevoUsuario;
-		} else {
+		}
+		else {
 			throw new ClavesNoSonIgualesException();
 		}
-
 	}
 
 	@Override
@@ -114,9 +94,6 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
 		boolean yaExisteElCurso = false;
 		List<Usuario_Curso> cursosUsuario = repositorioUsuario.obtenerCursosDelUsuario(usuario);
 
-		// Se recorre la lista de los cursos del usuario y se verifica si ya existe un
-		// curso
-		// con el id del curso seleccionado
 		for (Usuario_Curso cursoUsuario : cursosUsuario) {
 
 			if (cursoUsuario.getCurso().getId() == idCurso) {
@@ -148,10 +125,11 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
 			giftcard.setSaldoActual(saldoActual);
 			giftcard.setMisPuntos(puntosActuales);
 
-			repositorioGiftcard.actualizarGiftcard(giftcard);
+			repositorioUsuario.actualizarGiftcard(giftcard);
 
 			return true;
-		} else {
+		}
+		else {
 			throw new CancelacionCursoException();
 		}
 	}
@@ -256,13 +234,11 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
 
 	@Override
 	public List<Usuario_Notificacion> obtenerNotificaciones(Usuario usuario) {
-
 		return repositorioUsuario.obtenerNotificaciones(usuario);
 	}
 
 	@Override
 	public Notificacion obtenerNotificacionPorId(int idNotif) {
-
 		return repositorioUsuario.obtenerNotificacionPorId(idNotif);
 	}
 
@@ -294,7 +270,6 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
 		}
 
 		return resultado;
-
 	}
 
 	@Override
@@ -324,15 +299,12 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
 
 	@Override
 	public List<Usuario_Examen> obtenerExamenesDelUsuario(Usuario usuario, Examen examen) {
-
 		return repositorioUsuario.obtenerExamenesDelUsuario(usuario, examen);
 	}
 
 	@Override
 	public void verificarFechaDeExamen(Usuario_Examen usuarioExamen) {
-
 		repositorioUsuario.verificarFechaDeExamen(usuarioExamen);
-
 	}
 
 	@Override
@@ -343,20 +315,21 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
 		gc1.setMisPuntos(gc1.getMisPuntos() - puntos);
 		gc1.setMisPuntos(gc2.getMisPuntos() + puntos);
 
-		repositorioGiftcard.actualizarGiftcard(gc2);
-		repositorioGiftcard.actualizarGiftcard(gc1);
+		repositorioUsuario.actualizarGiftcard(gc2);
+		repositorioUsuario.actualizarGiftcard(gc1);
 		repositorioUsuario.actualizarUsuario(usuario1);
 		repositorioUsuario.actualizarUsuario(usuario2);
 	}
 
 	@Override
 	public void verificarUsuario(Usuario usuario) {
+
 		if (usuario != null) {
 
-		} else {
+		}
+		else {
 			throw new UsuarioInexistenteException();
 		}
-
 	}
 	
 	@Override
@@ -364,7 +337,6 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
 
 		Notificacion noti = new Notificacion(msj);
 		repositorioUsuario.guardarNotificacionDelUsuario(noti, usuario);
-		
 	}
 
 	@Override

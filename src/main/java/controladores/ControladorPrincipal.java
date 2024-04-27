@@ -12,10 +12,8 @@ public class ControladorPrincipal {
 	
 	@Autowired
 	private ServicioPrincipal servicioPrincipal;
-	
 	private boolean ingresaPorPrimeraVez = true;
-	
-	
+
 	@RequestMapping(path = "/", method = RequestMethod.GET)
     public ModelAndView inicio() {
 		
@@ -28,9 +26,13 @@ public class ControladorPrincipal {
 			ingresaPorPrimeraVez = false;
 		}
 		
-        return new ModelAndView("index");
+        return new ModelAndView("redirect:/home");
     }
-	
-	
+
+	@RequestMapping(path = "/home", method = RequestMethod.GET)
+	public ModelAndView irAInicio() {
+
+		return new ModelAndView("index");
+	}
 
 }

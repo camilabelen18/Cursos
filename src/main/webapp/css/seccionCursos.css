@@ -10,10 +10,14 @@
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
-	margin-top: 50px;
+	margin-top: 100px;
 	margin-bottom: 20px;
-	padding: 10px;
-	padding-top: 20px;
+}
+
+#busqueda {
+	width: 70%;
+	font-weight: normal;
+	font-size: 18px;
 }
 
 #filtrarPor {
@@ -87,11 +91,8 @@
 
 .cuadro-seccion-cursos {
 	border: 2px solid #c7c7c7;
-	margin: 30px 0px;
-}
-
-.cuadro-seccion-cursos:hover{
-	border:2px #37B9CB solid;
+	margin: 40px 0px;
+	border-radius: 5px;
 }
 
 .cuadro-seccion-cursos-flex {

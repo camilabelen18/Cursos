@@ -8,7 +8,6 @@ import org.junit.Test;
 import modelo.*;
 import repositorios.RepositorioCarrito;
 import repositorios.RepositorioCurso;
-import repositorios.RepositorioGiftcard;
 import repositorios.RepositorioUsuario;
 
 public class ServicioUsuarioTest {
@@ -16,8 +15,7 @@ public class ServicioUsuarioTest {
 	RepositorioUsuario repositorioUsuario = mock(RepositorioUsuario.class);
 	RepositorioCarrito repositorioCarrito = mock(RepositorioCarrito.class);
 	RepositorioCurso repositorioCurso = mock(RepositorioCurso.class);
-	RepositorioGiftcard repositorioGiftcard = mock(RepositorioGiftcard.class);
-	ServicioUsuario servicioUsuario = new ServicioUsuarioImpl(repositorioUsuario, repositorioCarrito, repositorioCurso, repositorioGiftcard);
+	ServicioUsuario servicioUsuario = new ServicioUsuarioImpl(repositorioUsuario, repositorioCarrito, repositorioCurso);
 	
 	
 	@Test

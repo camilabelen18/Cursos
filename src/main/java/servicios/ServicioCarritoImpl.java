@@ -1,9 +1,6 @@
 package servicios;
 
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
 
 import javax.transaction.Transactional;
 
@@ -29,12 +26,10 @@ public class ServicioCarritoImpl implements ServicioCarrito {
 		this.servicioUsuario = servicioUsuario;
 	}
 
-
 	@Override
 	public Carrito buscarCarritoPorId(int id_carrito) {
 		return repositorioCarrito.buscarCarritoPorID(id_carrito);
 	}
-
 
 	@Override
 	public double getTotalDePrecios(List<Curso> cursos) {
@@ -48,18 +43,15 @@ public class ServicioCarritoImpl implements ServicioCarrito {
 		return resultadoTotal;
 	}
 
-
 	@Override
 	public void agregarCursoAlCarrito(Curso curso_obtenido, Carrito carrito) {
 		repositorioCarrito.agregarCursoALista(curso_obtenido, carrito);
 	}
 
-
 	@Override
 	public Carrito obtenerCarritoPorIdUsuario(int id_user) {
 		return repositorioCarrito.obtenerCarritoPorIdUsuario(id_user);
 	}
-
 
 	@Override
 	public List<Curso> obtenerCursosDelCarrito(Carrito carrito) {
@@ -75,18 +67,15 @@ public class ServicioCarritoImpl implements ServicioCarrito {
 		}
 	}
 
-
 	@Override
 	public void eliminarCursoDelCarrito(Carrito_Curso carritoCurso) {
 		repositorioCarrito.eliminarCursoDelCarrito(carritoCurso);
 	}
 
-
 	@Override
 	public Carrito_Curso obtenerCarritoCurso(Carrito carrito, Curso curso) {
 		return repositorioCarrito.obtenerCarritoCurso(carrito, curso);
 	}
-
 
 	@Override
 	public void comprarCursosDelCarrito(List<Curso> cursos, Usuario usuario) {
@@ -100,12 +89,10 @@ public class ServicioCarritoImpl implements ServicioCarrito {
 		}
 	}
 
-
 	@Override
 	public List<Carrito_Curso> obtenerCarritoCursos(Carrito carrito) {
 		return repositorioCarrito.obtenerCarritoCursos(carrito);
 	}
-
 
 	@Override
 	public void vaciarCursosDelCarrito(List<Carrito_Curso> cursosCarrito) {
@@ -115,7 +102,6 @@ public class ServicioCarritoImpl implements ServicioCarrito {
 			repositorioCarrito.eliminarCursoDelCarrito(cursoCarrito);
 		}
 	}
-
 
 	@Override
 	public boolean existeCursoEnListaCarrito(Curso curso_obtenido, Carrito carrito) {
@@ -131,7 +117,6 @@ public class ServicioCarritoImpl implements ServicioCarrito {
 				break;
 			}
 		}
-
 		return yaExisteElCurso;
 	}
 
