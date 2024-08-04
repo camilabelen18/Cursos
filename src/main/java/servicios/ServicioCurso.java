@@ -29,23 +29,5 @@ public interface ServicioCurso {
 	void completarUnidad(Unidad unidad, Usuario_Curso usuarioCurso, List<Unidad> unidades);
 	
 	void actualizarCurso(int idCurso, String nombre, String categoria, String descripcion, Double precio);
-
-	Examen obtenerExamenPorCurso(Curso curso_obtenido);
-
-	List<Pregunta> obtenerPreguntasDelExamen(Examen examen);
-
-	Pregunta buscarPreguntaPorId(int pregunta_id);
-
-	Respuesta buscarRespuestaPorId(int respuesta_id);
-
-	List<Pregunta> obtenerPreguntasYrespuestas(List<DatosPregunta> listaDp);
-
-	List<Respuesta> obtenerRespuestas(List<DatosPregunta> listaDp);
-
-	DatosExamen guardarPreguntasEnDatosExamen(List<Pregunta> preguntas);
-
-	List<Pregunta> PreguntasAzar(List<Pregunta> preguntas);
-
-	void actualizarExamenAaprobado(Examen examen);
-
+	
 }

@@ -45,6 +45,15 @@ public class Carrito {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
+	
+	public void aumentarCantidad() {
+		this.cantidad++;
+	}
+	
+	public void disminuirCantidad() {
+		this.cantidad--;
+	}
+
 
 	@Override
 	public String toString() {

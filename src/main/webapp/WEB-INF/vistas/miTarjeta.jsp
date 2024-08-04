@@ -1,22 +1,20 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<title>Mi giftcard</title>
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, maximum-scale=1">
-<link rel="shortcut icon" href="imagenes/favicon.ico">
-<link rel="stylesheet" href="css/miGiftcard.css">
-<link rel="stylesheet" href="css/styles.css">
-<link rel="stylesheet" href="css/darkmode.css">
+	<meta charset="UTF-8">
+	<title>Mi Tarjeta</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<link rel="shortcut icon" href="imagenes/favicon.ico">
+	<link rel="stylesheet" href="css/miGiftcard.css">
+	<link rel="stylesheet" href="css/styles.css">
+	<link rel="stylesheet" href="css/darkmode.css">
 </head>
 <body>
-	<%@ include file="header.jsp"%>
+	<%@ include file="partial/header.jsp"%>
 
 	<div class="tituloGiftcard">
 		<h1>Mi Giftcard</h1>
@@ -71,10 +69,8 @@
 			</c:if>
 		</div>
 	</div>
-
-
-
-	<%@ include file="footer.jsp"%>
+	
+	<%@ include file="partial/footer.jsp"%>
 	<script src="js/envioPuntos.js"></script>
 </body>
 </html>

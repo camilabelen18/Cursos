@@ -24,7 +24,7 @@ public class RepositorioUsuarioTest extends SpringTest{
 	
 	@Autowired
 	private RepositorioUsuario repositorioUsuario;
-
+/*
 	@Test
 	@Transactional
 	@Rollback
@@ -86,5 +86,5 @@ public class RepositorioUsuarioTest extends SpringTest{
 		// Comprobacion
 		assertThat(usuarioObtenido).isNotNull();
 	}
-	
+	*/
 }

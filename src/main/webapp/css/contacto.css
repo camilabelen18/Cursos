@@ -1,0 +1,66 @@
+/* CONTACTO */
+.cont-contacto {
+	background-color: white;
+	margin-top: 50px;
+    margin-bottom: 150px;
+}
+
+.cont-contacto h1 {
+	width: 50%;
+	margin: auto;
+	padding: 60px 0px 40px 0px;
+	text-align: center;
+}
+
+.formulario {
+	width: 35%;
+	margin: auto;
+}
+
+.nom-cor {
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 20px;
+}
+
+.nom-cor input {
+	width: 42%;
+	padding: 12px;
+	border: 2px solid #cecece;
+	border-radius: 5px;
+	color: #404040;
+	font-size: 18px;
+	font-weight: normal;
+}
+
+.mensaje {
+	display: flex;
+}
+
+.mensaje textarea {
+	width: 100%;
+	padding: 12px;
+	border: 2px solid #cecece;
+	border-radius: 5px;
+	min-height: 100px;
+	max-height: 120px;
+	color: #404040;
+	font-size: 18px;
+	font-weight: normal;
+}
+
+input[type="text"]:focus, textarea:focus {
+	outline: none;
+	border: 2px solid rgb(54, 129, 226);
+}
+
+.txt-btn {
+	display: flex;
+	justify-content: space-between;
+	margin-top: 20px;
+}
+
+.txt-btn p {
+	color: #5e5e5e;
+	font-weight: 500;
+}

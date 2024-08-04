@@ -35,6 +35,7 @@ public class RepositorioCarritoImpl implements RepositorioCarrito {
         carritoCurso.setCarrito(carrito);
         carritoCurso.setCurso(curso_obtenido);
 		sesion.save(carritoCurso);
+		sesion.update(carrito);
 	}
 
 	@Override
@@ -86,8 +87,9 @@ public class RepositorioCarritoImpl implements RepositorioCarrito {
 	}
 
 	@Override
-	public void eliminarCursoDelCarrito(Carrito_Curso carritoCurso) {
+	public void eliminarCursoDelCarrito(Carrito_Curso carritoCurso, Carrito carrito) {
 		sessionFactory.getCurrentSession().delete(carritoCurso);
+		sessionFactory.getCurrentSession().update(carrito);
 	}
 
 	@Override

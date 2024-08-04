@@ -3,7 +3,7 @@ package modelo;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "Gifcards")
+@Table(name = "Giftcards")
 public class Giftcard {
 
 	@Id

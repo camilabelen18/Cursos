@@ -150,7 +150,7 @@ public class ControladorCompra {
 		servicioCarrito.comprarCursosDelCarrito(cursos, usuario);
 		// Se vacia la lista del carrito
 		List<Carrito_Curso> cursosCarrito = servicioCarrito.obtenerCarritoCursos(carrito);
-		servicioCarrito.vaciarCursosDelCarrito(cursosCarrito);
+		servicioCarrito.vaciarCursosDelCarrito(cursosCarrito, carrito, session);
 		return new ModelAndView("compraRealizada", model);
 	}
 

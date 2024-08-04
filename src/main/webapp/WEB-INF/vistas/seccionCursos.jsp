@@ -1,6 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!DOCTYPE html>
@@ -13,10 +11,10 @@
 	<link rel="stylesheet" href="css/styles.css">
 	<link rel="stylesheet" href="css/seccionCursos.css">
 	<link rel="stylesheet" href="css/darkmode.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 </head>
 <body>
-
-	<%@ include file="header.jsp"%>
+	<%@ include file="partial/header.jsp"%>
 
 	<div class="cont-seccion-cursos">
 		<div id="contenedorFiltros">
@@ -40,9 +38,9 @@
 			<div class="dropdown">
 				<button id="filtrarPor">Filtrar por</button>
 				<div class="dropdown-content">
-					<a href="verListaCursos">Todos los cursos</a> <a
-						href="verCursosPorCategoria?categoria=diseno">Diseño</a> <a
-						href="verCursosPorCategoria?categoria=programacion">Programación</a>
+					<a href="verListaCursos">Todos los cursos</a>
+					<a href="verCursosPorCategoria?categoria=diseno">Diseño</a>
+					<a href="verCursosPorCategoria?categoria=programacion">Programación</a>
 					<a href="verCursosPorCategoria?categoria=musica">Música</a>
 				</div>
 			</div>
@@ -93,16 +91,13 @@
 		<!-- Si al realizar la busqueda no se encontro ningun curso se muestra un mensaje de error -->
 		<c:if test="${not empty sin_curso}">
 			<div class="msj-sincurso">
-				<i
-					class="animate__animated animate__heartBeat fa-brands fa-searchengin"
-					id="no-encontrado"></i>
+				<i class="animate__animated animate__heartBeat fa-brands fa-searchengin" id="no-encontrado"></i>
 				<p id="sin_curso">${sin_curso}</p>
 			</div>
 		</c:if>
 
 	</div>
 
-	<%@ include file="footer.jsp"%>
-
+	<%@ include file="partial/footer.jsp"%>
 </body>
 </html>

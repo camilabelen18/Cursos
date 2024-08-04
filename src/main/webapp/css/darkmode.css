@@ -5,7 +5,7 @@
 	margin-top: 4px;
 	cursor: pointer;
 	outline: none;
-	border: none;
+	border: 0;
 	border-radius: 1rem;
 	align-items: center;
 	justify-content: space-between;
@@ -17,13 +17,13 @@
 	height: 25px;
 	line-height: 25px;
 	display: block;
-	color: #fff;
 	background: none;
+	color: white;
 }
 
 .darkModeSwitch::after {
 	display: block;
-	background: #fffbf5;
+	background: white;
 	width: 1.3rem;
 	height: 1.3rem;
 	position: absolute;
@@ -32,10 +32,6 @@
 	transition: all .5s ease;
 	box-shadow: 0 0 2px 2px rgba(0, 0, 0, .5);
 	content: "";
-}
-
-.darkModeSwitch.active {
-	background: #fdd384;
 }
 
 .darkModeSwitch.active::after {
@@ -48,12 +44,14 @@
 	color: white;
 }
 
-/* .dark div .cuadro-notificacion:hover{
-	color: black;
-} */
+body.dark ::placeholder {
+	color: white;
+}
+
 .dark h1, .dark p, .dark #login a, .dark #contenido-curso a, .dark #logoCurso,
 	.dark #notificacion, .dark #carrito, .dark #resumen, .dark #pagarTarjeta, 
-	.dark #busqueda {
+	.dark #busqueda, body.dark #titulo a, body.dark #marcarUnidad a,
+	.dark #texto-puntos, .dark .dropdown-content a{
 	color: white;
 }
 
@@ -65,19 +63,55 @@ body.dark .giftcardNum {
 	color: black;
 }
 
-body.dark #titulo a {
+body.dark #barra_busqueda input {
+	background-color: #2e2e2e;
+	border: 1px solid #87857d;
 	color: white;
 }
 
-body.dark #marcarUnidad a {
+body.dark nav {
+	background-color: #424242;
 	color: white;
 }
 
-body.dark .contenido-menu p {
-	color: black;
+body.dark nav a:hover {
+	background-color: rgb(100 100 100);
 }
 
-body.dark .contenido-menu h3 {
-	color: black;
+body.dark .separador {
+	background-color: #a4a4a4;
 }
 
+body.dark .darkModeSwitch {
+	background-color: #7a7a7a;
+}
+
+.dark input[type="text"], .dark input[type="email"], .dark input[type="password"], .dark textarea {
+	border: 2px solid #5a5a5a;
+	background-color: #2e2e2e;
+	color: white;
+}
+
+.dark #contenidoMenuUsuario, .dark #contenido-menu-notificaciones {
+	background-color: #2e2e2e;
+	color: white;
+	border: 1px solid #4e4d4c;
+}
+
+.dark .contenido-menu h3, .dark .mensajes, .dark .mensajesNoLeidos, .dark .fotoNombreUsuario {
+	color: white;
+	border-bottom: 1px solid #4e4d4c;
+}
+.dark #contenidoMenuUsuario a:hover, .dark #contenido-menu-notificaciones  a:hover,
+.dark .dropdown-content a:hover {
+	background-color: #525252;
+}
+
+.dark .curso-calificado, .dark .cat-index, .dark .cuadro-seccion-cursos, .dark .cuadro-tarjeta {
+	border: 2px solid #5a5a5a;
+}
+
+.dark .dropdown-content {
+	background-color: #2e2e2e;
+	border: 1px solid #4e4d4c;
+}

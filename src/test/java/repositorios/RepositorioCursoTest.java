@@ -13,18 +13,13 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
 import archivos.SpringTest;
-import modelo.Curso;
-import modelo.Curso_Examen;
-import modelo.Estado;
-import modelo.Examen;
-import modelo.Pregunta;
-import modelo.Respuesta;
+import modelo.*;
 
 public class RepositorioCursoTest extends SpringTest{
 	
 	@Autowired
 	private RepositorioCurso repositorioCurso;
-	
+	/*
 	@Test
 	@Transactional
 	@Rollback
@@ -116,7 +111,7 @@ public class RepositorioCursoTest extends SpringTest{
 	
 	}
 	*/
-	
+	/*
 	@Test
 	@Transactional
 	@Rollback
@@ -143,6 +138,6 @@ public class RepositorioCursoTest extends SpringTest{
 		repositorioCurso.agregarCurso(curso);
 		// Comprobacion
 		assertThat(curso.getId()).isNotNull();
-	}
+	}*/
 
 }

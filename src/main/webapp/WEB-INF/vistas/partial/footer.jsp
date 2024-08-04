@@ -1,11 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
 
 <footer>
 	<div class="cont-foot">
 		<div class="barra-inferior">
 			<div class="informacion">
-				<a href="#"> TÃ©rminos y condiciones </a>
+				<a href="#"> Términos y condiciones </a>
 				<a href="#"> Avisos legales </a>
 				<a href="#"> Cuidamos tu privacidad </a>
 				<a href="#"> Ayuda </a>
@@ -20,7 +18,7 @@
 			</div>
 		</div>
 		<div class="derechos">
-			<p>cursosÂ© 2022</p>
+			<p>cursos© 2022</p>
 		</div>
 	</div>
 </footer>

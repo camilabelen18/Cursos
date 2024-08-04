@@ -38,7 +38,7 @@ public class ControladorCursos {
 		List<Curso> busqueda_cursos = servicioCurso.getCursosPorNombre(nombreCurso);
 		// Si la lista se encuantra vacia entonces se guarda un mensaje iformativo
 		if(busqueda_cursos.isEmpty()) {
-			model.put("sin_curso", "No existen cursos, vuelva a ingresar el nombre en la barra de busqueda");
+			model.put("sin_curso", "No existen cursos con ese nombre, ingrese otro.");
 		}
 		model.put("lista_cursos", busqueda_cursos);
 		model.put("busqueda", nombreCurso);
@@ -160,7 +160,7 @@ public class ControladorCursos {
 		}
 		return new ModelAndView(view, modelo);
 	}
-	
+	/*
 	@RequestMapping (path= "/verCurso", method= RequestMethod.POST)
 	public ModelAndView verCurso(@RequestParam("curso_id") Integer curso_id, HttpSession session) {
 		
@@ -176,7 +176,7 @@ public class ControladorCursos {
 		model.put("examen", examen);
 		model.put("unidad", unidades.get(0));
 		return new ModelAndView("vistaCurso", model);
-	}
+	}*/
 	
 	@RequestMapping (path= "/verUnidadCurso", method= RequestMethod.GET)
 	public ModelAndView verUnidadCurso(@RequestParam("unidad_id") Integer unidad_id, @RequestParam("curso_id") Integer curso_id, HttpSession session) {
@@ -239,163 +239,6 @@ public class ControladorCursos {
 				model.put("msj_error", "Para completar el curso debe estar completado en un 50% o mas.");
 				view = "vistaCurso";
 			}
-		}
-		return new ModelAndView(view, model);
-	}
-
-	@RequestMapping(path = "/examen", method = RequestMethod.POST)
-	public ModelAndView examen(@RequestParam("curso_id") int curso_id, HttpSession session ) {
-
-		ModelMap model = new ModelMap();
-		String view = "";
-		Curso curso_obtenido = servicioCurso.buscarCursoPorId(curso_id); //Por ahora solo del primer curso el del php C1
-		List<Unidad> unidades = servicioCurso.obtenerUnidades(curso_obtenido);
-		Examen examen = servicioCurso.obtenerExamenPorCurso(curso_obtenido );
-		//Busco a el usuario que realizo el examen para despues agregarlo a la lista de usuario_examen y ponerle su puntaje y la hora en que lo realizo
-		int id_user = Integer.parseInt(session.getAttribute("idUsuario").toString());
-		Usuario usuario = servicioUsuario.buscarUsuarioPorID(id_user);
-		Usuario_Curso usuarioCurso = servicioUsuario.obtenerUsuarioCurso(curso_obtenido, usuario);
-		//Obtengo el examen que hizo el usuario
-		Usuario_Examen usuarioExamen = servicioUsuario.obtenerExamenUsuario(examen,usuario);
-		//Obtenemos una lista de preguntas del examen
-		List<Pregunta> preguntas = servicioCurso.obtenerPreguntasDelExamen(examen);
-		//Las hacemos "aleatorias"
-		List<Pregunta> preguntasAlAzar = servicioCurso.PreguntasAzar(preguntas);
-		//Y lo ponemos en una clase de datos
-		DatosExamen datosExamen = servicioCurso.guardarPreguntasEnDatosExamen(preguntasAlAzar);
-		//Verificamos fecha nuevamente para ver si el periodo de gracia paso y cambiarle el estado a examen que hizo el usuario
-		servicioUsuario.verificarFechaDeExamen(usuarioExamen);
-		//Obtenemos el examen actual
-		examen = servicioCurso.obtenerExamenPorCurso(curso_obtenido );
-		//Valida si el curso esta terminado
-		if (usuarioCurso.getCursoTerminado() == false) {
-				
-			model.put("curso", curso_obtenido);
-			model.put("unidades", unidades);
-			model.put("unidad", unidades.get(0));
-			model.put("msj_error", "Para hacer el examen el curso tiene que estar completado ");
-			view = "vistaCurso";
-		}
-		else if(examen.estadoHabilitado == true) { //Si el examen esta habilitado lo podes hacer
-			model.put("curso", curso_obtenido);
-			model.put("unidades", unidades);
-			model.put("unidad", unidades.get(0));
-			model.put("msj_error", "El examen se habilitara en 3 minutos ");
-			model.put("examen", examen );
-			view = "vistaCurso";
-		} else {
-			model.put("curso", curso_obtenido);
-			model.put("datosExamen", datosExamen);
-			view = "vistaExamen";
-		}
-		return new ModelAndView(view, model);
-	}
-
-	// Finalizar el examen y que te sumen los puntos al usuario
-	@RequestMapping(path = "/finalizarExamen", method = RequestMethod.POST)
-	public ModelAndView finalizarExamen(@RequestParam("curso_id") int curso_id, @ModelAttribute("datosExamen") DatosExamen datosExamen, HttpSession session) {
-
-		ModelMap model = new ModelMap();
-		String view = "";
-		//Buscas el curso
-		Curso curso_obtenido = servicioCurso.buscarCursoPorId(curso_id);
-		//Busco a el usuario que realizo el examen para despues agregarlo a la lista de usuario_examen y ponerle su puntaje y la hora en que lo realizo
-		int id_user = Integer.parseInt(session.getAttribute("idUsuario").toString());
-		Usuario usuario = servicioUsuario.buscarUsuarioPorID(id_user);
-		//Obtengo la giftCard del usuario y le sumo los puntos cuando apruebo
-		Giftcard giftcard = usuario.getGiftcard();
-		//Busco el examen que tiene el curso enlazado
-		Examen examen = servicioCurso.obtenerExamenPorCurso(curso_obtenido);
-		//sacamos la lista de preguntas con sus respuestas seleccionadas de datosExamen
-		List<DatosPregunta> listaDp = datosExamen.getDatosPregunta();
-		//Obtengo las respuestas en bruto
-		List<Respuesta> listaRobtenida = servicioCurso.obtenerRespuestas(listaDp);
-		//El puntaje o la nota que saco el usuario al hacer el examen
-		int notaSacada = servicioUsuario.sumarNota(listaRobtenida);
-		//Se guardaria a Usuario_Examen el usuario que tiene la sesion y el examen que tiene el curso
-		//y se setearia la fecha y la hora en que hizo el examen y los puntos que saco de dicho examen
-		servicioUsuario.guardarExamenDeUsuario(usuario, examen, notaSacada);
-		Usuario_Examen usuarioExamen = servicioUsuario.obtenerExamenUsuario(examen, usuario);
-		// los intentos para hacer el examen son 3 y te da puntos  y si hiciste el examen por 4 ves no te da puntos
-		//pero si te da el curso como completado o finalizado correctamente si lo aprobaste con mayor a 7
-		//Tambien usar el examen para no confundir
-		if (servicioUsuario.verificarSiHizoElExamenCuatroVecesOmas(usuario, examen) == true) { //Ya no ganas puntos
-			//Aprobado
-			System.out.println("ENTRASTE ACA A LA PARTE CUANDO YA HICISTE CUATRO VECES O MAS A EL EXAMEN");
-			if (servicioUsuario.aproboExamenUsuario(notaSacada) == true) {
-
-				servicioCurso.actualizarExamenAaprobado(examen);
-				model.put("msj", "El examen se aprobo, pero no ganas puntos");
-				model.put("notaSacada", notaSacada);
-				model.put("curso", curso_obtenido);
-				view = "vistaExamenFinalizado";
-			}
-			//Desaprobado
-			else {
-				//Si desaprobas
-				//Te muestran la nota, no te dan puntos y se te desabilita el examen por 2 dias 48 hs (usamos min )
-				servicioUsuario.cancelarExamen(usuarioExamen, examen);
-				//	Boolean a =servicioUsuario.cancelarExamen(usuarioExamen);
-				model.put("msj", "El examen se desaprobo y ya no vas a poder ganar puntos");
-				model.put("notaSacada", notaSacada);
-				model.put("curso", curso_obtenido);
-				view = "vistaExamenFinalizado";
-			}
-		}
-		else {
-			if (servicioUsuario.aproboExamenUsuario(notaSacada) == true) {
-				//El camino verdadero
-				//Si aprobas entre la primera ves  y la tercera te dan los puntos dependiendo la  nota de aprobado 10 = 500, 9 =400, etc
-				int puntosObtenidos = servicioGiftcard.sumarPuntos(giftcard, notaSacada); //Modificar
-				servicioCurso.actualizarExamenAaprobado(examen);
-				usuario = servicioUsuario.buscarUsuarioPorID(id_user);
-				giftcard = usuario.getGiftcard();
-				model.put("msj", "El examen se aprobo y ganaste puntos");
-				model.put("notaSacada", notaSacada);
-				model.put("puntos", puntosObtenidos);
-				model.put("curso", curso_obtenido);
-				view = "vistaExamenFinalizado";
-			}
-			//Desaprobado
-			else {
-				//Si desaprobas
-				//Te muestran la nota, no te dan puntos
-				//Esto desahibilita a el examen por dos dias (usamos min)
-				servicioUsuario.cancelarExamen(usuarioExamen, examen);
-				model.put("msj", "El examen se desaprobo y no ganaste puntos");
-				model.put("notaSacada", notaSacada);
-				model.put("curso", curso_obtenido);
-				view = "vistaExamenFinalizado";
-			}
-		}
-		session.setAttribute("user", servicioUsuario.buscarUsuarioPorID(id_user));
-		return new ModelAndView(view, model);
-	}
-
-	@RequestMapping(path = "/historialExamen", method = RequestMethod.POST)
-	public ModelAndView historialExamen(@RequestParam("curso_id") int curso_id, HttpSession session) {
-
-		ModelMap model = new ModelMap();
-		String view = "";
-		//Busco al usuario que tiene la sesion iniciada
-		int id_user = Integer.parseInt(session.getAttribute("idUsuario").toString());
-		Usuario usuario = servicioUsuario.buscarUsuarioPorID(id_user);
-		//Buscas el curso
-		Curso curso_obtenido = servicioCurso.buscarCursoPorId(curso_id);
-		//Busco el examen que tiene el curso enlazado
-		Examen examen = servicioCurso.obtenerExamenPorCurso(curso_obtenido);
-		// Si no se obtiene ningun examen del usuario entonces se lanza una excepcion
-		List<Usuario_Examen> usuarioExamenes = servicioUsuario.obtenerExamenesDelUsuario(usuario, examen);
-		// Si tiene muestra
-		if (usuarioExamenes.size() > 0) {
-			model.put("curso", curso_obtenido);
-			model.put("usuarioExamenes", usuarioExamenes);
-			view = "vistaHistorialExamen";
-		}
-		else {
-			// Si la lista usuario_examen se encuentra vacia entonces se guarda un mensaje informativo
-			model.put("msj", "No se hizo ningun examen todavia ");
-			view = "vistaHistorialExamen";
 		}
 		return new ModelAndView(view, model);
 	}

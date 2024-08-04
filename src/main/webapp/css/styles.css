@@ -47,6 +47,13 @@ input[type="submit"]:hover {
 	cursor: pointer;
 }
 
+.separador {
+	width: 100%;
+    margin: 0;
+    padding: 0.4px;
+    background-color: white;
+}
+
 /* HEADER */
 .cont-1-header {
 	background: white;
@@ -80,7 +87,7 @@ input[type="submit"]:hover {
 
 #logoCurso {
 	font-size: 25px;
-	color: #5a5854;
+	color: #2e2e2e;
 	position: relative;
 	top: 22px;
 	left: 68px;
@@ -110,7 +117,7 @@ input[type="submit"]:hover {
 #lupa {
 	position: relative;
 	left: 40px;
-	color: #3c3b37;
+	color: #87857d;
 }
 
 #login {
@@ -125,7 +132,7 @@ input[type="submit"]:hover {
 
 #carrito {
 	font-size: 25px;
-	color: black;
+	color: #2e2e2e;
 }
 
 #fotoUsuario {
@@ -135,13 +142,13 @@ input[type="submit"]:hover {
 	border-radius: 50%;
 }
 
-#fotoUsuario:hover {
-	cursor: pointer;
-}
-
 #notificacion {
 	font-size: 25px;
-	color: black;
+	color: #2e2e2e;
+}
+
+#fotoUsuario:hover, #notificacion:hover {
+	cursor: pointer;
 }
 
 #circulo {
@@ -175,8 +182,9 @@ input[type="submit"]:hover {
 	right: 0px;
 	width: 220px;
 	overflow: auto;
-	background-color: #f2f2f2;
-	border-radius: 10px;
+	background-color: white;
+	border-radius: 5px;
+	border: 1px solid #cecece;
 	color: #3c3b37;
 }
 
@@ -184,14 +192,8 @@ input[type="submit"]:hover {
 	left: -90px;
 }
 
-.menuCuentaUsuario:hover .contenido-menu {
+.menuCuentaUsuario:hover .contenido-menu, .menuNotificaciones:hover .contenido-menu {
 	display: block;
-	cursor: pointer;
-}
-
-.menuNotificaciones:hover .contenido-menu {
-	display: block;
-	cursor: pointer;
 }
 
 .contenido-menu a {
@@ -215,6 +217,7 @@ input[type="submit"]:hover {
 
 .contenido-menu h3 {
 	padding: 15px 20px;
+	border-bottom: 1px solid #cecece;
 }
 
 #contenido-menu-notificaciones {
@@ -226,7 +229,7 @@ input[type="submit"]:hover {
 	flex-direction: row;
 	justify-content: space-between;
 	padding: 15px 20px;
-	border: 1px solid #525252;
+	border-bottom: 1px solid #cecece;
 }
 
 .mensajes a, .mensajesNoLeidos a {
@@ -254,7 +257,7 @@ input[type="submit"]:hover {
 .fotoNombreUsuario {
 	display: flex;
 	padding: 20px 20px;
-	border-bottom: 1px solid #acacac;
+	border-bottom: 1px solid #cecece;
 }
 
 #fotoGrandeUsuario {

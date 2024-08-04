@@ -62,7 +62,7 @@ public class ControladorCarrito {
 			if (!servicioCarrito.existeCursoEnListaCarrito(curso_obtenido, carrito)) {
 
 				if (!servicioUsuario.existeCursoEnListaUsuario(idCurso, usuario)) {
-					servicioCarrito.agregarCursoAlCarrito(curso_obtenido, carrito);
+					servicioCarrito.agregarCursoAlCarrito(curso_obtenido, carrito, sesion);
 					model.put("msj_exito", "Se agrego el curso al carrito con exito!");
 				}
 				else {
@@ -86,7 +86,7 @@ public class ControladorCarrito {
 		Curso curso = servicioCurso.buscarCursoPorId(curso_id);
 		Carrito carrito = servicioCarrito.obtenerCarritoPorIdUsuario(id_user);
 		Carrito_Curso carritoCurso = servicioCarrito.obtenerCarritoCurso(carrito, curso);
-		servicioCarrito.eliminarCursoDelCarrito(carritoCurso);
+		servicioCarrito.eliminarCursoDelCarrito(carritoCurso, sesion);
 		return new ModelAndView("redirect:/vistaCarrito");
 	}
 

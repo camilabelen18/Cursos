@@ -53,6 +53,10 @@
     height: 138.88px;
 }
 
+.cursos-mas-calificados a {
+	color: #3c3b37;
+}
+
 .curso-calificado {
 	border: 2px solid #c7c7c7;
 	border-radius: 5px;
@@ -125,70 +129,62 @@
 	text-align: center;
 }
 
-/* CONTACTO */
-.cont-contacto {
-	background-color: white;
-}
-
-.txt-contacto {
-	width: 50%;
-	margin: auto;
-	padding: 60px 0px 40px 0px;
-	font-size: 34px;
-	font-weight: 500;
-	text-align: center;
-}
-
-.formulario {
-	width: 35%;
-	margin: auto;
-	margin-bottom: 60px;
-}
-
-.nom-cor {
-	display: flex;
-	justify-content: space-between;
-	margin-bottom: 20px;
-}
-
-.nom-cor input {
-	width: 42%;
-	padding: 12px;
-	border: 2px solid #cecece;
-	border-radius: 5px;
-	color: #404040;
-	font-size: 18px;
-	font-weight: normal;
-}
-
-.mensaje {
-	display: flex;
-}
-
-.mensaje textarea {
+.cont-index-4 {
 	width: 100%;
-	padding: 12px;
-	border: 2px solid #cecece;
-	border-radius: 5px;
-	min-height: 100px;
-	max-height: 120px;
-	color: #404040;
-	font-size: 18px;
-	font-weight: normal;
-}
-
-input[type="text"]:focus, textarea:focus {
-	outline: none;
-	border: 2px solid rgb(54, 129, 226);
-}
-
-.txt-btn {
+	margin: auto;
+	margin-bottom: 120px;
 	display: flex;
-	justify-content: space-between;
-	margin-top: 20px;
+	justify-content: center;
 }
 
-.txt-btn p {
-	color: #5e5e5e;
-	font-weight: 500;
+.cuadro-tarjeta {
+	width: 60%;
+	display: flex;
+	border: 2px solid #c7c7c7;
+	border-radius: 5px;
+    padding: 30px 35px;
+    margin-top: 60px;
+    justify-content: space-between;
+}
+
+#img-tarjeta {
+	width: 45%;
+}
+
+#img-tarjeta img {
+	width: 100%;
+	height: 300px;
+}
+
+#texto-tarjeta {
+	width: 52%;
+	padding-left: 40px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+#texto-tarjeta p {
+	padding-bottom: 40px;
+    font-size: 20px;
+}
+
+#btn-tarjeta {
+	display: flex;
+	justify-content: flex-end;
+}
+
+#btn-tarjeta a {
+	padding: 5px 30px;
+	background: #429FF4;
+	color: white;
+	border: 0;
+	border-radius: 5px;
+	font-size: 20px;
+	font-weight: 600;
+}
+
+#btn-tarjeta a:hover {
+	background: #61aff5;
+	cursor: pointer;
 }

@@ -25,25 +25,5 @@ public interface RepositorioCurso {
 	void actualizarUnidad(Unidad unidad);
 
 	void actualizarCurso(Curso curso_obtenido);
-
-	Examen obtenerExamenPorCurso(Curso curso_obtenido);
-
-	List<Pregunta> obtenerPreguntasDelExamen(Examen examen);
-
-	Pregunta buscarPreguntaPorId(int pregunta_id);
-
-	Respuesta buscarRespuestaPorId(int respuesta_id);
-
-	void actualizarExamenAaprobado(Examen examen);
-
-
-
-
-
-
-
-	
-
-
 	
 }

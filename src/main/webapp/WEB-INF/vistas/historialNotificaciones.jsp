@@ -15,7 +15,7 @@
 </head>
 <body>
 
-	<%@ include file="header.jsp"%>
+	<%@ include file="partial/header.jsp"%>
 	
 	<div class="cont-seccion-notificaciones">
 	
@@ -49,7 +49,7 @@
 		</c:if>
 	</div>
 
-	<%@ include file="/WEB-INF/vistas/footer.jsp" %>
+	<%@ include file="partial/footer.jsp"%>
 
 </body>
 </html>

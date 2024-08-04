@@ -18,7 +18,7 @@ public interface RepositorioCarrito {
 
 	Carrito_Curso obtenerCarritoCurso(Carrito carrito, Curso curso);
 
-	void eliminarCursoDelCarrito(Carrito_Curso carritoCurso);
+	void eliminarCursoDelCarrito(Carrito_Curso carritoCurso, Carrito carrito);
 
 	List<Carrito_Curso> obtenerCarritoCursos(Carrito carrito);
 

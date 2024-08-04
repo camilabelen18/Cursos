@@ -1,5 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!DOCTYPE html>
@@ -14,8 +13,7 @@
 	<link rel="stylesheet" href="css/darkmode.css">
 </head>
 <body>
-
-	<%@ include file="header.jsp"%>
+	<%@ include file="partial/header.jsp"%>
 	
 	<div class="cont-seccion-cursos">
 
@@ -91,7 +89,6 @@
 		
 	</div>
 
-	<%@ include file="footer.jsp" %>
-	
+	<%@ include file="partial/footer.jsp"%>
 </body>
 </html>

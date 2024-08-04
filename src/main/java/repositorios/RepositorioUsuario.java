@@ -41,18 +41,6 @@ public interface RepositorioUsuario {
 	Notificacion obtenerNotificacionPorId(int idNotif);
 
 	void eliminarNotificacion(Notificacion notificacion);
-	
-	void guardarExamenDeUsuario(Examen examen, Usuario usuario, int notaSacada);
-
-	Usuario_Examen obtenerExamenUsuario(Examen examen, Usuario usuario);
-
-	boolean cancelarExamen(Usuario_Examen usuarioExamen,Examen examen);
-
-	boolean verificarSiHizoElExamenCuatroVecesOmas(Usuario usuario, Examen examen);
-
-	List<Usuario_Examen> obtenerExamenesDelUsuario(Usuario usuario,Examen examen);
-
-	void verificarFechaDeExamen(Usuario_Examen usuarioExamen);
 
 	void quitarNotificacion(Usuario_Notificacion usuarioNotificacion);
 

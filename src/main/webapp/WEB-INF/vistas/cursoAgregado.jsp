@@ -6,29 +6,22 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<title>Curso añadido</title>
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, maximum-scale=1">
-<link rel="stylesheet" href="css/styles.css">
-<link rel="stylesheet" href="css/exito.css">
-<link rel="stylesheet" href="css/darkmode.css">
+	<meta charset="UTF-8">
+	<title>Curso añadido</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<link rel="stylesheet" href="css/styles.css">
+	<link rel="stylesheet" href="css/exito.css">
+	<link rel="stylesheet" href="css/darkmode.css">
 </head>
 <body>
 
-	<%@ include file="header.jsp"%>
-
-	
-	<main>
+	<%@ include file="partial/header.jsp"%>
 
 	<div id="tituloCompra">
 		<h2>El curso fue añadido correctamente</h2>
-	
 	</div>
-	</main>
 
-
-	<%@ include file="footer.jsp"%>
+	<%@ include file="partial/footer.jsp"%>
 
 </body>
 </html>

@@ -2,6 +2,8 @@ package servicios;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import modelo.Carrito;
 import modelo.Carrito_Curso;
 import modelo.Curso;
@@ -13,7 +15,7 @@ public interface ServicioCarrito {
 
     double getTotalDePrecios(List<Curso> cursos);
 
-	void agregarCursoAlCarrito(Curso curso_obtenido, Carrito carrito);
+	void agregarCursoAlCarrito(Curso curso_obtenido, Carrito carrito, HttpSession sesion);
 
 	Carrito obtenerCarritoPorIdUsuario(int id_user);
 
@@ -25,9 +27,9 @@ public interface ServicioCarrito {
 
 	List<Carrito_Curso> obtenerCarritoCursos(Carrito carrito);
     
-	void eliminarCursoDelCarrito(Carrito_Curso carritoCurso);
+	void eliminarCursoDelCarrito(Carrito_Curso carritoCurso, HttpSession sesion);
 
-	void vaciarCursosDelCarrito(List<Carrito_Curso> cursosCarrito);
+	void vaciarCursosDelCarrito(List<Carrito_Curso> cursosCarrito, Carrito carrito, HttpSession session);
 
 	boolean existeCursoEnListaCarrito(Curso curso_obtenido, Carrito carrito);
 	

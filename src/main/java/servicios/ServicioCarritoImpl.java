@@ -2,6 +2,7 @@ package servicios;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,7 +45,9 @@ public class ServicioCarritoImpl implements ServicioCarrito {
 	}
 
 	@Override
-	public void agregarCursoAlCarrito(Curso curso_obtenido, Carrito carrito) {
+	public void agregarCursoAlCarrito(Curso curso_obtenido, Carrito carrito, HttpSession sesion) {
+		carrito.aumentarCantidad();
+		sesion.setAttribute("carritoUsuario", carrito);
 		repositorioCarrito.agregarCursoALista(curso_obtenido, carrito);
 	}
 
@@ -68,8 +71,11 @@ public class ServicioCarritoImpl implements ServicioCarrito {
 	}
 
 	@Override
-	public void eliminarCursoDelCarrito(Carrito_Curso carritoCurso) {
-		repositorioCarrito.eliminarCursoDelCarrito(carritoCurso);
+	public void eliminarCursoDelCarrito(Carrito_Curso carritoCurso, HttpSession sesion) {
+		Carrito carrito = carritoCurso.getCarrito();
+		carrito.disminuirCantidad();
+		sesion.setAttribute("carritoUsuario", carrito);
+		repositorioCarrito.eliminarCursoDelCarrito(carritoCurso, carrito);
 	}
 
 	@Override
@@ -95,12 +101,13 @@ public class ServicioCarritoImpl implements ServicioCarrito {
 	}
 
 	@Override
-	public void vaciarCursosDelCarrito(List<Carrito_Curso> cursosCarrito) {
+	public void vaciarCursosDelCarrito(List<Carrito_Curso> cursosCarrito, Carrito carrito, HttpSession sesion) {
 		
 		for (Carrito_Curso cursoCarrito : cursosCarrito) {
-			
-			repositorioCarrito.eliminarCursoDelCarrito(cursoCarrito);
+			carrito.disminuirCantidad();
+			repositorioCarrito.eliminarCursoDelCarrito(cursoCarrito, carrito);
 		}
+		sesion.setAttribute("carritoUsuario", carrito);
 	}
 
 	@Override

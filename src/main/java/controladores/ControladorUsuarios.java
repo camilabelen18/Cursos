@@ -18,16 +18,18 @@ public class ControladorUsuarios {
 
 	private ServicioUsuario servicioUsuario;
 	private ServicioSubirImagen servicioSubirImagen;
+	private ServicioCarrito servicioCarrito;
 	
 	@Autowired
-	public ControladorUsuarios(ServicioUsuario servicioUsuario, ServicioSubirImagen servicioSubirImagen) {
+	public ControladorUsuarios(ServicioUsuario servicioUsuario, ServicioSubirImagen servicioSubirImagen, ServicioCarrito servicioCarrito) {
 		this.servicioUsuario = servicioUsuario;
 		this.servicioSubirImagen = servicioSubirImagen;
+		this.servicioCarrito = servicioCarrito;
 	}
 
 	@RequestMapping("/registro")
 	public ModelAndView irARegistro() {
-
+		
 		ModelMap modelo = new ModelMap();
 		DatosRegistro datosRegistro = new DatosRegistro();
 		modelo.put("datosRegistro", datosRegistro);
@@ -77,6 +79,7 @@ public class ControladorUsuarios {
 		try {
 			// Se obtiene un usuario por email y contraseña, si no existe, devuelve una excepcion
 			Usuario usuarioBuscado = servicioUsuario.consultarUsuario(datosLogin.getEmail(), datosLogin.getPassword());
+			Carrito carritoUsuario = servicioCarrito.obtenerCarritoPorIdUsuario(usuarioBuscado.getId());
 			// Se guardan los datos del usuario en la sesion
 			session.setAttribute("idUsuario", usuarioBuscado.getId());
 			session.setAttribute("nombreUsuario", usuarioBuscado.getNombre());
@@ -84,6 +87,7 @@ public class ControladorUsuarios {
 			session.setAttribute("imgUsuario", usuarioBuscado.getImagen());
 			session.setAttribute("notificaciones", servicioUsuario.obtenerNotificaciones(usuarioBuscado));
 			session.setAttribute("user", usuarioBuscado);
+			session.setAttribute("carritoUsuario", carritoUsuario);
 			return new ModelAndView("redirect:/");
 		}
 		catch (Exception e) {
@@ -139,12 +143,13 @@ public class ControladorUsuarios {
 	}
 
 	@RequestMapping(path = "actualizarCambiosPerfil", method = RequestMethod.POST)
-	public ModelAndView actualizarCambiosPerfil(@ModelAttribute ("datosEditarUsuario") DatosEditarUsuario datosEditarUsuario,HttpSession session){//(@RequestParam("nombre")String nombre, @RequestParam("email") String email, @RequestParam("password") String password ,HttpSession session) {
+	public ModelAndView actualizarCambiosPerfil(@ModelAttribute ("datosEditarUsuario") DatosEditarUsuario datosEditarUsuario,HttpSession session){
 
 		ModelMap model = new ModelMap();
 		int id_user = Integer.parseInt(session.getAttribute("idUsuario").toString());
 		Usuario usuario = servicioUsuario.buscarUsuarioPorID(id_user);
-		servicioUsuario.actualizarUsuario(usuario.getId(),datosEditarUsuario.getNombre() , datosEditarUsuario.getEmail(), datosEditarUsuario.getPasswordAnterior(),datosEditarUsuario.getPasswordNueva(),datosEditarUsuario.getRepeticionPasswordNueva(), session);
+		servicioUsuario.actualizarUsuario(usuario.getId(),datosEditarUsuario.getNombre() , datosEditarUsuario.getEmail(), 
+		datosEditarUsuario.getPasswordAnterior(),datosEditarUsuario.getPasswordNueva(),datosEditarUsuario.getRepeticionPasswordNueva(), session);
 		servicioUsuario.buscarUsuarioPorID(id_user);
 		model.put("usuario", usuario);
 		model.put("datosEditarUsuario", datosEditarUsuario);

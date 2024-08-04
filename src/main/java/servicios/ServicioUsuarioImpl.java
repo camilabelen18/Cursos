@@ -250,64 +250,6 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
 	}
 
 	@Override
-	public void guardarExamenDeUsuario(Usuario usuario, Examen examen, int notaSacada) {
-		repositorioUsuario.guardarExamenDeUsuario(examen, usuario, notaSacada);
-
-	}
-
-	@Override
-	public Usuario_Examen obtenerExamenUsuario(Examen examen, Usuario usuario) {
-		return repositorioUsuario.obtenerExamenUsuario(examen, usuario);
-	}
-
-	@Override
-	public boolean aproboExamenUsuario(int notaSacada) {
-
-		boolean resultado = false;
-
-		if (notaSacada >= 6) {
-			resultado = true;
-		}
-
-		return resultado;
-	}
-
-	@Override
-	public boolean cancelarExamen(Usuario_Examen usuarioExamen, Examen examen) {
-
-		return repositorioUsuario.cancelarExamen(usuarioExamen, examen);
-	}
-
-	@Override
-	public boolean verificarSiHizoElExamenCuatroVecesOmas(Usuario usuario, Examen examen) {
-
-		return repositorioUsuario.verificarSiHizoElExamenCuatroVecesOmas(usuario, examen);
-	}
-
-	@Override
-	public int sumarNota(List<Respuesta> listaRobtenida) {
-		int puntajeFinal = 0;
-
-		for (Respuesta respuesta : listaRobtenida) {
-			if (respuesta.getRespuesta_correcta() == true) {
-				puntajeFinal += 2;
-			}
-		}
-
-		return puntajeFinal;
-	}
-
-	@Override
-	public List<Usuario_Examen> obtenerExamenesDelUsuario(Usuario usuario, Examen examen) {
-		return repositorioUsuario.obtenerExamenesDelUsuario(usuario, examen);
-	}
-
-	@Override
-	public void verificarFechaDeExamen(Usuario_Examen usuarioExamen) {
-		repositorioUsuario.verificarFechaDeExamen(usuarioExamen);
-	}
-
-	@Override
 	public void enviarPuntos(Usuario usuario1, Usuario usuario2, Integer puntos) {
 		Giftcard gc1 = usuario1.getGiftcard();
 		Giftcard gc2 = usuario1.getGiftcard();
