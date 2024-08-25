@@ -1,6 +1,5 @@
 package servicios;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -63,25 +62,8 @@ public class ServicioCursoImpl implements ServicioCurso {
 	}
 
 	@Override
-	public void agregarCurso(Curso curso) {
-		repositorioCurso.agregarCurso(curso);
-	}
-
-	@Override
 	public List<Usuario_Curso> getCursosPorEstado(Estado estado, Usuario usuario) {
 		return repositorioCurso.obtenerListaCursosPorEstado(estado, usuario);
-	}
-
-	@Override
-	public void agregarCurso(String nombre, String categoria, String descripcion, Double precio, String imagen) {
-		Curso curso = new Curso();
-		curso.setNombre(nombre);
-		curso.setCategoria(categoria);
-		curso.setDescripcion(descripcion);
-		curso.setPrecio(precio);
-		curso.setImagen(imagen);
-		
-		repositorioCurso.agregarCurso(curso);
 	}
 
 	@Override
@@ -112,7 +94,7 @@ public class ServicioCursoImpl implements ServicioCurso {
 		
 		double cant_registros = unidades.size();
 		Double progreso_unidad = 100.00 / cant_registros;
-	
+		
 		// Se establece la cantidad maxima de decimales del progreso
 		progreso_unidad = Math.round(progreso_unidad * 100) / 100d;
 		
@@ -131,6 +113,11 @@ public class ServicioCursoImpl implements ServicioCurso {
 		curso.setPrecio(precio);
 		
 		repositorioCurso.actualizarCurso(curso);
+	}
+	
+	@Override
+	public void agregarCurso(Curso curso) {
+		repositorioCurso.agregarCurso(curso);
 	}
 	
 }

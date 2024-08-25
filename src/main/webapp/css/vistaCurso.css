@@ -153,3 +153,32 @@ input[type="submit"].btn-tipo-2:hover {
 	margin: auto;
 	margin-bottom: 20px;
 }
+
+/*------------------------------------------RESPONSIVE----------------------------------*/
+@media (max-width: 1250px) {
+	.contenedor-vistaCurso {
+		width: 90%;
+	}
+	.tituloCurso {
+    	width: 90%;
+	}
+}
+
+@media (max-width: 880px) {
+	.contenedor-vistaCurso {
+        flex-direction: column;
+	}
+	#contVistaCurso-1 {
+	    width: 100%;
+	}
+	#video-curso iframe {
+	    height: 300px;
+	}
+	.tituloCurso {
+    	margin-bottom: 30px;
+	}
+	#contVistaCurso-2 {
+	    margin-top: 60px;
+	    width: 100%;
+	}
+}

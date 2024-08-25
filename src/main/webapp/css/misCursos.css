@@ -20,7 +20,6 @@ input[type="submit"] {
 	width: 100%;
 }
 
-
 /*Menu de filtros*/
 .dropdown {
 	margin-left: 400px;
@@ -121,13 +120,46 @@ input[type="submit"] {
 	font-weight: bold;
 }
 
+#sin_curso {
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.msj-sincurso {
+	margin-bottom: 150px;
+	margin-top: 100px;
+	text-align: center;
+}
+
+
 
 /*------------------------------------------RESPONSIVE----------------------------------*/
 
 @media (max-width: 1250px) {
-	
 	.cont-seccion-miscursos {
 		width: 80%;
 	}
-    
+}
+
+@media (max-width: 880px) {
+	.cont-seccion-miscursos {
+        width: 90%;
+    }
+    .cuadro-seccion-cursos {
+    	flex-direction: column;
+    }
+    .cuadro-seccion-cursos img {
+    	width: 100%;
+    }
+    .cotenido-1-curso {
+	    padding: 0px;
+	    margin-top: 20px;
+    }
+    .cotenido-2-curso p {
+    	margin: 15px 0px;
+    }
+    .cotenido-2-curso form {
+    	display: -webkit-box;
+    	margin-bottom: 10px;
+    }
 }

@@ -20,9 +20,6 @@ public class Usuario {
 	@Column(name = "Password")
 	private String password;
 	
-	@Column(name = "NumeroTarjeta")
-	private Integer nroTarjeta;
-	
 	@Column(name = "Rol")
 	private String rol;
 	
@@ -30,7 +27,7 @@ public class Usuario {
 	private String imagen;
 	
 	@OneToOne
-	private Giftcard giftcard;
+	private Tarjeta tarjeta;
 	
 	public Usuario() { }
 
@@ -72,14 +69,6 @@ public class Usuario {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-
-	public Integer getNroTarjeta() {
-		return nroTarjeta;
-	}
-
-	public void setNroTarjeta(Integer nroTarjeta) {
-		this.nroTarjeta = nroTarjeta;
-	}
 	
 	public String getRol() {
 		return rol;
@@ -97,18 +86,18 @@ public class Usuario {
 		this.imagen = imagen;
 	}
 
-	public Giftcard getGiftcard() {
-		return giftcard;
+	public Tarjeta getTarjeta() {
+		return tarjeta;
 	}
 
-	public void setGiftcard(Giftcard giftcard) {
-		this.giftcard = giftcard;
+	public void setTarjeta(Tarjeta tarjeta) {
+		this.tarjeta = tarjeta;
 	}
 
 	@Override
 	public String toString() {
 		return "Usuario [id=" + id + ", nombre=" + nombre + ", email=" + email + ", password=" + password
-				+ ", nroTarjeta=" + nroTarjeta + ", rol=" + rol + ", imagen=" + imagen + ", giftcard=" + giftcard + "]";
+				+ ", rol=" + rol + ", imagen=" + imagen + ", giftcard=" + tarjeta + "]";
 	}
 	
 }

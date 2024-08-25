@@ -47,3 +47,9 @@ input[type="submit"] {
     margin-bottom: 5px;
 }
 
+/*---------------------------------RESPONSIVE-------------------------------------*/
+@media (max-width: 880px) {
+	.registro-main {
+    	width: 60%;
+	}
+}

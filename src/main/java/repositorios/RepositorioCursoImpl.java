@@ -57,11 +57,6 @@ public class RepositorioCursoImpl implements RepositorioCurso{
 	}
 
 	@Override
-	public void agregarCurso(Curso curso) {
-		sessionFactory.getCurrentSession().save(curso);
-	}
-
-	@Override
 	public List<Usuario_Curso> obtenerListaCursosPorEstado(Estado estado, Usuario usuario) {
 		
 		Session sesion = sessionFactory.getCurrentSession();
@@ -103,6 +98,11 @@ public class RepositorioCursoImpl implements RepositorioCurso{
 	@Override
 	public void actualizarCurso(Curso curso) {
 		sessionFactory.getCurrentSession().update(curso);
+	}
+	
+	@Override
+	public void agregarCurso(Curso curso) {
+		sessionFactory.getCurrentSession().save(curso);
 	}
 	
 }

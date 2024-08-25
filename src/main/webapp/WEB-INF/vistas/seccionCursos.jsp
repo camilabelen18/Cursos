@@ -75,7 +75,7 @@
 
 							<div class="cotenido-2-curso">
 								<p class="precioCurso">$ ${curso.precio}</p>
-								<form action="verMediosDePago" method="POST">
+								<form action="verificacionCompra" method="POST">
 									<input type="hidden" name="id_curso" value="${curso.id}">
 									<input type="hidden" name="precio" value="${curso.precio}">
 									<input type="submit" name="pagar" value="Comprar">

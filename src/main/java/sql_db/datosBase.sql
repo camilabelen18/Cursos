@@ -7,24 +7,27 @@ VALUES
 ('Python 2022', 'programacion', 'En este curso aprenderas desde las bases de Python hacia temas más avanzados del lenguaje', 2600.0, 'curso-phyton.jpg'),
 ('Adobe Photoshop: Curso completo', 'diseno', 'Aprende las herramientas esenciales de Adobe Photoshop para comenzar a diseñar hermosos graficos y fotos en Photoshop.',1000.0 , 'adobe-photoshop.jpg'),
 ('Curso completo de WordPress', 'diseno', 'El Mejor Curso de WordPress para aprender desde cero... ¡Mas de 5.000 alumnos satisfechos!', 800.0, 'wordpress.jpg'),
-('Modelado y diseño para videojuegos', 'diseno', 'Aprende DESDE CERO a Modelar, Texturizar, Iluminacion y Render de modelos 2D 3D Assets Videojuegos MagicaVoxel y Unity', 3200.0, 'diseño-videojuegos.jpg'),
+('Modelado y diseño para videojuegos', 'diseno', 'Aprende DESDE CERO a Modelar, Texturizar, Iluminacion y Render de modelos 2D 3D Assets Videojuegos MagicaVoxel y Unity', 3200.0, 'diseno-videojuegos.jpg'),
 ('Curso de de guitarra practico para principiantes', 'musica', 'Aprende paso a paso a tocar la guitarra con este curso practico. Aprende tocando y olvídate de ejercicios aburridos.',1650.0 , 'curso-guitarra.jpg'),
 ('Curso de piano completo', 'musica', 'Aprendelo Todo: Armonia , Composicion, Improvisacion , Acompañar con acordes, Lectura & Solfeo, Tecnica y Relajacion.', 2000.0, 'curso-piano.jpg'),
 ('Curso de canto para principiantes', 'musica', '¡Encuentra tu voz de canto de forma natural y diviértete haciéndolo! Un enfoque moderno para las clases de canto.', 2000.0, 'curso-canto.jpg');
 
-INSERT INTO Giftcards (numero_tarjeta, puntos, saldo)
-VALUES (555, 0, 0.0),
-       (555, 0, 0.0),
-       (555, 80000, 8000.0);
+INSERT INTO Tarjetas (numero_tarjeta, puntos, saldo)
+VALUES (1234, 0, 0.0),
+       (1234, 0, 0.0),
+       (1234, 80000, 8000.0),
+       (1234, 120000, 12000.0);
        
-INSERT INTO Usuarios (Nombre, Email, Password, Rol, Imagen, NumeroTarjeta, giftcard_Identificador)
-VALUES ('Juan', 'admin@gmail.com', '123', 'admin', 'default-user.png', 555, 1),
-       ('Ana', 'ana@gmail.com', '111', 'cliente', 'default-user.png', 555, 2),
-       ('Ale', 'ale@gmail.com', '123', 'cliente', 'default-user.png', 555, 3);
+INSERT INTO Usuarios (Nombre, Email, Password, Rol, Imagen, tarjeta_Identificador)
+VALUES ('Juan', 'admin@gmail.com', '111', 'admin', 'default-user.png', 1),
+       ('Ana', 'ana@gmail.com', '111', 'cliente', 'default-user.png', 2),
+       ('Ale', 'ale@gmail.com', '111', 'cliente', 'default-user.png', 3),
+       ('Fede', 'fede@gmail.com', '111', 'cliente', 'default-user.png', 4);
        
 INSERT INTO Carritos (cantidad, usuario_id)
 VALUES (0, 2),
-       (0, 3);
+       (0, 3),
+       (0, 4);
        
 INSERT INTO Unidades (descripcion, video_url, unidad_completada)
 VALUES ('Unidad 1: Presentacion', 'https://www.youtube.com/embed/I75CUdSJifw', 0),

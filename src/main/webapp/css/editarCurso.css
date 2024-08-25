@@ -1,17 +1,12 @@
-#formularioCrearCurso{
+#formularioEditC{
 	width: 30%;
 	margin: auto;
-	margin-top: 60px;
+	margin-top: 100px;
 	margin-bottom: 150px;
 }
 
 #categoria, #descripcion, #precio, #imgCurso{
 	margin-top: 15px;
-}
-
-.error {
-    color: crimson;
-    margin-bottom: 20px;
 }
 
 input[type="text"], input[type="number"], input[type="file"] {
@@ -31,4 +26,11 @@ input[type="text"], input[type="number"], input[type="file"] {
 input[type="submit"] {
     display: block;
     float: right;
+}
+
+/*------------------------------------------RESPONSIVE----------------------------------*/
+@media (max-width: 880px) {
+	#formularioEditC {
+	    width: 90%;
+	}
 }

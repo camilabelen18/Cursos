@@ -1,0 +1,129 @@
+/* MI TARJETA */
+.tituloTarjeta {
+	width: 60%;
+	margin: auto;
+    margin-top: 100px;
+    margin-bottom: 50px;
+}
+
+.contenedor-miTarjeta {
+	width: 60%;
+	margin: auto;
+	margin-bottom: 150px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+
+#contMiTarjeta-1 {
+	width: 55%;
+    color: white;
+}
+
+#tarjeta {
+	background-image: url("../imagenes/default-giftcard.jpg");
+	background-color: #cccccc;
+    height: 320px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#contMiTarjeta-1 h2 {
+    font-weight: bold;
+    font-size: 30px;
+    padding: 50px;
+}
+
+.datosTarjeta {
+	display: flex;
+	justify-content: space-between;
+	margin-top: 100px;
+	margin-left: 50px;
+	margin-right: 40px;
+}
+
+.datosTarjeta p {
+	padding-bottom: 5px;
+}
+
+#contMiTarjeta-2 {
+	width: 40%;
+	display: flex;
+	flex-direction: column;
+}
+
+.regalarPuntos {
+	background-color: #F0F0F0;
+	padding: 40px 50px;
+	padding-bottom: 20px;
+}
+
+input[type="email"], input[type="number"] {
+    width: 100%;
+    padding: 6px;
+    display: block;
+    box-sizing: border-box;
+    border: 2px solid #cecece;
+    border-radius: 5px;
+    color: #404040;
+    font-size: 16px;
+    font-weight: normal;
+    margin-top: 10px;
+}
+
+.enviarPts {
+	text-align: right;
+}
+
+.msjError {
+    color: crimson;
+    margin-top: 10px;
+}
+
+.msjExito {
+    color: #1dbb06;
+    margin-top: 10px;
+}
+
+/*------------------------------------------RESPONSIVE----------------------------------*/
+@media (max-width: 1250px) {
+	.contenedor-miTarjeta {
+    	width: 80%;
+	}
+	.tituloTarjeta {
+    	width: 80%;
+    }
+}
+
+@media (max-width: 880px) {
+	.contenedor-miTarjeta {
+	    width: 90%;
+	}
+	.fotoPerfil {
+    	width: 100%;
+    	margin-bottom: 60px;
+    }
+    .tituloTarjeta {
+    	width: 90%;
+    }
+    .contenedor-miTarjeta {
+    	flex-direction: column;
+    }
+    #contMiTarjeta-1 {
+    	width: 100%;
+    }
+    #contMiTarjeta-2 {
+    	width: 100%;
+    }
+    #contMiTarjeta-1 h2 {
+    	padding: 40px;
+    }
+    #tarjeta {
+    	height: 250px;
+    	margin-bottom: 60px;
+    }
+    .datosTarjeta {
+    	margin: 60px 20px 20px 20px;
+    }
+}

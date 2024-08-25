@@ -2,7 +2,7 @@
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Rouge Script">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com">
 <header>
 	<div class="cont-1-header" id="cont-header">
 		<%--Logo cursos --%>
@@ -18,11 +18,26 @@
 				<i class="fa-solid fa-magnifying-glass" id="lupa"></i>
 				<input type="search" placeholder="Buscar un curso" aria-label="Search" id="nombreCurso" name="nombreCurso" value="${busqueda}">
 			</form>
+			<button>
+				<i class="fa-solid fa-magnifying-glass" id="btn-abrir"></i>
+			</button>
 		</div>
+		<div class="contenedor-buscador" style="display: none;">
+	        <div class="buscador">
+	            <form action="buscar" class="search">
+	                <ion-icon name="search-outline"></ion-icon>
+	                <input id="input-buscador" type="text" placeholder="Buscar un curso" name="nombreCurso">
+	                <ion-icon id="equis-input" name="close-outline"></ion-icon>
+	            </form>
+	            <span id="btn-cerrar">Cerrar</span>
+	        </div>
+	    </div>
 		<%-- Carrito --%>
 		<div>
 			<a href="vistaCarrito">
-				<p>${cantidadCarrito}</p>
+				<c:if test="${cantidadCarrito > 0}">
+					<p id="cantidadCarrito">${cantidadCarrito}</p>
+				</c:if>
 				<i class="fa-sharp fa-solid fa-cart-shopping" id="carrito"></i>
 			</a>
 		</div>
@@ -53,7 +68,7 @@
 								<c:if test="${usuarioNotificacion.notificacionLeida == true}">
 									<div class="mensajes">
 										<p>${usuarioNotificacion.notificacion.mensaje}</p>
-										<a href="quitarNotificacion?idNotif=${usuarioNotificacion.notificacion.id}">
+										<a href="quitarNotificacion?idNotif=${usuarioNotificacion.notificacion.id}" class="cuadroIcono">
 											<i class="fa-solid fa-circle-xmark" title="Ocultar" id="eliminar"></i>
 										</a>
 									</div>
@@ -63,10 +78,10 @@
 									<div class="mensajesNoLeidos">
 										<p>${usuarioNotificacion.notificacion.mensaje}</p>
 										<div class="iconosNotificacion">
-											<a href="quitarNotificacion?idNotif=${usuarioNotificacion.notificacion.id}">
+											<a href="quitarNotificacion?idNotif=${usuarioNotificacion.notificacion.id}" class="cuadroIcono">
 												<i class="fa-solid fa-circle-xmark" title="Ocultar" id="eliminar"></i>
 											</a>
-											<a href="marcarNotificacionLeida?idNotif=${usuarioNotificacion.notificacion.id}">
+											<a href="marcarNotificacionLeida?idNotif=${usuarioNotificacion.notificacion.id}" class="cuadroIcono">
 												<i class="fa-solid fa-circle-check" title="Marcar como leída" id="marcarComoLeida"></i>
 											</a>
 										</div>
@@ -96,7 +111,7 @@
 							<c:if test='<%=session.getAttribute("idUsuario") != null%>'>
 								<div>
 									<p id="texto-puntos">Mis puntos</p>
-									<p id="mis-puntos">${puntosGiftcard}</p>
+									<p id="mis-puntos">${puntosTarjeta}</p>
 								</div>
 							</c:if>
 						</div>
@@ -106,17 +121,20 @@
 							<i class="fa-regular fa-address-card"></i>
 						</div>
 						<p>Ver perfil</p>
-					</a> <a href="misCursos">
+					</a>
+					<a href="misCursos">
 						<div class="iconoMenuUsuario">
 							<i class="fa-regular fa-bookmark"></i>
 						</div>
 						<p>Mis cursos</p>
-					</a> <a href="verGiftcard">
+					</a>
+					<a href="verMiTarjeta">
 						<div class="iconoMenuUsuario">
 							<i class="fa-regular fa-credit-card"></i>
 						</div>
-						<p>Mi giftcard</p>
-					</a> <a href="cerrarSesion">
+						<p>Mi tarjeta</p>
+					</a>
+					<a href="cerrarSesion">
 						<div class="iconoMenuUsuario">
 							<i class="fa-solid fa-power-off"></i>
 						</div>

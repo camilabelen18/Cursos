@@ -7,9 +7,17 @@ public class DatosActualizarCurso {
     private String categoria;
     private String descripcion;
     private Double precio;
-    private String imagen;
+    
+    public DatosActualizarCurso() {}
 
-    public String getNombre() {
+    public DatosActualizarCurso(String nombre, String categoria, String descripcion, Double precio) {
+		this.nombre = nombre;
+		this.categoria = categoria;
+		this.descripcion = descripcion;
+		this.precio = precio;
+	}
+
+	public String getNombre() {
         return nombre;
     }
 

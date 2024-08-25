@@ -8,8 +8,6 @@ import modelo.*;
 
 public interface ServicioUsuario {
 
-	Boolean validarTarjeta(Integer nroTarjeta, String email);
-
 	Usuario buscarUsuarioPorEmail(String email);
 
 	void guardarCursoEnListaUsuario(Curso curso_obtenido, Usuario usuario);
@@ -26,19 +24,15 @@ public interface ServicioUsuario {
 	
 	Boolean cancelarCurso(Curso curso_obtenido, Usuario_Curso usuarioCurso);
 
-	void eliminarCurso(Curso curso_obtenido, Usuario usuario);
+	void eliminarCursoDelUsuario(Curso curso_obtenido, Usuario usuario);
 
 	void finalizarCurso(Usuario_Curso usuarioCurso);
 	
-	void actualizarUsuario(int idUsuario,String nombre, String email,String passwordAterior, String passwordNueva, String repeticionPasswordNueva, HttpSession session);
+	void actualizarUsuario(int idUsuario, String nombre, String email,String passwordAterior, String passwordNueva, HttpSession session);
 
 	Usuario_Curso obtenerUsuarioCurso(Curso curso_obtenido, Usuario usuario);
 
 	void actualizarFotoPerfil(Usuario usuario, String nombreImagen);
-
-	Integer verificarTarjetaUsuario(Usuario usuario, Integer nroTarjeta);
-
-	Usuario actualizarUsuarioPrueba(int idUsuario,String nombre, String email,String passwordAterior, String passwordNueva, String repeticionPasswordNueva, HttpSession session);
 
 	void enviarNotificacion(Usuario usuario, String msj, HttpSession session);
 	

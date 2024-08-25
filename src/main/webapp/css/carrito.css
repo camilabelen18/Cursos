@@ -118,7 +118,6 @@
 	width: 100%;
 }
 
-
 /* MENSAJES */
 #msj_error_carrito {
 	text-align : center;
@@ -126,4 +125,11 @@
 	margin-bottom: 200px;
 	font-size: 20px;
 	font-weight:bold; 
+}
+
+/*---------------------------------RESPONSIVE-------------------------------------*/
+@media (max-width: 880px) {
+	.cont-seccion-carrito {
+    	width: 90%;
+	}
 }

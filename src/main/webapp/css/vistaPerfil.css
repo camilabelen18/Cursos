@@ -1,66 +1,112 @@
-@charset "UTF-8";
+.cont-perfil {
+	width: 60%;
+	margin: auto;
+	margin-top: 100px;
+	margin-bottom: 150px;
+}
 
-.contenedorPerfil{
+.contenedorEditar{
 	display: flex;
 	flex-direction: row;
-	justify-content: space-around;
-	margin: 10px;
-	padding: 30px;
-	
+	justify-content: space-between;
+	margin-top: 60px;
 }
-#nombrePerfil {
-	padding: 20px;
-   font-size: large;
-	}
 
-#emailPerfil{
-	padding: 20px;
-    font-size: large;
-}
-#passwordPerfil{
-	padding: 20px;
-    font-size: large;
-}
-#passwordPerfilCaja{
-	border-radius: 5px;
-	border-color: black;
-	border-width: thin;
-	padding: 7px;
-}
-#rolPerfil{
-	padding: 20px;
-    font-size: large;
-}
-#perfil{
-	padding:20px;
-	margin-top: 20px;
-	margin-left: 20px;
-}
-#cambiarFotoPerfil{
-	border-radius: 8px;
-}
-#editarPerfil{
-	border-radius: 8px;
+.formEditar {
+	width: 50%;
 }
 
 .fotoPerfil{
+	width: 35%;
 	display: flex;
 	flex-flow: column;
-	align-self: center;
-	
+	justify-content: space-between;
 }
-#fotoPerfil{
-	height: 200px;
-	width: 200px;
+
+input[type="text"], input[type="password"] {
+    width: 100%;
+    padding: 6px;
+    display: block;
+    box-sizing: border-box;
+    border: 2px solid #cecece;
+    border-radius: 5px;
+    color: #404040;
+    font-size: 16px;
+    font-weight: normal;
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+
+input[type="text"]:focus, input[type="password"]:focus {
+    outline: none;
+    border: 2px solid rgb(54, 129, 226);
+}
+
+#fotoPerfil {
+	width: 250px;
+	height: 250px;
 	border-radius: 50%;
+	align-self: center;
 }
-.errorPerfil{
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	margin: 80px;
-	padding: 50px;
-	margin-left: 200px;
-	background-color:rgba(255, 56, 56, 0.322);
+
+.fotoPerfil h2 {
 	text-align: center;
+}
+
+.imputFile {
+	border: 1px solid #3c3b37;
+	width: 100%;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0 auto 0;
+    min-height: 15px;
+    overflow: hidden;
+    padding: 10px 0px;
+    position: relative;
+    text-align: center;
+}
+
+.imputFile input[type="file"] {
+	border: 10000px solid transparent;
+    cursor: pointer;
+	font-size: 10000px;
+	margin: 0;
+	opacity: 0;
+	outline: 0 none;
+	padding: 0;
+	position: absolute;
+	right: -1000px;
+	top: -1000px;
+}
+
+.fotoPerfil input[type="submit"] {
+	width: 100%;
+	margin-top: 15px;
+	border-radius: 0px;
+}
+
+.error {
+    color: crimson;
+    margin-top: 14px;
+}
+
+/*------------------------------------------RESPONSIVE----------------------------------*/
+@media (max-width: 1250px) {
+	.cont-perfil {
+		width: 90%;
+	}
+}
+
+@media (max-width: 880px) {
+	.contenedorEditar {
+    	flex-direction: column-reverse;
+	}
+	.formEditar {
+	    width: 100%;
+	}
+	.fotoPerfil {
+    	width: 100%;
+    	margin-bottom: 60px;
+    }
 }

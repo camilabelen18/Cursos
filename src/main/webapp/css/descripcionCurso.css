@@ -1,82 +1,87 @@
-#contenedor {
+.contenedor {
 	width: 60%;
     margin: auto;
-    padding: 0px 100px;
-    padding-right: 40px;
-    margin-top: 100px;
-    margin-bottom: 100px;
+    margin-top: 120px;
+    margin-bottom: 120px;
 }
 
-#cont1 {
-	float: left;
+.cont1 {
+	display: flex;
 }
 
-#cont2 {
-	font-size: 20px;
-}
-
-#cont3 {
-	margin-top: 41px;
-	margin-bottom: 20px;
+.infoCurso {
+	margin-left: 45px;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
 }
 
 #nombreCurso {
 	margin-bottom: 0px;
+	font-size: 32px;
+    font-weight: bold;
 }
 
 #precioCurso {
-	font-weight: bold;
-}
-
-#tit {
-	text-align: center;
-	margin-bottom: 50px;
-	margin-top: 50px;
+	font-size: 22px;
+	margin-top: 10px;
 }
 
 #img1 {
-	width: 340px;
+	width: 380px;
 }
 
 #comprarAhora {
-	background-color: #37B9CB;
-	color: white;
-	border: 0;
-	width: 200px;
-	height: 35px;
-}
-
-#comprarAhora:hover{
-	background-color: #5dcede;
-	color: white;
+	width: 250px;
 }
 
 #agregarCarrito {
-	background-color: #37B9CB;
-	color: white;
-	border: 0; width : 200px;
-	height: 35px;
-	width: 200px
+	background-color: #737373;
+	width : 250px;
+	margin-bottom: 16px;
 }
 
 #agregarCarrito:hover{
-	background-color: #5dcede;
-	color: white;
+	background-color: #898989;
 }
 
-#cont2, #cont3, #cont4 {
-	margin-left: 390px;
-}
-
-#descripcion{
-	height: 246;
-	width: 662px;
-	margin: 0 auto;
+.cont2 {
 	margin-top: 50px;
+}
+
+.cont2 h2 {
+	margin-bottom: 16px;
+}
+
+.descripcion {
 	margin-bottom: 50px;
 }
 
-#descTit{
-	font-size: 22px;
-	font-weight: bold;
+.descripcion p {
+	font-size: 18px;
+}
+
+.contenidoCurso p {
+	background-color: #D9D9D9;
+    padding: 20px 50px;
+    border-bottom: 2px solid #9E9E9E;
+    font-weight: bold;
+}
+
+/*---------------------------------RESPONSIVE-------------------------------------*/
+@media (max-width: 1200px) {
+	.contenedor {
+    	width: 90%;
+	}
+}
+
+@media (max-width: 880px) {
+	.cont1 {
+	    flex-direction: column;
+	}
+	.infoCurso {
+	    margin: 0px;
+	    margin-top: 20px;
+	}
 }

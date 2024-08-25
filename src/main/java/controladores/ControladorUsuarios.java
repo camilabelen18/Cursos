@@ -109,50 +109,34 @@ public class ControladorUsuarios {
 
 	@RequestMapping(path = "/verPerfil", method = RequestMethod.GET)
 	public ModelAndView verPerfil(HttpSession session) {
-
 		ModelMap model = new ModelMap();
 		String view = "";
-		try {
-			int id_user = Integer.parseInt(session.getAttribute("idUsuario").toString());
-			Usuario usuario = servicioUsuario.buscarUsuarioPorID(id_user);
-			model.put("usuario", usuario);
-			view = "vistaPerfil";
-		}
-		catch (Exception e) {
-			view = "errorVisualizacionPerfil";
-		}
-		return new ModelAndView(view, model);
-
-	}
-
-	@RequestMapping(path = "/editarPerfil", method = RequestMethod.GET)
-	public ModelAndView editarPerfil(HttpSession session) {
-
-		ModelMap model = new ModelMap();
-		String view = "";
-		try {
-			int id_user = Integer.parseInt(session.getAttribute("idUsuario").toString());
-			Usuario usuario = servicioUsuario.buscarUsuarioPorID(id_user);
-			model.put("usuario", usuario);
-			view = "editarPerfil";
-		}
-		catch (Exception e) {
-			view = "errorVisualizacionPerfil";
-		}
+		int id_user = Integer.parseInt(session.getAttribute("idUsuario").toString());
+		Usuario usuario = servicioUsuario.buscarUsuarioPorID(id_user);
+		model.put("usuario", usuario);
+		view = "vistaPerfil";
 		return new ModelAndView(view, model);
 	}
 
 	@RequestMapping(path = "actualizarCambiosPerfil", method = RequestMethod.POST)
-	public ModelAndView actualizarCambiosPerfil(@ModelAttribute ("datosEditarUsuario") DatosEditarUsuario datosEditarUsuario,HttpSession session){
+	public ModelAndView actualizarCambiosPerfil(@ModelAttribute ("datosEditarUsuario") DatosEditarUsuario datosEditarUsuario, HttpSession session){
 
 		ModelMap model = new ModelMap();
 		int id_user = Integer.parseInt(session.getAttribute("idUsuario").toString());
 		Usuario usuario = servicioUsuario.buscarUsuarioPorID(id_user);
-		servicioUsuario.actualizarUsuario(usuario.getId(),datosEditarUsuario.getNombre() , datosEditarUsuario.getEmail(), 
-		datosEditarUsuario.getPasswordAnterior(),datosEditarUsuario.getPasswordNueva(),datosEditarUsuario.getRepeticionPasswordNueva(), session);
+		if (datosEditarUsuario.getPasswordAnterior() != "" && datosEditarUsuario.getPasswordNueva() != "") {
+			if (!datosEditarUsuario.getPasswordAnterior().equals(usuario.getPassword())) {
+				model.put("msjError1", "Contraseña ingresada incorrecta.");
+			}
+			if (datosEditarUsuario.getPasswordAnterior().equals(datosEditarUsuario.getPasswordNueva())) {
+				model.put("msjError2", "La nueva contraseña no tiene que ser igual a la actual.");
+			}
+		}
+		servicioUsuario.actualizarUsuario(usuario.getId(), datosEditarUsuario.getNombre(), datosEditarUsuario.getEmail(), 
+		datosEditarUsuario.getPasswordAnterior(), datosEditarUsuario.getPasswordNueva(), session);
 		servicioUsuario.buscarUsuarioPorID(id_user);
-		model.put("usuario", usuario);
-		model.put("datosEditarUsuario", datosEditarUsuario);
+		Usuario usuarioActualizado = servicioUsuario.buscarUsuarioPorID(id_user);
+		model.put("usuario", usuarioActualizado);
 		return new ModelAndView("vistaPerfil", model);
 	}
 	
@@ -165,7 +149,7 @@ public class ControladorUsuarios {
 		String nombreImagen = servicioSubirImagen.guardarImagen(foto);
 		servicioUsuario.actualizarFotoPerfil(usuario, nombreImagen);
 		session.setAttribute("imgUsuario", nombreImagen);
-		return new ModelAndView("redirect:/", model);
+		return new ModelAndView("redirect:/verPerfil", model);
 	}
 	
 	@RequestMapping(path ="/eliminarNotificacion", method = RequestMethod.GET)
@@ -175,7 +159,7 @@ public class ControladorUsuarios {
 		Usuario usuario = servicioUsuario.buscarUsuarioPorID(id_user);
 		Notificacion notificacion = servicioUsuario.obtenerNotificacionPorId(idNotif);
 		servicioUsuario.eliminarNotificacion(notificacion, usuario, sesion);
-		return new ModelAndView("redirect:/");
+		return new ModelAndView("redirect:/verNotificaciones");
     }
 	
 	@RequestMapping(path ="/quitarNotificacion", method = RequestMethod.GET)
@@ -202,7 +186,6 @@ public class ControladorUsuarios {
     
 	@RequestMapping(path ="/verNotificaciones", method = RequestMethod.GET)
     public ModelAndView verNotificaciones() {
-
 		return new ModelAndView("historialNotificaciones");
     }
 

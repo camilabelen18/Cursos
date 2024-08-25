@@ -16,11 +16,11 @@ import org.springframework.web.servlet.ModelAndView;
 import modelo.Carrito;
 import modelo.Carrito_Curso;
 import modelo.Curso;
-import modelo.DatosCreacionCurso;
 import modelo.Estado;
 import modelo.Usuario;
 import servicios.ServicioCarrito;
 import servicios.ServicioCurso;
+import servicios.ServicioTarjeta;
 import servicios.ServicioUsuario;
 
 public class ControladorCarritoTest {
@@ -28,10 +28,11 @@ public class ControladorCarritoTest {
 	ServicioCurso servicioCurso = mock(ServicioCurso.class);
 	ServicioCarrito servicioCarrito = mock(ServicioCarrito.class);
 	ServicioUsuario servicioUsuario = mock(ServicioUsuario.class);
+	ServicioTarjeta servicioTarjeta = mock(ServicioTarjeta.class);
 	ControladorCarrito controladorCarrito = new ControladorCarrito(servicioCurso, servicioCarrito, servicioUsuario);
-	ControladorCompra controladorCompra = new ControladorCompra(servicioUsuario, servicioCurso, servicioCarrito);
+	ControladorCompra controladorCompra = new ControladorCompra(servicioUsuario, servicioCurso, servicioCarrito, servicioTarjeta);
 	HttpSession session = mock(HttpSession.class);
-/*
+
 	@Test
 	public void testQueAgregaCursoAlCarrito() {
 
@@ -133,5 +134,5 @@ public class ControladorCarritoTest {
 		assertThat(mav.getViewName()).isEqualTo("compraRealizada");
 
 	}
-*/
+
 }

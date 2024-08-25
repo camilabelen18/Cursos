@@ -23,7 +23,7 @@ public class ServicioCarritoTest {
 	ServicioCurso servicioCurso = new ServicioCursoImpl(repositorioCurso, repositorioUsuario);
 	ServicioUsuario servicioUsuario = new ServicioUsuarioImpl(repositorioUsuario, repositorioCarrito, repositorioCurso);
 	ServicioCarrito servicioCarrito = new ServicioCarritoImpl(repositorioCarrito, repositorioUsuario, servicioUsuario);
-/*
+
 	@Test
 	public void testQueObtengaElTotalDelCarrito() {
 		// Preparacion
@@ -71,5 +71,5 @@ public class ServicioCarritoTest {
 		when(repositorioCarrito.obtenerCursosDelCarrito(carrito)).thenReturn(listaCursosVacia);
 		servicioCarrito.obtenerCursosDelCarrito(carrito);
 		
-	}*/
+	}
 }

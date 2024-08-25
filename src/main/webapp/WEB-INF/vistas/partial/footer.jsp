@@ -24,4 +24,7 @@
 </footer>
 
 <script src="js/darkmode.js"></script>
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+<script src="js/barraBusqueda.js"></script>
 <script src="https://kit.fontawesome.com/68a93485c2.js"></script>

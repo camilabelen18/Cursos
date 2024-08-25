@@ -3,8 +3,8 @@ package modelo;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "Giftcards")
-public class Giftcard {
+@Table(name = "Tarjetas")
+public class Tarjeta {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,9 +20,9 @@ public class Giftcard {
 	@Column(name ="saldo")
 	private Double saldoActual;
 
-	public Giftcard() {}
+	public Tarjeta() {}
 
-	public Giftcard(Integer numTarjeta, Integer misPuntos, Double saldoActual) {
+	public Tarjeta(Integer numTarjeta, Integer misPuntos, Double saldoActual) {
 		this.numTarjeta = numTarjeta;
 		this.misPuntos = misPuntos;
 		this.saldoActual = saldoActual;
@@ -62,7 +62,7 @@ public class Giftcard {
 
 	@Override
 	public String toString() {
-		return "Giftcard [id=" + id + ", numTarjeta=" + numTarjeta + ", misPuntos=" + misPuntos + ", saldoActual="
+		return "Tarjeta [id=" + id + ", numTarjeta=" + numTarjeta + ", misPuntos=" + misPuntos + ", saldoActual="
 				+ saldoActual + "]";
 	}
 	

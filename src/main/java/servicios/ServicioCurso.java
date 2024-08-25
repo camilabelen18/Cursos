@@ -14,11 +14,7 @@ public interface ServicioCurso {
 	
 	Curso buscarCursoPorId(int id);
 
-	void agregarCurso(String nombre, String Categoria, String descripcion, Double precio, String imagen);
-
 	List<Usuario_Curso> getCursosPorEstado(Estado estado, Usuario usuario);
-
-	void agregarCurso(Curso curso);
 
 	void cambiarEstadoCurso(Usuario_Curso usuarioCurso, Estado estado);
 
@@ -29,5 +25,7 @@ public interface ServicioCurso {
 	void completarUnidad(Unidad unidad, Usuario_Curso usuarioCurso, List<Unidad> unidades);
 	
 	void actualizarCurso(int idCurso, String nombre, String categoria, String descripcion, Double precio);
+	
+	void agregarCurso(Curso curso);
 	
 }

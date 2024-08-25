@@ -14,8 +14,6 @@ public interface RepositorioCurso {
 	
 	Curso obtenerCursoPorID(int id);
 
-	void agregarCurso(Curso curso);
-
 	List<Usuario_Curso> obtenerListaCursosPorEstado(Estado estado, Usuario usuario);
 
 	List<Unidad> obtenerUnidadesDelCurso(Curso curso);
@@ -25,5 +23,7 @@ public interface RepositorioCurso {
 	void actualizarUnidad(Unidad unidad);
 
 	void actualizarCurso(Curso curso_obtenido);
+	
+	void agregarCurso(Curso curso);
 	
 }

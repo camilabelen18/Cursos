@@ -9,64 +9,61 @@
 	<title>Mi Tarjeta</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<link rel="shortcut icon" href="imagenes/favicon.ico">
-	<link rel="stylesheet" href="css/miGiftcard.css">
+	<link rel="stylesheet" href="css/miTarjeta.css">
 	<link rel="stylesheet" href="css/styles.css">
 	<link rel="stylesheet" href="css/darkmode.css">
 </head>
 <body>
 	<%@ include file="partial/header.jsp"%>
 
-	<div class="tituloGiftcard">
-		<h1>Mi Giftcard</h1>
+	<div class="tituloTarjeta">
+		<h1>Mi tarjeta de puntos</h1>
 	</div>
-
-	<div class="contenedor-miGiftcard">
-
-		<div id="contMiGiftcard-1">
-			<div id="giftcard">
+	<div class="contenedor-miTarjeta">
+		<div id="contMiTarjeta-1">
+			<div id="tarjeta">
 				<h2>${usuario.nombre}</h2>
-				<div id="numTarjeta">
-					<p>Número de tarjeta</p>
-					<h3>${giftcard.numTarjeta}</h3>
+				<div class="datosTarjeta">
+					<div>
+						<p>Mis puntos</p>
+						<h3>${tarjeta.misPuntos}</h3>
+					</div>
+					<div>
+						<p>Saldo actual</p>
+						<h3>$${tarjeta.saldoActual}</h3>
+					</div>
+					<div>
+						<p>Número de tarjeta</p>
+						<h3>${tarjeta.numTarjeta}</h3>
+					</div>
 				</div>
 			</div>
 		</div>
-
-		<div id="contMiGiftcard-2">
-			<div>
-				<p class="giftcardText">Mis puntos</p>
-				<p class="giftcardNum">${giftcard.misPuntos}</p>
-			</div>
-			<div>
-				<p class="giftcardText">Saldo actual</p>
-				<p class="giftcardNum">$ ${giftcard.saldoActual}</p>
-			</div>
-		</div>
-		<div class="envioPuntosForm">
-			<form:form action="puntosEnviados" method="POST"
-				onsubmit="return validar()">
-				<label for="email">Direccion de correo electronico del
-					usuario a enviar puntos</label>
-				<input path="email" type="email" id="email" name="email" />
-				<br>
-				<label for="puntos">Puntos a enviar</label>
-				<input path="puntos" type="number" id="puntos" name="puntos" />
-				<div id="mensaje" class="error"></div>
-				<c:if test="${not empty error}">
-					<div class="msjerror">${error}</div>
+		<div id="contMiTarjeta-2">
+			<h3 style="margin-bottom: 20px;">Regala puntos a otro usuario</h3>
+			<div class="regalarPuntos">
+				<form:form action="enviarPuntos" method="POST" onsubmit="return validar()">
+					<label for="email">Direccion de correo electronico del usuario a enviar puntos</label>
+					<input path="email" type="email" id="email" name="email" />
+					<br>
+					<label for="puntos">Puntos a enviar</label>
+					<input path="puntos" type="number" id="puntos" name="puntos" />
+					<br>
+					<div class="enviarPts">
+						<input id="enviar" type="submit" value="Enviar">
+					</div>
+				</form:form>
+				<div id="mensaje" class="msjError"></div>
+				<c:if test="${not empty usuarioInexistente}">
+					<div class="msjError">${usuarioInexistente}</div>
 				</c:if>
-
-				<input id="enviar" type="submit" value="Enviar Puntos">
-			</form:form>
-			<br>
-			<c:if test="${not empty usuarioInexistente}">
-				<div class="msjerror">${usuarioInexistente}</div>
-			</c:if>
-
-			<br>
-			<c:if test="${not empty puntosInsuficientes}">
-				<div class="msjerror">${puntosInsuficientes}</div>
-			</c:if>
+				<c:if test="${not empty puntosInsuficientes}">
+					<div class="msjError">${puntosInsuficientes}</div>
+				</c:if>
+				<c:if test="${not empty puntosEnviados}">
+					<div class="msjExito">${puntosEnviados}</div>
+				</c:if>
+			</div>
 		</div>
 	</div>
 	

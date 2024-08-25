@@ -22,7 +22,7 @@ public interface RepositorioUsuario {
 	
 	Usuario_Curso obtenerUsuarioCurso(Curso curso_obtenido, Usuario usuario);
 
-	void eliminarCurso(Curso curso_obtenido, Usuario usuario);
+	void eliminarCursoDelUsuario(Curso curso_obtenido, Usuario usuario);
 	
 	void cambiarEstadoCurso(Usuario_Curso usuarioCurso, Estado estado);
 
@@ -30,7 +30,7 @@ public interface RepositorioUsuario {
 
 	void actualizarUsuario(Usuario usuario);
 
-	void guardarGiftcardDeUsuario(Giftcard gift);
+	void guardarTarjetaDeUsuario(Tarjeta tarjeta);
 
 	void actualizarCursoDelUsuario(Usuario_Curso usuarioCurso);
 
@@ -48,6 +48,6 @@ public interface RepositorioUsuario {
 
 	void marcarNotificacionLeida(Usuario_Notificacion usuarioNotificacion);
 
-    void actualizarGiftcard(Giftcard giftcard);
+    void actualizarTarjeta(Tarjeta tarjeta);
 
 }

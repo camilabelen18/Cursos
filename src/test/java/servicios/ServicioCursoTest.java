@@ -25,7 +25,7 @@ public class ServicioCursoTest {
 	HttpSession session = mock(HttpSession.class);
 	ServicioCurso servicioCurso = new ServicioCursoImpl(repositorioCurso, repositorioUsuario);
 
-	/*
+	
 	@Test
 	public void testQueVerificaQueNoHayCursos() {
 		 //Ejecucion
@@ -137,7 +137,7 @@ public class ServicioCursoTest {
 		servicioCurso.agregarCurso(curso);
 		
 		//Comprobacion
-	}*/
+	}
 }
 
 

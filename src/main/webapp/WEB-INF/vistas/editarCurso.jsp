@@ -1,6 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 
@@ -12,15 +10,16 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<link rel="shortcut icon" href="imagenes/favicon.ico">
     <link rel="stylesheet" href="css/styles.css">
-	<link rel="stylesheet" href="css/crearCurso.css">
+	<link rel="stylesheet" href="css/editarCurso.css">
 	<link rel="stylesheet" href="css/darkmode.css">
 </head>
 <body>
 
 	<%@ include file="partial/header.jsp"%>
 	
-	<div id="formularioCrearCurso">
-		<form:form action="cursoActualizado" method="POST" modelAttribute="datosCrearCurso">
+	<div id="formularioEditC">
+		<h1 style="margin-bottom: 40px;">Editar curso</h1>
+		<form:form action="cursoActualizado" method="POST" modelAttribute="datosActualizarCurso">
 			<label for="nombre">Nombre del curso</label>
 			<input id="nombre" type="text" name="nombre" value="${nombreCurso}">
 

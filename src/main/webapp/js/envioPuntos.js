@@ -4,9 +4,7 @@ function validar() {
 	var mensajesError = "";
 
 	/** Lógica de validación */
-
-
-
+	
 	// Validación para el campo email
 	var email=document.getElementById("email").value;
 	if(email.length == 0) {

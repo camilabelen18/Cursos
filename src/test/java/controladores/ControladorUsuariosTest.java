@@ -24,7 +24,7 @@ public class ControladorUsuariosTest {
 	ServicioCarrito servicioCarrito = mock(ServicioCarrito.class);
 	ControladorUsuarios controladorUsuarios = new ControladorUsuarios(servicioUsuario, servicioSubirImagen, servicioCarrito);
 	HttpSession session = mock(HttpSession.class);
-/*
+
 	@Test
 	public void queSePuedaRegistrarUnUsuario() {
 
@@ -94,19 +94,8 @@ public class ControladorUsuariosTest {
 	}
 
 	@Test
-	public void queSePuedaEditarPerfil() {
-		// preparacion
-		Usuario usuario = new Usuario("juan", "hola@hola.com", "123", "Cliente");
-		// ejecucion
-		when(session.getAttribute("idUsuario")).thenReturn(1);
-		ModelAndView mav = controladorUsuarios.editarPerfil(session);
-		// comprobacion
-		assertThat(mav.getViewName()).isEqualTo("editarPerfil");
-	}
-
-	@Test
 	public void queSePuedaActualizarLosCambiosDelPerfil() {
 
 	}
-*/
+
 }

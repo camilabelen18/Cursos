@@ -33,7 +33,7 @@
 	
 	if(session.getAttribute("user") != null){
 		Usuario usuario = (Usuario) session.getAttribute("user");
-		pageContext.setAttribute("puntosGiftcard", usuario.getGiftcard().getMisPuntos());
+		pageContext.setAttribute("puntosTarjeta", usuario.getTarjeta().getMisPuntos());
 	}
 	
 	if(session.getAttribute("user") != null){

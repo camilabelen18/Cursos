@@ -50,3 +50,10 @@ input[type="submit"] {
 	color: #6b5cf1;
 	font-weight: bold;
 }
+
+/*---------------------------------RESPONSIVE-------------------------------------*/
+@media (max-width: 880px) {
+	.login-main {
+    	width: 60%;
+	}
+}

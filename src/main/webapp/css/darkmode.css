@@ -115,3 +115,35 @@ body.dark .darkModeSwitch {
 	background-color: #2e2e2e;
 	border: 1px solid #4e4d4c;
 }
+
+.dark .contenidoCurso  p {
+	background-color: #737373;
+	border-bottom: 2px solid #5a5a5a;
+}
+
+.dark .contenedor2, .dark .contenedor2 #resumen, .dark .contenedor2 #pt {
+	color: #3c3b37;
+}
+
+.dark .contenedor2 ::placeholder {
+	color: #94928b;
+}
+
+.dark .curso-cursado, .dark .imputFile {
+	border: 1px solid #5a5a5a;
+	color: white;
+}
+
+.dark .mensajes i, .dark .mensajesNoLeidos i {
+	color: white;
+}
+
+.dark .regalarPuntos {
+	background-color: #424242;
+}
+
+.dark .regalarPuntos #email, .dark .regalarPuntos #puntos {
+	background-color: #424242;
+	border: 2px solid #868686;
+	color: white;
+}

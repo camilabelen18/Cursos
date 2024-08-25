@@ -6,16 +6,14 @@ public class DatosEditarUsuario {
     private String email;
     private String passwordAnterior;
     private String passwordNueva;
-    private String repeticionPasswordNueva;
 
     public DatosEditarUsuario() { }
 
-    public DatosEditarUsuario(String nombre, String email, String passwordAnterior, String passwordNueva, String repeticionPasswordNueva) {
+    public DatosEditarUsuario(String nombre, String email, String passwordAnterior, String passwordNueva) {
         this.nombre = nombre;
         this.email = email;
         this.passwordAnterior = passwordAnterior;
         this.passwordNueva = passwordNueva;
-        this.repeticionPasswordNueva = repeticionPasswordNueva;
     }
 
     public String getNombre() {
@@ -50,18 +48,10 @@ public class DatosEditarUsuario {
         this.passwordNueva = passwordNueva;
     }
 
-    public String getRepeticionPasswordNueva() {
-        return repeticionPasswordNueva;
-    }
-
-    public void setRepeticionPasswordNueva(String repeticionPasswordNueva) {
-        this.repeticionPasswordNueva = repeticionPasswordNueva;
-    }
-
     @Override
     public String toString() {
         return "DatosEditarUsuario [nombre=" + nombre + ", email=" + email + ", passwordAnterior=" + passwordAnterior
-                + ", passwordNueva=" + passwordNueva + ", repeticionPasswordNueva=" + repeticionPasswordNueva + "]";
+                + ", passwordNueva=" + passwordNueva + "]";
     }
 
 }

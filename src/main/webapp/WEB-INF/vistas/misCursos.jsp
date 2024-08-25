@@ -52,34 +52,37 @@
 					<div class="cotenido-1-curso">
 						<p class="nombreCurso">${cursoUsuario.curso.nombre}</p>
 						<p>${cursoUsuario.curso.descripcion}</p>
-
 					</div>
 
 					<div class="cotenido-2-curso">
 
 						<c:if test="${cursoUsuario.estado == 'EN_CURSO'}">
 							<p id="estadoEnCurso">En curso</p>
-							<form action="verCurso?curso_id=${cursoUsuario.curso.id}" method="POST">
-								<input type="submit" name="verCurso" value="Ver curso">
+							<form action="verCurso" method="GET">
+								<input type="hidden" name="curso_id" value="${cursoUsuario.curso.id}">
+								<input type="submit" name="ver" value="Ver curso">
 							</form>
-							<form action="cancelarCompra?curso_id=${cursoUsuario.curso.id}" method="POST">
+							<form action="cancelarCompra" method="POST">
+								<input type="hidden" name="curso_id" value="${cursoUsuario.curso.id}">
 								<input type="submit" name="cancelar" value="Cancelar">
 							</form>
 						</c:if>
 						
 						<c:if test="${cursoUsuario.estado == 'FINALIZADO'}">
 							<p id="estadoCompletado">Completado</p>
-							<form action="verCurso?curso_id=${cursoUsuario.curso.id}" method="POST">
+							<form action="verCurso" method="GET">
+								<input type="hidden" name="curso_id" value="${cursoUsuario.curso.id}">
 								<input type="submit" name="verCurso" value="Ver curso">
 							</form>
 						</c:if>
 
 						<c:if test="${cursoUsuario.estado == 'CANCELADO'}">
 							<p id="estadoCancelado">Cancelado</p>
-							<form action="eliminarCompra?curso_id=${cursoUsuario.curso.id}" method="POST">
+							<form action="eliminarCompra" method="POST">
+								<input type="hidden" name="curso_id" value="${cursoUsuario.curso.id}">
 								<input type="submit" name="eliminar" value="Eliminar">
 							</form>
-							<form action="comprar" method="get">
+							<form action="verificacionCompra" method="POST">
 								<input type="hidden" name="id_curso" value="${cursoUsuario.curso.id}">
 								<input type="hidden" name="precio" value="${cursoUsuario.curso.precio}">
 								<input type="submit" name="comprarAhora" value="Comprar">
@@ -88,11 +91,13 @@
 
 					</div>
 				</div>
-				
 			</c:forEach>
-
 		</div>
-
+		<c:if test="${empty lista_cursos}">
+			<div class="msj-sincurso">
+				<p id="sin_curso">Todavia no tenes ningun curso comprado, que estas esperando?</p>
+			</div>
+		</c:if>
 	</div>
 	
 	<%@ include file="partial/footer.jsp"%>

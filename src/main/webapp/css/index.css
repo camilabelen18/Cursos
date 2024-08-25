@@ -22,16 +22,76 @@
 	font-family: "Montserrat";
 }
 
-.titulo-subtitulo{
+.titulo-subtitulo {
 	margin-left: 150px;
 	padding-top: 120px; 
-	
+}
+
+.cont-index-cursos {
+	width: 90%;
+	margin: auto;
+	margin-top: 40px;
+}
+
+.cont-index-cursos h2 {
+	text-align: center;
+    padding: 60px 0px 40px 0px;
+    font-size: 34px;
+    font-weight: 500;
+}
+
+.cursos-en-curso {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.cursos-en-curso a {
+	color: #3c3b37;
+}
+
+.cuadroCursoCurs {
+	margin-bottom: 40px;
+}
+
+.curso-cursado {
+	display: flex;
+    border: 1px solid #303030;
+    padding: 20px;
+    width: 380px;
+}
+
+.imagen-curso-curs {
+    width: 150px;
+    height: 140px;
+	background-position: center;
+	text-align: center;
+	align-content: center;
+}
+
+.imagen-curso-curs i {
+	color: black;
+    font-size: 30px;
+    background-color: #D9D9D9;
+    padding: 15px 20px;
+    border-radius: 50%;
+}
+
+.desc-curso-curs {
+	margin-left: 20px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+progress[value]::-webkit-progress-value {
+  background-color: green;
 }
 
 .cont-index-2 {
 	width: 90%;
 	margin: auto;
-	margin-top: 60px;
+	margin-top: 20px;
     margin-bottom: 60px;
 }
 
@@ -113,7 +173,7 @@
 }
 
 .categorias-index img {
-	width: 200px;
+	width: 100%;
 }
 
 .cat-index {
@@ -121,6 +181,7 @@
 	border-radius: 5px;
 	padding: 10.5px;
 	padding-bottom: 20px;
+	width: 25%;
 }
 
 .cat-index p {
@@ -130,21 +191,18 @@
 }
 
 .cont-index-4 {
-	width: 100%;
+	width: 65%;
 	margin: auto;
 	margin-bottom: 120px;
-	display: flex;
-	justify-content: center;
 }
 
 .cuadro-tarjeta {
-	width: 60%;
+	width: 100%;
 	display: flex;
 	border: 2px solid #c7c7c7;
 	border-radius: 5px;
     padding: 30px 35px;
-    margin-top: 60px;
-    justify-content: space-between;
+    margin-top: 120px;
 }
 
 #img-tarjeta {
@@ -157,7 +215,7 @@
 }
 
 #texto-tarjeta {
-	width: 52%;
+	width: 55%;
 	padding-left: 40px;
 	display: flex;
 	flex-direction: column;
@@ -187,4 +245,107 @@
 #btn-tarjeta a:hover {
 	background: #61aff5;
 	cursor: pointer;
+}
+
+/*---------------------------------RESPONSIVE-------------------------------------*/
+@media (max-width: 1200px) {
+	.cont-index-1 {
+    	height: 450px;
+    }
+    .cont-index-3 {
+    	width: 90%;
+    }
+    .cont-index-1 h1 {
+    	font-size: xx-large;
+    }
+    .cont-index-1 p {
+    	font-size: 20px;
+    }
+    .cont-index-4 {
+    	width: 90%;
+    }
+    #cursCal1 {
+    	margin-right: 100px;
+    	margin-bottom: 40px;
+    }
+    #cursCal2 {
+    	margin-left: 100px;
+    	margin-bottom: 40px;
+    }
+    #cursCal3 {
+    	margin-right: 100px;
+    }
+}
+
+@media (max-width: 880px) {
+    .barra-inferior {
+        width: 90%;
+    }
+    .cuadro-tarjeta {
+    	margin-top: 60px;
+    }
+    #img-tarjeta {
+    	display: none;
+    }
+    #texto-tarjeta {
+	    width: 100%;
+	    padding-left: 0px;
+	}
+	#texto-tarjeta p {
+	    font-size: 16px;
+	    padding-bottom: 10px;
+	    padding-top: 10px;
+	}
+	.categorias-index {
+	    flex-direction: column;
+	}
+	.categorias-index img {
+		padding: 0px 30px;
+	}
+	.cat-index {
+	    margin-bottom: 60px;
+	    text-align: center;
+	    padding: 40px 0px;
+	    width: 100%;
+	}
+	.cat-index p {
+		font-size: 21px;
+	}
+	#cursCal1 {
+    	margin-right: 0px;
+    	margin-bottom: 40px;
+    }
+    #cursCal2 {
+    	margin-left: 0px;
+    	margin-bottom: 40px;
+    }
+    #cursCal3 {
+    	margin-right: 0px;
+    }
+    .cont-index-1 {
+        height: 300px;
+    }
+    .titulo-subtitulo {
+	    margin-left: 30px;
+	    padding-top: 80px;
+	}
+	.cont-index-1 h1 {
+		width: 90%;
+        font-size: x-large;
+    }
+    .cont-index-1 p {
+    	width: 90%;
+        font-size: 18px;
+    }
+    .cursos-mas-calificados img {
+	    width: 170px;
+	    height: 100.88px;
+	}
+	.precio-curso-cal {
+	    text-align: end;
+	    left: 5px;
+	}
+	.descripcion-curso-cal {
+    	width: 170px;
+	}
 }

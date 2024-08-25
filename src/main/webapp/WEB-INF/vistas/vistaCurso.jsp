@@ -18,13 +18,10 @@
 	<div class="tituloCurso">
 		<h1>${cursoUsuario.curso.nombre}</h1>
 	</div>
-	
 	<c:if test="${not empty msj_error}">
 		<p class="msj_error">${msj_error}</p>
 	</c:if>
-
 	<div class="contenedor-vistaCurso">
-		
 		<div id="contVistaCurso-1">
 			<h2>${unidad.descripcion}</h2>
 			<div id="video-curso">
@@ -36,96 +33,44 @@
 						MARCAR ESTA UNIDAD COMO COMPLETA
 					</a>
 				</c:if>
-				
 				<c:if test="${unidad.completado == true}">
 					<p>UNIDAD COMPLETADA</p>
 				</c:if>
 			</div>
 		</div>
-		
 		<div id="contVistaCurso-2">
 			<div class="progreso">
 				<h2>Progreso ${cursoUsuario.progreso}%</h2>
 				<progress max="100" value="${cursoUsuario.progreso}"></progress>
 			</div>
-			
 			<div class="contenido">
 				<h2>Contenido</h2>
-				
 				<div id="contenido-curso">
-				
 					<c:forEach var="itemUnidad" items="${unidades}">
-					
 						<c:if test="${itemUnidad.completado == false}">
 							<a href="verUnidadCurso?unidad_id=${itemUnidad.id}&curso_id=${cursoUsuario.curso.id}">
 								<i class="fa-solid fa-circle" id="icon_circulo"></i> ${itemUnidad.descripcion}
 							</a>
 						</c:if>
-						
 						<c:if test="${itemUnidad.completado == true}">
 							<a href="verUnidadCurso?unidad_id=${itemUnidad.id}&curso_id=${cursoUsuario.curso.id}">
 								<i class="fa-solid fa-circle-check" id="icon_check"></i> ${itemUnidad.descripcion}
 							</a>
 						</c:if>
-
 					</c:forEach>
 				</div>
 			</div>
-			
 			<div class="botones-vistaCurso">
 				<form action="misCursos">
 					<input type="submit" name="volver" value="Volver" class="btn-tipo-1">
 				</form>
-				
 				<c:if test="${cursoUsuario.cursoTerminado == false}">
 					<form action="finalizar?curso_id=${cursoUsuario.curso.id}" method="POST">
 						<input type="submit" name="terminarCurso" value="Terminar curso" class="btn-tipo-2">
 					</form>
 				</c:if>
-
-          
-       
-                <c:if test="${cursoUsuario.cursoTerminado == false}">
-				<form action="examen?curso_id=${cursoUsuario.curso.id}" method="POST">
-					<input type="submit" name="examen" value="Examen" class="btn-tipo-2">
-				</form>
-				</c:if>
-				
-				<c:if test="${cursoUsuario.cursoTerminado == true}">
-				
-				<c:if test="${examen.aprobado == false }">
-				
-					<c:if test="${examen.estadoHabilitado == false}">
-					<form action="examen?curso_id=${cursoUsuario.curso.id}" method="POST">
-						<input type="submit" name="examen" value="Examen" class="btn-tipo-1">
-					</form>
-					</c:if>
-					
-				  <c:if test="${examen.estadoHabilitado == true}">
-					<form action="examen?curso_id=${cursoUsuario.curso.id}" method="POST">
-						<input type="submit" name="examen" value="Examen" class="btn-tipo-2">
-					</form>
-					</c:if>
-						
-					
-					</c:if>
-				</c:if>
-		
-				
-				<c:if test="${cursoUsuario.cursoTerminado == true}">
-					<form action="historialExamen?curso_id=${cursoUsuario.curso.id}" method="POST">
-						<input type="submit" name="historialExamen" value="Historial Examen" class="btn-tipo-1">
-					</form>
-				</c:if>
-				
-				
-				
-				
-				
-		
 			</div>
 		</div>
-		
 	</div>
 
 	<%@ include file="partial/footer.jsp"%>

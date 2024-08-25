@@ -18,32 +18,16 @@ import org.springframework.web.servlet.ModelAndView;
 import modelo.*;
 import servicios.CursoInexistenteException;
 import servicios.ServicioCurso;
-import servicios.ServicioGiftcard;
+import servicios.ServicioTarjeta;
 import servicios.ServicioUsuario;
 
 public class ControladorCursosTest {
 
 	ServicioCurso servicioCurso = mock(ServicioCurso.class);
 	ServicioUsuario servicioUsuario = mock(ServicioUsuario.class);
-	ServicioGiftcard servicioGiftcard = mock(ServicioGiftcard.class);
-	ControladorCursos controladorCursos = new ControladorCursos(servicioCurso, servicioUsuario, servicioGiftcard);
+	ServicioTarjeta servicioTarjeta = mock(ServicioTarjeta.class);
+	ControladorCursos controladorCursos = new ControladorCursos(servicioCurso, servicioUsuario, servicioTarjeta);
 	HttpSession session = mock(HttpSession.class);
-/*
-	@Test
-	public void testQueAgregaCursos() {
-
-		// Preparacion
-		DatosCreacionCurso datos = new DatosCreacionCurso("Curso php", "Programacion", "Curso de programacion php", 1000.0, "cursophp.png");
-
-		// Ejecucion
-		when(session.getAttribute("idUsuario")).thenReturn(1);
-		when(servicioUsuario.buscarUsuarioPorID(1)).thenReturn(new Usuario());
-		ModelAndView mav = controladorCursos.agregarCurso(datos, session);
-
-		// Comprobacion
-		assertThat(mav.getViewName()).isEqualTo("cursoAgregado");
-
-	}
 
 	@Test
 	public void testQueCompletaUnidad() {
@@ -97,7 +81,7 @@ public class ControladorCursosTest {
 		// Ejecucion
 		when(servicioCurso.getCursosPorNombre(curso.getNombre())).thenReturn(listaCursos);
 		when(servicioCurso.getCursosPorNombre(curso1.getNombre())).thenReturn(listaCursos);
-		ModelAndView mav = controladorCursos.buscar(curso.getNombre());
+		ModelAndView mav = controladorCursos.buscar(curso.getNombre(), session);
 		// Comprobacion
 		assertThat(mav.getViewName()).isEqualTo("seccionCursos");
 	}
@@ -343,33 +327,20 @@ public class ControladorCursosTest {
 		listaCursos.add(curso1);
 		// ejecucion
 		when(servicioCurso.getCursosPorCategoria(categoria)).thenReturn(listaCursos);
-		ModelAndView mav = controladorCursos.verCursosPorCategoria(categoria);
+		ModelAndView mav = controladorCursos.verCursosPorCategoria(categoria, session);
 		// comprobacion
 		assertThat(mav.getViewName()).isEqualTo("seccionCursos");
 	}
 
 	@Test
-	public void queSePuedanIrAAgregarCurso() {
-		// preparacion
-		DatosCreacionCurso datos = new DatosCreacionCurso("Curso php", "Programacion", "Curso de programacion php",
-				1000.0, "cursophp.png");
-		// ejecucion
-
-		ModelAndView mav = controladorCursos.irAAgregarCurso();
-		// comprobacion
-		assertThat(mav.getViewName()).isEqualTo("crearCurso");
-	}
-
-	@Test
 	public void queSePuedanActualizarLosCursos() {
 		// preparacion
-		DatosCreacionCurso datos = new DatosCreacionCurso("Curso php", "Programacion", "Curso de programacion php",
-				1000.0, "cursophp.png");
+		DatosActualizarCurso datos = new DatosActualizarCurso("Curso php", "Programacion", "Curso de programacion php",1000.0);
 		int idCurso = 1;
 
 		// ejecucion
 		ModelAndView mav = controladorCursos.actualizarCurso(idCurso, datos);
 		// comprobacion
 		assertThat(mav.getViewName()).isEqualTo("cursoActualizado");
-	}*/
+	}
 }

@@ -1,7 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -17,48 +17,46 @@
 	<%@ include file="partial/header.jsp"%>
 
 	<main>
-		<%--Contenido de la pagina --%>
-
-		<%--Titulo --%>
-		<div id="titulo">
-			<div>
-				<a href="index.jsp">INICIO </a> /
-				<a href="verListaCursos"> CURSOS </a> / 
-				<span>VERIFICAR COMPRA</span>
-			</div>
-			<h1>Verificar compra con tarjeta</h1>
-		</div>
-
-		<%--Caja contenedora principal --%>
-		<div class="contenedor2" id="contenedor2">
-
-			<div>
-			<form action="verificarCompra" method="post">
-
+		<h1>Verificar compra</h1>
+		<div class="contenedor2">
+			<form action="realizarCompra" method="post">
 				<input type="hidden" name="curso_id" value="${idCurso}">
-
 				<h3 id="resumen">Resumen</h3>
-
+				<hr>
 				<div id="precioTotal">
 					<span>Total:</span>
-					<p>${precioCurso}$</p>
+					<p id="pt">${precioCurso}$</p>
 				</div>
-
-				<h3 id="pagarTarjeta">Pagar con tarjeta</h3>
-
-				<label for="nroTarjeta">Número de tarjeta</label>
-				<input id="nroTarjeta" type="number" name="nroTarjeta">
+				<h3 id="metodoPago">Método de pago</h3>
+				<!-- Pagar con tarjeta -->
+				<input type="radio" name="metodoPago" id="tarjetaDebito" value="tarjeta" checked="checked">
+				<label for="tarjetaDebito">Pagar con tarjeta débito</label>
+				<input id="tarjetaDebito" type="number" name="tarjetaDebito" placeholder="Número de tarjeta">
+				<!-- Pagar con puntos -->
+				<input type="radio" name="metodoPago" id="misPuntos" value="puntos">
+				<label for="misPuntos">Pagar con mis puntos</label>
+				<input id="misPuntos" type="number" name="misPuntos" placeholder="Número de tarjeta">
+				<!-- Boton -->
 				<input id="comprar" type="submit" value="Realizar compra">
 			</form>
-			
-			
-
+			<form action="pagoConMP" method="get" class="d-inline">
+                <input type="hidden" name="idCurso" value="${idCurso}">
+                <script src="https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js" 
+                data-preference-id="${preference.id}"></script>
+            </form>
 			<c:if test="${not empty tarjetaIncorrecta}">
 				<div class="error">${tarjetaIncorrecta}</div>
 			</c:if>
+			<c:if test="${not empty saldoInsuficiente}">
+				<div class="error">${saldoInsuficiente}</div>
+			</c:if>
 		</div>
-		
 	</main>
+
+	<script type="text/javascript">
+		var boton = document.getElementsByClassName("mercadopago-button")[0];
+		boton.innerHTML = "Pagar con MP";
+	</script>
 
 	<%@ include file="partial/footer.jsp"%>
 </body>

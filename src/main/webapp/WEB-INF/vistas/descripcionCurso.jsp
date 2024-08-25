@@ -1,6 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!DOCTYPE html>
@@ -17,36 +15,40 @@
 <body>
 	<%@ include file="partial/header.jsp"%>
 
-	<div id="contenedor">
-		<h1 id="tit">Descripción del Curso</h1>
-		<div id="cont1">
-			<img id="img1" src="imagenes/cursos/${curso.imagen}">
+	<div class="contenedor">
+		<div class="cont1">
+			<div>
+				<img id="img1" src="imagenes/cursos/${curso.imagen}">
+			</div>
+			<div class="infoCurso">
+				<div>
+					<p id="nombreCurso">${curso.nombre}</p>
+					<p id="precioCurso">$ ${curso.precio}</p>
+				</div>
+				<div>
+					<form action="agregarCursoAlCarrito" method="get">
+						<input type="hidden" name="id_curso" value="${curso.id}">
+						<input id="agregarCarrito" type="submit" value="Agregar al carrito">
+					</form>
+					<form action="verificacionCompra" method="POST">
+						<input type="hidden" name="id_curso" value="${curso.id}">
+						<input type="hidden" name="precio" value="${curso.precio}">
+						<input id="comprarAhora" name="comprarAhora" type="submit" value="Comprar Ahora">
+					</form>
+				</div>
+			</div>
 		</div>
-
-		<div id="cont2">
-			<p id="nombreCurso">${curso.nombre}</p>
-			<p id="precioCurso">${curso.precio}</p>
-		</div>
-
-		<div id="cont3">
-			<form action="agregarCursoAlCarrito" method="get">
-				<input type="hidden" name="id_curso" value="${curso.id}">
-				<%-- cambiar por vista de carrito --%>
-				<input id="agregarCarrito" type="submit" value="Agregar al carrito">
-			</form>
-		</div>
-
-		<div id="cont4">
-			<form action="comprar" method="get">
-				<input type="hidden" name="id_curso" value="${curso.id}"> <input
-					type="hidden" name="precio" value="${curso.precio}"> <input
-					id="comprarAhora" name="comprarAhora" type="submit"
-					value="Comprar Ahora">
-			</form>
-		</div>
-		<div id="descripcion">
-			<p id="descTit">Descripción</p>
-			<p id="descCuerpo">${curso.descripcion}</p>
+		<div class="cont2">
+			<div class="descripcion">
+				<h2>Descripción</h2>
+				<p>${curso.descripcion}<br><br>Categoría: ${curso.categoria}</p>
+			</div>
+			<div class="contenidoCurso">
+				<h2>Contenido del curso</h2>
+				<c:forEach var="unidad" items="${unidades}">
+					<p>${unidad.descripcion}</p>
+				</c:forEach>
+			</div>
 		</div>
 	</div>
 

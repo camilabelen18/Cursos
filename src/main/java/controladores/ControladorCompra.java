@@ -12,11 +12,14 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.mercadopago.resources.Preference;
 
+import servicios.SaldoInsuficienteException;
 import servicios.ServicioCarrito;
 import modelo.*;
 import servicios.ServicioCurso;
 import servicios.ServicioUsuario;
+import servicios.TarjetaInvalidaException;
 import servicios.ServicioMercadoPago;
+import servicios.ServicioTarjeta;
 
 @Controller
 public class ControladorCompra {
@@ -25,15 +28,17 @@ public class ControladorCompra {
 	private ServicioCurso servicioCurso;
 	private ServicioCarrito servicioCarrito;
 	private ServicioMercadoPago servicioMercadoPago = new ServicioMercadoPago();
+	private ServicioTarjeta servicioTarjeta;
 	
 	@Autowired
-	public ControladorCompra(ServicioUsuario servicioUsuario, ServicioCurso servicioCurso, ServicioCarrito servicioCarrito) {
+	public ControladorCompra(ServicioUsuario servicioUsuario, ServicioCurso servicioCurso, ServicioCarrito servicioCarrito, ServicioTarjeta servicioTarjeta) {
 		this.servicioUsuario = servicioUsuario;
 		this.servicioCurso = servicioCurso;
 		this.servicioCarrito = servicioCarrito;
+		this.servicioTarjeta = servicioTarjeta;
 	}
 
-	@RequestMapping(path = "/comprar", method = RequestMethod.GET)
+	@RequestMapping(path = "/verificacionCompra", method = RequestMethod.POST)
 	public ModelAndView verificacionCompra(@RequestParam("id_curso") int idCurso, @RequestParam("precio") Double precioCurso, HttpSession session) {
 		
 		ModelMap model = new ModelMap();
@@ -44,8 +49,9 @@ public class ControladorCompra {
 			Usuario usuario = servicioUsuario.buscarUsuarioPorID(id_user);
 			Curso curso_obtenido = servicioCurso.buscarCursoPorId(idCurso);
 			Usuario_Curso usuarioCurso = servicioUsuario.obtenerUsuarioCurso(curso_obtenido, usuario);
-
 			if (!servicioUsuario.existeCursoEnListaUsuario(idCurso, usuario) || usuarioCurso.getEstado() == Estado.CANCELADO) {
+				Preference preference = servicioMercadoPago.checkout(usuario, precioCurso);
+				model.put("preference", preference);
 				model.put("idCurso", idCurso);
 				model.put("precioCurso", precioCurso);
 				model.put("curso", curso_obtenido);
@@ -53,7 +59,8 @@ public class ControladorCompra {
 			}
 			else {
 				model.addAttribute("msj_error", "El curso ya fue comprado, compre otro curso.");
-				viewName = "redirect:/verListaCursos";			}
+				viewName = "redirect:/verListaCursos";
+			}
 		}
 		else {
 			model.addAttribute("msj_error", "Para comprar necesitas ingresar a tu cuenta.");
@@ -62,8 +69,9 @@ public class ControladorCompra {
 		return new ModelAndView(viewName, model);
 	}
 
-	@RequestMapping(path = "/verificarCompra", method = RequestMethod.POST)
-	public ModelAndView verificarCompra(@RequestParam("nroTarjeta") Integer nroTarjeta, @RequestParam("curso_id") int curso_id, HttpSession session) {
+	@RequestMapping(path = "/realizarCompra", method = RequestMethod.POST)
+	public ModelAndView realizarCompra(@RequestParam("metodoPago") String metodoPago, @RequestParam("curso_id") int curso_id, 
+			@RequestParam("misPuntos") Integer numeroTarjetaPuntos, HttpSession session) {
 		
 		ModelMap model = new ModelMap();
 		int id_user = Integer.parseInt(session.getAttribute("idUsuario").toString());
@@ -71,11 +79,8 @@ public class ControladorCompra {
 		Curso curso_obtenido = servicioCurso.buscarCursoPorId(curso_id);
 		Usuario_Curso usuarioCurso = servicioUsuario.obtenerUsuarioCurso(curso_obtenido, usuario);
 		String viewName = "";
-		try {
-			// Se verifica si el numero de tarjeta del usuario es igual al numero de tarjeta ingresado.
-			// Si no son iguales, lanza una excepcion.
-			servicioUsuario.verificarTarjetaUsuario(usuario, nroTarjeta);
-
+		// Compra con tarjeta debito
+		if (metodoPago.equals("tarjeta")) {
 			if (servicioUsuario.existeCursoEnListaUsuario(curso_id, usuario) && usuarioCurso.getEstado() == Estado.CANCELADO) {
 				servicioCurso.cambiarEstadoCurso(usuarioCurso, Estado.EN_CURSO);
 			}
@@ -85,11 +90,40 @@ public class ControladorCompra {
 			viewName = "compraRealizada";
 			servicioUsuario.enviarNotificacion(usuario, "Compraste el curso " + curso_obtenido.getNombre(), session);
 		}
-		catch (Exception e) {
-			model.put("tarjetaIncorrecta", "El número de tarjeta ingresado es incorrecto.");
-			model.put("idCurso", curso_obtenido.getId());
-			model.put("precioCurso", curso_obtenido.getPrecio());
-			viewName = "verificacionCompra";
+		// Compra con tarjeta puntos
+		if (metodoPago.equals("puntos")) {
+			try {
+				Tarjeta tarjeta = usuario.getTarjeta();
+				servicioTarjeta.verificarTarjetaDePuntos(tarjeta, numeroTarjetaPuntos);
+				servicioTarjeta.verificarSaldoDeTarjetaDePuntos(tarjeta, curso_obtenido);
+				if (servicioUsuario.existeCursoEnListaUsuario(curso_id, usuario) && usuarioCurso.getEstado() == Estado.CANCELADO) {
+					servicioCurso.cambiarEstadoCurso(usuarioCurso, Estado.EN_CURSO);
+				}
+				else {
+					servicioUsuario.guardarCursoEnListaUsuario(curso_obtenido, usuario);
+				}
+				viewName = "compraRealizada";
+				servicioUsuario.enviarNotificacion(usuario, "Compraste el curso " + curso_obtenido.getNombre(), session);
+			}
+			catch (TarjetaInvalidaException e) {
+				model.put("tarjetaIncorrecta", "El numero de tarjeta ingresado es incorrecto.");
+				Preference preference = servicioMercadoPago.checkout(usuario, curso_obtenido.getPrecio());
+				model.put("preference", preference);
+				model.put("idCurso", curso_obtenido.getId());
+				model.put("precioCurso", curso_obtenido.getPrecio());
+				model.put("curso", curso_obtenido);
+				viewName = "verificacionCompra";
+			}
+			catch (SaldoInsuficienteException e) {
+				model.put("saldoInsuficiente", "El saldo de la tarjeta es insuficiente.");
+				Preference preference = servicioMercadoPago.checkout(usuario, curso_obtenido.getPrecio());
+				model.put("preference", preference);
+				model.put("idCurso", curso_obtenido.getId());
+				model.put("precioCurso", curso_obtenido.getPrecio());
+				model.put("curso", curso_obtenido);
+				viewName = "verificacionCompra";
+			}
+		    session.setAttribute("user", servicioUsuario.buscarUsuarioPorID(id_user));
 		}
 		return new ModelAndView(viewName, model);
 	}
@@ -129,7 +163,7 @@ public class ControladorCompra {
 		Curso curso_obtenido = servicioCurso.buscarCursoPorId(idCurso);
 		
 		if(servicioUsuario.existeCursoEnListaUsuario(idCurso, usuario)) {
-			servicioUsuario.eliminarCurso(curso_obtenido, usuario);
+			servicioUsuario.eliminarCursoDelUsuario(curso_obtenido, usuario);
 			model.put("msj_exito", "El curso '" + curso_obtenido.getNombre() + "' fue eliminado con exito!");
 		}
 		else {
@@ -154,49 +188,8 @@ public class ControladorCompra {
 		return new ModelAndView("compraRealizada", model);
 	}
 
-	@RequestMapping(path = "/verMediosDePago", method = RequestMethod.POST)
-	public ModelAndView verMediosDePago(@RequestParam("precio") Double total, @RequestParam("id_curso") int idCurso) {
-		
-		ModelMap model = new ModelMap();
-		Curso curso = servicioCurso.buscarCursoPorId(idCurso);
-		model.put("precioTotal", total);
-		model.put("curso", curso);
-		return new ModelAndView("mediosDePago", model);
-	}
-
-	@RequestMapping(path = "/pagoMP", method = RequestMethod.GET)
-	public ModelAndView pagoMP(@RequestParam("idCurso") int idCurso, @RequestParam("precioTotal") Double precioTotal, HttpSession session) {
-
-		ModelMap model = new ModelMap();
-		String viewName = "";
-		if (session.getAttribute("idUsuario") != null) {
-			int id_user = (int) session.getAttribute("idUsuario");
-			Usuario usuario = servicioUsuario.buscarUsuarioPorID(id_user);
-			Curso curso_obtenido = servicioCurso.buscarCursoPorId(idCurso);
-			Usuario_Curso usuarioCurso = servicioUsuario.obtenerUsuarioCurso(curso_obtenido, usuario);
-
-			if (!servicioUsuario.existeCursoEnListaUsuario(idCurso, usuario) || usuarioCurso.getEstado() == Estado.CANCELADO) {
-				Preference preference = servicioMercadoPago.checkout(usuario, precioTotal);
-				model.put("preference", preference);
-				model.put("precioTotal", precioTotal);
-				model.put("idCurso", idCurso);
-				viewName = "pagoMP";
-			}
-			else {
-				model.addAttribute("msj_error", "El curso ya fue comprado, compre otro curso.");
-				viewName = "redirect:/verListaCursos";
-				//servicioNotificacion.enviar(usuario, "El curso ya fue comprado, compre otro curso.");
-			}
-		}
-		else {
-			model.addAttribute("msj_error", "Para comprar necesitas ingresar a tu cuenta.");
-			viewName = "redirect:/verListaCursos";
-		}
-		return new ModelAndView(viewName, model);
-	}
-
-	@RequestMapping(path = "/pagoRealizadoMP", method = RequestMethod.GET)
-	public ModelAndView pagoRealizadoMP(@RequestParam("idCurso") int idCurso, HttpSession session) {
+	@RequestMapping(path = "/pagoConMP", method = RequestMethod.GET)
+	public ModelAndView pagoConMP(@RequestParam("idCurso") int idCurso, HttpSession session) {
 
 		ModelMap model = new ModelMap();
 		int id_user = Integer.parseInt(session.getAttribute("idUsuario").toString());
@@ -204,7 +197,6 @@ public class ControladorCompra {
 		Curso curso_obtenido = servicioCurso.buscarCursoPorId(idCurso);
 		Usuario_Curso usuarioCurso = servicioUsuario.obtenerUsuarioCurso(curso_obtenido, usuario);
 		String viewName = "";
-
 		if (servicioUsuario.existeCursoEnListaUsuario(idCurso, usuario) && usuarioCurso.getEstado() == Estado.CANCELADO) {
 			servicioCurso.cambiarEstadoCurso(usuarioCurso, Estado.EN_CURSO);
 		}

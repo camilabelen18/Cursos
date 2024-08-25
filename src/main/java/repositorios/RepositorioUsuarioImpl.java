@@ -96,7 +96,7 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario{
 		if (diferencia_dias == 1) {
 			Long minuto = ChronoUnit.MINUTES.between(usuarioCurso.getHora(),LocalTime.now());
 
-			if(minuto <= 2) {
+			if(minuto <= 5) {
 				return true;
 			}
 		}
@@ -125,7 +125,7 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario{
 	}
 
 	@Override
-	public void eliminarCurso(Curso curso_obtenido, Usuario usuario) {
+	public void eliminarCursoDelUsuario(Curso curso_obtenido, Usuario usuario) {
 
 		Session sesion = sessionFactory.getCurrentSession();
 		Usuario_Curso usuarioCurso = (Usuario_Curso) sesion.createCriteria(Usuario_Curso.class)
@@ -151,8 +151,8 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario{
 	}
 
 	@Override
-	public void guardarGiftcardDeUsuario(Giftcard gift) {
-		sessionFactory.getCurrentSession().save(gift);
+	public void guardarTarjetaDeUsuario(Tarjeta tarjeta) {
+		sessionFactory.getCurrentSession().save(tarjeta);
 	}
 
 	@Override
@@ -230,8 +230,8 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario{
 	}
 
 	@Override
-	public void actualizarGiftcard(Giftcard giftcard) {
-		sessionFactory.getCurrentSession().update(giftcard);
+	public void actualizarTarjeta(Tarjeta tarjeta) {
+		sessionFactory.getCurrentSession().update(tarjeta);
 	}
 
 }

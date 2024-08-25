@@ -54,7 +54,6 @@ public class Carrito {
 		this.cantidad--;
 	}
 
-
 	@Override
 	public String toString() {
 		return "Carrito [id=" + id + ", cantidad=" + cantidad + ", usuario=" + usuario + "]";

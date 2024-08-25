@@ -65,26 +65,6 @@
 	background-color: #f2f2f2;
 }
 
-/* AGREGAR CURSO (SOLO ADMIN */
-#contAgregarCurso {
-	display: flex;
-	flex-direction: row;
-	justify-content: flex-end;
-	margin-top: 40px;
-	padding: 10px;
-	padding-top: 20px;
-}
-
-#agregarCurso {
-	padding: 10px 50px;
-	color: white;
-	font-size: 16px;
-	font-weight: bold;
-	border: 0;
-	border-radius: 5px;
-	background-color: #37B9CB;
-}
-
 /* LISTA DE CURSOS */
 .listaSeccionCursos {
 	display: flex;
@@ -146,7 +126,7 @@
 	margin-bottom: 40px;
 }
 
-.msj-sincurso{
+.msj-sincurso {
 	margin-bottom: 150px;
 	margin-top: 100px;
 	text-align: center;
@@ -157,4 +137,20 @@
 	.cont-seccion-cursos {
 		width: 80%;
 	}
+}
+
+@media (max-width: 880px) {
+	.cont-seccion-cursos {
+        width: 90%;
+    }
+    .cuadro-seccion-cursos-flex {
+    	flex-direction: column;
+    }
+    .cuadro-seccion-cursos-flex img {
+    	width: 100%;
+    }
+    .cotenido-1-curso {
+	    padding: 0px;
+	    margin-top: 20px;
+    }
 }

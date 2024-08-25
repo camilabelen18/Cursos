@@ -16,53 +16,48 @@
 	<%@ include file="partial/header.jsp"%>
 	
 	<div class="cont-seccion-cursos">
-
-		<div id ="contAgregarCurso">
-			<a href ="agregarCurso" id="agregarCurso">Agregar Curso</a>
-		</div>
-		
 		<div id="contenedorFiltros">
-
+			<c:if test="${categoria =='diseno'}">
+				<h1>Cursos de diseño</h1>
+			</c:if>
+			<c:if test="${categoria =='programacion'}">
+				<h1>Cursos de programación</h1>
+			</c:if>
+			<c:if test="${categoria =='musica'}">
+				<h1>Cursos de  música</h1>
+			</c:if>
+			<c:if test="${categoria == 'Todos los cursos'}">
+				<h1>Todos los cursos</h1>
+			</c:if>
+			<c:if test="${busqueda != null}">
+				<h3 id="busqueda">Los resultados de la busqueda para el curso '${busqueda}' son: </h3>
+			</c:if>
 			<div class="dropdown">
 				<button id="filtrarPor">Filtrar por</button>
 				<div class="dropdown-content">
-					<a href="#">Más relevantes</a>
+					<a href="verListaCursos">Todos los cursos</a>
 					<a href="verCursosPorCategoria?categoria=programacion">C. de programacion</a>
 					<a href="verCursosPorCategoria?categoria=diseno">C. de diseño</a>
 					<a href="verCursosPorCategoria?categoria=musica">C. de música</a>
 				</div>
 			</div>
 		</div>
-		
-		<!-- Si se hace click en el boton comprar sin haber iniciado sesión, se muestra un mensaje de error -->
-		<c:if test="${not empty msj_error_sesion}">
-			<p class="msj_error">${msj_error_sesion}</p>
+		<c:if test="${not empty msj_exito}">
+			<p class="msj_exito">${msj_exito}</p>
 		</c:if>
-		
-		<!-- Si el usuario quiere comprar un curso que ya compro entonces se muestra un mensaje de error -->
-		<c:if test="${not empty msj_error_curso}">
-			<p class="msj_error">${msj_error_curso}</p>
-		</c:if>
-
 		<div class="listaSeccionCursos">
-
 			<!-- SE INICIA UN BUCLE EN DONDE POR CADA CURSO SE VA MOSTRANDO SUS DATOS EN UN CUADRO -->
 			<c:forEach var="curso" items="${lista_cursos}">
-
 				<div class="cuadro-seccion-cursos">
-				
 					<a href="descripcionCurso?id_curso=${curso.id}">
-					
 						<div class="cuadro-seccion-cursos-flex">
 							<div>
 								<img src="imagenes/cursos/${curso.imagen}">
 							</div>
-		
 							<div class="cotenido-1-curso">
 								<p class="nombreCurso">${curso.nombre}</p>
 								<p>${curso.descripcion}</p>
 							</div>
-		
 							<div class="cotenido-2-curso">
 								<p class="precioCurso">${curso.precio}$</p>
 								<form action="editarCurso" method="get">
@@ -75,18 +70,16 @@
 								</form>
 							</div>
 						</div>
-						
 					</a>
 				</div>
-
 			</c:forEach>
 		</div>
-
 		<!-- Si al realizar la busqueda no se encontro ningun curso se muestra un mensaje de error -->
-		<c:if test="${not empty sincurso}">
-			<p id="msj_error_curso">${sincurso}</p>
+		<c:if test="${not empty sin_curso}">
+			<div class="msj-sincurso">
+				<p id="sin_curso">${sin_curso}</p>
+			</div>
 		</c:if>
-		
 	</div>
 
 	<%@ include file="partial/footer.jsp"%>

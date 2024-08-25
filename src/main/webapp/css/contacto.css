@@ -64,3 +64,12 @@ input[type="text"]:focus, textarea:focus {
 	color: #5e5e5e;
 	font-weight: 500;
 }
+
+/*---------------------------------RESPONSIVE-------------------------------------*/
+@media (max-width: 880px) {
+	.formulario {
+    	width: 70%;
+	}
+}
+
+

@@ -1,60 +1,32 @@
-/* 
-Tipo de fuente:
-Arial, Helvetica, sans-serif
-
-Colores clave:
-
-gris oscuro: #3c3b37
-
-celeste: #37B9CB
-*/
-
-/* Generales */
 main {
-	width: 50%;
 	margin: auto;
-	margin-bottom: 100px;
+    margin-top: 100px;
+    margin-bottom: 120px;
+    width: 50%;
 }
 
-/* Titulo */
-#titulo {
-	height: 70px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin: 80px 0px;
-}
-
-#titulo a {
-	color: #3c3b37;
-	font-size: 14px;
-}
-
-#titulo span {
-	font-weight: bold;
-	font-size: 14px;
-}
-
-/* Contenido principal  */
 .contenedor2 {
-	width: 30%;
+	width: 55%;
 	margin: auto;
-	padding: 40px 60px;
-    border: 2px solid #37B9CB;
-    border-radius: 20px;
+	margin-top: 50px;
+	padding: 40px 80px;
+	background-color: #FCFCB6;
+    border-radius: 8px;
 }
 
+#resumen {
+	margin-bottom: 10px;
+}
 
 #precioTotal {
 	display: flex;
 	justify-content: space-between;
-	margin: 15px 0px;
+	margin-top: 10px;
 	font-weight: 600;
-	margin-bottom: 60px;
+	margin-bottom: 30px;
 }
 
-#pagarTarjeta {
+#metodoPago {
 	margin-bottom: 20px;
 }
 
@@ -84,4 +56,44 @@ input[type="number"]:focus {
 .error {
     color: crimson;
     margin-top: 20px;
+}
+
+.contenedor2 .mercadopago-button {
+	width: 100%;
+	padding: 5px 30px;
+	background: #737373;
+	color: white;
+	border: 0;
+	border-radius: 5px;
+	font-size: 20px;
+	font-weight: 600;
+	line-height: normal;
+	margin-top: 16px;
+}
+
+.contenedor2 .mercadopago-button:hover {
+	background: #898989;
+	cursor: pointer;
+}
+
+/*------------------------------------------RESPONSIVE----------------------------------*/
+@media (max-width: 1250px) {
+	main {
+    	width: 70%;
+	}
+}
+
+@media (max-width: 880px) {
+	main {
+    	width: 90%;
+	}
+	.contenedor2 {
+    	width: 70%;
+	}
+}
+
+@media (max-width: 600px) {
+	.contenedor2 {
+    	width: 100%;
+	}
 }
